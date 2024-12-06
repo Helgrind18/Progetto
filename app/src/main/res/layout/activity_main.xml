@@ -1,19 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--È stato messo il layout verticale al fine di avere il login in basso-->
+<!-- La gravità è al centro per avere il login in basso -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/white">
 
-    <TextView
+
+    <!--Creo il layout per il login-->
+    <EditText
+        android:id="@+id/textUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="Inserire username"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_medium_gray"
+        />
+
+    <EditText
+        android:id="@+id/TextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Inserire Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="@color/hint_medium_gray"
+        android:textColor="@color/black"/>
+    <Button
+        android:id="@+id/buttonSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Invia"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/verde_petrolio"/>
+    <!--Aggiunta di una Checkbox per permettere all'app di registrare un nuovo utente-->
+    <CheckBox
+        android:id="@+id/Ricordami"
+        android:text="Ricordami!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_gravity="center" />
+</LinearLayout>

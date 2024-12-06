@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--Vado a creare un colore grigio chiaro. Mi serve per l'hint della login Username-->
+    <color name="hint_medium_gray">#808080</color>
+    <!--Creo il colore per il bottone di Login-->
+    <color name="verde_petrolio">#007F66</color>
 </resources>
