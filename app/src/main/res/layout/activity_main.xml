@@ -10,9 +10,13 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/white">
+    >
 
-
+    <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:src="@drawable/logounical"
+    android:layout_marginBottom="16dp" />
     <!--Creo il layout per il login-->
     <EditText
         android:id="@+id/textUsername"
@@ -20,26 +24,25 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:hint="Inserire username"
-        android:textColor="@color/black"
         android:textColorHint="@color/hint_medium_gray"
         />
 
     <EditText
-        android:id="@+id/TextPassword"
+        android:id="@+id/textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Inserire Password"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColorHint="@color/hint_medium_gray"
-        android:textColor="@color/black"/>
+     />
     <Button
-        android:id="@+id/buttonSend"
+        android:id="@+id/bottoneInvia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Invia"
         android:textColor="@color/white"
-        android:backgroundTint="@color/verde_petrolio"/>
+        android:backgroundTint="@color/verde_opaco"/>
     <!--Aggiunta di una Checkbox per permettere all'app di registrare un nuovo utente-->
     <CheckBox
         android:id="@+id/Ricordami"
@@ -47,4 +50,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
+
+
 </LinearLayout>
