@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/gridLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,28 +30,32 @@
 
         <!-- Bottone 1 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/orarioLezioni"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
             android:text="Orario Lezioni"
-            />
+            app:cornerRadius="12dp" />
 
         <!-- Bottone 2 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/calendario"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Calendario Esami" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Calendario Esami"
+            app:cornerRadius="12dp"
+            app:icon="@null"
+            app:iconPadding="@null" />
 
         <!-- Bottone 3 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/mensa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mensa" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Mensa"
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
     <!-- Riga 2 -->
@@ -62,27 +67,30 @@
 
         <!-- Bottone 4 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/tasse"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tasse" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Tasse"
+            app:cornerRadius="12dp" />
 
         <!-- Bottone 5 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/libretto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Libretto" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Libretto"
+            app:cornerRadius="12dp" />
 
         <!-- Bottone 6 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/bachecaEsisti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bacheca Esiti" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Bacheca Esiti"
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
     <!-- Riga 3 -->
@@ -98,25 +106,31 @@
             android:id="@+id/questionari"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
             android:text="Questionari"
-            android:backgroundTint="@color/verde_opaco"/>
+            app:cornerRadius="12dp" />
 
         <!-- Bottone 8 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/pianoStudi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Piano Studi" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Piano Studi"
+            app:cornerRadius="12dp" />
 
         <!-- Bottone 9 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/mappa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mappa" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Mappa"
+            app:cornerRadius="12dp" />
     </LinearLayout>
+
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -129,24 +143,28 @@
             android:id="@+id/areaPersonale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
             android:text="Area Personale"
-            android:backgroundTint="@color/verde_opaco"/>
+            app:cornerRadius="12dp" />
+
 
         <!-- Bottone 8 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/biblioteca"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Biblioteca" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Biblioteca"
+            app:cornerRadius="12dp" />
 
         <!-- Bottone 9 -->
         <Button
-            android:backgroundTint="@color/verde_opaco"
             android:id="@+id/collegamenti"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Collegamenti" />
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Collegamenti"
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
 </LinearLayout>
