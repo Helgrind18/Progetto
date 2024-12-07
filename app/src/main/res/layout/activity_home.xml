@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gridLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity=""
+    android:orientation="vertical">
+
+    <!-- View (spazio rosso sopra i bottoni) -->
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/rosso_bordeaux" />
+    <!-- View (spazio rosso sopra i bottoni) -->
+    <View
+        android:id="@+id/bandaBianca"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white" />
+    <!-- Riga 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Bottone 1 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/orarioLezioni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Orario Lezioni"
+            />
+
+        <!-- Bottone 2 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/calendario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calendario Esami" />
+
+        <!-- Bottone 3 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/mensa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mensa" />
+    </LinearLayout>
+
+    <!-- Riga 2 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Bottone 4 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/tasse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tasse" />
+
+        <!-- Bottone 5 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/libretto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Libretto" />
+
+        <!-- Bottone 6 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/bachecaEsisti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bacheca Esiti" />
+    </LinearLayout>
+
+    <!-- Riga 3 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <!-- Bottone 7 -->
+        <Button
+            android:id="@+id/questionari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Questionari"
+            android:backgroundTint="@color/verde_opaco"/>
+
+        <!-- Bottone 8 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/pianoStudi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Piano Studi" />
+
+        <!-- Bottone 9 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/mappa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mappa" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <!-- Bottone 7 -->
+        <Button
+            android:id="@+id/areaPersonale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Area Personale"
+            android:backgroundTint="@color/verde_opaco"/>
+
+        <!-- Bottone 8 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/biblioteca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Biblioteca" />
+
+        <!-- Bottone 9 -->
+        <Button
+            android:backgroundTint="@color/verde_opaco"
+            android:id="@+id/collegamenti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Collegamenti" />
+    </LinearLayout>
+
+</LinearLayout>

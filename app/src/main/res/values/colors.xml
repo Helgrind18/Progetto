@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <!--Vado a creare un colore grigio chiaro. Mi serve per l'hint della login Username-->
+    <color name="hint_medium_gray">#808080</color>
+    <color name="trasparent">#000000</color>
+    <!--Creo i colori dell'unical-->
+    <color name="rosso_bordeaux">#b71918</color>
+    <color name="grigio_blu">#464c59</color>
+    <color name="verde_opaco">#698a48</color>
+
+
 </resources>
