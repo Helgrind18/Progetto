@@ -38,7 +38,8 @@
             android:insetBottom="@null"
             android:text="Orario Lezioni"
             app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            app:iconPadding="64dp"
+            android:textSize="16sp"/>
 
         <Button
             android:id="@+id/calendarioEsami"
@@ -162,7 +163,8 @@
             android:insetBottom="@null"
             android:text="Collegamenti"
             app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            app:iconPadding="64dp"
+            android:textSize="16sp"/>
     </LinearLayout>
 
 
@@ -197,7 +199,8 @@
             android:insetBottom="@null"
             android:text="Area Biblioteche"
             app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            app:iconPadding="64dp"
+            android:textSize="16sp"/>
 
         <Button
             android:id="@+id/areaPersonale"
