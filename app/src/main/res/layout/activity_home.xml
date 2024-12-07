@@ -1,207 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout"
+    android:id="@+id/gridLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:paddingHorizontal="128dp"
-    >
+    android:gravity=""
+    android:orientation="vertical">
 
-<!--Commento per Commit-->
+    <!-- View (spazio rosso sopra i bottoni) -->
     <View
-        android:id="@+id/bandaRossa"
+        android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/rosso_bordeaux"
-        android:layout_weight="1" />
+        android:layout_height="50dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/rosso_bordeaux" />
+    <!-- View (spazio rosso sopra i bottoni) -->
     <View
         android:id="@+id/bandaBianca"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white"
-        android:layout_weight="0.5" />
-
-    <!--I bottoni vengono disposti in modo verticale e riquadrati-->
+        android:layout_height="250dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/white" />
+    <!-- Riga 1 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
+        <!-- Bottone 1 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/orarioLezioni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Orario Lezioni"
+            app:cornerRadius="12dp" />
 
+        <!-- Bottone 2 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/calendario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Calendario Esami"
+            app:cornerRadius="12dp"
+            app:icon="@null"
+            app:iconPadding="@null" />
 
+        <!-- Bottone 3 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
-
-
+            android:id="@+id/mensa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Mensa"
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
-
+    <!-- Riga 2 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
+        <!-- Bottone 4 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/tasse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Tasse"
+            app:cornerRadius="12dp" />
 
+        <!-- Bottone 5 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/libretto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Libretto"
+            app:cornerRadius="12dp" />
 
+        <!-- Bottone 6 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
-
-
+            android:id="@+id/bachecaEsisti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Bacheca Esiti"
+            app:cornerRadius="12dp" />
     </LinearLayout>
 
-
+    <!-- Riga 3 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
 
+        <!-- Bottone 7 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/questionari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Questionari"
+            app:cornerRadius="12dp" />
 
+        <!-- Bottone 8 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/pianoStudi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Piano Studi"
+            app:cornerRadius="12dp" />
 
+        <!-- Bottone 9 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/mappa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Mappa"
+            app:cornerRadius="12dp" />
     </LinearLayout>
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="16dp">
 
+        <!-- Bottone 7 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/areaPersonale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Area Personale"
+            app:cornerRadius="12dp" />
 
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
 
+        <!-- Bottone 8 -->
         <Button
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bottone 1"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp" />
+            android:id="@+id/biblioteca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Biblioteca"
+            app:cornerRadius="12dp" />
+
+        <!-- Bottone 9 -->
+        <Button
+            android:id="@+id/collegamenti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/verde_opaco"
+            android:text="Collegamenti"
+            app:cornerRadius="12dp" />
     </LinearLayout>
-
 
 </LinearLayout>
