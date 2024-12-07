@@ -16,5 +16,9 @@ class OrarioLezioni : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //TODO: inserire codice per visualizzare l'orario delle lezioni
+        //L'utente è collegato ad una serie di corsi, quindi a schermo dovremmo avere una serie di corsi
+
     }
 }
