@@ -34,12 +34,81 @@ class HomeActivity : AppCompatActivity() {
         val collegamenti: Button = findViewById(R.id.collegamenti)
         val mappa: Button = findViewById(R.id.mappa)
         val biblioteca: Button = findViewById(R.id.biblioteca)
+        val areaPersonale : Button = findViewById(R.id.areaPersonale)
 
         // Gestione dei bottoni: non appena si preme un bottone si apre una nuova activity, bisogna anche estrarre il nome dell'utente da intent
         orarioLezioni.setOnClickListener {
             val intent = Intent(this, OrarioLezioni::class.java).apply {
                 putExtra("username", username)
             }
+            startActivity(intent)
         }
+        calendarioEsami.setOnClickListener {
+            val intent = Intent(this, CalendarioEsami::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+        mensa.setOnClickListener {
+            val intent = Intent(this, Mensa::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+        tasse.setOnClickListener {
+            val intent = Intent(this, Tasse::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+        libretto.setOnClickListener {
+            val intent = Intent(this, Libretto::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+        bachecaEsiti.setOnClickListener {
+            val intent = Intent(this, BachecaEsiti::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+        questionari.setOnClickListener {
+            val intent = Intent(this, Questionari::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+        pianoStudi.setOnClickListener {
+            val intent = Intent(this, PianoStudi::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+        collegamenti.setOnClickListener {
+            val intent = Intent(this, Collegamenti::class.java).apply {
+                //Non serve passare username, è un rimando a tutti i collegamenti dell'università
+            }
+            startActivity(intent)
+        }
+        mappa.setOnClickListener {
+            val intent = Intent(this, Mappa::class.java).apply {
+
+            }
+            startActivity(intent)
+        }
+        biblioteca.setOnClickListener {
+            val intent = Intent(this, Biblioteca::class.java).apply {
+
+            }
+            startActivity(intent)
+        }
+        areaPersonale.setOnClickListener {
+            val intent = Intent(this, AreaPersonale::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+
     }
 }
