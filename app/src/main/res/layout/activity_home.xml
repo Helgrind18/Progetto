@@ -36,7 +36,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Orario Lezioni"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -49,7 +49,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Calendario Esami"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -62,7 +62,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Area Mensa"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -84,7 +84,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Situazione Tasse"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -97,7 +97,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Libretto Esami"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -110,7 +110,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Bacheca Esiti"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -134,7 +134,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Questionari"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -147,7 +147,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Piano di studi"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -160,7 +160,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Collegamenti"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
     </LinearLayout>
@@ -182,7 +182,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Mappa Università"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -195,7 +195,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Area Biblioteche"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
 
@@ -208,7 +208,7 @@
             android:insetTop="@null"
             android:insetRight="8dp"
             android:insetBottom="@null"
-            android:text="Bottone 1"
+            android:text="Area Personale"
             app:cornerRadius="8dp"
             app:iconPadding="64dp" />
     </LinearLayout>
