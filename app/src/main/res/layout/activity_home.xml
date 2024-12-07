@@ -9,7 +9,7 @@
     android:paddingHorizontal="128dp"
     >
 
-
+<!--Commento per Commit-->
     <View
         android:id="@+id/bandaRossa"
         android:layout_width="match_parent"
