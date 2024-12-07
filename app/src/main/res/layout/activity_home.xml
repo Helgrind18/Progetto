@@ -28,6 +28,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/orarioLezioni"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -40,6 +41,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/calendarioEsami"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -52,6 +54,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/mensa"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -73,6 +76,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/tasse"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -85,6 +89,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/libretto"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -97,6 +102,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/bachecaEsiti"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -120,6 +126,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/questionari"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -132,6 +139,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/pianoStudi"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -144,6 +152,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/collegamenti"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -158,12 +167,14 @@
 
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/mappa"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -176,6 +187,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/biblioteca"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
@@ -188,6 +200,7 @@
             app:iconPadding="64dp" />
 
         <Button
+            android:id="@+id/areaPersonale"
             android:layout_width="0dp"
             android:layout_height="128dp"
             android:layout_weight="1"
