@@ -13,6 +13,10 @@
         android:theme="@style/Theme.Progetto"
         tools:targetApi="31">
         <activity
+            android:name=".CalendarioEsami"
+            android:exported="false"
+            android:theme="@style/Theme.Progetto" />
+        <activity
             android:name=".AreaPersonale"
             android:exported="false" />
         <activity
@@ -42,10 +46,6 @@
         <activity
             android:name=".Mensa"
             android:exported="false" />
-        <activity
-            android:name=".CalendarioEsami"
-            android:exported="false"
-            android:theme="@style/Theme.Progetto" />
         <activity
             android:name=".OrarioLezioni"
             android:exported="false" />
