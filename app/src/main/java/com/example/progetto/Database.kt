@@ -145,6 +145,7 @@ data class Archivio (
     val nome: String,
     val posizione: String, //verrà gestita come un indirizzo
 )
+//Commento per Commit
 
 @Entity(
     tableName = "LibriPrestati",
