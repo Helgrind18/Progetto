@@ -11,9 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-
-//TODO: IMPLEMENTAZIONE DEL SALVATAGGIO DELL'UTENTE
-
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         
         //Bisogna gestire anche la memorizzazione dell'utente
         val ricordami : CheckBox = findViewById(R.id.Ricordami)
-        
+
         
         //Quando l'utente clicca sul bottone Invia, bisogna andare a controllare che i dati siano corretti
         val invia :Button = findViewById(R.id.bottoneInvia)
