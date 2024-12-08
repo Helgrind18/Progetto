@@ -53,7 +53,25 @@ data class Segue(
     val CF: String,        // Chiave esterna verso Studente
     val id: Int            // Chiave esterna verso Corso
 )
-
+@Entity(
+    tableName = "Esame",
+    primaryKeys = ["orario", "data"],
+    foreignKeys = [
+        ForeignKey(
+            entity = Corso::class,
+            parentColumns = ["id"],
+            childColumns = ["idCorso"],
+            onDelete = ForeignKey.CASCADE
+        )
+    ]
+)
+data class Esame(
+    val idCorso: Int,   // Chiave esterna verso Corso
+    val orario: Int,    // Parte della chiave primaria
+    val data: String,   // Parte della chiave primaria
+    val prenotazioni: Int,
+    val durata: Int
+)
 data class Professore(
     val CF : String,
     val nome : String,
@@ -92,25 +110,7 @@ data class Aula(
     val capienza: Int
 )
 
-@Entity(
-    tableName = "Esame",
-    primaryKeys = ["orario", "data"],
-    foreignKeys = [
-        ForeignKey(
-            entity = Corso::class,
-            parentColumns = ["id"],
-            childColumns = ["idCorso"],
-            onDelete = ForeignKey.CASCADE
-        )
-    ]
-)
-data class Esame(
-    val idCorso: Int,   // Chiave esterna verso Corso
-    val orario: Int,    // Parte della chiave primaria
-    val data: String,   // Parte della chiave primaria
-    val prenotazioni: Int,
-    val durata: Int
-)
+
 
 data class Libro(
     val ISBN: String,

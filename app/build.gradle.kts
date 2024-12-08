@@ -57,5 +57,4 @@ dependencies {
     kapt("androidx.room:room-compiler:2.5.0") // Room compiler dependency with kapt
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
-
 }
