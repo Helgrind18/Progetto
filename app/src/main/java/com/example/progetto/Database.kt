@@ -77,6 +77,7 @@ class Database (context : Context): SQLiteOpenHelper(context, "Database",
         val result = db.insert("Studenti", null, values) // Tento l'inserimento dei dati
         return result != -1L // Controllo l'effettivo inserimento dei dati
     }
+    //Vanno aggiunte le altre tabelle
 
 
 
