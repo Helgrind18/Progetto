@@ -1,6 +1,8 @@
 package com.example.progetto
 
+import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
@@ -59,6 +61,24 @@ class Database (context : Context): SQLiteOpenHelper(context, "Database",
     private fun createTableStudenti(db: SQLiteDatabase) {
 
     }
+
+    //Dobbiamo costruire le tuple di valori di caricare nel db
+    fun insertStudenti(matricola : String, nome : String, cognome : String, email : String, password : String) : Boolean{
+        val db = this.writableDatabase //identifichiamo un'istanza in scrittura del database
+        val values = ContentValues().apply {
+            //Così definisco i valori da inserire nel db
+            //ContentValues associa i nomi delle colonne della tabella ai rispettivi valori da inserire
+            put("matricola", matricola)
+            put("nome", nome)
+            put("cognome", cognome)
+            put("email", email)
+            put("password", password)
+        }
+        val result = db.insert("Studenti", null, values) // Tento l'inserimento dei dati
+        return result != -1L // Controllo l'effettivo inserimento dei dati
+    }
+
+
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS Studenti")
