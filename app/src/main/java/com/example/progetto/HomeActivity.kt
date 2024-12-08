@@ -9,6 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+
+//TOOD: Bisogna gestire quanto di seguito
+/*
+* All'accesso dell'utente bisogna fare il calcolo, prendendo la relazione Biblioteca - Studente, verificare quanti giorni mancano (sostanzialmente è un controllo sul counter) e segnalare se ci siano libri da restituire
+*
+* Se la scadenza è minore di 5, mando una notifica per segnalare di portare indietro il libro*/
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
