@@ -40,7 +40,9 @@
             app:cornerRadius="8dp"
             app:iconPadding="64dp"
             android:textSize="12sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/calendarioEsami"
@@ -55,7 +57,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/mensa"
@@ -70,7 +74,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
     </LinearLayout>
 
@@ -94,7 +100,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/libretto"
@@ -108,7 +116,9 @@
             android:text="Libretto Esami"
             app:cornerRadius="8dp"
             android:textSize="12sp"
-            app:iconPadding="64dp" />
+            app:iconPadding="64dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/bachecaEsiti"
@@ -123,7 +133,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
 
 
@@ -149,7 +161,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/pianoStudi"
@@ -164,7 +178,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/collegamenti"
@@ -179,7 +195,9 @@
             app:cornerRadius="8dp"
             app:iconPadding="64dp"
             android:textSize="12sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
     </LinearLayout>
 
 
@@ -203,7 +221,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/biblioteca"
@@ -218,7 +238,9 @@
             app:cornerRadius="8dp"
             app:iconPadding="64dp"
             android:textSize="12sp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
 
         <Button
             android:id="@+id/areaPersonale"
@@ -233,7 +255,9 @@
             app:cornerRadius="8dp"
             android:textSize="12sp"
             app:iconPadding="64dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/rosso_bordeaux"/>
     </LinearLayout>
 
 

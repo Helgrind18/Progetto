@@ -18,6 +18,7 @@
     android:layout_height="wrap_content"
         android:src="@drawable/logounical"
     android:layout_marginBottom="16dp" />
+
     <!--Creo il layout per il login-->
     <EditText
         android:id="@+id/textUsername"
@@ -39,13 +40,15 @@
         android:minHeight="48dp"
         android:textColorHint="@color/black"
      />
+
     <Button
         android:id="@+id/bottoneInvia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Invia"
         android:textColor="@color/white"
-        android:backgroundTint="@color/verde_opaco"/>
+        android:backgroundTint="@color/rosso_bordeaux"/>
+
     <!--Aggiunta di una Checkbox per permettere all'app di registrare un nuovo utente-->
     <CheckBox
         android:id="@+id/Ricordami"
