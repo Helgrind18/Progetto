@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class Database (context : Context): SQLiteOpenHelper(context, "Database",
     null, 1)  {
     override fun onCreate(db: SQLiteDatabase) {
+        //Questo metodo viene chiamato quando il db viene creato per la prima volta
         createTableStudenti(db)
         createTableProfessori(db)
         createTableCorso(db)
@@ -59,7 +60,17 @@ class Database (context : Context): SQLiteOpenHelper(context, "Database",
 
     }
 
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        TODO("Not yet implemented")
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL("DROP TABLE IF EXISTS Studenti")
+        db.execSQL("DROP TABLE IF EXISTS Professori")
+        db.execSQL("DROP TABLE IF EXISTS Corso")
+        db.execSQL("DROP TABLE IF EXISTS Aula")
+        db.execSQL("DROP TABLE IF EXISTS Biblioteca")
+        db.execSQL("DROP TABLE IF EXISTS Esami")
+        db.execSQL("DROP TABLE IF EXISTS FrequentaCorso")
+        db.execSQL("DROP TABLE IF EXISTS AulaCorso")
+        db.execSQL("DROP TABLE IF EXISTS LibriPrestito")
+        db.execSQL("DROP TABLE IF EXISTS PrenotazioneEsame")
+        onCreate(db)
     }
 }
