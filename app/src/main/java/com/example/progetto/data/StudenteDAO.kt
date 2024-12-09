@@ -1,16 +1,26 @@
 package com.example.progetto.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 
-@Dao
+//Un DAO è un'interfaccia che contiene i metodi per l'accesso ai dati
 interface StudenteDAO {
-    //Ha i metodi per accedere al database
-    @Insert(onConflict = OnConflictStrategy.IGNORE) // In questo modo non succede niente se c'è il conflitto
-    suspend fun inserisciStudente(studente: Studente)
+
     @Query("SELECT * FROM studenti")
-    fun getAllStudents(): LiveData<List<Studente>>
+    fun getAllStudenti(): LiveData<List<Studente>>
+
+    @Query("SELECT * FROM studenti WHERE matricola = :matricola")
+    fun getStudenteByMatricola(matricola: String): LiveData<Studente>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertStudente(studente: Studente)
+
+    @Delete
+    fun deleteStudente(studente: Studente)
+
+    @Query("SELECT * FROM studenti WHERE eta > :eta")
+    fun loadAllStudentsOlderThan(eta: Int): LiveData<List<Studente>>
 }

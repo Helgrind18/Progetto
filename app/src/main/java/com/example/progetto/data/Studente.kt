@@ -3,15 +3,19 @@ package com.example.progetto.data
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "studenti")
-data class Studente (
-    @PrimaryKey(autoGenerate = true) //Verranno generate le chiavi automaticamente
+@Entity(tableName = "studenti",
+    primaryKeys = ["matricola", "CF"])
+data class Studente(
     val matricola: String,
     val CF: String,
     val nome: String,
     val cognome: String,
-    val email: String,
-    val password: String,
-    val ISEE: Int
-
+    val eta: Int,
+)
+@Entity (tableName = "Libro",)
+data class Libro (
+    @PrimaryKey val ISBN: String,
+    val numPagine: Int,
+    val titolo: String,
+    val autore: String,
 )
