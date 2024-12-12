@@ -65,6 +65,9 @@ data class Segue(
         )
     ]
 )
+
+// commento per psuh
+
 data class Esame(
     val idCorso: Int,   // Chiave esterna verso Corso
     val orario: Int,    // Parte della chiave primaria
