@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     ricordami.setOnClickListener { _, isChecked ->
                         if (isChecked){
                             //Salva la matricola
-                            Toas
+                            Toast.makeText(this, "Salvo i dati", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
