@@ -42,6 +42,9 @@ class HomeActivity : AppCompatActivity() {
         val biblioteca: Button = findViewById(R.id.biblioteca)
         val areaPersonale : Button = findViewById(R.id.areaPersonale)
 
+        //TODO: dallo username devo risalire alla matricola dell'utente
+
+
         // Gestione dei bottoni: non appena si preme un bottone si apre una nuova activity, bisogna anche estrarre il nome dell'utente da intent
         orarioLezioni.setOnClickListener {
             val intent = Intent(this, OrarioLezioni::class.java).apply {

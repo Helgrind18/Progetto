@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("kotlin-kapt") // Moved inside the `plugins` block
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -53,8 +53,34 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation("androidx.room:room-runtime:2.5.0") // Room runtime dependency
-    kapt("androidx.room:room-compiler:2.5.0") // Room compiler dependency with kapt
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
+    //Dal sito ufficiale di Android Studio c'era scritto di implementare queste dipendenze
+    val room_version = "2.6.1"
+
+    implementation(libs.androidx.room.runtime)
+
+    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
+    // See Add the KSP plugin to your project
+    ksp(libs.androidx.room.room.compiler)
+
+    // If this project only uses Java source, use the Java annotationProcessor
+    // No additional plugins are necessary
+    annotationProcessor(libs.androidx.room.room.compiler)
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+
+    // optional - RxJava2 support for Room
+    implementation(libs.androidx.room.rxjava2)
+
+    // optional - RxJava3 support for Room
+    implementation(libs.androidx.room.rxjava3)
+
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation(libs.androidx.room.guava)
+
+    // optional - Test helpers
+    testImplementation(libs.androidx.room.testing)
+
+    // optional - Paging 3 Integration
+    implementation(libs.androidx.room.paging)
 }

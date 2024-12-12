@@ -13,9 +13,18 @@ lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
 navigationFragmentKtx = "2.6.0"
 navigationUiKtx = "2.6.0"
+roomGuava = "2.6.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-room-guava = { module = "androidx.room:room-guava", version.ref = "roomGuava" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomGuava" }
+androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "roomGuava" }
+androidx-room-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomGuava" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomGuava" }
+androidx-room-rxjava2 = { module = "androidx.room:room-rxjava2", version.ref = "roomGuava" }
+androidx-room-rxjava3 = { module = "androidx.room:room-rxjava3", version.ref = "roomGuava" }
+androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "roomGuava" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
