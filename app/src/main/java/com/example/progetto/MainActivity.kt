@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         //Bisogna gestire anche la memorizzazione dell'utente
         val ricordami : CheckBox = findViewById(R.id.Ricordami)
 
-        val db = MyDatabaseHelper(this)
+
         
         //Quando l'utente clicca sul bottone Invia, bisogna andare a controllare che i dati siano corretti
         val invia :Button = findViewById(R.id.bottoneInvia)
@@ -47,12 +47,12 @@ class MainActivity : AppCompatActivity() {
                 //Sarà un intent parametrico in quanto a schermo verrà mostrato il nome dell'utente
                 val intent = Intent(this,HomeActivity::class.java).apply {
                     putExtra("username",usr)
-                    ricordami.setOnClickListener { _, isChecked ->
+                    /*ricordami.setOnClickListener { _, isChecked ->
                         if (isChecked){
                             //Salva la matricola
                             Toast.makeText(this, "Salvo i dati", Toast.LENGTH_SHORT).show()
                         }
-                    }
+                    }*/
                 }
                 //Avvio effettivo dell'intent
                 startActivity(intent)

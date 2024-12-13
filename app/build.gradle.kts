@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("com.google.devtools.ksp")
+    id("kotlin-kapt")
 }
 
 android {
@@ -46,41 +46,19 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.navigation.fragment.ktx)
+    implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    //Dal sito ufficiale di Android Studio c'era scritto di implementare queste dipendenze
-    val room_version = "2.6.1"
 
-    implementation(libs.androidx.room.runtime)
 
-    // If this project uses any Kotlin source, use Kotlin Symbol Processing (KSP)
-    // See Add the KSP plugin to your project
-    ksp(libs.androidx.room.room.compiler)
+    //Implementazione dipendenze per database
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.0")
 
-    // If this project only uses Java source, use the Java annotationProcessor
-    // No additional plugins are necessary
-    annotationProcessor(libs.androidx.room.room.compiler)
-
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation(libs.androidx.room.ktx)
-
-    // optional - RxJava2 support for Room
-    implementation(libs.androidx.room.rxjava2)
-
-    // optional - RxJava3 support for Room
-    implementation(libs.androidx.room.rxjava3)
-
-    // optional - Guava support for Room, including Optional and ListenableFuture
-    implementation(libs.androidx.room.guava)
-
-    // optional - Test helpers
-    testImplementation(libs.androidx.room.testing)
-
-    // optional - Paging 3 Integration
-    implementation(libs.androidx.room.paging)
+    //Implementazione dipendenze OSMDroid
+    implementation(libs.osmdroid)
 }
