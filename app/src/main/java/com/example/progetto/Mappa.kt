@@ -90,7 +90,7 @@ class Mappa : AppCompatActivity() , LocationListener{
 
         // Centrare la mappa sulla nuova posizione
         mapView.controller.setCenter(geoPoint)
-        mapView.controller.setZoom(13.0)
+        mapView.controller.setZoom(17.0)
     }
 
     override fun onRequestPermissionsResult(
@@ -103,6 +103,7 @@ class Mappa : AppCompatActivity() , LocationListener{
             startLocationUpdates()
         }
     }
+
     /*private fun requestLocationUpdates() {
         val MIN_TIME_BW_UPDATES = 5000
         val MIN_DISTANCE_CHANGE_FOR_UPDATES = 5

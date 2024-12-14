@@ -45,3 +45,5 @@ osmdroid="org.osmdroid:osmdroid-android:6.1.17"
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
+
+
