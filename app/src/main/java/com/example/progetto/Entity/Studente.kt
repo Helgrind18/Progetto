@@ -3,7 +3,7 @@ package com.example.progetto.Entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "Studente")
 data class Studente(
     @PrimaryKey(autoGenerate = true)
     var matricola: Int=0,

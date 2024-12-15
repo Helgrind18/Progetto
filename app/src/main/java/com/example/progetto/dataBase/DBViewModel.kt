@@ -6,6 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
 import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.Studente
 import com.example.progetto.MainActivity
 import kotlinx.coroutines.launch
 
@@ -19,9 +20,9 @@ class DBViewModel: ViewModel() {
     val bookList: LiveData<List<Libro>> = dataBaseLibri.getAll()
     val classList: LiveData<List<Aula>> = dataBaseAule.getAll()
 
-    fun aggiungiStudente(nome: String, cognome: String, codiceFiscale: String, dataDiNascita: Int, ISEE: Long, email: String){
+    fun aggiungiStudente(studente: Studente){
         viewModelScope.launch(Dispatchers.IO) {
-            dataBaseStudenti.inserisciStudente(nome, cognome, codiceFiscale, dataDiNascita, ISEE, email)
+            dataBaseStudenti.inserisciStudente(studente)
         }
     }
 
@@ -31,10 +32,9 @@ class DBViewModel: ViewModel() {
         }
     }
 
-    fun aggiungiLibro(ISBN: Long){
+    fun aggiungiLibro(libro: Libro){
         viewModelScope.launch(Dispatchers.IO) {
-
-            dataBaseLibri.inserisciLibro(ISBN)
+            dataBaseLibri.inserisciLibro(libro)
         }
     }
 
@@ -45,10 +45,10 @@ class DBViewModel: ViewModel() {
         }
     }
 
-    fun aggiungiAula(cubo: Int, piano: Int, capienza: Int){
+    fun aggiungiAula(aula: Aula){
         viewModelScope.launch(Dispatchers.IO) {
 
-            dataBaseAule.inserisciAula(cubo, piano, capienza)
+            dataBaseAule.inserisciAula(aula)
         }
     }
 

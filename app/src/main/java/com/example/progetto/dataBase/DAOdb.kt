@@ -11,13 +11,17 @@ import com.example.progetto.Entity.Studente
 
 @Dao
 interface LibroDao{
+
     @Query("SELECT * FROM Libro")
     fun getAll(): LiveData<List<Libro>>
 
     @Insert
-    fun inserisciLibro(ISEE: Long)
+    fun inserisciLibro(libro: Libro)
 
     @Delete
+    fun rimuoviLibro(libro: Libro)
+
+    @Query("DELETE FROM Libro WHERE ISBN = :ISBN")
     fun rimuoviLibro(ISBN: Long)
 }
 
@@ -28,9 +32,12 @@ interface StudenteDao{
     fun getAll(): LiveData<List<Studente>>
 
     @Insert
-    fun inserisciStudente(nome: String, cognome: String, codiceFiscale: String, dataDiNascita: Int, ISEE: Long, email: String)
+    fun inserisciStudente(studente: Studente)
 
     @Delete
+    fun rimuoviStudente(studente: Studente)
+
+    @Query("DELETE FROM Studente WHERE matricola = :matricola")
     fun rimuoviStudente(matricola: Int)
 }
 
@@ -41,9 +48,13 @@ interface AulaDao{
     fun getAll(): LiveData<List<Aula>>
 
     @Insert
-    fun inserisciAula(cubo: Int, piano: Int, capienza: Int)
+    fun inserisciAula(aula: Aula)
 
     @Delete
+    fun rimuoviAula(aula: Aula)
+
+    @Query("DELETE FROM Aula WHERE cubo = :cubo")
     fun rimuoviAula(cubo: Int)
+
 
 }
