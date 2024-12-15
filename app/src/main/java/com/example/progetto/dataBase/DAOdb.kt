@@ -21,8 +21,8 @@ interface LibroDao{
     @Delete
     fun rimuoviLibro(libro: Libro)
 
-    @Query("DELETE FROM Libro WHERE ISBN = :ISBN")
-    fun rimuoviLibro(ISBN: Long)
+    @Query("DELETE FROM Libro WHERE ISBN = :iSBN")
+    fun rimuoviLibro(iSBN: Long)
 }
 
 @Dao
