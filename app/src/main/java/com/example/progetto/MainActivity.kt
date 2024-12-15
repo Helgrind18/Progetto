@@ -10,8 +10,16 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.room.Room
+import androidx.room.Room.databaseBuilder
+import com.example.progetto.dataBase.DataBaseApp
 
 class MainActivity : AppCompatActivity() {
+
+
+    companion object{
+        lateinit var dataBaseApp: DataBaseApp
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +30,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        databaseBuilder(this, DataBaseApp::class.java, DataBaseApp.NAME).build()
+
+
+
 
         //Bisogna gestire il login tramite il pulsante Invia
         val textUsername : EditText = findViewById(R.id.textUsername)
