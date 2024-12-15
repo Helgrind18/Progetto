@@ -5,8 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Studente")
 data class Studente(
-    @PrimaryKey(autoGenerate = true)
-    var matricola: Int=0,
+    @PrimaryKey(autoGenerate = false)
+    var matricola: Int,
     var CF: String,
     var nome: String,
     var cognome: String,

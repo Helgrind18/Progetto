@@ -26,11 +26,21 @@ class DBViewModel: ViewModel() {
         }
     }
 
+    fun aggiungiStudente(matricola: Int,codiceFiscale: String, nome: String, cognome: String, dataDiNascita: Int, ISEE: Long){
+        viewModelScope.launch(Dispatchers.IO) {
+            var email= "$codiceFiscale@studenti.unical.it"
+            val studente= Studente(matricola,codiceFiscale,nome,cognome,dataDiNascita,ISEE,email)
+            dataBaseStudenti.inserisciStudente(studente)
+        }
+    }
+
     fun eliminaStudente(matricola: Int){
         viewModelScope.launch(Dispatchers.IO) {
             dataBaseStudenti.rimuoviStudente(matricola)
         }
     }
+
+    /////////////// LIBRO //////////////////////////
 
     fun aggiungiLibro(libro: Libro){
         viewModelScope.launch(Dispatchers.IO) {
@@ -38,12 +48,22 @@ class DBViewModel: ViewModel() {
         }
     }
 
-    fun eliminaLibro(ISBN: Long){
-        viewModelScope.launch(Dispatchers.IO) {
-
-            dataBaseLibri.rimuoviLibro(ISBN)
+    fun aggiungiLibro(iSBN: Long){
+        viewModelScope.launch(Dispatchers.IO){
+            val libro= Libro(iSBN)
+            dataBaseLibri.inserisciLibro(libro)
         }
     }
+
+    fun eliminaLibro(iSBN: Long){
+        viewModelScope.launch(Dispatchers.IO) {
+
+            dataBaseLibri.rimuoviLibro(iSBN)
+        }
+    }
+
+
+    ///////////////// AULA ///////////////////7
 
     fun aggiungiAula(aula: Aula){
         viewModelScope.launch(Dispatchers.IO) {
@@ -52,9 +72,15 @@ class DBViewModel: ViewModel() {
         }
     }
 
+    fun aggiungiAula(cubo: Int, pano: Int, capieza: Int){
+        viewModelScope.launch(Dispatchers.IO){
+            val aula= Aula(cubo,pano,capieza)
+            dataBaseAule.inserisciAula(aula)
+        }
+    }
+
     fun eliminaAula(cubo: Int){
         viewModelScope.launch(Dispatchers.IO) {
-
             dataBaseAule.rimuoviAula(cubo)
         }
     }
