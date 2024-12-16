@@ -121,35 +121,11 @@ class Mappa : AppCompatActivity() , LocationListener{
         grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == locationPermissionCode && grantResults.isNotEmpty()
-            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            && grantResults[0] == PackageManager.PERMISSION_GRANTED
+        ) {
             startLocationUpdates()
         }
     }
-
-    /*private fun requestLocationUpdates() {
-        val MIN_TIME_BW_UPDATES = 5000
-        val MIN_DISTANCE_CHANGE_FOR_UPDATES = 5
-        val locationListener = object : LocationListener {
-            override fun onLocationChanged(location: Location) {
-                val latitude = location.latitude
-                val longitude = location.longitude
-
-                // Salva le coordinate nelle Shared Preferences
-                val sharedPref = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
-                with(sharedPref.edit()) {
-                    putFloat("latitude", latitude.toFloat())
-                    putFloat("longitude", longitude.toFloat())
-                    apply()
-                }
-            }
-        }
-
-        locationManager.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            MIN_TIME_BW_UPDATES,
-            MIN_DISTANCE_CHANGE_FOR_UPDATES, this
-        )
-    }*/
 }
 
 
