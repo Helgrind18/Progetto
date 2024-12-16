@@ -58,22 +58,44 @@ class Mappa : AppCompatActivity() , LocationListener{
     }
 
     private fun startLocationUpdates() {
-        // Controllo permesso
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            // Richiesta di aggiornamento della posizione
+
+            // Ottenere ultima posizione nota
+            val lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            if (lastKnownLocation != null) {
+                val geoPoint = GeoPoint(lastKnownLocation.latitude, lastKnownLocation.longitude)
+                mapView.controller.setCenter(geoPoint)
+                mapView.controller.setZoom(17.0)
+            } else {
+                // Posizione predefinita (es. UniCal)
+                val defaultLocation = GeoPoint(39.3636, 16.2263) // UniCal
+
+// Centrare la mappa sulla posizione predefinita
+                mapView.controller.setCenter(defaultLocation)
+                mapView.controller.setZoom(18.0)
+
+// Aggiungere un marker sulla posizione predefinita
+                val defaultMarker = Marker(mapView)
+                defaultMarker.position = defaultLocation
+                defaultMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                defaultMarker.title = "Università della Calabria"
+                mapView.overlays.add(defaultMarker)
+            }
+
+            // Richiedere aggiornamenti di posizione
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                5000, // 5 seconds
-                10f,  // 10 meters
+                5000,
+                10f,
                 this
             )
         } else {
-            // Informa l'utente dell'assenza di permessi
-            Toast.makeText(this,"Location permission not granted. " +
-                    "Unable to update location.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Location permission not granted. Unable to update location.",
+                Toast.LENGTH_SHORT).show()
         }
     }
+
 
     override fun onLocationChanged(location: Location) {
         val geoPoint = GeoPoint(location.latitude, location.longitude)

@@ -62,3 +62,5 @@ dependencies {
     //Implementazione dipendenze OSMDroid
     implementation(libs.osmdroid)
 }
+
+
