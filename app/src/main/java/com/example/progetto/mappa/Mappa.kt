@@ -207,10 +207,11 @@ class Mappa : AppCompatActivity(), LocationListener {
     override fun onLocationChanged(location: Location) {
         val geoPoint = GeoPoint(location.latitude, location.longitude)
 
-        // Rimuovere solo il vecchio marker utente
-        mapView.overlays.removeIf { it is Marker && it.title == "Posizione Corrente" }
-
-        //Così dovrei avere aggiornamenti in tempo reale
+        //Pulisco tutti i marker
+        mapView.overlays.clear()
+        //Così ho aggiornamenti in tempo reale
+        puntoDiInteresse(mapView, geoPoint)
+        //Imposto il marker dell'utente
         markerUtente(geoPoint)
     }
 
