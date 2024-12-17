@@ -11,6 +11,11 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.drawable.BitmapDrawable
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -37,28 +42,28 @@ class Mappa : AppCompatActivity(), LocationListener {
 
     private fun getPuntiInteresse(): List<PuntoInteresse> {
         return listOf(
-            PuntoInteresse("Ponte Bucci", 39.363627, 16.226413, 50f),
+            PuntoInteresse("Ponte Bucci", 39.363627, 16.226413, 100f),
             PuntoInteresse("Biblioteca Centrale", 39.359054, 16.230531, 100f),
-            PuntoInteresse("Aula Magna", 39.363402, 16.225327, 80f),
-            PuntoInteresse("Centro Residenziale", 39.361512, 16.231271, 120f),
-            PuntoInteresse("Cubo 22 (Matematica e Informatica)", 39.363900, 16.225800, 50f),
-            PuntoInteresse("Cubo 27 (Filosofia)", 39.364200, 16.226500, 50f),
-            PuntoInteresse("Cubo 32 (Ingegneria Civile)", 39.366000, 16.226700, 50f),
-            PuntoInteresse("Cubo 43 (Scienze Economiche)", 39.366500, 16.224800, 50f),
-            PuntoInteresse("Mensa Universitaria", 39.362789, 16.227416, 70f),
-            PuntoInteresse("Piazza Vermicelli", 39.361635, 16.227779, 50f),
-            PuntoInteresse("Piazza Chiodo", 39.361915, 16.226352, 50f),
-            PuntoInteresse("Dipartimento di Fisica", 39.365000, 16.227000, 80f),
-            PuntoInteresse("Dipartimento di Chimica", 39.364500, 16.228000, 80f),
+            PuntoInteresse("Aula Magna", 39.363402, 16.225327, 100f),
+            PuntoInteresse("Centro Residenziale", 39.361512, 16.231271, 100f),
+            PuntoInteresse("Cubo 22 (Matematica e Informatica)", 39.363900, 16.225800, 100f),
+            PuntoInteresse("Cubo 27 (Filosofia)", 39.364200, 16.226500, 100f),
+            PuntoInteresse("Cubo 32 (Ingegneria Civile)", 39.366000, 16.226700, 100f),
+            PuntoInteresse("Cubo 43 (Scienze Economiche)", 39.366500, 16.224800, 100f),
+            PuntoInteresse("Mensa Universitaria", 39.362789, 16.227416, 100f),
+            PuntoInteresse("Piazza Vermicelli", 39.361635, 16.227779, 100f),
+            PuntoInteresse("Piazza Chiodo", 39.361915, 16.226352, 100f),
+            PuntoInteresse("Dipartimento di Fisica", 39.365000, 16.227000, 100f),
+            PuntoInteresse("Dipartimento di Chimica", 39.364500, 16.228000, 100f),
             PuntoInteresse("Palestra UniCal", 39.360419, 16.229779, 100f),
-            PuntoInteresse("Stadio Campo A", 39.358958, 16.229094, 150f),
-            PuntoInteresse("Teatro Auditorium", 39.364569, 16.224965, 80f),
+            PuntoInteresse("Stadio Campo A", 39.358958, 16.229094, 100f),
+            PuntoInteresse("Teatro Auditorium", 39.364569, 16.224965, 100f),
             PuntoInteresse("Museo di Storia Naturale", 39.367500, 16.228900, 100f),
-            PuntoInteresse("Area di Ingegneria", 39.365401, 16.226300, 70f),
-            PuntoInteresse("Laboratori di Informatica", 39.362900, 16.226700, 60f),
+            PuntoInteresse("Area di Ingegneria", 39.365401, 16.226300, 100f),
+            PuntoInteresse("Laboratori di Informatica", 39.362900, 16.226700, 100f),
             PuntoInteresse("Dipartimento di Economia", 39.364800, 16.224800, 100f),
-            PuntoInteresse("Area Ristorazione UniCal", 39.365000, 16.232500, 70f),
-            PuntoInteresse("Casa dello Studente", 39.362300, 16.231000, 120f)
+            PuntoInteresse("Area Ristorazione UniCal", 39.365000, 16.232500, 100f),
+            PuntoInteresse("Casa dello Studente", 39.362300, 16.231000, 100f)
         )
     }
 
@@ -94,9 +99,7 @@ class Mappa : AppCompatActivity(), LocationListener {
             )
         } else {
             startLocationUpdates()
-            //Per rendere l'app Context Aware si ragiona così: quando si è nelle vicinanze di un punto di interesse viene mandata una notifica
-
-        }
+            }
     }
 
     private fun puntoDiInteresse(mapView: MapView, currentLocation: GeoPoint) {
@@ -124,15 +127,12 @@ class Mappa : AppCompatActivity(), LocationListener {
                     possibileMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                     possibileMarker.title = punto.nome
                     mapView.overlays.add(possibileMarker)
-
+                    //Segnalo all'utente che si trovi in prossimità di un punto di interesse
+                    Toast.makeText(this, "Sei vicino a ${punto.nome}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
-
-
-
-
 
     private fun startLocationUpdates() {
         if (ContextCompat.checkSelfPermission(
@@ -148,23 +148,16 @@ class Mappa : AppCompatActivity(), LocationListener {
             } else {
                 GeoPoint(39.3636, 16.2263) // UniCal
             }
-            // Centrare la mappa
-            mapView.controller.setCenter(currentLocation)
-            mapView.controller.setZoom(18.0)
-            // Aggiungere un marker
-            val defaultMarker = Marker(mapView)
-            defaultMarker.position = currentLocation
-            defaultMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            defaultMarker.title = "Posizione Corrente"
-            mapView.overlays.add(defaultMarker)
+
+            markerUtente(currentLocation)
 
             puntoDiInteresse(mapView, currentLocation)
 
             // Richiedere aggiornamenti di posizione
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                2500,
-                10f,
+                1000,
+                5f,
                 this
             )
         } else {
@@ -175,25 +168,50 @@ class Mappa : AppCompatActivity(), LocationListener {
         }
     }
 
+    private fun markerUtente(currentLocation: GeoPoint) {
+        // Centrare la mappa
+        mapView.controller.setCenter(currentLocation)
+        mapView.controller.setZoom(18.0)
+        // Aggiungere un marker
+        val defaultMarker = Marker(mapView)
+        defaultMarker.position = currentLocation
+        defaultMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        defaultMarker.title = "Posizione Corrente"
+        mapView.overlays.add(defaultMarker)
+        //Il marker lo coloro in modo differente, per far capire all'utente dove si trovi
+        addCustomMarker(currentLocation)
+    }
+
+    private fun addCustomMarker(currentLocation: GeoPoint) {
+        val marker = Marker(mapView)
+        marker.position = currentLocation
+        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        marker.title = "Posizione Corrente"
+
+        // Creare un Bitmap personalizzato per il marker
+        val markerBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(markerBitmap)
+        val paint = Paint()
+        paint.color = Color.RED // Imposta il colore del cerchio
+        paint.style = Paint.Style.FILL
+        canvas.drawCircle(25f, 25f, 25f, paint) // Disegna il cerchio al centro
+
+        // Imposta il marker con il Bitmap creato
+        val markerIcon = BitmapDrawable(resources, markerBitmap)
+        marker.setIcon(markerIcon)
+
+        mapView.overlays.add(marker)
+    }
+
 
     override fun onLocationChanged(location: Location) {
         val geoPoint = GeoPoint(location.latitude, location.longitude)
 
-        // Pulire i marker precedenti
-        mapView.overlays.clear()
+        // Rimuovere solo il vecchio marker utente
+        mapView.overlays.removeIf { it is Marker && it.title == "Posizione Corrente" }
 
-        // Aggiungere un marker
-        val marker = Marker(mapView)
-        marker.position = geoPoint
-        marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-        marker.title = "Sei qui!"
-        mapView.overlays.add(marker)
-
-
-        // Centrare la mappa sulla nuova posizione
-        mapView.controller.setCenter(geoPoint)
-        mapView.controller.setZoom(18.0)
-
+        //Così dovrei avere aggiornamenti in tempo reale
+        markerUtente(geoPoint)
     }
 
     override fun onRequestPermissionsResult(
@@ -209,5 +227,3 @@ class Mappa : AppCompatActivity(), LocationListener {
         }
     }
 }
-
-
