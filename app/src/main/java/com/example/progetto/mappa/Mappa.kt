@@ -63,7 +63,27 @@ class Mappa : AppCompatActivity(), LocationListener {
             PuntoInteresse("Laboratori di Informatica", 39.362900, 16.226700, 100f),
             PuntoInteresse("Dipartimento di Economia", 39.364800, 16.224800, 100f),
             PuntoInteresse("Area Ristorazione UniCal", 39.365000, 16.232500, 100f),
-            PuntoInteresse("Casa dello Studente", 39.362300, 16.231000, 100f)
+            PuntoInteresse("Casa dello Studente", 39.362300, 16.231000, 100f),
+            PuntoInteresse("Cubo 45 (Scienze Naturali)", 39.366700, 16.228200, 100f),
+            PuntoInteresse("Punto Relax Studenti", 39.362000, 16.230000, 100f),
+            PuntoInteresse("Ingresso Nord UniCal", 39.367000, 16.225900, 100f),
+            PuntoInteresse("Cubo 13 (Ingegneria Meccanica)", 39.363300, 16.229300, 100f),
+            PuntoInteresse("Stazione Bus Campus", 39.361000, 16.227800, 100f),
+            PuntoInteresse("Parco Scientifico", 39.365300, 16.229500, 100f),
+            PuntoInteresse("Laboratorio di Fisica Applicata", 39.365700, 16.226100, 100f),
+            PuntoInteresse("Campo Sportivo B", 39.358700, 16.229500, 100f),
+            PuntoInteresse("Ristorante Centrale UniCal", 39.363100, 16.230800, 100f),
+            PuntoInteresse("Dipartimento di Scienze Sociali", 39.366200, 16.224500, 100f),
+            PuntoInteresse("Student Hub", 39.362400, 16.232200, 100f),
+            PuntoInteresse("Area Verde Ovest", 39.364100, 16.228700, 100f),
+            PuntoInteresse("Centro Tecnologico", 39.366500, 16.226900, 100f),
+            PuntoInteresse("Casa della Cultura UniCal", 39.364300, 16.225500, 100f),
+            PuntoInteresse("Pista di Atletica", 39.359500, 16.229700, 100f),
+            PuntoInteresse("Cubo 55 (Geologia)", 39.367800, 16.227200, 100f),
+            PuntoInteresse("Parcheggio Est", 39.365900, 16.224300, 100f),
+            PuntoInteresse("Bar Centrale UniCal", 39.362600, 16.230300, 100f),
+            PuntoInteresse("Edificio 19 (Storia dell'Arte)", 39.363500, 16.224600, 100f),
+            PuntoInteresse("Aula Studio Giardino", 39.361300, 16.228500, 100f)
         )
     }
 
@@ -146,7 +166,7 @@ class Mappa : AppCompatActivity(), LocationListener {
             val currentLocation = if (lastKnownLocation != null) {
                 GeoPoint(lastKnownLocation.latitude, lastKnownLocation.longitude)
             } else {
-                GeoPoint(39.3636, 16.2263) // UniCal
+                GeoPoint(39.3615, 16.2274) // UniCal
             }
 
             markerUtente(currentLocation)
@@ -156,8 +176,8 @@ class Mappa : AppCompatActivity(), LocationListener {
             // Richiedere aggiornamenti di posizione
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
-                1000,
-                5f,
+                5000,
+                10f,
                 this
             )
         } else {
@@ -172,6 +192,7 @@ class Mappa : AppCompatActivity(), LocationListener {
         // Centrare la mappa
         mapView.controller.setCenter(currentLocation)
         mapView.controller.setZoom(18.0)
+
         // Aggiungere un marker
         val defaultMarker = Marker(mapView)
         defaultMarker.position = currentLocation
