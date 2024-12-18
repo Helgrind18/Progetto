@@ -177,7 +177,7 @@ class Mappa : AppCompatActivity(), LocationListener {
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,
                 5000,
-                10f,
+                20f,
                 this
             )
         } else {
