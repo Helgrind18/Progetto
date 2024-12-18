@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:textColor="@color/black"
-        android:hint="Inserire username"
+        android:hint="Inserire matricola"
         android:textColorHint="@color/black"
         />
 

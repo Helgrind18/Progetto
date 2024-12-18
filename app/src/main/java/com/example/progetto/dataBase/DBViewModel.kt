@@ -1,5 +1,6 @@
 package com.example.progetto.dataBase
 
+import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,10 +27,10 @@ class DBViewModel: ViewModel() {
         }
     }
 
-    fun aggiungiStudente(matricola: Int,codiceFiscale: String, nome: String, cognome: String, dataDiNascita: Int, ISEE: Long){
+    fun aggiungiStudente(matricola: Int,codiceFiscale: String, pswd: String, nome: String, cognome: String, ISEE: Long, email: String){
         viewModelScope.launch(Dispatchers.IO) {
             var email= "$codiceFiscale@studenti.unical.it"
-            val studente= Studente(matricola,codiceFiscale,nome,cognome,dataDiNascita,ISEE,email)
+            val studente= Studente(matricola,codiceFiscale,pswd,nome,cognome,ISEE,email)
             dataBaseStudenti.inserisciStudente(studente)
         }
     }
@@ -48,9 +49,9 @@ class DBViewModel: ViewModel() {
         }
     }
 
-    fun aggiungiLibro(iSBN: Long){
+    fun aggiungiLibro(iSBN: Long, name: String){
         viewModelScope.launch(Dispatchers.IO){
-            val libro= Libro(iSBN)
+            val libro= Libro(iSBN, name)
             dataBaseLibri.inserisciLibro(libro)
         }
     }

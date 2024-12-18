@@ -8,9 +8,10 @@ data class Studente(
     @PrimaryKey(autoGenerate = false)
     var matricola: Int,
     var CF: String,
+    var pswd: String,
     var nome: String,
     var cognome: String,
-    var dataDiNascita: Int,
     var ISEE: Long,
     var email: String
 )
+

@@ -166,7 +166,7 @@ class Mappa : AppCompatActivity(), LocationListener {
             val currentLocation = if (lastKnownLocation != null) {
                 GeoPoint(lastKnownLocation.latitude, lastKnownLocation.longitude)
             } else {
-                GeoPoint(39.3615, 16.2274) // UniCal
+                GeoPoint(39.3641, 16.2259) // UniCal
             }
 
             markerUtente(currentLocation)

@@ -1,4 +1,4 @@
-package com.example.progetto.data
+package com.example.progetto.dataDARIMUOVERE
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

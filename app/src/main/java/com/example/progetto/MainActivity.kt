@@ -1,7 +1,10 @@
 package com.example.progetto
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -11,13 +14,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.room.Room
-import androidx.room.Room.databaseBuilder
 import com.example.progetto.dataBase.DataBaseApp
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
-    companion object{
+    companion object {
         lateinit var dataBaseApp: DataBaseApp
     }
 
@@ -31,46 +35,93 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        databaseBuilder(this, DataBaseApp::class.java, DataBaseApp.NAME).build()
-
-
+        sharedPreferences = getSharedPreferences("DbLogin", Context.MODE_PRIVATE)
+        editor = sharedPreferences.edit()
 
 
         //Bisogna gestire il login tramite il pulsante Invia
-        val textUsername : EditText = findViewById(R.id.textUsername)
-        val textPassword : EditText = findViewById(R.id.textPassword)
-        
+        val textMatricola: EditText = findViewById(R.id.textUsername)
+        val textPassword: EditText = findViewById(R.id.textPassword)
+
         //Bisogna gestire anche la memorizzazione dell'utente
-        val ricordami : CheckBox = findViewById(R.id.Ricordami)
+        val ricordami: CheckBox = findViewById(R.id.Ricordami)
 
-
-        
         //Quando l'utente clicca sul bottone Invia, bisogna andare a controllare che i dati siano corretti
-        val invia :Button = findViewById(R.id.bottoneInvia)
+        //prima di tutto controllo se l'utente sia già registrato
+
+
+
+
+        val invia: Button = findViewById(R.id.bottoneInvia)
         invia.setOnClickListener {
-            //Innanzitutto si controllano i dati inseriti dall'utente
-            val usr = textUsername.text.toString().trim() // Rimuovo gli spazi bianchi
+            // Recupera i dati inseriti dall'utente
+            val usr = textMatricola.text.toString().trim() // Rimuovo gli spazi bianchi
             val pwd = textPassword.text.toString().trim()
+
             if (usr.isEmpty() || pwd.isEmpty()) {
                 Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                //Se sono qua vuol dire che l'utente abbia inserito correttamente i dati, allora posso mostrargli una nuova activity
-                //Per passare ad un'altra activity si usa l'intent
-                //Sarà un intent parametrico in quanto a schermo verrà mostrato il nome dell'utente
-                val intent = Intent(this,HomeActivity::class.java).apply {
-                    putExtra("username",usr)
-                    /*ricordami.setOnClickListener { _, isChecked ->
-                        if (isChecked){
-                            //Salva la matricola
-                            Toast.makeText(this, "Salvo i dati", Toast.LENGTH_SHORT).show()
+            } else {
+                // Controlla se l'utente è già registrato
+                if (ustNotInKey(usr)) {
+                    //METODO DA CONTROLLARE PERCHè CRASHA
+                    // Se l'utente non è registrato, avvia RegistrazioneActivity
+                    Toast.makeText(this, "Proseguiamo con la registrazione", Toast.LENGTH_SHORT)
+                        .show()
+                    val intent = Intent(this, RegistrazioneActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    // Se l'utente è registrato, avvia HomeActivity
+                    val intent = Intent(this, HomeActivity::class.java).apply {
+                        putExtra("username", usr)
+                        // Gestisci il salvataggio dei dati se l'utente ha selezionato "Ricordami"
+                        if (ricordami.isChecked) {
+                            salvaUtente(usr, pwd)
+                            Toast.makeText(this@MainActivity, "Salvato", Toast.LENGTH_SHORT).show()
+                        } else {
+                            editor.clear()
+                            editor.apply()
                         }
-                    }*/
+                    }
+                    // Avvio effettivo dell'intent
+                    startActivity(intent)
                 }
-                //Avvio effettivo dell'intent
-                startActivity(intent)
             }
         }
-        
+    }
+
+
+    private fun ustNotInKey(usr: String): Boolean {
+        //TODO: METODO DA CONTROLLARE
+        val username = sharedPreferences.getString("username", "")
+        println(username)
+        if (username == "")
+            return true
+        return false
+    }
+
+    private fun salvaUtente(usr: String, pwd: String) {
+        editor.putString("username", usr) //metto la chiave e il valore
+        editor.putString("password", pwd) //metto la chiave e il valore
+        editor.putBoolean("ricordami", true)
+        editor.apply()  //salvo le modifiche
+    }
+
+    private fun loadUtente(
+        textUsername: EditText,
+        textPassword: EditText,
+        ricordami: CheckBox
+    ): Boolean {
+        val UsernameSalvato = sharedPreferences.getString("username", "")
+        if (UsernameSalvato == "") {
+            return false
+        }
+        val PasswordSalvata = sharedPreferences.getString("password", "")
+        val Ricordami = sharedPreferences.getBoolean("ricordami", false)
+        if (Ricordami) {
+            textUsername.setText(UsernameSalvato)
+            textPassword.setText(PasswordSalvata)
+            ricordami.isChecked = true
+        }
+        return true
     }
 }

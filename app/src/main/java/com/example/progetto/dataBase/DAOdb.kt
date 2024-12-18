@@ -23,6 +23,9 @@ interface LibroDao{
 
     @Query("DELETE FROM Libro WHERE ISBN = :iSBN")
     fun rimuoviLibro(iSBN: Long)
+
+    @Query("SELECT * FROM Libro WHERE NAME = :name")
+    fun getLibroByName(name: String): LiveData<List<Libro>>
 }
 
 @Dao
@@ -39,6 +42,7 @@ interface StudenteDao{
 
     @Query("DELETE FROM Studente WHERE matricola = :matricola")
     fun rimuoviStudente(matricola: Int)
+
 }
 
 @Dao
