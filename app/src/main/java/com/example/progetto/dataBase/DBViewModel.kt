@@ -40,6 +40,12 @@ class DBViewModel: ViewModel() {
         }
     }
 
+    fun eliminaStudente(studente: Studente){
+        viewModelScope.launch(Dispatchers.IO) {
+            dataBaseStudenti.rimuoviStudente(studente)
+        }
+    }
+
     /////////////// LIBRO //////////////////////////
 
     fun aggiungiLibro(libro: Libro){
