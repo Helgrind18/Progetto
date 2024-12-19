@@ -8,7 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.progetto.dataBase.DBViewModel
 import com.example.progetto.mappa.Mappa
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 //TOOD: Bisogna gestire quanto di seguito
@@ -17,6 +22,7 @@ import com.example.progetto.mappa.Mappa
 *
 * Se la scadenza è minore di 5, mando una notifica per segnalare di portare indietro il libro*/
 class HomeActivity : AppCompatActivity() {
+    private lateinit var dbViewModel: DBViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,8 +49,27 @@ class HomeActivity : AppCompatActivity() {
         val biblioteca: Button = findViewById(R.id.biblioteca)
         val areaPersonale : Button = findViewById(R.id.areaPersonale)
 
+
         //TODO: dallo username devo risalire alla matricola dell'utente
 
+        dbViewModel = DBViewModel(application)
+        //Ora cerco di risalire allo studente
+        // Usa coroutines per eseguire la query in background con Dispatchers.IO
+        lifecycleScope.launch {
+            // Esegui la query di database su un thread di I/O
+            val studente = withContext(Dispatchers.IO) {
+                dbViewModel.studenteByMatricola(username)  // Query al database
+            }
+
+            // Una volta che la query è completata, torna al main thread per aggiornare la UI
+            withContext(Dispatchers.Main) {
+                if (studente != null) {
+                    Toast.makeText(this@HomeActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@HomeActivity, "Studente non trovato", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
         // Gestione dei bottoni: non appena si preme un bottone si apre una nuova activity, bisogna anche estrarre il nome dell'utente da intent
         orarioLezioni.setOnClickListener {

@@ -61,6 +61,10 @@ dependencies {
 
     //Implementazione dipendenze OSMDroid
     implementation(libs.osmdroid)
+
+    //Implementazione dipendenze per Room
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
 }
 
 
