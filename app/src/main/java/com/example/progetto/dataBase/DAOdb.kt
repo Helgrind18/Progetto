@@ -27,9 +27,8 @@ interface LibroDao{
     @Query("SELECT * FROM Libro WHERE NAME = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
 }
-
 @Dao
-interface StudenteDao{
+interface StudenteDao {
 
     @Query("SELECT * FROM Studente")
     fun getAll(): LiveData<List<Studente>>
@@ -38,15 +37,15 @@ interface StudenteDao{
     fun inserisciStudente(studente: Studente)
 
     @Delete
-    fun rimuoviStudente(studente: Studente)
+    fun rimuoviStudente(studente: Int)
 
     @Query("DELETE FROM Studente WHERE matricola = :matricola")
-    fun rimuoviStudente(matricola: Int)
+    fun rimuoviStudenteByMatricola(matricola: Int)
 
     @Query("SELECT * FROM Studente WHERE matricola = :matricola")
-    fun getStudenteByMatricola(matricola: Int): LiveData<List<Studente>>
-
+    fun getStudenteByMatricola(matricola: Int): Studente?
 }
+
 
 @Dao
 interface AulaDao{

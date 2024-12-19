@@ -1,6 +1,5 @@
 package com.example.progetto.dataBase
 
-import android.provider.ContactsContract.CommonDataKinds.Email
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
