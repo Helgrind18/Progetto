@@ -39,8 +39,8 @@ interface StudenteDao {
     @Delete
     fun rimuoviStudente(studente: Studente)
 
-    @Query("DELETE FROM Studente WHERE matricola = :matricola")
-    fun rimuoviStudenteByMatricola(matricola: Int)
+   /* @Query("DELETE FROM Studente WHERE matricola = :matricola")
+    fun rimuoviStudenteByMatricola(matricola: Int)*/
 
     @Query("SELECT * FROM Studente WHERE matricola = :matricola")
     fun getStudenteByMatricola(matricola: Int): Studente?

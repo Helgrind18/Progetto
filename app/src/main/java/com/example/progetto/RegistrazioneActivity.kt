@@ -1,6 +1,6 @@
 package com.example.progetto
 
-import android.content.Context
+
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -11,13 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.room.Room
 import com.example.progetto.Entity.Studente
-import com.example.progetto.dataBase.DataBaseApp
-
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class RegistrazioneActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -31,11 +25,6 @@ class RegistrazioneActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        //Questo serve per la creazione del singolo utente
-        sharedPreferences = getSharedPreferences("DbLogin", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-
         //Recupero i dati dall'activity
         val matricolaEditText: EditText = findViewById(R.id.editMatricola)
         val cfEditText: EditText = findViewById(R.id.editCF)
@@ -46,59 +35,79 @@ class RegistrazioneActivity : AppCompatActivity() {
         val emailEditText: EditText = findViewById(R.id.editEmail)
         val bottoneInvia: Button = findViewById(R.id.bottoneInvia)
 
-        val matricola: Int = matricolaEditText.text.toString().toInt() // Parse to Int
-        val cf: String = cfEditText.text.toString().trim()
-        val pswd: String = pswdEditText.text.toString().trim()
-        val nome: String = nomeEditText.text.toString().trim()
-        val cognome: String = cognomeEditText.text.toString().trim()
-        val isee: Long = iseeEditText.text.toString().toLong() // Parse to Long
-        val email: String = emailEditText.text.toString().trim()
-        val studente = Studente(matricola, cf, pswd, nome, cognome, isee, email)
-        if(!(studenteCorretto(studente))){
-            Toast.makeText(this,"Parametri errati", Toast.LENGTH_SHORT).show()
+
+        bottoneInvia.setOnClickListener {
+            val matricola: Int = matricolaEditText.text.toString().toInt()
+            val cf: String = cfEditText.text.toString().trim()
+            val pswd: String = pswdEditText.text.toString().trim()
+            val nome: String = nomeEditText.text.toString().trim()
+            val cognome: String = cognomeEditText.text.toString().trim()
+            val isee: Long = iseeEditText.text.toString().toLong()
+            val email: String = emailEditText.text.toString().trim()
+
+            val studente = Studente(matricola, cf, pswd, nome, cognome, isee, email)
+
+            if (!studenteCorretto(studente)) {
+                Toast.makeText(this, "Parametri errati", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, HomeActivity::class.java).apply {
+                putExtra("username", matricola)
+                }
+                startActivity(intent)
+            }
         }
 
         //definisco il db e lo inizializzo
-        val db = Room.databaseBuilder(this, DataBaseApp::class.java, DataBaseApp.NAME).build()
-        //In questo caso ho bisogno solo del DAO dello studente per salvare / recuperare lo studente
-        val studenteDao = db.getStudenteDao()
-        CoroutineScope(Dispatchers.IO).launch {
-            studenteDao.inserisciStudente(studente)
-        }
 
-        //Una volta salvato l'utente passo ad HomeActivity
-        bottoneInvia.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java).apply {  }
-            startActivity(intent)
-        }
+
 
     }
 
     private fun studenteCorretto(studente: Studente): Boolean {
-        if(studente.matricola <= 0){
+        // Verifica che la matricola sia maggiore di 0
+        if (studente.matricola <= 0) {
+            Toast.makeText(this, "Matricola non valida. Deve essere un numero positivo.", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(studente.CF.isEmpty()){
+
+        // Verifica che il codice fiscale non sia vuoto
+        if (studente.CF.isEmpty()) {
+            Toast.makeText(this, "Codice fiscale non può essere vuoto.", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(studente.pswd.isEmpty()) {
+
+        // Verifica che la password non sia vuota e abbia almeno 8 caratteri
+        if (studente.pswd.isEmpty()) {
+            Toast.makeText(this, "Password non valida", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(studente.nome.isEmpty()){
+
+        // Verifica che il nome non sia vuoto
+        if (studente.nome.isEmpty()) {
+            Toast.makeText(this, "Nome non può essere vuoto.", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(studente.cognome.isEmpty()){
+
+        // Verifica che il cognome non sia vuoto
+        if (studente.cognome.isEmpty()) {
+            Toast.makeText(this, "Cognome non può essere vuoto.", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(studente.ISEE <= 0){
+
+        // Verifica che l'ISEE sia maggiore di 0
+        if (studente.ISEE <= 0) {
+            Toast.makeText(this, "ISEE non valido. Deve essere un valore positivo.", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(studente.email.isEmpty()) {
+
+        // Verifica che l'email non sia vuota e contenga il simbolo '@'
+        if (studente.email.isEmpty() || !studente.email.contains("@")) {
+            Toast.makeText(this, "Email non valida. Assicurati che sia un indirizzo email valido.", Toast.LENGTH_SHORT).show()
             return false
         }
-        if(!studente.email.contains("@")){
-            return false
-        }
+
+        // Tutte le verifiche sono state superate
         return true
     }
+
 }

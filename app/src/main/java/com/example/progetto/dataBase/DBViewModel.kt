@@ -1,5 +1,7 @@
 package com.example.progetto.dataBase
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
@@ -10,9 +12,62 @@ import com.example.progetto.Entity.Studente
 import com.example.progetto.MainActivity
 import kotlinx.coroutines.launch
 
-class DBViewModel: ViewModel() {
+//Collega i dati (DAO/Database) con l’interfaccia utente. Contiene tutta la logica per interagire con il db
+class DBViewModel(application: Application): AndroidViewModel(application){
 
-    val dataBaseStudenti = MainActivity.dataBaseApp.getStudenteDao()
+
+    private val studenteDAO = DataBaseApp.getDatabase(application).getStudenteDao()
+    private val libroDAO = DataBaseApp.getDatabase(application).getLibroDao()
+    private val aulaDAO = DataBaseApp.getDatabase(application).getAulaDao()
+
+    //Funzione per restituire tutti gli studenti
+    fun getAllStudenti(): LiveData<List<Studente>> {
+        return studenteDAO.getAll()
+    }
+
+    //Funzione per inserire un nuovo studente
+    fun inserisciStudente(studente: Studente){
+        // Esegui l'inserimento nel background (chiamata sincrona tramite DAO)
+       viewModelScope.launch(Dispatchers.IO) {
+           studenteDAO.inserisciStudente(studente)
+       }
+    }
+
+    //Funzione per prendere uno studente tramite la matricola
+    fun studenteByMatricola(matricola: Int): Studente? {
+        return studenteDAO.getStudenteByMatricola(matricola)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*val dataBaseStudenti = MainActivity.dataBaseApp.getStudenteDao()
     val dataBaseLibri = MainActivity.dataBaseApp.getLibroDao()
     val dataBaseAule = MainActivity.dataBaseApp.getAulaDao()
 
@@ -100,7 +155,7 @@ class DBViewModel: ViewModel() {
     }
 
 
-
+*/
 }
 
 
