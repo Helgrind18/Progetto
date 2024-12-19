@@ -46,6 +46,14 @@ class DBViewModel: ViewModel() {
         }
     }
 
+    fun studenteByMatricola(matricola: Int): Studente?{
+        val studente= null
+        viewModelScope.launch(Dispatchers.IO) {
+            val studente= dataBaseStudenti.getStudenteByMatricola(matricola)
+        }
+        return studente
+    }
+
     /////////////// LIBRO //////////////////////////
 
     fun aggiungiLibro(libro: Libro){
