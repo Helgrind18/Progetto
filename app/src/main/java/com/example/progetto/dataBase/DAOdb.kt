@@ -43,6 +43,9 @@ interface StudenteDao{
     @Query("DELETE FROM Studente WHERE matricola = :matricola")
     fun rimuoviStudente(matricola: Int)
 
+    @Query("SELECT * FROM Studente WHERE matricola = :matricola")
+    fun getStudenteByMatricola(matricola: Int): LiveData<List<Studente>>
+
 }
 
 @Dao

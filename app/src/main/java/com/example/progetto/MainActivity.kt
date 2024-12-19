@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -15,6 +14,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.room.Room
 import com.example.progetto.dataBase.DataBaseApp
+import com.example.progetto.dataBase.StudenteDao
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("DbLogin", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
+        val db = Room.databaseBuilder(this, DataBaseApp::class.java, DataBaseApp.NAME).build()
+        //In questo caso ho bisogno solo del DAO dello studente per salvare / recuperare lo studente
+        val studenteDao = db.getStudenteDao()
 
         //Bisogna gestire il login tramite il pulsante Invia
         val textMatricola: EditText = findViewById(R.id.textUsername)
@@ -60,20 +66,22 @@ class MainActivity : AppCompatActivity() {
 
             if (usr.isEmpty() || pwd.isEmpty()) {
                 Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
-            } else {
-                // Controlla se l'utente è già registrato
-                if (ustNotInKey(usr)) {
-                    //METODO DA CONTROLLARE PERCHè CRASHA
-                    // Se l'utente non è registrato, avvia RegistrazioneActivity
-                    Toast.makeText(this, "Proseguiamo con la registrazione", Toast.LENGTH_SHORT)
-                        .show()
-                    val intent = Intent(this, RegistrazioneActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    // Se l'utente è registrato, avvia HomeActivity
-                    val intent = Intent(this, HomeActivity::class.java).apply {
-                        putExtra("username", usr)
-                        // Gestisci il salvataggio dei dati se l'utente ha selezionato "Ricordami"
+            }
+
+            //TODO: Da provare perchè a me fa crashare l'app
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    val studente = studenteDao.getStudenteByMatricola(usr.toInt()).value
+                    if (studente.isNullOrEmpty()) {
+                        // Utente non trovato, avvia RegistrazioneActivity
+                        Toast.makeText(this@MainActivity, "Proseguiamo con la registrazione", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@MainActivity, RegistrazioneActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        // Utente trovato, avvia HomeActivity
+                        val intent = Intent(this@MainActivity, HomeActivity::class.java).apply {
+                            putExtra("username", usr)
+                        }
                         if (ricordami.isChecked) {
                             salvaUtente(usr, pwd)
                             Toast.makeText(this@MainActivity, "Salvato", Toast.LENGTH_SHORT).show()
@@ -81,23 +89,17 @@ class MainActivity : AppCompatActivity() {
                             editor.clear()
                             editor.apply()
                         }
+                        startActivity(intent)
                     }
-                    // Avvio effettivo dell'intent
-                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(this@MainActivity, "Errore durante l'accesso: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }
     }
 
 
-    private fun ustNotInKey(usr: String): Boolean {
-        //TODO: METODO DA CONTROLLARE
-        val username = sharedPreferences.getString("username", "")
-        println(username)
-        if (username == "")
-            return true
-        return false
-    }
+
 
     private fun salvaUtente(usr: String, pwd: String) {
         editor.putString("username", usr) //metto la chiave e il valore
