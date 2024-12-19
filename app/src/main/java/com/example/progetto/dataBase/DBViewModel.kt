@@ -36,7 +36,7 @@ class DBViewModel: ViewModel() {
 
     fun eliminaStudente(matricola: Int){
         viewModelScope.launch(Dispatchers.IO) {
-            dataBaseStudenti.rimuoviStudente(matricola)
+            dataBaseStudenti.rimuoviStudenteByMatricola(matricola)
         }
     }
 
