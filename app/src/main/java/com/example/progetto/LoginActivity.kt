@@ -10,7 +10,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.progetto.dataBase.DBViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var sharedPreferences: SharedPreferences
@@ -26,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
         sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
 
+        dbViewModel = DBViewModel(application)
+
         // Trova le view
         val textMatricola: EditText = findViewById(R.id.textUsername)
         val textPassword: EditText = findViewById(R.id.textPassword)
@@ -37,7 +43,21 @@ class LoginActivity : AppCompatActivity() {
             val matricola: Int = textMatricola.text.toString().toInt()
             val pwd = textPassword.text.toString().trim()
 
-            val controlloStudente = dbViewModel.studenteByMatricola(matricola)
+            lifecycleScope.launch {
+                // Esegui la query di database su un thread di I/O
+                val studente = withContext(Dispatchers.IO) {
+                    dbViewModel.studenteByMatricola(matricola)  // Query al database
+                }
+
+                // Una volta che la query è completata, torna al main thread per aggiornare la UI
+                withContext(Dispatchers.Main) {
+                    if (studente != null) {
+                        Toast.makeText(this@LoginActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Studente non trovato", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
 
             if (matricola <= 0 || pwd.isEmpty()) {
                 Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
