@@ -37,6 +37,8 @@ class LoginActivity : AppCompatActivity() {
             val matricola: Int = textMatricola.text.toString().toInt()
             val pwd = textPassword.text.toString().trim()
 
+            val controlloStudente = dbViewModel.studenteByMatricola(matricola)
+
             if (matricola <= 0 || pwd.isEmpty()) {
                 Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
             } else {

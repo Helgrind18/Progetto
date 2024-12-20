@@ -6,13 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.progetto.dataBase.DBViewModel
 
 
 class MainActivity : AppCompatActivity() {
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
@@ -24,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         //recupero i bottoni
         val bottoneLogin: Button = findViewById(R.id.bottoneLogin)
         val bottoneReg: Button = findViewById(R.id.bottoneReg)
+
         //vado alla schermata di login
         bottoneLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
