@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Libro
@@ -21,11 +22,12 @@ interface LibroDao{
     @Delete
     fun rimuoviLibro(libro: Libro)
 
-    @Query("DELETE FROM Libro WHERE ISBN = :iSBN")
+    @Query("DELETE FROM Libro WHERE iSBN = :iSBN")
     fun rimuoviLibro(iSBN: Long)
 
-    @Query("SELECT * FROM Libro WHERE NAME = :name")
+    @Query("SELECT * FROM Libro WHERE name = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
+
 }
 @Dao
 interface StudenteDao {
@@ -33,14 +35,14 @@ interface StudenteDao {
     @Query("SELECT * FROM Studente")
     fun getAll(): LiveData<List<Studente>>
 
-    @Insert
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
     fun inserisciStudente(studente: Studente)
 
     @Delete
     fun rimuoviStudente(studente: Studente)
 
-   /* @Query("DELETE FROM Studente WHERE matricola = :matricola")
-    fun rimuoviStudenteByMatricola(matricola: Int)*/
+    @Query("DELETE FROM Studente WHERE matricola = :matricola")
+    fun rimuoviStudenteByMatricola(matricola: Int)
 
     @Query("SELECT * FROM Studente WHERE matricola = :matricola")
     fun getStudenteByMatricola(matricola: Int): Studente?

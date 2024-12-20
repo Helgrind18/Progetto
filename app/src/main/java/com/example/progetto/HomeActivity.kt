@@ -32,6 +32,9 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //TODO: Settare bene la biblioteca: aggiungere le query necessarie e usare il metodo onConflict = Replace
+        //TODO: Inziare a settare l'intrerfaccia grafica (di questo se vuoi ne parliamo)
         //Saluto dell'utente
         val username = intent.getIntExtra("username",1)
         Toast.makeText(this, "Benvenuto $username", Toast.LENGTH_SHORT).show()
@@ -49,8 +52,6 @@ class HomeActivity : AppCompatActivity() {
         val biblioteca: Button = findViewById(R.id.biblioteca)
         val areaPersonale : Button = findViewById(R.id.areaPersonale)
 
-
-        //TODO: dallo username devo risalire alla matricola dell'utente
 
         dbViewModel = DBViewModel(application)
         //Ora cerco di risalire allo studente

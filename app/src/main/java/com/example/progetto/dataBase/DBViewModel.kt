@@ -38,6 +38,11 @@ class DBViewModel(application: Application): AndroidViewModel(application){
         return studenteDAO.getStudenteByMatricola(matricola)
     }
 
+    fun eliminaStudenteByMatricola(matricola: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            studenteDAO.rimuoviStudenteByMatricola(matricola)
+        }
+    }
 
 
 
