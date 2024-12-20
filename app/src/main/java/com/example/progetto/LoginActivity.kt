@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     if (studente != null) {
                         Toast.makeText(this@LoginActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
+                        startActivity(intent)
                     } else {
                         Toast.makeText(this@LoginActivity, "Studente non trovato", Toast.LENGTH_SHORT).show()
                     }
@@ -75,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
                     editor.apply()
                 }
 
-                startActivity(intent)
+
             }
         }
     }
