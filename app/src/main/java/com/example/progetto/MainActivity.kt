@@ -6,7 +6,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import com.example.progetto.Entity.Studente
 import com.example.progetto.dataBase.DBViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,5 +39,24 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, RegistrazioneActivity::class.java)
             startActivity(intent)
         }
+
+        //creazione di uno studente per test
+        val dbViewModel = DBViewModel(application)
+        val studenteTest = Studente(
+            matricola = 12,
+            CF = "CODFSC12345",
+            pswd = "12",
+            nome = "Mario",
+            cognome = "Rossi",
+            ISEE = 15000L,
+            email = "mario.rossi@studenti.unical.it"
+        )
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                 dbViewModel.inserisciStudente(studenteTest)
+            }
+
+        }
+
 }
 }
