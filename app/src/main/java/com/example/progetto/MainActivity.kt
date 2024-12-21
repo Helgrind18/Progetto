@@ -1,17 +1,12 @@
 package com.example.progetto
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
-import com.example.progetto.Entity.Studente
-import com.example.progetto.dataBase.DBViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,17 +26,20 @@ class MainActivity : AppCompatActivity() {
 
         //vado alla schermata di login
         bottoneLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
+            Log.d("MainActivityDEBUG", "Login button clicked")
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
         //vado alla schermata di registrazione
         bottoneReg.setOnClickListener {
             val intent = Intent(this, RegistrazioneActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         //creazione di uno studente per test
-        val dbViewModel = DBViewModel(application)
+        /*val dbViewModel = DBViewModel(application)
         val studenteTest = Studente(
             matricola = 12,
             CF = "CODFSC12345",
@@ -56,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                  dbViewModel.inserisciStudente(studenteTest)
             }
 
-        }
+        }*/
 
 }
 }

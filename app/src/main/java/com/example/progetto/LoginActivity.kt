@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -22,6 +23,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("LoginActivityDEBUG", "onCreate called")
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
@@ -37,60 +39,63 @@ class LoginActivity : AppCompatActivity() {
         val textPassword: EditText = findViewById(R.id.textPassword)
         val ricordami: CheckBox = findViewById(R.id.Ricordami)
         val invia: Button = findViewById(R.id.bottoneInvia)
-
         // Listener del bottone invia
         invia.setOnClickListener {
             val matricola: Int = textMatricola.text.toString().toInt()
             val pwd = textPassword.text.toString().trim()
+
             if (matricola <= 0 || pwd.isEmpty()) {
                 Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
             } else {
                 lifecycleScope.launch {
-                    // Esegui la query di database su un thread di I/O
-                    val studente = withContext(Dispatchers.IO) {
-                        dbViewModel.studenteByMatricola(matricola)  // Query al database
-                    }
-                    // Una volta che la query è completata, torna al main thread per aggiornare la UI
-                    withContext(Dispatchers.Main) {
-                        if (studente != null && studente.pswd == pwd) {
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "Benvenuto ${studente.nome}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            val intent =
-                                Intent(this@LoginActivity, HomeActivity::class.java).apply {
-                                    putExtra("username", matricola)
-                                }
-                            startActivity(intent)
-                        } else {
-                            Toast.makeText(
-                                this@LoginActivity,
-                                "Studente non trovato",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                    try {
+                        // Esegui la query di database su un thread di I/O
+                        val studente = withContext(Dispatchers.IO) {
+                            // Chiamata al database in un thread separato
+                            dbViewModel.studenteByMatricola(matricola)
                         }
+
+                        // Una volta ottenuto il risultato, torna al thread principale
+                        withContext(Dispatchers.Main) {
+                            if (studente != null) {
+                                if (studente.pswd == pwd) {
+                                    // login riuscito
+                                    Toast.makeText(this@LoginActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
+                                    // Passa alla HomeActivity
+                                    val intent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                                        putExtra("username", matricola)
+                                    }
+                                    startActivity(intent)
+                                } else {
+                                    Toast.makeText(this@LoginActivity, "Password errata", Toast.LENGTH_SHORT).show()
+                                }
+                            } else {
+                                Toast.makeText(this@LoginActivity, "Studente non trovato", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    } catch (e: Exception) {
+                        // Log l'eccezione per aiutare con il debug
+                        Log.e("LoginActivityCATCH", "Errore durante il login", e)
+                        Toast.makeText(this@LoginActivity, "Si è verificato un errore, riprova più tardi", Toast.LENGTH_SHORT).show()
                     }
-                }
-                if (ricordami.isChecked) {
-                    salvaUtente(matricola, pwd)
-                    Toast.makeText(this, "Salvato", Toast.LENGTH_SHORT).show()
-                } else {
-                    editor.clear()
-                    editor.apply()
-                }
+            }
+
+            // Gestione salvataggio credenziali
+            if (ricordami.isChecked) {
+                salvaUtente(matricola, pwd)
+                Toast.makeText(this, "Salvato", Toast.LENGTH_SHORT).show()
+            } else {
+                editor.clear()
+                editor.apply()
             }
         }
     }
-
-
-    private fun salvaUtente(usr: Int, pwd: String) {
-        editor.putInt("username", usr) //metto la chiave e il valore
-        editor.putString("password", pwd) //metto la chiave e il valore
-        editor.putBoolean("ricordami", true)
-        editor.apply()  //salvo le modifiche
     }
 
+    private fun salvaUtente(usr: Int, pwd: String) {
+        editor.putInt("username", usr) // metto la chiave e il valore
+        editor.putString("password", pwd) // metto la chiave e il valore
+        editor.putBoolean("ricordami", true)
+        editor.apply()  // salvo le modifiche
+    }
 }
-
-

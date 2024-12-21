@@ -10,12 +10,9 @@ import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Studente
 
-//Questa classe definisce il database e le entità associate.
-/*
-* Funge da punto di accesso principale dell'app ai dati persistenti
-* */
-
-@Database(entities = [Studente::class, Libro::class, Aula::class], version = 2) // Incrementa la versione se hai modifiche
+// Questa classe definisce il database e le entità associate.
+// Funziona come punto di accesso principale dell'app ai dati persistenti
+@Database(entities = [Studente::class, Libro::class, Aula::class], version = 1) // Incrementa la versione se hai modifiche
 abstract class DataBaseApp : RoomDatabase() {
     abstract fun getStudenteDao(): StudenteDao
     abstract fun getLibroDao(): LibroDao
@@ -26,22 +23,30 @@ abstract class DataBaseApp : RoomDatabase() {
         private var INSTANCE: DataBaseApp? = null
 
         // Definizione delle migrazioni
-        private val MIGRATION_1_2 = object : Migration(1, 2) {
+        /*private val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                // Esempio di modifica: aggiunta di una nuova colonna alla tabella "Studente"
+                // Aggiunta di una nuova colonna "nuovaColonna" alla tabella "Studente"
                 database.execSQL("ALTER TABLE Studente ADD COLUMN nuovaColonna TEXT DEFAULT ''")
-            }
-        }
 
+                // Aggiunta di una nuova colonna "annoPubblicazione" alla tabella "Libro"
+                database.execSQL("ALTER TABLE Libro ADD COLUMN annoPubblicazione INTEGER DEFAULT 0")
+
+                // Aggiunta di una nuova colonna "capacità" alla tabella "Aula"
+                database.execSQL("ALTER TABLE Aula ADD COLUMN capacità INTEGER DEFAULT 0")
+            }
+        }*/
+
+        // Funzione per ottenere il database
         fun getDatabase(context: Context): DataBaseApp {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseApplicazione"
+                    "NuovoDatabase"
                 )
-                    .addMigrations(MIGRATION_1_2) // Aggiungi qui le migrazioni
+                    /*.addMigrations(MIGRATION_1_2) // Aggiungi qui le migrazioni
                     .fallbackToDestructiveMigration() // Usa solo se vuoi distruggere il DB in caso di errore
+                     */
                     .build()
                 INSTANCE = instance
                 instance
@@ -49,4 +54,3 @@ abstract class DataBaseApp : RoomDatabase() {
         }
     }
 }
-

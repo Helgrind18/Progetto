@@ -1,6 +1,5 @@
 package com.example.progetto
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -9,12 +8,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.progetto.Entity.Studente
 import com.example.progetto.dataBase.DBViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class RegistrazioneActivity : AppCompatActivity() {
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
     private lateinit var dbViewModel: DBViewModel // Aggiungi questa riga per il viewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,7 +27,8 @@ class RegistrazioneActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //Recupero i dati dall'activity
+
+        // Recupero i dati dall'activity
         val matricolaEditText: EditText = findViewById(R.id.editMatricola)
         val cfEditText: EditText = findViewById(R.id.editCF)
         val pswdEditText: EditText = findViewById(R.id.editPswd)
@@ -53,13 +55,35 @@ class RegistrazioneActivity : AppCompatActivity() {
             if (!studenteCorretto(studente)) {
                 Toast.makeText(this, "Parametri errati", Toast.LENGTH_SHORT).show()
             } else {
-                //Salvo lo studente
-                dbViewModel.inserisciStudente(studente)
-                Toast.makeText(this, "Registrazione avvenuta con successo", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, HomeActivity::class.java).apply {
-                putExtra("username", matricola)
+                // Esegui l'inserimento nel database in un thread di I/O
+                lifecycleScope.launch {
+                    try {
+                        // Con Dispatcher.IO eseguiamo l'inserimento in un thread di background
+                        withContext(Dispatchers.IO) {
+                            dbViewModel.inserisciStudente(studente)
+                        }
+
+                        // Una volta inserito lo studente, torniamo al thread principale per aggiornare la UI
+                        withContext(Dispatchers.Main) {
+                            // Mostra il messaggio di successo
+                            Toast.makeText(this@RegistrazioneActivity, "Registrazione avvenuta con successo", Toast.LENGTH_SHORT).show()
+
+                            // Creiamo l'intent per passare alla HomeActivity
+                            val intent = Intent(this@RegistrazioneActivity, HomeActivity::class.java).apply {
+                                putExtra("username", matricola)
+                            }
+                            // Avvia l'activity
+                            startActivity(intent)
+                            finish() // Chiudiamo la RegistrazioneActivity per evitare che l'utente torni indietro
+                        }
+                    } catch (e: Exception) {
+                        // In caso di errore, visualizza un messaggio di errore
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@RegistrazioneActivity, "Errore nella registrazione: ${e.message}", Toast.LENGTH_LONG).show()
+                        }
+                    }
                 }
-                startActivity(intent)
+
             }
         }
     }
@@ -72,7 +96,7 @@ class RegistrazioneActivity : AppCompatActivity() {
         }
 
         // Verifica che il codice fiscale non sia vuoto
-        if (studente.CF.isEmpty()) {
+        if (studente.cf.isEmpty()) {
             Toast.makeText(this, "Codice fiscale non può essere vuoto.", Toast.LENGTH_SHORT).show()
             return false
         }
@@ -96,7 +120,7 @@ class RegistrazioneActivity : AppCompatActivity() {
         }
 
         // Verifica che l'ISEE sia maggiore di 0
-        if (studente.ISEE <= 0) {
+        if (studente.isee <= 0) {
             Toast.makeText(this, "ISEE non valido. Deve essere un valore positivo.", Toast.LENGTH_SHORT).show()
             return false
         }
@@ -110,5 +134,4 @@ class RegistrazioneActivity : AppCompatActivity() {
         // Tutte le verifiche sono state superate
         return true
     }
-
 }

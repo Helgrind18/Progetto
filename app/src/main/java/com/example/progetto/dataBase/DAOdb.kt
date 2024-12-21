@@ -11,7 +11,7 @@ import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Studente
 
 @Dao
-interface LibroDao{
+interface LibroDao {
 
     @Query("SELECT * FROM Libro")
     fun getAll(): LiveData<List<Libro>>
@@ -23,7 +23,7 @@ interface LibroDao{
     fun rimuoviLibro(libro: Libro)
 
     @Query("DELETE FROM Libro WHERE ISBN = :iSBN")
-    fun rimuoviLibro(iSBN: Long)
+    fun rimuoviLibroByISBN(iSBN: Long)
 
     @Query("SELECT * FROM Libro WHERE NAME = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
@@ -34,7 +34,7 @@ interface StudenteDao {
     @Query("SELECT * FROM Studente")
     fun getAll(): LiveData<List<Studente>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciStudente(studente: Studente)
 
     @Delete
@@ -45,6 +45,7 @@ interface StudenteDao {
 
     @Query("SELECT * FROM Studente WHERE matricola = :matricola")
     fun getStudenteByMatricola(matricola: Int): Studente?
+
 }
 
 

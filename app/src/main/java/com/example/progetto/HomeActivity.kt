@@ -2,6 +2,7 @@ package com.example.progetto
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -49,17 +50,21 @@ class HomeActivity : AppCompatActivity() {
         val biblioteca: Button = findViewById(R.id.biblioteca)
         val areaPersonale : Button = findViewById(R.id.areaPersonale)
 
+        Log.d("HomeActivityDEBUG", "Username: $username")
 
-        //TODO: dallo username devo risalire alla matricola dell'utente
 
         dbViewModel = DBViewModel(application)
         //Ora cerco di risalire allo studente
         // Usa coroutines per eseguire la query in background con Dispatchers.IO
         lifecycleScope.launch {
+
+            Log.d("HomeActivityDEBUG", "Inizio query per studente")
             // Esegui la query di database su un thread di I/O
             val studente = withContext(Dispatchers.IO) {
                 dbViewModel.studenteByMatricola(username)  // Query al database
             }
+            Log.d("HomeActivityDEBUG", "Risultato query: $studente")
+
 
             // Una volta che la query è completata, torna al main thread per aggiornare la UI
             withContext(Dispatchers.Main) {

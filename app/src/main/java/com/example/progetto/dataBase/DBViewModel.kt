@@ -1,8 +1,10 @@
 package com.example.progetto.dataBase
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
 import com.example.progetto.Entity.Libro
@@ -23,17 +25,40 @@ class DBViewModel(application: Application): AndroidViewModel(application){
     }
 
     //Funzione per inserire un nuovo studente
-    fun inserisciStudente(studente: Studente){
-        // Esegui l'inserimento nel background (chiamata sincrona tramite DAO)
-       viewModelScope.launch(Dispatchers.IO) {
-           studenteDAO.inserisciStudente(studente)
-       }
+    fun inserisciStudente(studente: Studente) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                studenteDAO.inserisciStudente(studente)
+            } catch (e: Exception) {
+                // Log dell'errore o gestione alternativa
+                e.printStackTrace()
+            }
+        }
     }
+
 
     //Funzione per prendere uno studente tramite la matricola
     fun studenteByMatricola(matricola: Int): Studente? {
-        return studenteDAO.getStudenteByMatricola(matricola)
+        try {
+            Log.d("DBViewModelDEBUG", "Eseguo query con matricola: $matricola")
+            return studenteDAO.getStudenteByMatricola(matricola) // Esegui la query
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante l'esecuzione della query", e)
+        }
+        return null
     }
+
+    fun eliminaStudente(matricola: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                studenteDAO.rimuoviStudenteByMatricola(matricola)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'eliminazione dello studente", e)
+            }
+        }
+    }
+
+
 
 
     /////////////// LIBRO //////////////////////////
@@ -51,9 +76,9 @@ class DBViewModel(application: Application): AndroidViewModel(application){
         }
     }
 
-    fun eliminaLibro(iSBN: Long){
+    fun eliminaLibro(iSBN: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            libroDAO.rimuoviLibro(iSBN)
+            libroDAO.rimuoviLibroByISBN(iSBN)
         }
     }
 

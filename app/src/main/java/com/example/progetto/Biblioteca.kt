@@ -45,7 +45,7 @@ class Biblioteca : AppCompatActivity() {
         val libro14 = Libro(name = "Fondazione", autore = "Isaac Asimov", settore = "Fantascienza")
         val libro15 = Libro(name = "Dune", autore = "Frank Herbert", settore = "Fantascienza")
 
-        lifecycleScope.launch {
+        /*lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 dbViewModel.aggiungiLibro(libro1)
                 dbViewModel.aggiungiLibro(libro2)
@@ -67,7 +67,7 @@ class Biblioteca : AppCompatActivity() {
                 // Mostra un messaggio di conferma
                 Toast.makeText(this@Biblioteca, "Benvenuto nell'Area Biblioteca", Toast.LENGTH_SHORT).show()
             }
-        }
+        }*/
 
 
     }
