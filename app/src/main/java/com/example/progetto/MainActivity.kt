@@ -7,9 +7,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
+import androidx.lifecycle.lifecycleScope
+import com.example.progetto.dataBase.DBViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import com.example.progetto.Entity.Studente
 
 class MainActivity : AppCompatActivity() {
+    
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -34,27 +40,34 @@ class MainActivity : AppCompatActivity() {
         //vado alla schermata di registrazione
         bottoneReg.setOnClickListener {
             val intent = Intent(this, RegistrazioneActivity::class.java)
+            Log.d("MainActivityDEBUG", "Registrazione button clicked")
             startActivity(intent)
             finish()
         }
 
         //creazione di uno studente per test
-        /*val dbViewModel = DBViewModel(application)
+        val dbViewModel = DBViewModel(application)
         val studenteTest = Studente(
-            matricola = 12,
-            CF = "CODFSC12345",
-            pswd = "12",
-            nome = "Mario",
-            cognome = "Rossi",
-            ISEE = 15000L,
-            email = "mario.rossi@studenti.unical.it"
+            matricola = 15, // Nuovo valore per la matricola
+            cf = "CODFSC67890", // Nuovo codice fiscale
+            pswd = "a", // Nuova password
+            nome = "Giuseppe", // Nuovo nome
+            cognome = "Bianchi", // Nuovo cognome
+            isee = 18000L,// Nuovo valore ISEE
+            email = "giuseppe.bianchi@studenti.unical.it", // Nuovo email
         )
+
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
-                 dbViewModel.inserisciStudente(studenteTest)
+                try {
+                    dbViewModel.inserisciStudente(studenteTest)
+                    Log.d("MainActivityDEBUG", "Studente inserito correttamente")
+                } catch (e: Exception) {
+                    Log.e("MainActivityDEBUG", "Errore durante l'inserimento dello studente", e)
+                }
             }
+        }
 
-        }*/
 
-}
+    }
 }

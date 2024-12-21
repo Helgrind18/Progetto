@@ -29,12 +29,13 @@ class DBViewModel(application: Application): AndroidViewModel(application){
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 studenteDAO.inserisciStudente(studente)
+                Log.d("DBViewModelDEBUG", "Studente inserito nel database")
             } catch (e: Exception) {
-                // Log dell'errore o gestione alternativa
-                e.printStackTrace()
+                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento dello studente", e)
             }
         }
     }
+
 
 
     //Funzione per prendere uno studente tramite la matricola

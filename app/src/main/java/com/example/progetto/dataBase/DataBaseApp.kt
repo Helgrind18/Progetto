@@ -42,7 +42,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "NuovoDatabase"
+                    "DatabaseProjectUnical_"
                 )
                     /*.addMigrations(MIGRATION_1_2) // Aggiungi qui le migrazioni
                     .fallbackToDestructiveMigration() // Usa solo se vuoi distruggere il DB in caso di errore

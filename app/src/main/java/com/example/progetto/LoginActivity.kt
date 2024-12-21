@@ -41,12 +41,12 @@ class LoginActivity : AppCompatActivity() {
         val invia: Button = findViewById(R.id.bottoneInvia)
         // Listener del bottone invia
         invia.setOnClickListener {
-            val matricola: Int = textMatricola.text.toString().toInt()
-            val pwd = textPassword.text.toString().trim()
-
-            if (matricola <= 0 || pwd.isEmpty()) {
+            if (textPassword.text.isEmpty() || textMatricola.text.isEmpty()) {
+                Log.d("LoginActivityDEBUG", "Matricola o password vuoti")
                 Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
             } else {
+            val matricola: Int = textMatricola.text.toString().toInt()
+            val pwd = textPassword.text.toString().trim()
                 lifecycleScope.launch {
                     try {
                         // Esegui la query di database su un thread di I/O
@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     } catch (e: Exception) {
                         // Log l'eccezione per aiutare con il debug
-                        Log.e("LoginActivityCATCH", "Errore durante il login", e)
+                        Log.e("LoginActivityDEBUG", "Errore durante il login", e)
                         Toast.makeText(this@LoginActivity, "Si è verificato un errore, riprova più tardi", Toast.LENGTH_SHORT).show()
                     }
             }

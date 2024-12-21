@@ -1,6 +1,8 @@
 package com.example.progetto
+
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -27,6 +29,7 @@ class RegistrazioneActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        Log.d("RegistrazioneActivity", "onCreate called")
 
         // Recupero i dati dall'activity
         val matricolaEditText: EditText = findViewById(R.id.editMatricola)
@@ -42,44 +45,76 @@ class RegistrazioneActivity : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
 
         bottoneInvia.setOnClickListener {
-            val matricola: Int = matricolaEditText.text.toString().toInt()
-            val cf: String = cfEditText.text.toString().trim()
-            val pswd: String = pswdEditText.text.toString().trim()
-            val nome: String = nomeEditText.text.toString().trim()
-            val cognome: String = cognomeEditText.text.toString().trim()
-            val isee: Long = iseeEditText.text.toString().toLong()
-            val email: String = emailEditText.text.toString().trim()
-
-            val studente = Studente(matricola, cf, pswd, nome, cognome, isee, email)
-
-            if (!studenteCorretto(studente)) {
-                Toast.makeText(this, "Parametri errati", Toast.LENGTH_SHORT).show()
+            if (campiVuoti(
+                    matricolaEditText,
+                    cfEditText,
+                    pswdEditText,
+                    nomeEditText,
+                    cognomeEditText,
+                    iseeEditText,
+                    emailEditText
+                )
+            ) {
+                Toast.makeText(this, "Inserisci tutti i dati", Toast.LENGTH_SHORT).show()
             } else {
-                // Esegui l'inserimento nel database in un thread di I/O
-                lifecycleScope.launch {
-                    try {
-                        // Con Dispatcher.IO eseguiamo l'inserimento in un thread di background
-                        withContext(Dispatchers.IO) {
-                            dbViewModel.inserisciStudente(studente)
-                        }
+                val matricola: Int = matricolaEditText.text.toString().toInt()
+                val cf: String = cfEditText.text.toString().trim()
+                val pswd: String = pswdEditText.text.toString().trim()
+                val nome: String = nomeEditText.text.toString().trim()
+                val cognome: String = cognomeEditText.text.toString().trim()
+                val isee: Long = iseeEditText.text.toString().toLong()
+                val email: String = emailEditText.text.toString().trim()
 
-                        // Una volta inserito lo studente, torniamo al thread principale per aggiornare la UI
-                        withContext(Dispatchers.Main) {
-                            // Mostra il messaggio di successo
-                            Toast.makeText(this@RegistrazioneActivity, "Registrazione avvenuta con successo", Toast.LENGTH_SHORT).show()
+                val studente = Studente(matricola, cf, pswd, nome, cognome, isee, email)
 
-                            // Creiamo l'intent per passare alla HomeActivity
-                            val intent = Intent(this@RegistrazioneActivity, HomeActivity::class.java).apply {
-                                putExtra("username", matricola)
+                if (!studenteCorretto(studente)) {
+                    Log.d("RegistrazioneActivityDEBUG", "Studente non valido")
+                    Toast.makeText(this, "Parametri errati", Toast.LENGTH_SHORT).show()
+                } else {
+                    // Esegui l'inserimento nel database in un thread di I/O
+                    lifecycleScope.launch {
+                        try {
+                            // Con Dispatcher.IO eseguiamo l'inserimento in un thread di background
+                            withContext(Dispatchers.IO) {
+                                Log.d(
+                                    "RegistrazioneActivityDEBUG",
+                                    "Inserimento dello studente in corso"
+                                )
+                                dbViewModel.inserisciStudente(studente)
+                                Log.d(
+                                    "RegistrazioneActivityDEBUG",
+                                    "Studente inserito correttamente"
+                                )
                             }
-                            // Avvia l'activity
-                            startActivity(intent)
-                            finish() // Chiudiamo la RegistrazioneActivity per evitare che l'utente torni indietro
-                        }
-                    } catch (e: Exception) {
-                        // In caso di errore, visualizza un messaggio di errore
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@RegistrazioneActivity, "Errore nella registrazione: ${e.message}", Toast.LENGTH_LONG).show()
+
+                            // Una volta inserito lo studente, torniamo al thread principale per aggiornare la UI
+                            withContext(Dispatchers.Main) {
+                                // Mostra il messaggio di successo
+                                Toast.makeText(
+                                    this@RegistrazioneActivity,
+                                    "Registrazione avvenuta con successo",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                // Creiamo l'intent per passare alla HomeActivity
+                                val intent = Intent(
+                                    this@RegistrazioneActivity,
+                                    HomeActivity::class.java
+                                ).apply {
+                                    putExtra("username", matricola)
+                                }
+                                // Avvia l'activity
+                                startActivity(intent)
+                            }
+                        } catch (e: Exception) {
+                            // In caso di errore, visualizza un messaggio di errore
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    this@RegistrazioneActivity,
+                                    "Errore nella registrazione: ${e.message}",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
                     }
                 }
@@ -88,10 +123,31 @@ class RegistrazioneActivity : AppCompatActivity() {
         }
     }
 
+    private fun campiVuoti(
+        matricolaEditText: EditText,
+        cfEditText: EditText,
+        pswdEditText: EditText,
+        nomeEditText: EditText,
+        cognomeEditText: EditText,
+        iseeEditText: EditText,
+        emailEditText: EditText
+    ): Boolean {
+
+        return matricolaEditText.text.isEmpty() ||
+                cfEditText.text.isEmpty() ||
+                pswdEditText.text.isEmpty() ||
+                nomeEditText.text.isEmpty() ||
+                cognomeEditText.text.isEmpty() || iseeEditText.text.isEmpty() || emailEditText.text.isEmpty()
+    }
+
     private fun studenteCorretto(studente: Studente): Boolean {
         // Verifica che la matricola sia maggiore di 0
         if (studente.matricola <= 0) {
-            Toast.makeText(this, "Matricola non valida. Deve essere un numero positivo.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Matricola non valida. Deve essere un numero positivo.",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
 
@@ -121,13 +177,21 @@ class RegistrazioneActivity : AppCompatActivity() {
 
         // Verifica che l'ISEE sia maggiore di 0
         if (studente.isee <= 0) {
-            Toast.makeText(this, "ISEE non valido. Deve essere un valore positivo.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "ISEE non valido. Deve essere un valore positivo.",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
 
         // Verifica che l'email non sia vuota e contenga il simbolo '@'
         if (studente.email.isEmpty() || !studente.email.contains("@")) {
-            Toast.makeText(this, "Email non valida. Assicurati che sia un indirizzo email valido.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Email non valida. Assicurati che sia un indirizzo email valido.",
+                Toast.LENGTH_SHORT
+            ).show()
             return false
         }
 
