@@ -1,4 +1,4 @@
-package com.example.progetto
+package com.example.progetto.Accesso
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.progetto.Entity.Studente
+import com.example.progetto.R
 
 class MainActivity : AppCompatActivity() {
     

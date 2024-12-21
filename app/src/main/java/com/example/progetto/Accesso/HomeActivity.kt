@@ -1,4 +1,4 @@
-package com.example.progetto
+package com.example.progetto.Accesso
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.progetto.AreaPersonale
+import com.example.progetto.BachecaEsiti
+import com.example.progetto.Biblioteca
+import com.example.progetto.CalendarioEsami
+import com.example.progetto.Collegamenti
+import com.example.progetto.Libretto
+import com.example.progetto.Mensa
+import com.example.progetto.OrarioLezioni
+import com.example.progetto.PianoStudi
+import com.example.progetto.Questionari
+import com.example.progetto.R
+import com.example.progetto.Tasse
 import com.example.progetto.dataBase.DBViewModel
 import com.example.progetto.mappa.Mappa
 import kotlinx.coroutines.Dispatchers

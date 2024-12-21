@@ -8,7 +8,7 @@
     android:gravity="center"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".RegistrazioneActivity">
+    tools:context=".Accesso.RegistrazioneActivity">
 
     <EditText
         android:id="@+id/editMatricola"
@@ -30,15 +30,7 @@
         android:textColorHint="@color/black" />
 
 
-    <EditText
-        android:id="@+id/editPswd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Inserire Password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black" />
+
 
     <EditText
         android:id="@+id/editNome"
@@ -62,6 +54,15 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
 
+    <EditText
+        android:id="@+id/editPswd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Inserire Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
     <EditText
         android:id="@+id/editISEE"
         android:layout_width="match_parent"

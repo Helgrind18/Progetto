@@ -27,6 +27,11 @@ class Biblioteca : AppCompatActivity() {
             insets
         }
 
+        //TODO: Settare la parte grafica, iniziare a capire come rappresentarla
+        //Io stavo pensando di mettere una lista dei vari settori ed una volta premuti mostrano i libri di quel settore
+
+        //TODO: Iniziare a capire come gestire la lista di libri che uno studente può prendere e restituire (mi sa che bisogna usare delle relazioni)
+
         dbViewModel = DBViewModel(application)
           // Inizio inserimento libri
         val libro1 = Libro(name = "Il Signore degli Anelli", autore = "J.R.R. Tolkien", settore = "Fantasy")
@@ -45,7 +50,7 @@ class Biblioteca : AppCompatActivity() {
         val libro14 = Libro(name = "Fondazione", autore = "Isaac Asimov", settore = "Fantascienza")
         val libro15 = Libro(name = "Dune", autore = "Frank Herbert", settore = "Fantascienza")
 
-        /*lifecycleScope.launch {
+        lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 dbViewModel.aggiungiLibro(libro1)
                 dbViewModel.aggiungiLibro(libro2)
@@ -67,7 +72,7 @@ class Biblioteca : AppCompatActivity() {
                 // Mostra un messaggio di conferma
                 Toast.makeText(this@Biblioteca, "Benvenuto nell'Area Biblioteca", Toast.LENGTH_SHORT).show()
             }
-        }*/
+        }
 
 
     }

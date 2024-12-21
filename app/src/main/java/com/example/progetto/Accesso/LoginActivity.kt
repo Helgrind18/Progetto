@@ -1,4 +1,4 @@
-package com.example.progetto
+package com.example.progetto.Accesso
 
 import android.content.Context
 import android.content.Intent
@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.example.progetto.R
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
