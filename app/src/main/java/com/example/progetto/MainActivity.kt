@@ -53,13 +53,15 @@ class MainActivity : AppCompatActivity() {
             ISEE = 15000L,
             email = "mario.rossi@studenti.unical.it"
         )
+
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 dbViewModel.inserisciStudente(studenteTest)
+                Toast.makeText(this@MainActivity, "ho aggiunto uno studente", Toast.LENGTH_LONG).show()
             }
             withContext(Dispatchers.Main) {
                 // Mostra un messaggio di conferma
-                Toast.makeText(this@MainActivity, "Benvenuto a ProjectUnical", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Benvenuto in ProjectUnical", Toast.LENGTH_SHORT).show()
             }
         }
 

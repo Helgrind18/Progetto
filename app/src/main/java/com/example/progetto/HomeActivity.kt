@@ -35,6 +35,7 @@ class HomeActivity : AppCompatActivity() {
 
         //TODO: Settare bene la biblioteca: aggiungere le query necessarie e usare il metodo onConflict = Replace
         //TODO: Inziare a settare l'intrerfaccia grafica (di questo se vuoi ne parliamo)
+
         //Saluto dell'utente
         val username = intent.getIntExtra("username",1)
         Toast.makeText(this, "Benvenuto $username", Toast.LENGTH_SHORT).show()

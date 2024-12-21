@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Studente
@@ -13,9 +15,8 @@ import com.example.progetto.Entity.Studente
 * Funge da punto di accesso principale dell'app ai dati persistenti
 * */
 
-@Database(entities = [Studente::class, Libro::class, Aula::class], version = 1) // array di database che contiene le entità
+@Database(entities = [Studente::class, Libro::class, Aula::class], version = 2) // Incrementa la versione se hai modifiche
 abstract class DataBaseApp : RoomDatabase() {
-    //Per ogni DAO definisco un metodo astratto che restituisce l'istanza del DAO corrispondente
     abstract fun getStudenteDao(): StudenteDao
     abstract fun getLibroDao(): LibroDao
     abstract fun getAulaDao(): AulaDao
@@ -23,18 +24,29 @@ abstract class DataBaseApp : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: DataBaseApp? = null
-        //getDatabase() assicura che venga creata una sola istanza del db
+
+        // Definizione delle migrazioni
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // Esempio di modifica: aggiunta di una nuova colonna alla tabella "Studente"
+                database.execSQL("ALTER TABLE Studente ADD COLUMN nuovaColonna TEXT DEFAULT ''")
+            }
+        }
+
         fun getDatabase(context: Context): DataBaseApp {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
                     "DatabaseApplicazione"
-                ).build()
+                )
+                    .addMigrations(MIGRATION_1_2) // Aggiungi qui le migrazioni
+                    .fallbackToDestructiveMigration() // Usa solo se vuoi distruggere il DB in caso di errore
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
     }
-
 }
+

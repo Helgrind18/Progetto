@@ -44,6 +44,27 @@ class DBViewModel(application: Application): AndroidViewModel(application){
         }
     }
 
+    /////////////// LIBRO //////////////////////////
+
+    fun aggiungiLibro(libro: Libro){
+        viewModelScope.launch(Dispatchers.IO) {
+            libroDAO.inserisciLibro(libro)
+        }
+    }
+
+    fun aggiungiLibro(iSBN: Long, name: String, autore: String, settore: String){
+        viewModelScope.launch(Dispatchers.IO){
+            val libro= Libro(iSBN, name,autore, settore)
+            libroDAO.inserisciLibro(libro)
+        }
+    }
+
+    fun eliminaLibro(iSBN: Long){
+        viewModelScope.launch(Dispatchers.IO) {
+            libroDAO.rimuoviLibro(iSBN)
+        }
+    }
+
 
 
 
@@ -114,27 +135,7 @@ class DBViewModel(application: Application): AndroidViewModel(application){
         return studente
     }
 
-    /////////////// LIBRO //////////////////////////
 
-    fun aggiungiLibro(libro: Libro){
-        viewModelScope.launch(Dispatchers.IO) {
-            dataBaseLibri.inserisciLibro(libro)
-        }
-    }
-
-    fun aggiungiLibro(iSBN: Long, name: String){
-        viewModelScope.launch(Dispatchers.IO){
-            val libro= Libro(iSBN, name)
-            dataBaseLibri.inserisciLibro(libro)
-        }
-    }
-
-    fun eliminaLibro(iSBN: Long){
-        viewModelScope.launch(Dispatchers.IO) {
-
-            dataBaseLibri.rimuoviLibro(iSBN)
-        }
-    }
 
 
     ///////////////// AULA ///////////////////7

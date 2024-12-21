@@ -16,7 +16,7 @@ interface LibroDao{
     @Query("SELECT * FROM Libro")
     fun getAll(): LiveData<List<Libro>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciLibro(libro: Libro)
 
     @Delete
@@ -55,7 +55,7 @@ interface AulaDao{
     @Query("SELECT * FROM Aula")
     fun getAll(): LiveData<List<Aula>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciAula(aula: Aula)
 
     @Delete
