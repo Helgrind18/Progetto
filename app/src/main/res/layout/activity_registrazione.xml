@@ -30,6 +30,15 @@
         android:textColorHint="@color/black" />
 
 
+    <EditText
+        android:id="@+id/editPswd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Inserire Password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <EditText
         android:id="@+id/editNome"
@@ -37,15 +46,6 @@
         android:layout_height="wrap_content"
         android:hint="Inserire Nome"
         android:inputType="text"
-        android:minHeight="48dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black" />
-    <EditText
-        android:id="@+id/editPswd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Inserire Password"
-        android:inputType="textPassword"
         android:minHeight="48dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black" />

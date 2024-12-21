@@ -22,12 +22,11 @@ interface LibroDao{
     @Delete
     fun rimuoviLibro(libro: Libro)
 
-    @Query("DELETE FROM Libro WHERE iSBN = :iSBN")
+    @Query("DELETE FROM Libro WHERE ISBN = :iSBN")
     fun rimuoviLibro(iSBN: Long)
 
-    @Query("SELECT * FROM Libro WHERE name = :name")
+    @Query("SELECT * FROM Libro WHERE NAME = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
-
 }
 @Dao
 interface StudenteDao {
@@ -35,7 +34,7 @@ interface StudenteDao {
     @Query("SELECT * FROM Studente")
     fun getAll(): LiveData<List<Studente>>
 
-    @Insert (onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     fun inserisciStudente(studente: Studente)
 
     @Delete

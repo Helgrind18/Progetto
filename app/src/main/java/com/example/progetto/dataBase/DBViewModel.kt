@@ -3,13 +3,10 @@ package com.example.progetto.dataBase
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
-import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Studente
-import com.example.progetto.MainActivity
 import kotlinx.coroutines.launch
 
 //Collega i dati (DAO/Database) con l’interfaccia utente. Contiene tutta la logica per interagire con il db
@@ -38,11 +35,6 @@ class DBViewModel(application: Application): AndroidViewModel(application){
         return studenteDAO.getStudenteByMatricola(matricola)
     }
 
-    fun eliminaStudenteByMatricola(matricola: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            studenteDAO.rimuoviStudenteByMatricola(matricola)
-        }
-    }
 
     /////////////// LIBRO //////////////////////////
 

@@ -1,9 +1,7 @@
 package com.example.progetto
-
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -17,7 +15,6 @@ import kotlinx.coroutines.withContext
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var dbViewModel: DBViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -43,7 +40,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        dbViewModel = DBViewModel(application)
+        //creazione di uno studente per test
+        val dbViewModel = DBViewModel(application)
         val studenteTest = Studente(
             matricola = 12,
             CF = "CODFSC12345",
@@ -53,18 +51,12 @@ class MainActivity : AppCompatActivity() {
             ISEE = 15000L,
             email = "mario.rossi@studenti.unical.it"
         )
-
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
-                dbViewModel.inserisciStudente(studenteTest)
-                Toast.makeText(this@MainActivity, "ho aggiunto uno studente", Toast.LENGTH_LONG).show()
+                 dbViewModel.inserisciStudente(studenteTest)
             }
-            withContext(Dispatchers.Main) {
-                // Mostra un messaggio di conferma
-                Toast.makeText(this@MainActivity, "Benvenuto in ProjectUnical", Toast.LENGTH_SHORT).show()
-            }
+
         }
 
-    }
-
+}
 }
