@@ -1,87 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/gridLayoutBiblioteca"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".Biblioteca">
+    android:columnCount="3"
+    android:rowCount="3"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@color/white">
 
-    <!-- Definisci il GridLayout con 3 righe e 3 colonne -->
-    <android.widget.GridLayout
-        android:id="@+id/gridLayout"
+    <!-- Banda rossa in alto -->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="3"
-        android:rowCount="3"
-        android:orientation="horizontal"
-        android:padding="16dp">
+        android:layout_height="70dp"
+        android:background="@color/rosso_bordeaux"
+        android:layout_rowSpan="1"
+        android:layout_columnSpan="3"/>
 
-        <!-- Aggiungi i bottoni nella griglia -->
-        <Button
-            android:text="Bottone 1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area linguistica -->
+    <Button
+        android:id="@+id/linguistica"
+        android:text="Area Linguistica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area giuridica -->
+    <Button
+        android:id="@+id/giuridica"
+        android:text="Area Giuridica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area economica -->
+    <Button
+        android:id="@+id/economica"
+        android:text="Area Economica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area storica -->
+    <Button
+        android:id="@+id/storica"
+        android:text="Area Storica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 5"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area filosofica -->
+    <Button
+        android:id="@+id/filosofica"
+        android:text="Area Filosofica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 6"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area psicologica -->
+    <Button
+        android:id="@+id/psicologica"
+        android:text="Area Psicologica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 7"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area pedagogica -->
+    <Button
+        android:id="@+id/pedagogica"
+        android:text="Area Pedagogica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 8"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area informatica -->
+    <Button
+        android:id="@+id/informatica"
+        android:text="Area Informatica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-        <Button
-            android:text="Bottone 9"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1" />
+    <!-- Bottone per l'area matematica -->
+    <Button
+        android:id="@+id/matematica"
+        android:text="Area Matematica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:backgroundTint="@color/rosso_bordeaux"
+        android:layout_margin="8dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:minHeight="100dp" />
 
-    </android.widget.GridLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</GridLayout>
