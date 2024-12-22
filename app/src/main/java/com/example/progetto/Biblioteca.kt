@@ -27,13 +27,9 @@ class Biblioteca : AppCompatActivity() {
             insets
         }
 
-        //TODO: Settare la parte grafica, iniziare a capire come rappresentarla
-        //Io stavo pensando di mettere una lista dei vari settori ed una volta premuti mostrano i libri di quel settore
-
-        //TODO: Iniziare a capire come gestire la lista di libri che uno studente può prendere e restituire (mi sa che bisogna usare delle relazioni)
-
         dbViewModel = DBViewModel(application)
-          // Inizio inserimento libri
+
+        // Inizio inserimento libri
         val libro1 = Libro(name = "Il Signore degli Anelli", autore = "J.R.R. Tolkien", settore = "Fantasy")
         val libro2 = Libro(name = "Orgoglio e Pregiudizio", autore = "Jane Austen", settore = "Romanzo")
         val libro3 = Libro(name = "Le Cronache del Ghiaccio e del Fuoco: Il Trono di Spade", autore = "George R.R. Martin", settore = "Fantasy")

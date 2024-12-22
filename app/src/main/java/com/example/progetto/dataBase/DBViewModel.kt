@@ -4,10 +4,10 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.PrestitoConLibro
 import com.example.progetto.Entity.Studente
 import kotlinx.coroutines.launch
 
@@ -18,6 +18,7 @@ class DBViewModel(application: Application): AndroidViewModel(application){
     private val studenteDAO = DataBaseApp.getDatabase(application).getStudenteDao()
     private val libroDAO = DataBaseApp.getDatabase(application).getLibroDao()
     private val aulaDAO = DataBaseApp.getDatabase(application).getAulaDao()
+    private val prestitoConLibroDAO = DataBaseApp.getDatabase(application).getPrestitoConLibroDAO()
 
     //Funzione per restituire tutti gli studenti
     fun getAllStudenti(): LiveData<List<Studente>> {
@@ -70,18 +71,47 @@ class DBViewModel(application: Application): AndroidViewModel(application){
         }
     }
 
-    fun aggiungiLibro(iSBN: Long, name: String, autore: String, settore: String){
-        viewModelScope.launch(Dispatchers.IO){
-            val libro= Libro(iSBN, name,autore, settore)
+    fun aggiungiLibro(name: String, autore: String, settore: String, iSBN: Long){
+        viewModelScope.launch(Dispatchers.IO) {
+            val libro = Libro(name = name, autore = autore, settore = settore, iSBN = iSBN)
             libroDAO.inserisciLibro(libro)
         }
     }
+
 
     fun eliminaLibro(iSBN: Long) {
         viewModelScope.launch(Dispatchers.IO) {
             libroDAO.rimuoviLibroByISBN(iSBN)
         }
     }
+
+
+    /////////////// PRESTITO //////////////////////////
+    // Funzione per aggiungere un prestito
+    fun aggiungiPrestito(prestito: PrestitoConLibro) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                prestitoConLibroDAO.aggiungiPrestito(prestito)
+                Log.d("DBViewModelDEBUG", "Studente inserito nel database")
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento dello studente", e)
+            }
+        }
+    }
+
+    // Funzione per ottenere i prestiti di uno studente tramite matricola
+    fun getPrestitiByStudente(matricola: Int): LiveData<List<PrestitoConLibro>> {
+        return prestitoConLibroDAO.getPrestitiByStudente(matricola)
+    }
+
+
+    // Funzione per eliminare un prestito
+    fun eliminaPrestito(prestito: PrestitoConLibro) {
+        viewModelScope.launch(Dispatchers.IO) {
+            prestitoConLibroDAO.eliminaPrestito(prestito)
+        }
+    }
+
 
 
 

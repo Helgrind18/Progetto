@@ -64,6 +64,7 @@ class HomeActivity : AppCompatActivity() {
 
         Log.d("HomeActivityDEBUG", "Username: $username")
 
+        //TODO: Recuperare eventuali libri da restituire (verificare mediante la dataDiScadenza)
 
         dbViewModel = DBViewModel(application)
         //Ora cerco di risalire allo studente
