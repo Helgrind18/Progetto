@@ -32,6 +32,8 @@ interface LibroDao {
     @Query("SELECT * FROM Libro WHERE NAME = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
 
+    //!!!!!!!! ATTENZIONE NON SO SE FUNZIONA LA QUERY DI SOTTO!!!!!!!!
+
     @Transaction //È necessario per garantire che le query multiple (relazionali) vengano eseguite come un'unica transazione atomica.
     @Query("SELECT * FROM Studente WHERE matricola = :matricola")
     fun getStudenteConLibri(matricola: Int): LiveData<Studente>

@@ -1,264 +1,211 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout"
+    android:id="@+id/gridLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:background="@color/white"
-    android:orientation="vertical"
-    android:paddingHorizontal="128dp"
-   >
+    android:columnCount="3"
+    android:rowCount="5"
+    android:padding="16dp"
+    android:orientation="horizontal">
 
+    <!-- Banda rossa in alto -->
     <View
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/rosso_bordeaux" />
+        android:background="@color/rosso_bordeaux"
+        android:layout_rowSpan="1"
+        android:layout_columnSpan="3"/>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:layout_weight="0.3"
-        android:background="@color/white" />
+    <!-- Bottone 1: Orario Lezioni -->
+    <Button
+        android:id="@+id/orarioLezioni"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Orario Lezioni"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
+    <!-- Bottone 2: Calendario Esami -->
+    <Button
+        android:id="@+id/calendarioEsami"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Calendario Esami"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+    <!-- Bottone 3: Area Mensa -->
+    <Button
+        android:id="@+id/mensa"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Area Mensa"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-        <Button
-            android:id="@+id/orarioLezioni"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Orario Lezioni"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
+    <!-- Bottone 4: Situazione Tasse -->
+    <Button
+        android:id="@+id/tasse"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Situazione Tasse"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-        <Button
-            android:id="@+id/calendarioEsami"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Calendario Esami"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
+    <!-- Bottone 5: Libretto Esami -->
+    <Button
+        android:id="@+id/libretto"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Libretto Esami"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-        <Button
-            android:id="@+id/mensa"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Area      Mensa"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
+    <!-- Bottone 6: Bacheca Esiti -->
+    <Button
+        android:id="@+id/bachecaEsiti"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Bacheca Esiti"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-    </LinearLayout>
+    <!-- Bottone 7: Valutazione corsi -->
+    <Button
+        android:id="@+id/questionari"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Valutazione corsi"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
+    <!-- Bottone 8: Piano di studi -->
+    <Button
+        android:id="@+id/pianoStudi"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Piano di studi"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+    <!-- Bottone 9: Collegamenti web -->
+    <Button
+        android:id="@+id/collegamenti"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Collegamenti web"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-        <Button
-            android:id="@+id/tasse"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Situazione Tasse"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
+    <!-- Bottone 10: Mappa Università -->
+    <Button
+        android:id="@+id/mappa"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Mappa Università"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-        <Button
-            android:id="@+id/libretto"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Libretto Esami"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
+    <!-- Bottone 11: Area Biblioteche -->
+    <Button
+        android:id="@+id/biblioteca"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Area Biblioteche"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
 
-        <Button
-            android:id="@+id/bachecaEsiti"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Bacheca Esiti"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
-
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/questionari"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Valutazione corsi"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
-
-        <Button
-            android:id="@+id/pianoStudi"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Piano di studi"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
-
-        <Button
-            android:id="@+id/collegamenti"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Collegamenti web"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/mappa"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Mappa Università"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
-
-        <Button
-            android:id="@+id/biblioteca"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Area Biblioteche"
-            app:cornerRadius="8dp"
-            app:iconPadding="64dp"
-            android:textSize="12sp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
-
-        <Button
-            android:id="@+id/areaPersonale"
-            android:layout_width="0dp"
-            android:layout_height="128dp"
-            android:layout_weight="1"
-            android:insetLeft="8dp"
-            android:insetTop="@null"
-            android:insetRight="8dp"
-            android:insetBottom="@null"
-            android:text="Area Personale"
-            app:cornerRadius="8dp"
-            android:textSize="12sp"
-            app:iconPadding="64dp"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/rosso_bordeaux"/>
-    </LinearLayout>
-
-
-</LinearLayout>
+    <!-- Bottone 12: Area Personale -->
+    <Button
+        android:id="@+id/areaPersonale"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:insetLeft="8dp"
+        android:insetRight="8dp"
+        android:text="Area Personale"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/rosso_bordeaux"
+        app:cornerRadius="8dp" />
+</GridLayout>
