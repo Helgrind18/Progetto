@@ -9,7 +9,7 @@ data class Libro(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "isbn") // Specifica il nome della colonna
     var iSBN: Long = 0L,
-    var name: String,
-    val autore: String,
-    val settore: String
+    @ColumnInfo(name= "name")var name: String,
+    @ColumnInfo(name= "autore")val autore: String,
+    @ColumnInfo(name= "settore")val settore: String
 )

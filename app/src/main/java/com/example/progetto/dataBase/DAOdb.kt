@@ -8,6 +8,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.Prestito
 import com.example.progetto.Entity.Studente
 
 @Dao
@@ -65,4 +66,16 @@ interface AulaDao{
     fun rimuoviAula(cubo: Int)
 
 
+}
+
+@Dao
+interface PrestitoDao {
+    @Query("SELECT * FROM studente")
+    fun getAllStudenti(): List<Studente>
+
+    @Query("SELECT * FROM libro")
+    fun getAllLibri(): List<Libro>
+
+    @Query("SELECT * FROM prestito WHERE matricolaStudente = :matricola")
+    fun getLibriByStudente(matricola: Int): List<Prestito>
 }

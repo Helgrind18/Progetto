@@ -1,7 +1,9 @@
 package com.example.progetto.Entity
 
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.Relation
 
 @Entity(tableName = "Aula")
 data class Aula(
@@ -10,3 +12,4 @@ data class Aula(
     var piano: Int,
     var capienza: Int
 )
+
