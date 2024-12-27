@@ -7,20 +7,29 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.progetto.Entity.Aula
+import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.Libro
-import com.example.progetto.Entity.PrestitoConLibro
+import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.Studente
 
 // Questa classe definisce il database e le entità associate.
 // Funziona come punto di accesso principale dell'app ai dati persistenti
-@Database(entities = [Studente::class, Libro::class, Aula::class, PrestitoConLibro::class], version = 1) // Incrementa la versione se hai modifiche
+@Database(
+    entities = [
+        Studente::class,
+        Libro::class,
+        Aula::class,
+        Corso::class,
+        RelazioneStudenteCorso::class // Include la tabella intermedia many-to-many
+    ],
+    version = 1
+)
 abstract class DataBaseApp : RoomDatabase() {
     abstract fun getStudenteDao(): StudenteDao
     abstract fun getLibroDao(): LibroDao
     abstract fun getAulaDao(): AulaDao
-    abstract fun getPrestitoConLibroDAO(): PrestitoConLibroDAO
-
-
+    abstract fun getCorsoDao(): CorsoDao
+    abstract fun getRelazioneStudenteCorsoDao(): RelazioneStudenteCorsoDao
     companion object {
         @Volatile
         private var INSTANCE: DataBaseApp? = null
@@ -31,7 +40,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseProjectUnical3"
+                    "DatabaseProjectUnical16"
                 )
                     .build()
                 INSTANCE = instance
