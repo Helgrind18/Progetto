@@ -8,9 +8,11 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import com.example.progetto.Entity.Aula
+import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.Libro
-
+import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.Studente
+import com.example.progetto.Entity.RelazioneStudenteSegueCorsi
 
 
 @Dao
@@ -25,18 +27,21 @@ interface LibroDao {
     @Delete
     fun rimuoviLibro(libro: Libro)
 
-    @Query("DELETE FROM Libro WHERE name = :nome AND autore = :autore")
-    fun rimuoviLibroByNomeEAutore(nome: String, autore: String)
+    @Query("DELETE FROM Libro WHERE ISBN = :iSBN")
+    fun rimuoviLibroByISBN(iSBN: Long)
 
     @Query("SELECT * FROM Libro WHERE NAME = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
 
+    //!!!!!!!! ATTENZIONE NON SO SE FUNZIONA LA QUERY DI SOTTO!!!!!!!!
 
-    @Query("UPDATE Libro SET matricolaStudente = :matricola WHERE name = :nome AND autore = :autore")
-    fun aggiuntaStudenteCheHaPresoLibroInPrestito(nome: String, autore: String,matricola: Int)
+    @Transaction //È necessario per garantire che le query multiple (relazionali) vengano eseguite come un'unica transazione atomica.
+    @Query("SELECT * FROM Libro l WHERE l.matricolaStudente = :matricola")
+    fun getLibriByStudente(matricola: Int): LiveData<List<Libro>>
 
 
 }
+
 @Dao
 interface StudenteDao {
 
@@ -54,12 +59,6 @@ interface StudenteDao {
 
     @Query("SELECT * FROM Studente WHERE matricola = :matricola")
     fun getStudenteByMatricola(matricola: Int): Studente?
-
-
-    // metodo che mi permette di ottenere tutti i libri presi in prestito da uno studente
-    @Transaction
-    @Query("SELECT * FROM Libro WHERE matricolaStudente = :matricola")
-    fun getListaLibriDiStudente(matricola: Int): LiveData<List<Libro>>
 
 }
 
@@ -82,8 +81,46 @@ interface AulaDao{
 
 }
 
+@Dao
+interface CorsoDao {
+    @Query("SELECT * FROM Corso")
+    fun getAll(): LiveData<List<Corso>>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun inserisciCorso(corso: Corso)
 
+    @Delete
+    fun rimuoviCorso(corso: Corso)
 
+    @Query("DELETE FROM Corso WHERE corsoId = :id")
+    fun rimuoviCorsoById(id: Int)
 
+    //Recupera il corso dall'id
+    @Query("SELECT * FROM Corso WHERE corsoId = :id")
+    fun getCorsoById(id: Int): LiveData<Corso>?
+
+}
+
+@Dao
+interface RelazioneStudenteCorsoDao {
+        // Inserisce una relazione tra uno studente e un corso
+        @Transaction
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        fun inserisciRelazione(relazione: RelazioneStudenteCorso)
+
+        // Rimuove una relazione specifica
+        @Delete
+        @Transaction
+        fun rimuoviRelazione(relazione: RelazioneStudenteCorso)
+
+        // Recupera tutti i corsi di uno studente dato
+        @Transaction
+        @Query("SELECT r.corsoId FROM RelazioneStudenteCorso r WHERE r.matricola = :matricola")
+        fun getCorsiDiStudente(matricola: Int): List<Int>?
+
+        // Recupera tutti gli studenti iscritti a un corso dato
+        @Transaction
+        @Query("SELECT r.matricola FROM RelazioneStudenteCorso r WHERE r.corsoId = :corsoId")
+        fun getStudentiDiCorso(corsoId: Int): List<Int>
+}
 

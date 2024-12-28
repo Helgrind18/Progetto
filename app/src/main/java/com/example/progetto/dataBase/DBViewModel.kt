@@ -6,17 +6,27 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
+import com.example.progetto.Entity.Aula
+import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.RelazioneStudenteCorso
+import com.example.progetto.Entity.RelazioneStudenteSegueCorsi
 import com.example.progetto.Entity.Studente
 import kotlinx.coroutines.launch
 
 //Collega i dati (DAO/Database) con l’interfaccia utente. Contiene tutta la logica per interagire con il db
-class DBViewModel(application: Application): AndroidViewModel(application) {
+class DBViewModel(application: Application) : AndroidViewModel(application) {
 
 
     private val studenteDAO = DataBaseApp.getDatabase(application).getStudenteDao()
     private val libroDAO = DataBaseApp.getDatabase(application).getLibroDao()
     private val aulaDAO = DataBaseApp.getDatabase(application).getAulaDao()
+    private val corsoDAO = DataBaseApp.getDatabase(application).getCorsoDao()
+    private val relazioneStudenteCorsoDAO =
+        DataBaseApp.getDatabase(application).getRelazioneStudenteCorsoDao()
+
+
+    //STUDENTE
 
     //Funzione per restituire tutti gli studenti
     fun getAllStudenti(): LiveData<List<Studente>> {
@@ -57,18 +67,6 @@ class DBViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun prestitiStudente(matricola: Int): LiveData<List<Libro>>? {
-        var listaPrestiti: LiveData<List<Libro>>? = null
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                listaPrestiti = studenteDAO.getListaLibriDiStudente(matricola)
-            } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante l'ottenimento della lista di prestiti", e)
-            }
-        }
-        return listaPrestiti
-    }
-
 
     /////////////// LIBRO //////////////////////////
 
@@ -86,120 +84,101 @@ class DBViewModel(application: Application): AndroidViewModel(application) {
     }
 
 
-    fun eliminaLibro(nome: String, autore: String) {
+    fun eliminaLibro(iSBN: Long) {
         viewModelScope.launch(Dispatchers.IO) {
-            libroDAO.rimuoviLibroByNomeEAutore(nome, autore)
+            libroDAO.rimuoviLibroByISBN(iSBN)
         }
     }
 
-    fun prendoInPrestito(name: String, autore: String, matricola: Int) {
+    fun getLibriByStudente(matricola: Int): LiveData<List<Libro>> {
+        return libroDAO.getLibriByStudente(matricola)
+    }
+
+    /////////////// CORSO //////////////////////////
+    // CORSO
+
+    fun getAllCorsi(): LiveData<List<Corso>> = corsoDAO.getAll()
+
+    fun inserisciCorso(corso: Corso) {
         viewModelScope.launch(Dispatchers.IO) {
-            libroDAO.aggiuntaStudenteCheHaPresoLibroInPrestito(name, autore, matricola)
+            try {
+                corsoDAO.inserisciCorso(corso)
+                Log.d("DBViewModelDEBUG", "Corso inserito nel database")
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del corso", e)
+            }
         }
     }
+
+    fun eliminaCorso(corso: Corso) {
+        viewModelScope.launch(Dispatchers.IO) {
+            corsoDAO.rimuoviCorso(corso)
+        }
+    }
+
+    fun getCorsoById(id: Int): LiveData<Corso>? {
+        return try {
+            corsoDAO.getCorsoById(id)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    // AULA
+    fun inserisciAula(aula: Aula) {
+        viewModelScope.launch(Dispatchers.IO) {
+            aulaDAO.inserisciAula(aula)
+        }
+    }
+
+    fun eliminaAula(cubo: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            aulaDAO.rimuoviAula(cubo)
+        }
+    }
+
+    // RELAZIONE STUDENTE-CORSO
+
+    fun inserisciRelazioneStudenteCorso(relazione: RelazioneStudenteCorso) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                relazioneStudenteCorsoDAO.inserisciRelazione(relazione)
+                Log.d("DBViewModelDEBUG", "Relazione inserita con successo")
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento della relazione", e)
+            }
+        }
+    }
+
+    fun rimuoviRelazioneStudenteCorso(relazione: RelazioneStudenteCorso) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                relazioneStudenteCorsoDAO.rimuoviRelazione(relazione)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la rimozione della relazione", e)
+            }
+        }
+    }
+
+    fun getCorsiSeguitiDaStudente(matricola: Int): List<Int>? {
+        return try {
+            relazioneStudenteCorsoDAO.getCorsiDiStudente(matricola)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getStudentiDiCorso(corsoId: Int): List<Int>? {
+        return try {
+            relazioneStudenteCorsoDAO.getStudentiDiCorso(corsoId)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*val dataBaseStudenti = MainActivity.dataBaseApp.getStudenteDao()
-    val dataBaseLibri = MainActivity.dataBaseApp.getLibroDao()
-    val dataBaseAule = MainActivity.dataBaseApp.getAulaDao()
-
-    val studentList: LiveData<List<com.example.progetto.Entity.Studente>> = dataBaseStudenti.getAll()
-    val bookList: LiveData<List<Libro>> = dataBaseLibri.getAll()
-    val classList: LiveData<List<Aula>> = dataBaseAule.getAll()
-
-    fun aggiungiStudente(studente: Studente){
-        viewModelScope.launch(Dispatchers.IO) {
-            dataBaseStudenti.inserisciStudente(studente)
-        }
-    }
-
-    fun aggiungiStudente(matricola: Int,codiceFiscale: String, pswd: String, nome: String, cognome: String, ISEE: Long, email: String){
-        viewModelScope.launch(Dispatchers.IO) {
-            var email= "$codiceFiscale@studenti.unical.it"
-            val studente= Studente(matricola,codiceFiscale,pswd,nome,cognome,ISEE,email)
-            dataBaseStudenti.inserisciStudente(studente)
-        }
-    }
-
-    fun eliminaStudente(matricola: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            dataBaseStudenti.rimuoviStudenteByMatricola(matricola)
-        }
-    }
-
-    fun eliminaStudente(studente: Studente){
-        viewModelScope.launch(Dispatchers.IO) {
-            dataBaseStudenti.rimuoviStudente(studente)
-        }
-    }
-
-    fun studenteByMatricola(matricola: Int): Studente?{
-        val studente= null
-        viewModelScope.launch(Dispatchers.IO) {
-            val studente= dataBaseStudenti.getStudenteByMatricola(matricola)
-        }
-        return studente
-    }
-
-
-
-
-    ///////////////// AULA ///////////////////7
-
-    fun aggiungiAula(aula: Aula){
-        viewModelScope.launch(Dispatchers.IO) {
-
-            dataBaseAule.inserisciAula(aula)
-        }
-    }
-
-    fun aggiungiAula(cubo: Int, pano: Int, capieza: Int){
-        viewModelScope.launch(Dispatchers.IO){
-            val aula= Aula(cubo,pano,capieza)
-            dataBaseAule.inserisciAula(aula)
-        }
-    }
-
-    fun eliminaAula(cubo: Int){
-        viewModelScope.launch(Dispatchers.IO) {
-            dataBaseAule.rimuoviAula(cubo)
-        }
-    }
-
-
-*/
-
 
 
