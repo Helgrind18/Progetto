@@ -39,6 +39,9 @@ interface LibroDao {
     @Query("SELECT * FROM Libro l WHERE l.matricolaStudente = :matricola")
     fun getLibriByStudente(matricola: Int): LiveData<List<Libro>>
 
+    @Query("SELECT * FROM Libro WHERE settore = :settore")
+    fun getLibriBySettore(settore: String): LiveData<List<Libro>>
+
 
 }
 
