@@ -110,39 +110,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Creazione di prestiti per ciascun libro
-        val prestitoTest1 = PrestitoConLibro(
-            matricolaStudente = studenteTest.matricola,
-            nameLibro = libroTest1.name,
-            autoreLibro = libroTest1.autore,
-            dataScadenza = 20241230
-        )
+        //Esempio di prestito
 
-        val prestitoTest2 = PrestitoConLibro(
-            matricolaStudente = studenteTest.matricola,
-            nameLibro = libroTest2.name,
-            autoreLibro = libroTest2.autore,
-            dataScadenza = 20250115
-        )
-
-        val prestitoTest3 = PrestitoConLibro(
-            matricolaStudente = studenteTest.matricola,
-            nameLibro = libroTest3.name,
-            autoreLibro = libroTest3.autore,
-            dataScadenza = 20250220
-        )
-
-        Log.d("MainActivityDEBUG", "PrestitoTest1: $prestitoTest1")
-        Log.d("MainActivityDEBUG", "PrestitoTest2: $prestitoTest2")
-        Log.d("MainActivityDEBUG", "PrestitoTest3: $prestitoTest3")
-
-        // Aggiunta dei prestiti al database
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    dbViewModel.aggiungiPrestito(prestitoTest1)
-                    dbViewModel.aggiungiPrestito(prestitoTest2)
-                    dbViewModel.aggiungiPrestito(prestitoTest3)
+                    dbViewModel.prendoInPrestito(
+                        "Introduzione alla filosofia",
+                        "Alessandro Verdi",
+                        15
+                    )
                     Log.d("MainActivityDEBUG", "Prestiti inseriti correttamente")
                 } catch (e: Exception) {
                     Log.e("MainActivityDEBUG", "Errore durante l'inserimento dei prestiti", e)

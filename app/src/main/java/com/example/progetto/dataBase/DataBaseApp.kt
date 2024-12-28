@@ -13,13 +13,11 @@ import com.example.progetto.Entity.Studente
 
 // Questa classe definisce il database e le entità associate.
 // Funziona come punto di accesso principale dell'app ai dati persistenti
-@Database(entities = [Studente::class, Libro::class, Aula::class, PrestitoConLibro::class], version = 1) // Incrementa la versione se hai modifiche
+@Database(entities = [Studente::class, Libro::class, Aula::class], version = 1) // Incrementa la versione se hai modifiche
 abstract class DataBaseApp : RoomDatabase() {
     abstract fun getStudenteDao(): StudenteDao
     abstract fun getLibroDao(): LibroDao
     abstract fun getAulaDao(): AulaDao
-    abstract fun getPrestitoConLibroDAO(): PrestitoConLibroDAO
-
 
     companion object {
         @Volatile
@@ -31,7 +29,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseProjectUnical3"
+                    "DatabaseProjectUnical4"
                 )
                     .build()
                 INSTANCE = instance
