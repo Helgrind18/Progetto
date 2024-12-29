@@ -1,11 +1,10 @@
 package com.example.progetto.AreeBiblioteca
-
+import com.example.progetto.R
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.progetto.Entity.Libro
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
