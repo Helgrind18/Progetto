@@ -71,11 +71,12 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     /////////////// LIBRO //////////////////////////
 
     fun getLibriBySettore(settore: String): LiveData<List<Libro>>? {
-        var libri: LiveData<List<Libro>>? = null
-         viewModelScope.launch(Dispatchers.IO) {
-             libri= libroDAO.getLibriBySettore(settore)
-         }
-        return libri
+        return try {
+            libroDAO.getLibriBySettore(settore)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
     }
     fun aggiungiLibro(libro: Libro) {
         viewModelScope.launch(Dispatchers.IO) {
