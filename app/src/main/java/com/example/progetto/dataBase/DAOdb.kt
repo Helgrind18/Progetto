@@ -42,7 +42,6 @@ interface LibroDao {
     @Query("SELECT * FROM Libro WHERE settore = :settore")
     fun getLibriBySettore(settore: String): LiveData<List<Libro>>
 
-
 }
 
 @Dao
@@ -125,5 +124,10 @@ interface RelazioneStudenteCorsoDao {
         @Transaction
         @Query("SELECT r.matricola FROM RelazioneStudenteCorso r WHERE r.corsoId = :corsoId")
         fun getStudentiDiCorso(corsoId: Int): List<Int>
+
+        //Recupera tutti i corsi seguiti da uno studente in un determinato giorno
+        @Transaction
+        @Query("SELECT r.aula FROM RelazioneStudenteCorso r where r.giorno = :giorno")
+        fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>?
 }
 

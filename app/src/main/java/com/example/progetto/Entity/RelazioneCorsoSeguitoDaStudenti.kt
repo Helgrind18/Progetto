@@ -12,5 +12,6 @@ data class RelazioneCorsoSeguitoDaStudenti(
         entityColumn = "matricola",
         associateBy = Junction(RelazioneStudenteCorso::class)
     )
+
     val studenti: List<Studente>
 )

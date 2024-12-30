@@ -54,14 +54,15 @@ class MainActivity : AppCompatActivity() {
         //creazione di uno studente per test
         val dbViewModel = DBViewModel(application)
         val studenteTest = Studente(
-            matricola = 15, // Nuovo valore per la matricola
-            cf = "CODFSC67890", // Nuovo codice fiscale
-            pswd = "a", // Nuova password
-            nome = "Giuseppe", // Nuovo nome
-            cognome = "Bianchi", // Nuovo cognome
-            isee = 18000L,// Nuovo valore ISEE
-            email = "giuseppe.bianchi@studenti.unical.it", // Nuovo email
+            matricola = 15,
+            cf = "CODFSC67890",
+            pswd = "a",
+            nome = "Giuseppe",
+            cognome = "Bianchi",
+            isee = 18000L,
+            email = "giuseppe.bianchi@studenti.unical.it"
         )
+
         val studente1 = Studente(
             matricola = 1001,
             cf = "RSSMRA85M01H501U",
@@ -82,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             email = "luigi.verdi@example.com"
         )
 
-        lifecycleScope.launch {
+       /* lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     dbViewModel.inserisciStudente(studenteTest)
@@ -94,9 +95,64 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+*/
 
+        // Creazione di 3 studenti
+        val studente4 = Studente(
+            matricola = 1004,
+            cf = "RSSMRA85M01H500U",
+            pswd = "password123",
+            nome = "Mario",
+            cognome = "Rossi",
+            isee = 20000,
+            email = "mario.rossi@example.com"
+        )
 
-        //SOLO PER VERIFICA: AGGIUNGO UN LIBRO ED UN PRESTITO
+        val studente5 = Studente(
+            matricola = 1005,
+            cf = "VRDLGI90F03H501V",
+            pswd = "mypassword",
+            nome = "Luigi",
+            cognome = "Verdi",
+            isee = 15000,
+            email = "luigi.verdi@example.com"
+        )
+
+        val studente6 = Studente(
+            matricola = 1006,
+            cf = "TSTFNC75F01H500Y",
+            pswd = "securepassword",
+            nome = "Francesco",
+            cognome = "Toni",
+            isee = 22000,
+            email = "francesco.toni@example.com"
+        )
+
+// Creazione di 3 libri
+        val libro4 = Libro(
+            name = "Introduzione alla Psicologia",
+            autore = "John Smith",
+            settore = "Psicologia",
+            iSBN = 1234567890123L,
+            matricolaStudente = studente1.matricola
+        )
+
+        val libro5 = Libro(
+            name = "Teoria della Relatività",
+            autore = "Albert Einstein",
+            settore = "Fisica",
+            iSBN = 9876543210987L,
+            matricolaStudente = studente2.matricola
+        )
+
+        val libro6 = Libro(
+            name = "Storia delle Idee Filosofiche",
+            autore = "Sofia Lorenzi",
+            settore = "Filosofia",
+            iSBN = 4567891234567L,
+            matricolaStudente = studente6.matricola
+        )
+
         // Creazione di più libri per test
         val libroTest1 = Libro(
             name = "Il codice della mente straordinaria",
@@ -119,16 +175,32 @@ class MainActivity : AppCompatActivity() {
             autore = "Alessandro Verdi",
             settore = "Filosofia",
             iSBN = 1234567890789L,
-            matricolaStudente = studenteTest.matricola
+            matricolaStudente = null
         )
 
-        // Aggiunta dei libri al database
         lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    dbViewModel.inserisciStudente(studenteTest)
+                    dbViewModel.inserisciStudente(studente1)
+                    dbViewModel.inserisciStudente(studente2)
+                    dbViewModel.inserisciStudente(studente4)
+                    dbViewModel.inserisciStudente(studente5)
+                    dbViewModel.inserisciStudente(studente6)
+                    Log.d("MainActivityDEBUG", "Studenti inseriti correttamente")
+                } catch (e: Exception) {
+                    Log.e("MainActivityDEBUG", "Errore durante l'inserimento degli studenti", e)
+                }
+            }
+
             withContext(Dispatchers.IO) {
                 try {
                     dbViewModel.aggiungiLibro(libroTest1)
                     dbViewModel.aggiungiLibro(libroTest2)
                     dbViewModel.aggiungiLibro(libroTest3)
+                    dbViewModel.aggiungiLibro(libro4)
+                    dbViewModel.aggiungiLibro(libro5)
+                    dbViewModel.aggiungiLibro(libro6)
                     Log.d("MainActivityDEBUG", "Libri inseriti correttamente")
                 } catch (e: Exception) {
                     Log.e("MainActivityDEBUG", "Errore durante l'inserimento dei libri", e)
@@ -153,9 +225,30 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val relazione1 = RelazioneStudenteCorso(corsoId = 1, matricola = 1001) // Mario segue Ingegneria del Software
-        val relazione2 = RelazioneStudenteCorso(corsoId = 2,matricola = 1001) // Mario segue Basi di Dati
-        val relazione3 = RelazioneStudenteCorso(corsoId = 3, matricola = 1002) // Luigi segue Reti di Calcolatori
+        // Esempi di relazione con valori per giorno, ora e aula
+        val relazione1 = RelazioneStudenteCorso(
+            corsoId = 1,
+            matricola = 1001,
+            giorno = "Lunedì",
+            ora = "10:00",
+            aula = "A1"
+        ) // Mario segue Ingegneria del Software
+
+        val relazione2 = RelazioneStudenteCorso(
+            corsoId = 2,
+            matricola = 1001,
+            giorno = "Martedì",
+            ora = "14:30",
+            aula = "B2"
+        ) // Mario segue Basi di Dati
+
+        val relazione3 = RelazioneStudenteCorso(
+            corsoId = 3,
+            matricola = 1002,
+            giorno = "Mercoledì",
+            ora = "09:00",
+            aula = "C3"
+        ) // Luigi segue Reti di Calcolatori
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
@@ -186,7 +279,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val studentiInReti : List<Int>? = dbViewModel.getStudentiDiCorso(3)
+                    val studentiInReti: List<Int>? = dbViewModel.getStudentiDiCorso(3)
                     studentiInReti?.forEach { studente ->
                         Log.d("getStudentiDiCorso", "Studente in Reti: $studente")
                     }

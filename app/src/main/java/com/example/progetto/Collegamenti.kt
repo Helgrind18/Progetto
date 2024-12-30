@@ -1,6 +1,9 @@
 package com.example.progetto
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,10 +14,28 @@ class Collegamenti : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_collegamenti)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Associazione dei click ai link
+        intentImplicitoBrowser(R.id.TWSitoUnical, "https://www.unical.it")
+        intentImplicitoBrowser(R.id.TWSoscr, "https://soscr.unical.it")
+        intentImplicitoBrowser(R.id.TWInstagram, "https://www.instagram.com/unical_official/")
+        intentImplicitoBrowser(R.id.TWX, "https://x.com/UniCalPortale/status/1640303607147905026")
+    }
+
+    // Funzione per impostare il click listener su un TextView
+    private fun intentImplicitoBrowser(textViewId: Int, url: String) {
+        //Questa funzione prende l'ID del TextView e l'URL da aprire.
+        val textView = findViewById<TextView>(textViewId)
+        textView.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            //Utilizziamo Intent.ACTION_VIEW con un Uri.parse(url) per indirizzare al browser l'apertura dell'URL
+            startActivity(intent)
         }
     }
 }

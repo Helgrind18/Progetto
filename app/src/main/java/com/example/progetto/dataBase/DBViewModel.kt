@@ -78,6 +78,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             null
         }
     }
+
     fun aggiungiLibro(libro: Libro) {
         viewModelScope.launch(Dispatchers.IO) {
             libroDAO.inserisciLibro(libro)
@@ -181,6 +182,15 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     fun getStudentiDiCorso(corsoId: Int): List<Int>? {
         return try {
             relazioneStudenteCorsoDAO.getStudentiDiCorso(corsoId)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>? {
+        return try {
+            relazioneStudenteCorsoDAO.getCorsiSeguitiDaStudenteInUnGiorno(giorno)
         } catch (e: Exception) {
             Log.e("DBViewModelDEBUG", "Errore durante la query", e)
             null

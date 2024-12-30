@@ -46,8 +46,7 @@ class RegistrazioneActivity : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
 
         bottoneInvia.setOnClickListener {
-            if (campiVuoti(
-                    matricolaEditText,
+            if (campiVuoti(matricolaEditText,
                     cfEditText,
                     pswdEditText,
                     nomeEditText,
@@ -68,19 +67,17 @@ class RegistrazioneActivity : AppCompatActivity() {
 
                 val studente = Studente(matricola, cf, pswd, nome, cognome, isee, email)
 
-                if (!studenteCorretto(studente)) {
+                    lifecycleScope.launch {
+
+                if (!studenteCorretto(studente) || studenteEsistente(studente)) {
                     Log.d("RegistrazioneActivityDEBUG", "Studente non valido")
-                    Toast.makeText(this, "Parametri errati", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@RegistrazioneActivity, "Parametri non validi o studente esistente", Toast.LENGTH_SHORT).show()
                 } else {
                     // Esegui l'inserimento nel database in un thread di I/O
-                    lifecycleScope.launch {
                         try {
                             // Con Dispatcher.IO eseguiamo l'inserimento in un thread di background
                             withContext(Dispatchers.IO) {
-                                Log.d(
-                                    "RegistrazioneActivityDEBUG",
-                                    "Inserimento dello studente in corso"
-                                )
+                                Log.d("RegistrazioneActivityDEBUG","Inserimento dello studente in corso")
                                 dbViewModel.inserisciStudente(studente)
                                 Log.d(
                                     "RegistrazioneActivityDEBUG",
@@ -123,6 +120,25 @@ class RegistrazioneActivity : AppCompatActivity() {
             }
         }
     }
+
+    private suspend fun studenteEsistente(studente: Studente): Boolean {
+        return withContext(Dispatchers.IO) {
+            try {
+                val studenteEsistente = dbViewModel.studenteByMatricola(studente.matricola)
+                studenteEsistente != null
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@RegistrazioneActivity,
+                        "Errore nella registrazione: ${e.message}",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                false // Ritorna false in caso di errore
+            }
+        }
+    }
+
 
     private fun campiVuoti(
         matricolaEditText: EditText,
