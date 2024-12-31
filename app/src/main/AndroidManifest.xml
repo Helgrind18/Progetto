@@ -18,6 +18,33 @@
         android:theme="@style/Theme.Progetto"
         tools:targetApi="31">
         <activity
+            android:name=".AreeBiblioteca.Prestiti_Personali"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Economica"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Matematica"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Informatica"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Pedagogica"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Psicologica"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Filosofica"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Storica"
+            android:exported="false" />
+        <activity
+            android:name=".AreeBiblioteca.Area_Giuridica"
+            android:exported="false" />
+        <activity
             android:name=".AreeBiblioteca.Area_Linguistica"
             android:exported="false" />
         <activity

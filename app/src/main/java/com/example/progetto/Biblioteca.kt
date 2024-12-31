@@ -9,7 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.progetto.AreeBiblioteca.Area_Economica
+import com.example.progetto.AreeBiblioteca.Area_Filosofica
+import com.example.progetto.AreeBiblioteca.Area_Giuridica
+import com.example.progetto.AreeBiblioteca.Area_Informatica
 import com.example.progetto.AreeBiblioteca.Area_Linguistica
+import com.example.progetto.AreeBiblioteca.Area_Matematica
+import com.example.progetto.AreeBiblioteca.Area_Pedagogica
+import com.example.progetto.AreeBiblioteca.Area_Psicologica
+import com.example.progetto.AreeBiblioteca.Area_Storica
 import com.example.progetto.dataBase.DBViewModel
 import com.example.progetto.Entity.Libro
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +41,14 @@ class Biblioteca : AppCompatActivity() {
         }
 
         val bottoneLinguistica: Button = findViewById(R.id.linguistica)
+        val bottoneMatematica: Button = findViewById(R.id.matematica)
+        val bottoneInformatica: Button = findViewById(R.id.informatica)
+        val bottoneGiuridico: Button = findViewById(R.id.giuridica)
+        val bottoneEconomico: Button = findViewById(R.id.economica)
+        val bottoneStorico: Button = findViewById(R.id.storica)
+        val bottoneFilosofico: Button = findViewById(R.id.filosofica)
+        val bottonePsicologico: Button = findViewById(R.id.psicologica)
+        val bottonePedagogico: Button = findViewById(R.id.pedagogica)
 
         dbViewModel = DBViewModel(application)
 
@@ -45,7 +61,53 @@ class Biblioteca : AppCompatActivity() {
             startActivity(intent)
         }
 
+        bottoneMatematica.setOnClickListener {
+            val intent = Intent(this, Area_Matematica::class.java).apply {
+            }
+            startActivity(intent)
+        }
 
+        bottoneInformatica.setOnClickListener {
+            val intent = Intent(this, Area_Informatica::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        bottoneGiuridico.setOnClickListener {
+            val intent = Intent(this, Area_Giuridica::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        bottoneEconomico.setOnClickListener {
+            val intent = Intent(this, Area_Economica::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        bottoneStorico.setOnClickListener {
+            val intent = Intent(this, Area_Storica::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        bottoneFilosofico.setOnClickListener {
+            val intent = Intent(this, Area_Filosofica::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        bottonePsicologico.setOnClickListener {
+            val intent = Intent(this, Area_Psicologica::class.java).apply {
+            }
+            startActivity(intent)
+        }
+
+        bottonePedagogico.setOnClickListener {
+            val intent = Intent(this, Area_Pedagogica::class.java).apply {
+            }
+            startActivity(intent)
+        }
     }
 
     private fun inserisciLibri() {
