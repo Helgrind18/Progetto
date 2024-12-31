@@ -152,7 +152,7 @@ class HomeActivity : AppCompatActivity() {
         }
         biblioteca.setOnClickListener {
             val intent = Intent(this, Biblioteca::class.java).apply {
-
+                putExtra("matricola", username)
             }
             startActivity(intent)
         }

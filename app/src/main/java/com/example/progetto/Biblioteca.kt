@@ -55,6 +55,15 @@ class Biblioteca : AppCompatActivity() {
         // Inizio inserimento libri
         inserisciLibri()
 
+        /*
+        bottonePersonale.setOnClickListener{
+            val intent = Intent(this, Prestiti_Personali::class.java).apply {
+                putExtra("username", username)
+            }
+            startActivity(intent)
+        }
+         */
+
         bottoneLinguistica.setOnClickListener {
             val intent = Intent(this, Area_Linguistica::class.java).apply {
             }

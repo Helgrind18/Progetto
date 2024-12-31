@@ -61,23 +61,40 @@ class LoginActivity : AppCompatActivity() {
                             if (studente != null) {
                                 if (studente.pswd == pwd) {
                                     // login riuscito
-                                    Toast.makeText(this@LoginActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this@LoginActivity,
+                                        "Benvenuto ${studente.nome}",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                     // Passa alla HomeActivity
-                                    val intent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
-                                        putExtra("username", matricola)
-                                    }
+                                    val intent =
+                                        Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                                            putExtra("username", matricola)
+                                        }
                                     startActivity(intent)
                                 } else {
-                                    Toast.makeText(this@LoginActivity, "Password errata", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(
+                                        this@LoginActivity,
+                                        "Password errata",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
                                 }
                             } else {
-                                Toast.makeText(this@LoginActivity, "Studente non trovato", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Studente non trovato",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
                     } catch (e: Exception) {
                         // Log l'eccezione per aiutare con il debug
                         Log.e("LoginActivityDEBUG", "Errore durante il login", e)
-                        Toast.makeText(this@LoginActivity, "Si è verificato un errore, riprova più tardi", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Si è verificato un errore, riprova più tardi",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
             }
 
