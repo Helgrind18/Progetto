@@ -10,7 +10,7 @@
     android:orientation="horizontal"
     android:padding="16dp"
     android:background="@color/white"
-    tools:context=".Biblioteca">
+    tools:context=".AreeBiblioteca.Biblioteca">
 
     <!-- Banda rossa in alto -->
     <View

@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.progetto.AreaPersonale
 import com.example.progetto.BachecaEsiti
-import com.example.progetto.Biblioteca
+import com.example.progetto.AreeBiblioteca.Biblioteca
 import com.example.progetto.CalendarioEsami
 import com.example.progetto.Collegamenti
 import com.example.progetto.Libretto

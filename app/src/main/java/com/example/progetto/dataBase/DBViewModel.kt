@@ -68,6 +68,8 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
+
+
     /////////////// LIBRO //////////////////////////
 
     fun getLibriBySettore(settore: String): LiveData<List<Libro>>? {

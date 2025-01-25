@@ -66,7 +66,7 @@
             android:name=".AreaPersonale"
             android:exported="false" />
         <activity
-            android:name=".Biblioteca"
+            android:name=".AreeBiblioteca.Biblioteca"
             android:exported="false" />
         <activity
             android:name=".mappa.Mappa"
