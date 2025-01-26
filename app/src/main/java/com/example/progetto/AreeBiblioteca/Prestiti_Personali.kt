@@ -35,8 +35,9 @@ class Prestiti_Personali : AppCompatActivity() {
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
         // TODO: poter leggere dalle shared preferences della LoginActivity la mia matricola
-        dbViewModel.getLibriByStudente(0)?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
-        })
+        dbViewModel.getLibriByStudente(intent.getIntExtra("username",1))
+            .observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
+            })
 
     }
 
