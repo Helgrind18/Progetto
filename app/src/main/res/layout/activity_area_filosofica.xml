@@ -9,10 +9,17 @@
     android:background="@color/white"
     tools:context=".AreeBiblioteca.Area_Filosofica">
 
-    <View
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@color/rosso_bordeaux" />
+        android:text="AREA FILOSOFIA"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/white"
+        android:background="@color/rosso_bordeaux"
+        android:visibility="visible"/>
 
 
     <androidx.recyclerview.widget.RecyclerView

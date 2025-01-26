@@ -41,7 +41,11 @@ class LibroAdapter : ListAdapter<Libro, LibroAdapter.LibroViewHolder>(
         private val titleTextView: TextView = itemView.findViewById(R.id.nomeLibro)
 
         fun bind(libro: Libro) {
-            titleTextView.text = libro.name
+            titleTextView.text = buildString {
+                append(libro.name)
+                append(", ")
+                append(libro.autore)
+            }
         }
 
     }

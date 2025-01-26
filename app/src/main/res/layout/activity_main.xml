@@ -26,6 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Accedi"
+        android:layout_margin="10dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/rosso_bordeaux"/>
     <Button
@@ -33,6 +34,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrati"
+        android:layout_margin="10dp"
+
         android:textColor="@color/white"
         android:backgroundTint="@color/rosso_bordeaux"/>
 

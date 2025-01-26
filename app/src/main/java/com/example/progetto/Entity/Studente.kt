@@ -14,4 +14,14 @@ data class Studente(
     @ColumnInfo(name = "cognome") val cognome: String,
     @ColumnInfo(name = "ISEE") val isee: Long,
     @ColumnInfo(name = "email") val email: String,
-)
+){
+    override fun toString(): String {
+        var ris: String=""
+        ris+= "NOME:        $nome\n"
+        ris+= "COGNOME:  $cognome\n"
+        ris+= "MATRICOLA: $matricola\n"
+        ris+= "EMAIL:      $email\n"
+        return ris
+    }
+}
+

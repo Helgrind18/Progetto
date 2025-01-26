@@ -55,7 +55,7 @@
     <!-- Bottone per l'area economica -->
     <Button
         android:id="@+id/economica"
-        android:text="Area Economica"
+        android:text="Area Economia"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -71,7 +71,7 @@
     <!-- Bottone per l'area storica -->
     <Button
         android:id="@+id/storica"
-        android:text="Area Storica"
+        android:text="Area Storia"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -87,7 +87,7 @@
     <!-- Bottone per l'area filosofica -->
     <Button
         android:id="@+id/filosofica"
-        android:text="Area Filosofica"
+        android:text="Area Filosofia"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -103,7 +103,7 @@
     <!-- Bottone per l'area psicologica -->
     <Button
         android:id="@+id/psicologica"
-        android:text="Area Psicologica"
+        android:text="Area Psicologia"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -119,7 +119,7 @@
     <!-- Bottone per l'area pedagogica -->
     <Button
         android:id="@+id/pedagogica"
-        android:text="Area Pedagogica"
+        android:text="Area Pedagogia"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
