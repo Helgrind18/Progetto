@@ -232,9 +232,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val corso1 = Corso(id = 1, nome = "Ingegneria del Software", CFU = 12)
-        val corso2 = Corso(id = 2, nome = "Basi di Dati", CFU = 9)
-        val corso3 = Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6)
+        val corso1 = Corso(id = 1, nome = "Ingegneria del Software", CFU = 12,3)
+        val corso2 = Corso(id = 2, nome = "Basi di Dati", CFU = 9,3)
+        val corso3 = Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6,3)
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
@@ -255,7 +255,8 @@ class MainActivity : AppCompatActivity() {
             matricola = 1001,
             giorno = "Lunedì",
             ora = "10:00",
-            aula = "A1"
+            aula = "A1",
+            voto=null
         ) // Mario segue Ingegneria del Software
 
         val relazione2 = RelazioneStudenteCorso(
@@ -263,7 +264,8 @@ class MainActivity : AppCompatActivity() {
             matricola = 1001,
             giorno = "Martedì",
             ora = "14:30",
-            aula = "B2"
+            aula = "B2",
+            voto=null
         ) // Mario segue Basi di Dati
 
         val relazione3 = RelazioneStudenteCorso(
@@ -271,7 +273,8 @@ class MainActivity : AppCompatActivity() {
             matricola = 1002,
             giorno = "Mercoledì",
             ora = "09:00",
-            aula = "C3"
+            aula = "C3",
+            voto=null
         ) // Luigi segue Reti di Calcolatori
 
         lifecycleScope.launch {

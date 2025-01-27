@@ -1,6 +1,7 @@
 package com.example.progetto.AreeBiblioteca
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.progetto.R
 import com.example.progetto.dataBase.DBViewModel
 import androidx.lifecycle.Observer
-import com.example.progetto.Accesso.LoginActivity
 
 class Prestiti_Personali : AppCompatActivity() {
 
@@ -21,12 +21,13 @@ class Prestiti_Personali : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_area_linguistica)
+        setContentView(R.layout.activity_prestiti_personali)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.lista)

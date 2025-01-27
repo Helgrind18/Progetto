@@ -10,9 +10,10 @@
     tools:context=".AreeBiblioteca.Prestiti_Personali">
 
     <TextView
+        android:id="@+id/prestiti"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:text="PRESTITI PERSONALI"
+        android:text="@string/prestiti_personali"
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="25sp"

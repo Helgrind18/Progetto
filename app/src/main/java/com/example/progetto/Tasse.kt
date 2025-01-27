@@ -37,9 +37,7 @@ class Tasse : AppCompatActivity() {
         val username = intent.getIntExtra("username", 1)
         val data: Calendar = Calendar.getInstance()
         val mese: Int = data.get(Calendar.MONTH) + 1
-        val giorno: Int = data.get(Calendar.DAY_OF_MONTH)
-        val anno: Int = data.get(Calendar.YEAR)
-        val dataCorrente = "$giorno/$mese/$anno"
+
 
         lifecycleScope.launch {
             Log.d("TasseDEBUG", "Inizio query per studente")
@@ -56,58 +54,155 @@ class Tasse : AppCompatActivity() {
             info.text = testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
 
             // Configura i bottoni di pagamento
-            setupPaymentButtons(studente, tassa, tassaConMora)
+            setupPaymentButtons(studente, tassa, tassaConMora, mese)
         }
     }
 
-    private fun setupPaymentButtons(studente: Studente, tassa: Double, tassaConMora: Double) {
+    private fun setupPaymentButtons(studente: Studente, tassa: Double, tassaConMora: Double, mese: Int) {
         val bottonePagamento1 = findViewById<Button>(R.id.bottonePagamento1)
         val bottonePagamento2 = findViewById<Button>(R.id.bottonePagamento2)
         val bottonePagamento3 = findViewById<Button>(R.id.bottonePagamento3)
         val bottonePagamento4 = findViewById<Button>(R.id.bottonePagamento4)
 
         // Gestisci il primo pagamento
-        if (studente.tassa1) {
-            bottonePagamento1.visibility = Button.GONE
-        } else {
-            bottonePagamento1.visibility = Button.VISIBLE
-            bottonePagamento1.setOnClickListener {
-                handlePayment(studente, "tassa1", tassa, bottonePagamento1)
+        if (mese==Calendar.SEPTEMBER) {
+            if (studente.tassa1) {
+                bottonePagamento1.visibility = Button.GONE
+            } else {
+                val primaRataTv: TextView= findViewById(R.id.primarataTV)
+                primaRataTv.text = "Prima Rata: $tassa euro"
+                primaRataTv.visibility = TextView.VISIBLE
+                val sep1: View= findViewById(R.id.sep1)
+                sep1.visibility = View.VISIBLE
+                bottonePagamento1.visibility = Button.VISIBLE
+                bottonePagamento1.setOnClickListener {
+                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv, sep1)
+                }
             }
-        }
-
-        // Gestisci il secondo pagamento
-        if (studente.tassa2) {
-            bottonePagamento2.visibility = Button.GONE
-        } else {
-            bottonePagamento2.visibility = Button.VISIBLE
-            bottonePagamento2.setOnClickListener {
-                handlePayment(studente, "tassa2", tassa, bottonePagamento2)
+        }else if (mese== Calendar.OCTOBER){
+            if (studente.tassa1) {
+                bottonePagamento1.visibility = Button.GONE
+            } else {
+                val primaRataTv: TextView= findViewById(R.id.primarataTV)
+                primaRataTv.text = "Prima Rata con mora: $tassaConMora euro"
+                primaRataTv.visibility = TextView.VISIBLE
+                val sep1: View= findViewById(R.id.sep1)
+                sep1.visibility = View.VISIBLE
+                bottonePagamento1.visibility = Button.VISIBLE
+                bottonePagamento1.setOnClickListener {
+                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv,sep1)
+                }
             }
-        }
-
-        // Gestisci il terzo pagamento
-        if (studente.tassa3) {
-            bottonePagamento3.visibility = Button.GONE
-        } else {
-            bottonePagamento3.visibility = Button.VISIBLE
-            bottonePagamento3.setOnClickListener {
-                handlePayment(studente, "tassa3", tassa, bottonePagamento3)
+            if (studente.tassa2) {
+                bottonePagamento2.visibility = Button.GONE
+            } else {
+                val secondaRataTv: TextView= findViewById(R.id.secondaTV)
+                secondaRataTv.text= "Seconda Rata: $tassa euro"
+                secondaRataTv.visibility= TextView.VISIBLE
+                val sep2: View= findViewById(R.id.sep2)
+                sep2.visibility = View.VISIBLE
+                bottonePagamento2.visibility = Button.VISIBLE
+                bottonePagamento2.setOnClickListener {
+                    handlePayment(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
+                }
             }
-        }
-
-        // Gestisci il quarto pagamento (opzionale)
-        if (studente.tassa4) {
-            bottonePagamento4.visibility = Button.GONE
-        } else {
-            bottonePagamento4.visibility = Button.VISIBLE
-            bottonePagamento4.setOnClickListener {
-                handlePayment(studente, "tassa4", tassa, bottonePagamento4)
+        }else if (mese== Calendar.FEBRUARY){
+            if (studente.tassa1) {
+                bottonePagamento1.visibility = Button.GONE
+            } else {
+                val primaRataTv: TextView= findViewById(R.id.primarataTV)
+                primaRataTv.text = "Prima Rata con mora: $tassaConMora euro"
+                primaRataTv.visibility = TextView.VISIBLE
+                val sep1: View= findViewById(R.id.sep1)
+                sep1.visibility = View.VISIBLE
+                bottonePagamento1.visibility = Button.VISIBLE
+                bottonePagamento1.setOnClickListener {
+                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv,sep1)
+                }
+            }
+            if (studente.tassa2) {
+                bottonePagamento2.visibility = Button.GONE
+            } else {
+                val secondaRataTv: TextView= findViewById(R.id.secondaTV)
+                secondaRataTv.text= "Seconda Rata con mora: $tassaConMora euro"
+                secondaRataTv.visibility= TextView.VISIBLE
+                val sep2: View= findViewById(R.id.sep2)
+                sep2.visibility = View.VISIBLE
+                bottonePagamento2.visibility = Button.VISIBLE
+                bottonePagamento2.setOnClickListener {
+                    handlePayment(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
+                }
+            }
+            if (studente.tassa3) {
+                bottonePagamento3.visibility = Button.GONE
+            } else {
+                val terzaRataTv: TextView= findViewById(R.id.terzarataTV)
+                terzaRataTv.text="Terza Rata: $tassa euro"
+                terzaRataTv.visibility= TextView.VISIBLE
+                val sep3: View= findViewById(R.id.sep3)
+                sep3.visibility = View.VISIBLE
+                bottonePagamento3.visibility = Button.VISIBLE
+                bottonePagamento3.setOnClickListener {
+                    handlePayment(studente, "tassa3", tassa, bottonePagamento3, terzaRataTv,sep3)
+                }
+            }
+        }else if (mese== Calendar.MAY) {
+            if (studente.tassa1) {
+                bottonePagamento1.visibility = Button.GONE
+            } else {
+                val primaRataTv: TextView= findViewById(R.id.primarataTV)
+                primaRataTv.text = "Prima Rata con mora: $tassaConMora euro"
+                primaRataTv.visibility = TextView.VISIBLE
+                val sep1: View= findViewById(R.id.sep1)
+                sep1.visibility = View.VISIBLE
+                bottonePagamento1.visibility = Button.VISIBLE
+                bottonePagamento1.setOnClickListener {
+                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv, sep1)
+                }
+            }
+            if (studente.tassa2) {
+                bottonePagamento2.visibility = Button.GONE
+            } else {
+                val secondaRataTv: TextView= findViewById(R.id.secondaTV)
+                secondaRataTv.text= "Seconda Rata con mora: $tassaConMora euro"
+                secondaRataTv.visibility= TextView.VISIBLE
+                val sep2: View= findViewById(R.id.sep2)
+                sep2.visibility = View.VISIBLE
+                bottonePagamento2.visibility = Button.VISIBLE
+                bottonePagamento2.setOnClickListener {
+                    handlePayment(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
+                }
+            }
+            if (studente.tassa3) {
+                bottonePagamento3.visibility = Button.GONE
+            } else {
+                val terzaRataTv: TextView= findViewById(R.id.terzarataTV)
+                terzaRataTv.text="Terza Rata con mora: $tassaConMora euro"
+                terzaRataTv.visibility= TextView.VISIBLE
+                bottonePagamento3.visibility = Button.VISIBLE
+                val sep3: View= findViewById(R.id.sep3)
+                sep3.visibility = View.VISIBLE
+                bottonePagamento3.setOnClickListener {
+                    handlePayment(studente, "tassa3", tassa, bottonePagamento3, terzaRataTv,sep3)
+                }
+            }
+            if (studente.tassa4) {
+                bottonePagamento4.visibility = Button.GONE
+            } else {
+                val quartarataTv: TextView= findViewById(R.id.quartarataTV)
+                quartarataTv.text="Quarta Rata: $tassa euro"
+                quartarataTv.visibility= TextView.VISIBLE
+                val sep3: View= findViewById(R.id.sep3)
+                sep3.visibility = View.VISIBLE
+                bottonePagamento4.visibility = Button.VISIBLE
+                bottonePagamento4.setOnClickListener {
+                    handlePayment(studente, "tassa4", tassa, bottonePagamento4, quartarataTv,sep3)
+                }
             }
         }
     }
 
-    private fun handlePayment(studente: Studente, tassaName: String, tassaAmount: Double, bottone: Button) {
+    private fun handlePayment(studente: Studente, tassaName: String, tassaAmount: Double, bottone: Button, textView: TextView, view: View) {
         Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
 
         // Imposta la tassa come pagata nel modello Studente
@@ -131,7 +226,9 @@ class Tasse : AppCompatActivity() {
         }
 
         // Nascondi il bottone di pagamento e aggiorna l'interfaccia
+        textView.visibility= TextView.GONE
         bottone.visibility = Button.GONE
+        view.visibility= View.GONE
         updateInfo(studente)
     }
 
@@ -152,15 +249,19 @@ class Tasse : AppCompatActivity() {
         var info: StringBuilder = StringBuilder()
         if (bool1) {
             info.append("Prima Rata pagata\n")
+            info.append("\n")
         }
         if (bool2) {
             info.append("Seconda Rata pagata\n")
+            info.append("\n")
         }
         if (bool3) {
             info.append("Terza Rata pagata\n")
+            info.append("\n")
         }
         if (bool4) {
             info.append("Quarta Rata pagata\n")
+            info.append("\n")
         }
         return info.toString()
     }
