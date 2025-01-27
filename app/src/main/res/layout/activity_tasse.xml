@@ -190,13 +190,12 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:progress="100"
+        android:layout_marginTop="70dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
         android:indeterminate="true"
-        android:visibility="gone"
-        android:progressTint="@color/black"
-        android:indeterminateDuration="10"/>
+        android:visibility="gone" />
 
 
 </LinearLayout>

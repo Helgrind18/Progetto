@@ -1,6 +1,8 @@
 package com.example.progetto
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -203,8 +205,6 @@ class Tasse : AppCompatActivity() {
     }
 
     private fun handlePayment(studente: Studente, tassaName: String, tassaAmount: Double, bottone: Button, textView: TextView, view: View) {
-        Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-
         // Imposta la tassa come pagata nel modello Studente
         when (tassaName) {
             "tassa1" -> studente.tassa1 = true
@@ -225,11 +225,17 @@ class Tasse : AppCompatActivity() {
             }
         }
 
-        // Nascondi il bottone di pagamento e aggiorna l'interfaccia
-        textView.visibility= TextView.GONE
-        bottone.visibility = Button.GONE
-        view.visibility= View.GONE
-        updateInfo(studente)
+        val progressBar: ProgressBar = findViewById(R.id.progressBar)
+        progressBar.visibility = ProgressBar.VISIBLE
+        Handler(Looper.getMainLooper()).postDelayed({
+            progressBar.visibility = View.GONE
+            textView.visibility= TextView.GONE
+            bottone.visibility = Button.GONE
+            view.visibility= View.GONE
+            updateInfo(studente)
+            Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
+        }, 3000)
+
     }
 
     private fun updateInfo(studente: Studente) {
