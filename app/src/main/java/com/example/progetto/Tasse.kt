@@ -2,8 +2,10 @@ package com.example.progetto
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -40,7 +42,10 @@ class Tasse : AppCompatActivity() {
         val giorno: Int = data.get(Calendar.DAY_OF_MONTH)
         val anno: Int = data.get(Calendar.YEAR)
         val dataCorrente = "$giorno/$mese/$anno"
-        var counter=0
+        var primaRata= false
+        var secondaRata=false
+        var terzaRata=false
+        var quartaRata=false
 
         lifecycleScope.launch {
 
@@ -60,124 +65,161 @@ class Tasse : AppCompatActivity() {
         val tassa : Double = calcoloTassa(iseeStudente)
         val tassaConMora: Double= tassa*1.05
 
+
+        val info: TextView = findViewById(R.id.infor)
+        info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+
+
+
         if (mese == Calendar.SEPTEMBER && giorno>1 && giorno<30){
             val primaRataTv: TextView = findViewById(R.id.primarataTV)
-            primaRataTv.visibility=TextView.VISIBLE
             primaRataTv.text="Prima Rata: $tassa euro"
-            val bottone = findViewById<Button>(R.id.bottonePagamento)
-            bottone.visibility=Button.VISIBLE
-            bottone.setOnClickListener{
+            primaRataTv.visibility=TextView.VISIBLE
+            val bottone1 = findViewById<Button>(R.id.bottonePagamento1)
+            bottone1.visibility=Button.VISIBLE
+            bottone1.setOnClickListener{
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                counter++
+                primaRata=true
                 primaRataTv.visibility= LinearLayout.GONE
-                bottone.visibility=Button.GONE
+                bottone1.visibility=Button.GONE
+                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                val sep1: View = findViewById(R.id.sep1)
+                sep1.visibility=View.GONE
             }
         }else if (mese == Calendar.OCTOBER && giorno>1 && giorno<30){
-            if (counter<1){
+            if (!primaRata){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
                 primaRataTv.visibility=TextView.VISIBLE
-                val bottone = findViewById<Button>(R.id.bottonePagamento)
-                bottone.visibility=Button.VISIBLE
-                bottone.setOnClickListener{
+                val bottone1 = findViewById<Button>(R.id.bottonePagamento1)
+                bottone1.visibility=Button.VISIBLE
+                bottone1.setOnClickListener{
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    counter++
+                    primaRata=true
                     primaRataTv.visibility=LinearLayout.GONE
-                    bottone.visibility= Button.GONE
+                    bottone1.visibility= Button.GONE
+                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    val sep1: View = findViewById(R.id.sep1)
+                    sep1.visibility=View.GONE
                 }
             }
             val secondaRataTv: TextView = findViewById(R.id.secondaTV)
             secondaRataTv.text="Seconda Rata: $tassa euro"
             secondaRataTv.visibility=TextView.VISIBLE
-            val bottone = findViewById<Button>(R.id.bottonePagamento)
-            bottone.visibility=Button.VISIBLE
-            bottone.setOnClickListener {
+            val bottone2 = findViewById<Button>(R.id.bottonePagamento2)
+            bottone2.visibility=Button.VISIBLE
+            bottone2.setOnClickListener {
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                counter++
+                secondaRata=true
                 secondaRataTv.visibility = LinearLayout.GONE
-                bottone.visibility= Button.GONE
+                bottone2.visibility= Button.GONE
+                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                val sep2: View = findViewById(R.id.sep2)
+                sep2.visibility=View.GONE
             }
 
         }else if (mese == Calendar.FEBRUARY && giorno>1 && giorno<28){
-            if (counter<2){
+            if (!secondaRata && !primaRata){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
                 primaRataTv.visibility= TextView.GONE
-                val bottone1 = findViewById<Button>(R.id.bottonePagamento)
+                val bottone1 = findViewById<Button>(R.id.bottonePagamento1)
                 bottone1.visibility=Button.VISIBLE
                 bottone1.setOnClickListener{
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    counter++
+                    primaRata=true
                     primaRataTv.visibility=LinearLayout.GONE
                     bottone1.visibility=Button.GONE
+                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    val sep1: View = findViewById(R.id.sep1)
+                    sep1.visibility=View.GONE
                 }
                 val secondaRataTv: TextView = findViewById(R.id.secondaTV)
                 secondaRataTv.text="Seconda Rata: $tassaConMora euro"
                 secondaRataTv.visibility=TextView.VISIBLE
-                val bottone2 = findViewById<Button>(R.id.bottonePagamento)
+                val bottone2 = findViewById<Button>(R.id.bottonePagamento2)
                 bottone2.visibility=Button.VISIBLE
                 bottone2.setOnClickListener {
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    counter++
+                    secondaRata=true
                     secondaRataTv.visibility = LinearLayout.GONE
                     bottone2.visibility=Button.GONE
+                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    val sep2: View = findViewById(R.id.sep2)
+                    sep2.visibility=View.GONE
                 }
             }
             val terzaRataTv: TextView=findViewById(R.id.terzarataTV)
             terzaRataTv.text="Terza Rata: $tassa euro"
             terzaRataTv.visibility=TextView.VISIBLE
-            val bottone = findViewById<Button>(R.id.bottonePagamento)
-            bottone.visibility=Button.VISIBLE
-            bottone.setOnClickListener {
+            val bottone3 = findViewById<Button>(R.id.bottonePagamento3)
+            bottone3.visibility=Button.VISIBLE
+            bottone3.setOnClickListener {
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                counter++
+                terzaRata=true
                 terzaRataTv.visibility = LinearLayout.GONE
-                bottone.visibility=Button.GONE
+                bottone3.visibility=Button.GONE
+                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                val sep3: View = findViewById(R.id.sep3)
+                sep3.visibility=View.GONE
             }
         }else if (mese== Calendar.MAY && giorno>1 && giorno<31){
-            if (counter<3){
+            if (!primaRata && !secondaRata && !terzaRata){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.visibility=TextView.VISIBLE
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
-                val bottone1 = findViewById<Button>(R.id.bottonePagamento)
+                val bottone1 = findViewById<Button>(R.id.bottonePagamento1)
                 bottone1.visibility=Button.VISIBLE
                 bottone1.setOnClickListener{
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    counter++
+                    primaRata=true
                     primaRataTv.visibility=LinearLayout.GONE
+                    bottone1.visibility=Button.GONE
+                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    val sep1: View = findViewById(R.id.sep1)
+                    sep1.visibility=View.GONE
+
                 }
                 val secondaRataTv: TextView = findViewById(R.id.secondaTV)
                 secondaRataTv.text="Seconda Rata: $tassaConMora euro"
                 secondaRataTv.visibility=TextView.VISIBLE
-                val bottone2 = findViewById<Button>(R.id.bottonePagamento)
+                val bottone2 = findViewById<Button>(R.id.bottonePagamento2)
                 bottone2.visibility=Button.VISIBLE
                 bottone2.setOnClickListener {
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    counter++
+                    secondaRata=true
                     secondaRataTv.visibility = LinearLayout.GONE
+                    bottone2.visibility=Button.GONE
+                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    val sep2: View = findViewById(R.id.sep2)
+                    sep2.visibility=View.GONE
                 }
                 val terzaRataTv: TextView=findViewById(R.id.terzarataTV)
                 terzaRataTv.text="Terza Rata: $tassaConMora euro"
                 terzaRataTv.visibility= TextView.VISIBLE
-                val bottone3 = findViewById<Button>(R.id.bottonePagamento)
+                val bottone3 = findViewById<Button>(R.id.bottonePagamento3)
                 bottone3.visibility=Button.VISIBLE
                 bottone3.setOnClickListener {
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    counter++
+                    terzaRata=true
                     terzaRataTv.visibility = LinearLayout.GONE
                     bottone3.visibility=Button.GONE
+                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    val sep3: View = findViewById(R.id.sep3)
+                    sep3.visibility=View.GONE
                 }
             }
             val quartaRataTv: TextView=findViewById(R.id.quartarataTV)
             quartaRataTv.text="Quarta Rata: $tassa euro"
             quartaRataTv.visibility=TextView.VISIBLE
-            val bottone = findViewById<Button>(R.id.bottonePagamento)
-            bottone.visibility=Button.VISIBLE
-            bottone.setOnClickListener {
+            val bottone4 = findViewById<Button>(R.id.bottonePagamento4)
+            bottone4.visibility=Button.VISIBLE
+            bottone4.setOnClickListener {
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                counter++
+                quartaRata=true
                 quartaRataTv.visibility = LinearLayout.GONE
-                bottone.visibility=Button.GONE
+                bottone4.visibility=Button.GONE
+                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
             }
         }
 
@@ -186,6 +228,36 @@ class Tasse : AppCompatActivity() {
 
 
     }
+
+    private fun testoInfo(
+        bool1: Boolean,
+        bool2: Boolean,
+        bool3: Boolean,
+        bool4: Boolean
+    ): String {
+        if (!bool1 && !bool2 && !bool3 && !bool4){
+         return "Nessuna rata ancora pagata!"
+        }
+        var info: StringBuilder= StringBuilder()
+        if (bool1){
+            info.append("Prima Rata pagata\n")
+            info.append("\n")
+        }
+        if (bool2){
+            info.append("Seconda Rata pagata\n")
+            info.append("\n")
+        }
+        if (bool3){
+            info.append("Terza Rata pagata\n")
+            info.append("\n")
+        }
+        if (bool4){
+            info.append("Quarta Rata pagata\n")
+            info.append("\n")
+        }
+        return info.toString()
+    }
+
 
     private fun calcoloTassa(iseeStudente: Long?): Double {
         if (iseeStudente != null) {
