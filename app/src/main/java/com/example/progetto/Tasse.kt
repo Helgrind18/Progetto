@@ -34,7 +34,7 @@ class Tasse : AppCompatActivity() {
         }
 
         //Versione grezza senza CFU
-        var studente: Studente? = null
+        var studente: Studente = Studente( 1, "","","","",0,"",false,false,false,false)
         dbViewModel = DBViewModel(application)
         val username = intent.getIntExtra("username",1)
         val data: Calendar= Calendar.getInstance()
@@ -42,17 +42,13 @@ class Tasse : AppCompatActivity() {
         val giorno: Int = data.get(Calendar.DAY_OF_MONTH)
         val anno: Int = data.get(Calendar.YEAR)
         val dataCorrente = "$giorno/$mese/$anno"
-        var primaRata= false
-        var secondaRata=false
-        var terzaRata=false
-        var quartaRata=false
 
         lifecycleScope.launch {
 
             Log.d("TasseDEBUG", "Inizio query per studente")
             // Esegui la query di database su un thread di I/O
             studente = withContext(Dispatchers.IO) {
-                dbViewModel.studenteByMatricola(username)  // Query al database
+                dbViewModel.studenteByMatricola(username)!!  // Query al database
             }
             Log.d("TasseDEBUG", "Risultato query: $studente")
             /*// Una volta che la query è completata, torna al main thread per aggiornare la UI
@@ -60,12 +56,12 @@ class Tasse : AppCompatActivity() {
             }*/
         }
 
-        val iseeStudente = studente?.isee
+        val iseeStudente = studente.isee
 
         val tassa : Double = calcoloTassa(iseeStudente)
         val tassaConMora: Double= tassa*1.05
         val info: TextView = findViewById(R.id.infor)
-        info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+        info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
 
 
         if (mese == Calendar.SEPTEMBER && giorno>1 && giorno<30){
@@ -77,16 +73,26 @@ class Tasse : AppCompatActivity() {
             bottone1.visibility=Button.VISIBLE
             bottone1.setOnClickListener{
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                primaRata=true
+                studente.tassa1=true
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        try {
+                            dbViewModel.inserisciStudente(studente)
+                            Log.d("TasseDEBUG", "Studente inserito correttamente")
+                        } catch (e: Exception) {
+                            Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                        }
+                    }
+                }
                 primaRataTv.visibility= LinearLayout.GONE
                 bottone1.visibility=Button.GONE
-                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                 val sep1: View = findViewById(R.id.sep1)
                 sep1.visibility=View.GONE
             }
         }else if (mese == Calendar.OCTOBER && giorno>1 && giorno<30){
             Toast.makeText(this, "SECONDO RAMO IF", Toast.LENGTH_LONG).show()
-            if (!primaRata){
+            if (!studente.tassa1){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
                 primaRataTv.visibility=TextView.VISIBLE
@@ -94,10 +100,20 @@ class Tasse : AppCompatActivity() {
                 bottone1.visibility=Button.VISIBLE
                 bottone1.setOnClickListener{
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    primaRata=true
+                    studente.tassa1=true
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                dbViewModel.inserisciStudente(studente)
+                                Log.d("TasseDEBUG", "Studente inserito correttamente")
+                            } catch (e: Exception) {
+                                Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                            }
+                        }
+                    }
                     primaRataTv.visibility=LinearLayout.GONE
                     bottone1.visibility= Button.GONE
-                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                     val sep1: View = findViewById(R.id.sep1)
                     sep1.visibility=View.GONE
                 }
@@ -109,17 +125,27 @@ class Tasse : AppCompatActivity() {
             bottone2.visibility=Button.VISIBLE
             bottone2.setOnClickListener {
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                secondaRata=true
+                studente.tassa2=true
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        try {
+                            dbViewModel.inserisciStudente(studente)
+                            Log.d("TasseDEBUG", "Studente inserito correttamente")
+                        } catch (e: Exception) {
+                            Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                        }
+                    }
+                }
                 secondaRataTv.visibility = LinearLayout.GONE
                 bottone2.visibility= Button.GONE
-                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                 val sep2: View = findViewById(R.id.sep2)
                 sep2.visibility=View.GONE
             }
 
         }else if (mese == Calendar.FEBRUARY && giorno>1 && giorno<28){
             Toast.makeText(this, "TERZO RAMO IF", Toast.LENGTH_LONG).show()
-            if (!secondaRata && !primaRata){
+            if (! studente.tassa1 && ! studente.tassa2){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
                 primaRataTv.visibility= TextView.GONE
@@ -127,10 +153,20 @@ class Tasse : AppCompatActivity() {
                 bottone1.visibility=Button.VISIBLE
                 bottone1.setOnClickListener{
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    primaRata=true
+                    studente.tassa1=true
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                dbViewModel.inserisciStudente(studente)
+                                Log.d("TasseDEBUG", "Studente inserito correttamente")
+                            } catch (e: Exception) {
+                                Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                            }
+                        }
+                    }
                     primaRataTv.visibility=LinearLayout.GONE
                     bottone1.visibility=Button.GONE
-                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                     val sep1: View = findViewById(R.id.sep1)
                     sep1.visibility=View.GONE
                 }
@@ -141,10 +177,20 @@ class Tasse : AppCompatActivity() {
                 bottone2.visibility=Button.VISIBLE
                 bottone2.setOnClickListener {
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    secondaRata=true
+                    studente.tassa2=true
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                dbViewModel.inserisciStudente(studente)
+                                Log.d("TasseDEBUG", "Studente inserito correttamente")
+                            } catch (e: Exception) {
+                                Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                            }
+                        }
+                    }
                     secondaRataTv.visibility = LinearLayout.GONE
                     bottone2.visibility=Button.GONE
-                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                     val sep2: View = findViewById(R.id.sep2)
                     sep2.visibility=View.GONE
                 }
@@ -156,16 +202,26 @@ class Tasse : AppCompatActivity() {
             bottone3.visibility=Button.VISIBLE
             bottone3.setOnClickListener {
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                terzaRata=true
+                studente.tassa3=true
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        try {
+                            dbViewModel.inserisciStudente(studente)
+                            Log.d("TasseDEBUG", "Studente inserito correttamente")
+                        } catch (e: Exception) {
+                            Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                        }
+                    }
+                }
                 terzaRataTv.visibility = LinearLayout.GONE
                 bottone3.visibility=Button.GONE
-                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                 val sep3: View = findViewById(R.id.sep3)
                 sep3.visibility=View.GONE
             }
         }else if (mese== Calendar.MAY && giorno>1 && giorno<31){
             Toast.makeText(this, "QUARTO RAMO IF", Toast.LENGTH_LONG).show()
-            if (!primaRata && !secondaRata && !terzaRata){
+            if (! studente.tassa1 && ! studente.tassa2 && !studente.tassa3){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.visibility=TextView.VISIBLE
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
@@ -173,10 +229,20 @@ class Tasse : AppCompatActivity() {
                 bottone1.visibility=Button.VISIBLE
                 bottone1.setOnClickListener{
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    primaRata=true
+                    studente.tassa1=true
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                dbViewModel.inserisciStudente(studente)
+                                Log.d("TasseDEBUG", "Studente inserito correttamente")
+                            } catch (e: Exception) {
+                                Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                            }
+                        }
+                    }
                     primaRataTv.visibility=LinearLayout.GONE
                     bottone1.visibility=Button.GONE
-                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                     val sep1: View = findViewById(R.id.sep1)
                     sep1.visibility=View.GONE
 
@@ -188,10 +254,20 @@ class Tasse : AppCompatActivity() {
                 bottone2.visibility=Button.VISIBLE
                 bottone2.setOnClickListener {
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    secondaRata=true
+                    studente.tassa2=true
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                dbViewModel.inserisciStudente(studente)
+                                Log.d("TasseDEBUG", "Studente inserito correttamente")
+                            } catch (e: Exception) {
+                                Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                            }
+                        }
+                    }
                     secondaRataTv.visibility = LinearLayout.GONE
                     bottone2.visibility=Button.GONE
-                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                     val sep2: View = findViewById(R.id.sep2)
                     sep2.visibility=View.GONE
                 }
@@ -202,10 +278,20 @@ class Tasse : AppCompatActivity() {
                 bottone3.visibility=Button.VISIBLE
                 bottone3.setOnClickListener {
                     Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                    terzaRata=true
+                    studente.tassa3=true
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO) {
+                            try {
+                                dbViewModel.inserisciStudente(studente)
+                                Log.d("TasseDEBUG", "Studente inserito correttamente")
+                            } catch (e: Exception) {
+                                Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                            }
+                        }
+                    }
                     terzaRataTv.visibility = LinearLayout.GONE
                     bottone3.visibility=Button.GONE
-                    info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                    info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
                     val sep3: View = findViewById(R.id.sep3)
                     sep3.visibility=View.GONE
                 }
@@ -217,17 +303,22 @@ class Tasse : AppCompatActivity() {
             bottone4.visibility=Button.VISIBLE
             bottone4.setOnClickListener {
                 Toast.makeText(this, "Pagamento effettuato", Toast.LENGTH_LONG).show()
-                quartaRata=true
+                studente.tassa4=true
+                lifecycleScope.launch {
+                    withContext(Dispatchers.IO) {
+                        try {
+                            dbViewModel.inserisciStudente(studente)
+                            Log.d("TasseDEBUG", "Studente inserito correttamente")
+                        } catch (e: Exception) {
+                            Log.e("TasseDEBUG", "Errore durante l'inserimento degli studenti", e)
+                        }
+                    }
+                }
                 quartaRataTv.visibility = LinearLayout.GONE
                 bottone4.visibility=Button.GONE
-                info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
+                info.text= testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
             }
         }
-
-    //TODO: Versione coi CFU, in base ad un quantitativo di CFU scende la rata di una percentuale
-    //Eventualmente, con un grande numero di CFU si annulla completamente
-
-
     }
 
     private fun testoInfo(

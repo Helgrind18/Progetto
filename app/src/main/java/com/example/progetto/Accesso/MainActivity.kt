@@ -60,7 +60,11 @@ class MainActivity : AppCompatActivity() {
             nome = "Giuseppe",
             cognome = "Bianchi",
             isee = 18000L,
-            email = "giuseppe.bianchi@studenti.unical.it"
+            email = "giuseppe.bianchi@studenti.unical.it",
+            tassa1 = false,
+            tassa2 = false,
+            tassa3 = false,
+            tassa4 = false
         )
 
         val studente1 = Studente(
@@ -70,7 +74,11 @@ class MainActivity : AppCompatActivity() {
             nome = "Mario",
             cognome = "Rossi",
             isee = 20000,
-            email = "mario.rossi@example.com"
+            email = "mario.rossi@example.com",
+            tassa1 = false,
+            tassa2 = false,
+            tassa3 = false,
+            tassa4 = false
         )
 
         val studente2 = Studente(
@@ -80,7 +88,11 @@ class MainActivity : AppCompatActivity() {
             nome = "Luigi",
             cognome = "Verdi",
             isee = 15000,
-            email = "luigi.verdi@example.com"
+            email = "luigi.verdi@example.com",
+            tassa1 = false,
+            tassa2 = false,
+            tassa3 = false,
+            tassa4 = false
         )
 
        /* lifecycleScope.launch {
@@ -105,7 +117,11 @@ class MainActivity : AppCompatActivity() {
             nome = "Mario",
             cognome = "Rossi",
             isee = 20000,
-            email = "mario.rossi@example.com"
+            email = "mario.rossi@example.com",
+            tassa1 = false,
+            tassa2 = false,
+            tassa3 = false,
+            tassa4 = false
         )
 
         val studente5 = Studente(
@@ -115,7 +131,11 @@ class MainActivity : AppCompatActivity() {
             nome = "Luigi",
             cognome = "Verdi",
             isee = 15000,
-            email = "luigi.verdi@example.com"
+            email = "luigi.verdi@example.com",
+            tassa1 = false,
+            tassa2 = false,
+            tassa3 = false,
+            tassa4 = false
         )
 
         val studente6 = Studente(
@@ -125,7 +145,11 @@ class MainActivity : AppCompatActivity() {
             nome = "Francesco",
             cognome = "Toni",
             isee = 22000,
-            email = "francesco.toni@example.com"
+            email = "francesco.toni@example.com",
+            tassa1 = false,
+            tassa2 = false,
+            tassa3 = false,
+            tassa4 = false
         )
 
 // Creazione di 3 libri

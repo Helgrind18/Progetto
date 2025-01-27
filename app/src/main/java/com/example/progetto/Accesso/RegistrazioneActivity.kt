@@ -1,5 +1,6 @@
 package com.example.progetto.Accesso
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -46,7 +47,8 @@ class RegistrazioneActivity : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
 
         bottoneInvia.setOnClickListener {
-            if (campiVuoti(matricolaEditText,
+            if (campiVuoti(
+                    matricolaEditText,
                     cfEditText,
                     pswdEditText,
                     nomeEditText,
@@ -65,19 +67,38 @@ class RegistrazioneActivity : AppCompatActivity() {
                 val isee: Long = iseeEditText.text.toString().toLong()
                 val email: String = emailEditText.text.toString().trim()
 
-                val studente = Studente(matricola, cf, pswd, nome, cognome, isee, email)
+                val studente = Studente(
+                    matricola,
+                    cf,
+                    pswd,
+                    nome,
+                    cognome,
+                    isee,
+                    email,
+                    false,
+                    false,
+                    false,
+                    false
+                )
 
-                    lifecycleScope.launch {
+                lifecycleScope.launch {
 
-                if (!studenteCorretto(studente) || studenteEsistente(studente)) {
-                    Log.d("RegistrazioneActivityDEBUG", "Studente non valido")
-                    Toast.makeText(this@RegistrazioneActivity, "Parametri non validi o studente esistente", Toast.LENGTH_SHORT).show()
-                } else {
-                    // Esegui l'inserimento nel database in un thread di I/O
+                    if (!studenteCorretto(studente) || studenteEsistente(studente)) {
+                        Log.d("RegistrazioneActivityDEBUG", "Studente non valido")
+                        Toast.makeText(
+                            this@RegistrazioneActivity,
+                            "Parametri non validi o studente esistente",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        // Esegui l'inserimento nel database in un thread di I/O
                         try {
                             // Con Dispatcher.IO eseguiamo l'inserimento in un thread di background
                             withContext(Dispatchers.IO) {
-                                Log.d("RegistrazioneActivityDEBUG","Inserimento dello studente in corso")
+                                Log.d(
+                                    "RegistrazioneActivityDEBUG",
+                                    "Inserimento dello studente in corso"
+                                )
                                 dbViewModel.inserisciStudente(studente)
                                 Log.d(
                                     "RegistrazioneActivityDEBUG",
