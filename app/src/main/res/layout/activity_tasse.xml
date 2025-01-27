@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Tasse"
     android:orientation="vertical"
-    android:backgroundTint="@color/white">
+    android:background="@color/white">
 
     <TextView
         android:layout_width="match_parent"
@@ -55,10 +55,12 @@
                 android:id="@+id/primarataTV"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
+                android:layout_margin="10dp"
                 android:fontFamily="sans-serif-condensed"
+                android:textSize="18sp"
                 android:visibility="gone"
-                android:layout_margin="10dp" />
+                android:text="lorem"
+                android:textColor="@color/black"/>
 
             <Button
             android:id="@+id/bottonePagamento1"
@@ -69,7 +71,7 @@
             android:visibility="gone"
             android:backgroundTint="@color/verde_opaco"
             android:layout_gravity="center"
-            app:cornerRadius="8dp"/>
+            app:cornerRadius="8dp" android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -93,7 +95,8 @@
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-condensed"
                 android:visibility="gone"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/bottonePagamento2"
@@ -104,7 +107,8 @@
                 android:visibility="gone"
                 android:backgroundTint="@color/verde_opaco"
                 android:layout_gravity="center"
-                app:cornerRadius="8dp"/>
+                app:cornerRadius="8dp"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
         <View
@@ -126,7 +130,8 @@
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-condensed"
                 android:visibility="gone"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/bottonePagamento3"
@@ -137,7 +142,8 @@
                 android:visibility="gone"
                 android:backgroundTint="@color/verde_opaco"
                 android:layout_gravity="center"
-                app:cornerRadius="8dp"/>
+                app:cornerRadius="8dp"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
         <View
@@ -159,7 +165,8 @@
                 android:textSize="18sp"
                 android:fontFamily="sans-serif-condensed"
                 android:visibility="gone"
-                android:layout_margin="10dp"/>
+                android:layout_margin="10dp"
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/bottonePagamento4"
@@ -170,7 +177,8 @@
                 android:visibility="gone"
                 android:backgroundTint="@color/verde_opaco"
                 android:layout_gravity="center"
-                app:cornerRadius="8dp"/>
+                app:cornerRadius="8dp"
+                android:textColor="@color/white"/>
         </LinearLayout>
 
     </LinearLayout>

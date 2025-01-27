@@ -64,14 +64,12 @@ class Tasse : AppCompatActivity() {
 
         val tassa : Double = calcoloTassa(iseeStudente)
         val tassaConMora: Double= tassa*1.05
-
-
         val info: TextView = findViewById(R.id.infor)
         info.text= testoInfo(primaRata, secondaRata, terzaRata, quartaRata)
 
 
-
         if (mese == Calendar.SEPTEMBER && giorno>1 && giorno<30){
+            Toast.makeText(this, "PRIMO RAMO IF", Toast.LENGTH_LONG).show()
             val primaRataTv: TextView = findViewById(R.id.primarataTV)
             primaRataTv.text="Prima Rata: $tassa euro"
             primaRataTv.visibility=TextView.VISIBLE
@@ -87,6 +85,7 @@ class Tasse : AppCompatActivity() {
                 sep1.visibility=View.GONE
             }
         }else if (mese == Calendar.OCTOBER && giorno>1 && giorno<30){
+            Toast.makeText(this, "SECONDO RAMO IF", Toast.LENGTH_LONG).show()
             if (!primaRata){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
@@ -119,6 +118,7 @@ class Tasse : AppCompatActivity() {
             }
 
         }else if (mese == Calendar.FEBRUARY && giorno>1 && giorno<28){
+            Toast.makeText(this, "TERZO RAMO IF", Toast.LENGTH_LONG).show()
             if (!secondaRata && !primaRata){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.text="Prima Rata con mora: $tassaConMora euro"
@@ -135,7 +135,7 @@ class Tasse : AppCompatActivity() {
                     sep1.visibility=View.GONE
                 }
                 val secondaRataTv: TextView = findViewById(R.id.secondaTV)
-                secondaRataTv.text="Seconda Rata: $tassaConMora euro"
+                secondaRataTv.text="Seconda Rata con mora: $tassaConMora euro"
                 secondaRataTv.visibility=TextView.VISIBLE
                 val bottone2 = findViewById<Button>(R.id.bottonePagamento2)
                 bottone2.visibility=Button.VISIBLE
@@ -164,6 +164,7 @@ class Tasse : AppCompatActivity() {
                 sep3.visibility=View.GONE
             }
         }else if (mese== Calendar.MAY && giorno>1 && giorno<31){
+            Toast.makeText(this, "QUARTO RAMO IF", Toast.LENGTH_LONG).show()
             if (!primaRata && !secondaRata && !terzaRata){
                 val primaRataTv: TextView = findViewById(R.id.primarataTV)
                 primaRataTv.visibility=TextView.VISIBLE
@@ -181,7 +182,7 @@ class Tasse : AppCompatActivity() {
 
                 }
                 val secondaRataTv: TextView = findViewById(R.id.secondaTV)
-                secondaRataTv.text="Seconda Rata: $tassaConMora euro"
+                secondaRataTv.text="Seconda Rata con mora: $tassaConMora euro"
                 secondaRataTv.visibility=TextView.VISIBLE
                 val bottone2 = findViewById<Button>(R.id.bottonePagamento2)
                 bottone2.visibility=Button.VISIBLE
@@ -195,7 +196,7 @@ class Tasse : AppCompatActivity() {
                     sep2.visibility=View.GONE
                 }
                 val terzaRataTv: TextView=findViewById(R.id.terzarataTV)
-                terzaRataTv.text="Terza Rata: $tassaConMora euro"
+                terzaRataTv.text="Terza Rata con mora: $tassaConMora euro"
                 terzaRataTv.visibility= TextView.VISIBLE
                 val bottone3 = findViewById<Button>(R.id.bottonePagamento3)
                 bottone3.visibility=Button.VISIBLE
