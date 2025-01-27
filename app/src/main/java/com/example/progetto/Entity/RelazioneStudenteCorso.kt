@@ -14,5 +14,6 @@ data class RelazioneStudenteCorso(
     @ColumnInfo(name = "matricola") val matricola: Int,
     @ColumnInfo(name = "giorno") val giorno: String,
     @ColumnInfo(name = "ora") val ora: String,  // Ora di inizio (esempio: "10:00", "14:30")
-    @ColumnInfo(name = "aula") val aula: String  // Aula in cui si svolge il corso
+    @ColumnInfo(name = "aula") val aula: String, // Aula in cui si svolge il corso
+    @ColumnInfo(name = "voto") val voto: Int?
 )

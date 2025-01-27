@@ -68,8 +68,6 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-
-
     /////////////// LIBRO //////////////////////////
 
     fun getLibriBySettore(settore: String): LiveData<List<Libro>>? {
@@ -193,6 +191,15 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>? {
         return try {
             relazioneStudenteCorsoDAO.getCorsiSeguitiDaStudenteInUnGiorno(giorno)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getVotiDiStudente(matricola: Int): List<Int>? {
+        return try {
+            relazioneStudenteCorsoDAO.getVotiDiStudente(matricola)
         } catch (e: Exception) {
             Log.e("DBViewModelDEBUG", "Errore durante la query", e)
             null

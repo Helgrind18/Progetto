@@ -129,5 +129,10 @@ interface RelazioneStudenteCorsoDao {
         @Transaction
         @Query("SELECT r.aula FROM RelazioneStudenteCorso r where r.giorno = :giorno")
         fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>?
+
+        //Recupera tutti i voti di uno studente
+        @Transaction
+        @Query("SELECT r.voto FROM RelazioneStudenteCorso r where r.matricola = :matricola")
+        fun getVotiDiStudente(matricola: Int): List<Int>?
 }
 
