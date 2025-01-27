@@ -32,7 +32,7 @@ class Area_Psicologica : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
-        dbViewModel.getLibriBySettore("psicologia")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
+        dbViewModel.getLibriBySettore("Psicologico")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
         })
 
     }

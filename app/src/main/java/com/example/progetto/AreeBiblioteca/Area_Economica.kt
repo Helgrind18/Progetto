@@ -32,7 +32,7 @@ class Area_Economica : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
-        dbViewModel.getLibriBySettore("economica")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
+        dbViewModel.getLibriBySettore("Economica")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
         })
 
     }

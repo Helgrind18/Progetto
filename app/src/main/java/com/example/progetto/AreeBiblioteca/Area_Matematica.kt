@@ -32,7 +32,7 @@ class Area_Matematica : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
-        dbViewModel.getLibriBySettore("matematica")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
+        dbViewModel.getLibriBySettore("Matematica")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
         })
 
     }

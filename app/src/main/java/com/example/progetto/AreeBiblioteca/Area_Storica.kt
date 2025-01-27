@@ -32,7 +32,7 @@ class Area_Storica : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
-        dbViewModel.getLibriBySettore("storia")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
+        dbViewModel.getLibriBySettore("Storico")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
         })
 
     }

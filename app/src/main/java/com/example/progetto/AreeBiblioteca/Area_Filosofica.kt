@@ -32,7 +32,7 @@ class Area_Filosofica : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
-        dbViewModel.getLibriBySettore("filosofica")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
+        dbViewModel.getLibriBySettore("Filosofico")?.observe(this, Observer{ libri -> libroListAdapter.submitList(libri)
         })
 
     }
