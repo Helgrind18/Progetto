@@ -1,6 +1,7 @@
 package com.example.progetto.Accesso
 
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             cognome = "Bianchi",
             isee = 18000L,
             email = "giuseppe.bianchi@studenti.unical.it",
+            annoImmatricolazione = 2022,
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
@@ -75,6 +77,7 @@ class MainActivity : AppCompatActivity() {
             cognome = "Rossi",
             isee = 20000,
             email = "mario.rossi@example.com",
+            annoImmatricolazione = 2022,
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
@@ -89,6 +92,7 @@ class MainActivity : AppCompatActivity() {
             cognome = "Verdi",
             isee = 15000,
             email = "luigi.verdi@example.com",
+            annoImmatricolazione = 2022,
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
@@ -118,6 +122,7 @@ class MainActivity : AppCompatActivity() {
             cognome = "Rossi",
             isee = 20000,
             email = "mario.rossi@example.com",
+            annoImmatricolazione = 2022,
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
@@ -132,6 +137,7 @@ class MainActivity : AppCompatActivity() {
             cognome = "Verdi",
             isee = 15000,
             email = "luigi.verdi@example.com",
+            annoImmatricolazione = 2022,
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
@@ -146,6 +152,7 @@ class MainActivity : AppCompatActivity() {
             cognome = "Toni",
             isee = 22000,
             email = "francesco.toni@example.com",
+            annoImmatricolazione = 2022,
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
@@ -252,29 +259,32 @@ class MainActivity : AppCompatActivity() {
         // Esempi di relazione con valori per giorno, ora e aula
         val relazione1 = RelazioneStudenteCorso(
             corsoId = 1,
-            matricola = 1001,
+            matricola = 15,
             giorno = "Lunedì",
             ora = "10:00",
             aula = "A1",
-            voto=null
+            voto=-1,
+            1
         ) // Mario segue Ingegneria del Software
 
         val relazione2 = RelazioneStudenteCorso(
             corsoId = 2,
-            matricola = 1001,
+            matricola = 15,
             giorno = "Martedì",
             ora = "14:30",
             aula = "B2",
-            voto=null
+            voto=-1,
+            0
         ) // Mario segue Basi di Dati
 
         val relazione3 = RelazioneStudenteCorso(
             corsoId = 3,
-            matricola = 1002,
+            matricola = 15,
             giorno = "Mercoledì",
             ora = "09:00",
             aula = "C3",
-            voto=null
+            voto=-1,
+            0
         ) // Luigi segue Reti di Calcolatori
 
         lifecycleScope.launch {
@@ -302,18 +312,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val annoCalendario = Calendar.getInstance().get(Calendar.YEAR)
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {
-                    val studentiInReti: List<Int>? = dbViewModel.getStudentiDiCorso(3)
-                    studentiInReti?.forEach { studente ->
-                        Log.d("getStudentiDiCorso", "Studente in Reti: $studente")
+                    val corsiDiMario: List<Corso>? = dbViewModel.getEsamiPrenotati(15, annoCalendario)
+                    corsiDiMario?.forEach { corso ->
+                        Log.d("getEsamiPrenotati", "Esame da fare da Mario: $corso in anno $annoCalendario")
                     }
                 } catch (e: Exception) {
-                    Log.e("getStudentiDiCorso", "Errore durante il recupero degli studenti", e)
+                    Log.e("getCorsiByAnnoStudente", "Errore durante il recupero dei corsi per anno", e)
                 }
             }
         }
+
     }
 }

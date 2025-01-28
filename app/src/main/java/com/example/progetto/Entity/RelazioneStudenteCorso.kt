@@ -15,5 +15,8 @@ data class RelazioneStudenteCorso(
     @ColumnInfo(name = "giorno") val giorno: String,
     @ColumnInfo(name = "ora") val ora: String,  // Ora di inizio (esempio: "10:00", "14:30")
     @ColumnInfo(name = "aula") val aula: String, // Aula in cui si svolge il corso
-    @ColumnInfo(name = "voto") val voto: Int?
+    @ColumnInfo(name = "voto") val voto: Int,//Voto assegnato all'esame (se -1 vuol dire che ancora non l'ha sostenuto  ù
+    @ColumnInfo(name = "prenotazione") val prenotazione: Int // Indica se l'esame è stato prenotato o meno
+                                                                //1 = studente prenotato per un esame
+                                                                //0 = studente non prenotato per un esame
 )

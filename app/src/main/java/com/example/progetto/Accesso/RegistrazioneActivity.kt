@@ -75,6 +75,7 @@ class RegistrazioneActivity : AppCompatActivity() {
                     cognome,
                     isee,
                     email,
+                    0,
                     false,
                     false,
                     false,

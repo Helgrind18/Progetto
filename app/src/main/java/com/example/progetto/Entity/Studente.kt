@@ -14,6 +14,7 @@ data class Studente(
     @ColumnInfo(name = "cognome") val cognome: String,
     @ColumnInfo(name = "ISEE") val isee: Long,
     @ColumnInfo(name = "email") val email: String,
+    @ColumnInfo(name = "annoImmatricolazione") var annoImmatricolazione: Int,
     @ColumnInfo(name = "tassa1") var tassa1: Boolean,
     @ColumnInfo(name = "tassa2") var tassa2: Boolean,
     @ColumnInfo(name = "tassa3") var tassa3: Boolean,

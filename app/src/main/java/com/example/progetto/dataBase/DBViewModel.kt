@@ -178,7 +178,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             null
         }
     }
-
+/*
     fun getStudentiDiCorso(corsoId: Int): List<Int>? {
         return try {
             relazioneStudenteCorsoDAO.getStudentiDiCorso(corsoId)
@@ -187,7 +187,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             null
         }
     }
-
+*/
     fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>? {
         return try {
             relazioneStudenteCorsoDAO.getCorsiSeguitiDaStudenteInUnGiorno(giorno)
@@ -197,9 +197,54 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getVotiDiStudente(matricola: Int): List<Int>? {
+    fun getEsamiDiStudente(matricola: Int): LiveData<List<Corso>>? {
         return try {
-            relazioneStudenteCorsoDAO.getVotiDiStudente(matricola)
+            relazioneStudenteCorsoDAO.getEsamiDiStudente(matricola)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getEsamiDaStudente(matricola: Int): LiveData<List<Corso>>? {
+        return try {
+            relazioneStudenteCorsoDAO.getEsamiDaFareStudente(matricola)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getEsamiDaFareDiUnAnno(matricola: Int, anno: Int): LiveData<List<Corso>>? {
+        return try {
+            relazioneStudenteCorsoDAO.getEsamiDaFareDiUnAnno(matricola, anno)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getEsamiDaFareCompatibili(matricola: Int, anno: Int): LiveData<List<Corso>>? {
+        return try {
+            relazioneStudenteCorsoDAO.getEsamiDaFareCompatibili(matricola, anno)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getEsamiPrenotabili(matricola: Int, anno: Int): LiveData<List<Corso>>? {
+        return try {
+            relazioneStudenteCorsoDAO.getEsamiPrenotabili(matricola, anno)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getEsamiPrenotati(matricola: Int, anno: Int): List<Corso>? {
+        return try {
+            relazioneStudenteCorsoDAO.getEsamiPrenotati(matricola, anno)
         } catch (e: Exception) {
             Log.e("DBViewModelDEBUG", "Errore durante la query", e)
             null

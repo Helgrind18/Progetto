@@ -120,19 +120,60 @@ interface RelazioneStudenteCorsoDao {
         @Query("SELECT r.corsoId FROM RelazioneStudenteCorso r WHERE r.matricola = :matricola")
         fun getCorsiDiStudente(matricola: Int): List<Int>?
 
+
+
+/*
         // Recupera tutti gli studenti iscritti a un corso dato
         @Transaction
         @Query("SELECT r.matricola FROM RelazioneStudenteCorso r WHERE r.corsoId = :corsoId")
         fun getStudentiDiCorso(corsoId: Int): List<Int>
+*/
+
+
 
         //Recupera tutti i corsi seguiti da uno studente in un determinato giorno
         @Transaction
         @Query("SELECT r.aula FROM RelazioneStudenteCorso r where r.giorno = :giorno")
         fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>?
 
-        //Recupera tutti i voti di uno studente
+        //Recupera tutti gli esami sostenuti da uno studente
         @Transaction
-        @Query("SELECT r.voto FROM RelazioneStudenteCorso r where r.matricola = :matricola")
-        fun getVotiDiStudente(matricola: Int): List<Int>?
+        @Query("SELECT c.* FROM RelazioneStudenteCorso r, Corso c" +
+                " where r.matricola = :matricola AND r.voto >= 18 AND r.corsoId = c.corsoId")
+        fun getEsamiDiStudente(matricola: Int): LiveData<List<Corso>>?
+
+        //Recupera tutti gli esami che uno studente ancora non ha sostenuto
+        @Transaction
+        @Query("SELECT c.* FROM RelazioneStudenteCorso r, Corso c where " +
+                "r.matricola = :matricola AND r.voto = -1 and r.corsoId = c.corsoId")
+        fun getEsamiDaFareStudente(matricola: Int): LiveData<List<Corso>>?
+
+        //Recupera tutti i corsi seguiti da uno studente che ancora non ha sostenuto l'esame di un determinato anno
+        @Transaction
+        @Query("SELECT c.* FROM RelazioneStudenteCorso r, Corso c" +
+                " where r.matricola = :matricola AND r.voto = -1 AND r.corsoId = c.corsoId AND c.anno = :anno")
+        fun getEsamiDaFareDiUnAnno(matricola: Int, anno: Int): LiveData<List<Corso>>?
+
+        //Recupera tutti gli esami che uno studente può prenotare e che sono compatibili per il suo anno
+        @Transaction
+        @Query("SELECT DISTINCT c.* FROM RelazioneStudenteCorso r, Corso c, Studente s"+
+        " where r.matricola = :matricola AND r.voto = -1 AND r.corsoId = c.corsoId AND (anno = :anno -s.annoImmatricolazione+1)<=c.anno" )
+        fun getEsamiDaFareCompatibili(matricola: Int, anno: Int): LiveData<List<Corso>>?
+
+        //Recupera tutti gli esami che uno studente può prenotare e che sono compatibili per il suo anno
+        @Transaction
+        @Query("SELECT DISTINCT c.* FROM RelazioneStudenteCorso r, Corso c, Studente s"+
+            " where r.matricola = :matricola AND r.voto = -1 AND r.corsoId = c.corsoId " +
+                "AND (anno = :anno -s.annoImmatricolazione+1)<=c.anno AND r.prenotazione = 0"
+        )
+        fun getEsamiPrenotabili(matricola: Int, anno: Int): LiveData<List<Corso>>?
+
+        //Recupera tutte le prenotazioni di uno studente, ovvero dove il booleano è 1
+        @Transaction
+        @Query("SELECT DISTINCT c.* FROM RelazioneStudenteCorso r, Corso c, Studente s"+
+                " where r.matricola = :matricola AND r.voto = -1 AND r.corsoId = c.corsoId " +
+                "AND (anno = :anno -s.annoImmatricolazione+1)<=c.anno AND r.prenotazione = 1"
+        )
+        fun getEsamiPrenotati(matricola: Int, anno: Int): List<Corso>?
 }
 
