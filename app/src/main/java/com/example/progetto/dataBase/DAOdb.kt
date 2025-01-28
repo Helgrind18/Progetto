@@ -174,6 +174,6 @@ interface RelazioneStudenteCorsoDao {
                 " where r.matricola = :matricola AND r.voto = -1 AND r.corsoId = c.corsoId " +
                 "AND (anno = :anno -s.annoImmatricolazione+1)<=c.anno AND r.prenotazione = 1"
         )
-        fun getEsamiPrenotati(matricola: Int, anno: Int): List<Corso>?
+        fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<Corso>>?
 }
 

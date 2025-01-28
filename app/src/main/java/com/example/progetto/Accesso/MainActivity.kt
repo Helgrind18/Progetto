@@ -242,6 +242,22 @@ class MainActivity : AppCompatActivity() {
         val corso1 = Corso(id = 1, nome = "Ingegneria del Software", CFU = 12,3)
         val corso2 = Corso(id = 2, nome = "Basi di Dati", CFU = 9,3)
         val corso3 = Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6,3)
+        val corso4 = Corso(id = 4, nome = "Analisi Matematica 1", CFU = 9, anno = 1)
+        val corso5 = Corso(id = 5, nome = "Fisica 1", CFU = 6, anno = 1)
+        val corso6 = Corso(id = 6, nome = "Programmazione 1", CFU = 12, anno = 1)
+        val corso7 = Corso(id = 7, nome = "Sistemi Operativi", CFU = 9, anno = 2)
+        val corso8 = Corso(id = 8, nome = "Ingegneria del Web", CFU = 6, anno = 2)
+        val corso9 = Corso(id = 9, nome = "Algoritmi e Strutture Dati", CFU = 12, anno = 2)
+        val corso10 = Corso(id = 10, nome = "Calcolo Numerico", CFU = 6, anno = 3)
+        val corso11 = Corso(id = 11, nome = "Intelligenza Artificiale", CFU = 9, anno = 3)
+        val corso12 = Corso(id = 12, nome = "Sicurezza Informatica", CFU = 6, anno = 3)
+        val corso13 = Corso(id = 13, nome = "Economia Aziendale", CFU = 6, anno = 1)
+        val corso14 = Corso(id = 14, nome = "Reti di Telecomunicazioni", CFU = 9, anno = 2)
+        val corso15 = Corso(id = 15, nome = "Progettazione Software", CFU = 9, anno = 3)
+        val corso16 = Corso(id = 16, nome = "Sviluppo Mobile", CFU = 6, anno = 3)
+        val corso17 = Corso(id = 17, nome = "Elaborazione di Immagini", CFU = 6, anno = 3)
+        val corso18 = Corso(id = 18, nome = "Matematica Discreta", CFU = 9, anno = 1)
+
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
@@ -249,6 +265,21 @@ class MainActivity : AppCompatActivity() {
                     dbViewModel.inserisciCorso(corso1)
                     dbViewModel.inserisciCorso(corso2)
                     dbViewModel.inserisciCorso(corso3)
+                    dbViewModel.inserisciCorso(corso4)
+                    dbViewModel.inserisciCorso(corso5)
+                    dbViewModel.inserisciCorso(corso6)
+                    dbViewModel.inserisciCorso(corso7)
+                    dbViewModel.inserisciCorso(corso8)
+                    dbViewModel.inserisciCorso(corso9)
+                    dbViewModel.inserisciCorso(corso10)
+                    dbViewModel.inserisciCorso(corso11)
+                    dbViewModel.inserisciCorso(corso12)
+                    dbViewModel.inserisciCorso(corso13)
+                    dbViewModel.inserisciCorso(corso14)
+                    dbViewModel.inserisciCorso(corso15)
+                    dbViewModel.inserisciCorso(corso16)
+                    dbViewModel.inserisciCorso(corso17)
+                    dbViewModel.inserisciCorso(corso18)
                     Log.d("MainActivityDEBUG", "Corsi inseriti correttamente")
                 } catch (e: Exception) {
                     Log.e("MainActivityDEBUG", "Errore durante l'inserimento dei corsi", e)
@@ -287,12 +318,174 @@ class MainActivity : AppCompatActivity() {
             0
         ) // Luigi segue Reti di Calcolatori
 
+        val relazione4 = RelazioneStudenteCorso(
+            corsoId = 4,
+            matricola = 15,
+            giorno = "Martedì",
+            ora = "11:00",
+            aula = "B1",
+            voto = -1,
+           0
+        )
+
+        val relazione5 = RelazioneStudenteCorso(
+            corsoId = 5,
+            matricola = 15,
+            giorno = "Martedì",
+            ora = "14:00",
+            aula = "B2",
+            voto = -1,
+            0
+        )
+
+        val relazione6 = RelazioneStudenteCorso(
+            corsoId = 6,
+            matricola = 15,
+            giorno = "Mercoledì",
+            ora = "10:00",
+            aula = "C1",
+            voto = -1,
+            0
+        )
+
+        val relazione7 = RelazioneStudenteCorso(
+            corsoId = 7,
+            matricola = 15,
+            giorno = "Mercoledì",
+            ora = "15:00",
+            aula = "C2",
+            voto = -1,
+            1
+        )
+
+        val relazione8 = RelazioneStudenteCorso(
+            corsoId = 8,
+            matricola = 15,
+            giorno = "Giovedì",
+            ora = "09:00",
+            aula = "D1",
+            voto = -1,
+            1
+        )
+
+        val relazione9 = RelazioneStudenteCorso(
+            corsoId = 9,
+            matricola = 15,
+            giorno = "Giovedì",
+            ora = "13:00",
+            aula = "D2",
+            voto = -1,
+            1
+        )
+
+        val relazione10 = RelazioneStudenteCorso(
+            corsoId = 10,
+            matricola = 15,
+            giorno = "Venerdì",
+            ora = "10:00",
+            aula = "E1",
+            voto = -1,
+           0
+        )
+        val relazione11 = RelazioneStudenteCorso(
+            corsoId = 11,
+            matricola = 15,
+            giorno = "Venerdì",
+            ora = "12:00",
+            aula = "E2",
+            voto = 18,
+            0
+        )
+
+        val relazione12 = RelazioneStudenteCorso(
+            corsoId = 12,
+            matricola = 15,
+            giorno = "Lunedì",
+            ora = "14:00",
+            aula = "F1",
+            voto = 19,
+            0
+        )
+
+        val relazione13 = RelazioneStudenteCorso(
+            corsoId = 13,
+            matricola = 15,
+            giorno = "Lunedì",
+            ora = "16:00",
+            aula = "F2",
+            voto = 20,
+            0
+        )
+
+        val relazione14 = RelazioneStudenteCorso(
+            corsoId = 14,
+            matricola = 15,
+            giorno = "Martedì",
+            ora = "09:00",
+            aula = "G1",
+            voto = -1,
+            1
+        )
+
+        val relazione15 = RelazioneStudenteCorso(
+            corsoId = 15,
+            matricola = 15,
+            giorno = "Martedì",
+            ora = "11:00",
+            aula = "G2",
+            voto = 30,
+            0
+        )
+
+        val relazione16 = RelazioneStudenteCorso(
+            corsoId = 16,
+            matricola = 15,
+            giorno = "Mercoledì",
+            ora = "14:00",
+            aula = "H1",
+            voto = -1,
+            0
+        )
+
+        val relazione17 = RelazioneStudenteCorso(
+            corsoId = 17,
+            matricola = 15,
+            giorno = "Mercoledì",
+            ora = "16:00",
+            aula = "H2",
+            voto = -1,
+            0
+        )
+        val relazione18 = RelazioneStudenteCorso(
+            corsoId = 18,
+            matricola = 15,
+            giorno = "Giovedì",
+            ora = "10:00",
+            aula = "I1",
+            voto = -1,
+            0
+        )
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     dbViewModel.inserisciRelazioneStudenteCorso(relazione1)
                     dbViewModel.inserisciRelazioneStudenteCorso(relazione2)
                     dbViewModel.inserisciRelazioneStudenteCorso(relazione3)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione4)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione5)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione6)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione7)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione8)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione9)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione10)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione11)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione12)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione13)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione14)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione15)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione16)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione17)
+                    dbViewModel.inserisciRelazioneStudenteCorso(relazione18)
                     Log.d("MainActivityDEBUG", "Relazioni inserite correttamente")
                 } catch (e: Exception) {
                     Log.e("MainActivityDEBUG", "Errore durante l'inserimento delle relazioni", e)

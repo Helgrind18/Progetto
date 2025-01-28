@@ -242,7 +242,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getEsamiPrenotati(matricola: Int, anno: Int): List<Corso>? {
+    fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<Corso>>? {
         return try {
             relazioneStudenteCorsoDAO.getEsamiPrenotati(matricola, anno)
         } catch (e: Exception) {
