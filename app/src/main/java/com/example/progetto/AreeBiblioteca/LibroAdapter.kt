@@ -15,7 +15,7 @@ class LibroAdapter : ListAdapter<Libro, LibroAdapter.LibroViewHolder>(
     DIFF_CALLBACK
 ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup,viewType: Int,): LibroViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): LibroViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_libro, parent, false)
         return LibroViewHolder(itemView)
