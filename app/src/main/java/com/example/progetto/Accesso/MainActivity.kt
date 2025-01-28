@@ -505,20 +505,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val annoCalendario = Calendar.getInstance().get(Calendar.YEAR)
-
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
-                    val corsiDiMario: List<Corso>? = dbViewModel.getEsamiPrenotati(15, annoCalendario)
-                    corsiDiMario?.forEach { corso ->
-                        Log.d("getEsamiPrenotati", "Esame da fare da Mario: $corso in anno $annoCalendario")
-                    }
-                } catch (e: Exception) {
-                    Log.e("getCorsiByAnnoStudente", "Errore durante il recupero dei corsi per anno", e)
-                }
-            }
-        }
 
     }
 }

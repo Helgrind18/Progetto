@@ -233,7 +233,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getEsamiPrenotabili(matricola: Int, anno: Int): LiveData<List<Corso>>? {
+    fun getEsamiPrenotabili(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>? {
         return try {
             relazioneStudenteCorsoDAO.getEsamiPrenotabili(matricola, anno)
         } catch (e: Exception) {
@@ -242,7 +242,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<Corso>>? {
+    fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>? {
         return try {
             relazioneStudenteCorsoDAO.getEsamiPrenotati(matricola, anno)
         } catch (e: Exception) {

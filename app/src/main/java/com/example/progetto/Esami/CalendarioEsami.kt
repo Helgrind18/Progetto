@@ -1,10 +1,11 @@
-package com.example.progetto
+package com.example.progetto.Esami
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.progetto.R
 
 class CalendarioEsami : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

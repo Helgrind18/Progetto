@@ -5,13 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Esami.CalendarioEsami"
-    android:orientation="vertical">
+    tools:context=".Esami.AppelliDisponibili"
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:text="CALENDARIO ESAMI"
+        android:text="APPELLI DISPONIBILI"
         android:gravity="center"
         android:textAlignment="center"
         android:textSize="25sp"
@@ -19,6 +20,13 @@
         android:textColor="@color/white"
         android:background="@color/rosso_bordeaux"
         android:visibility="visible"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"/>
+
 
 
 </LinearLayout>

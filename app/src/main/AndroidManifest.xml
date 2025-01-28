@@ -18,6 +18,11 @@
         android:theme="@style/Theme.Progetto"
         tools:targetApi="31">
         <activity
+            android:name=".Esami.AppelliPrenotati"
+            android:exported="false" />
+        <activity android:name=".Esami.AppelliDisponibili"
+            android:exported="false" />
+        <activity
             android:name=".AreeBiblioteca.Prestiti_Personali"
             android:exported="false" />
         <activity
@@ -59,7 +64,7 @@
             android:name=".Accesso.RegistrazioneActivity"
             android:exported="false" />
         <activity
-            android:name=".CalendarioEsami"
+            android:name=".Esami.CalendarioEsami"
             android:exported="false"
             android:theme="@style/Theme.Progetto" />
         <activity

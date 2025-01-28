@@ -13,8 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.progetto.AreaPersonale
 import com.example.progetto.BachecaEsiti
 import com.example.progetto.AreeBiblioteca.Biblioteca
-import com.example.progetto.CalendarioEsami
+import com.example.progetto.Esami.CalendarioEsami
 import com.example.progetto.Collegamenti
+import com.example.progetto.Esami.AppelliDisponibili
 import com.example.progetto.Libretto
 import com.example.progetto.Mensa
 import com.example.progetto.OrarioLezioni
@@ -97,7 +98,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
         calendarioEsami.setOnClickListener {
-            val intent = Intent(this, CalendarioEsami::class.java).apply {
+            val intent = Intent(this, AppelliDisponibili::class.java).apply {
                 putExtra("username", username)
             }
             startActivity(intent)

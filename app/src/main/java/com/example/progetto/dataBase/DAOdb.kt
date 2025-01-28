@@ -162,18 +162,18 @@ interface RelazioneStudenteCorsoDao {
 
         //Recupera tutti gli esami che uno studente può prenotare e che sono compatibili per il suo anno
         @Transaction
-        @Query("SELECT DISTINCT c.* FROM RelazioneStudenteCorso r, Corso c, Studente s"+
+        @Query("SELECT DISTINCT r.* FROM RelazioneStudenteCorso r, Corso c, Studente s"+
             " where r.matricola = :matricola AND r.voto = -1 AND r.corsoId = c.corsoId " +
                 "AND (anno = :anno -s.annoImmatricolazione+1)<=c.anno AND r.prenotazione = 0"
         )
-        fun getEsamiPrenotabili(matricola: Int, anno: Int): LiveData<List<Corso>>?
+        fun getEsamiPrenotabili(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>?
 
         //Recupera tutte le prenotazioni di uno studente, ovvero dove il booleano è 1
         @Transaction
-        @Query("SELECT DISTINCT c.* FROM RelazioneStudenteCorso r, Corso c, Studente s"+
+        @Query("SELECT DISTINCT r.* FROM RelazioneStudenteCorso r, Corso c, Studente s"+
                 " where r.matricola = :matricola AND r.voto = -1 AND r.corsoId = c.corsoId " +
                 "AND (anno = :anno -s.annoImmatricolazione+1)<=c.anno AND r.prenotazione = 1"
         )
-        fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<Corso>>?
+        fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>?
 }
 
