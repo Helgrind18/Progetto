@@ -104,7 +104,7 @@ interface CorsoDao {
 
     //Recupera il corso dall'id
     @Query("SELECT * FROM Corso WHERE corsoId = :id")
-    fun getCorsoById(id: Int): LiveData<Corso>?
+    fun getCorsoById(id: Int): Corso?
 
 }
 
@@ -161,9 +161,9 @@ interface RelazioneStudenteCorsoDao {
 
         //Recupera tutti gli esami sostenuti da uno studente
         @Transaction
-        @Query("SELECT c.* FROM RelazioneStudenteCorso r, Corso c" +
+        @Query("SELECT r.* FROM RelazioneStudenteCorso r, Corso c" +
                 " where r.matricola = :matricola AND r.voto >= 18 AND r.corsoId = c.corsoId")
-        fun getEsamiDiStudente(matricola: Int): LiveData<List<Corso>>?
+        fun getEsamiDiStudente(matricola: Int): List<RelazioneStudenteCorso>?
 
         //Recupera tutti gli esami che uno studente ancora non ha sostenuto
         @Transaction

@@ -133,7 +133,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getCorsoById(id: Int): LiveData<Corso>? {
+    fun getCorsoById(id: Int): Corso? {
         return try {
             corsoDAO.getCorsoById(id)
         } catch (e: Exception) {
@@ -206,7 +206,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getEsamiDiStudente(matricola: Int): LiveData<List<Corso>>? {
+    fun getEsamiDiStudente(matricola: Int): List<RelazioneStudenteCorso>? {
         return try {
             relazioneStudenteCorsoDAO.getEsamiDiStudente(matricola)
         } catch (e: Exception) {

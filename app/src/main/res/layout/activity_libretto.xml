@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Libretto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="match_parent"
@@ -18,6 +19,17 @@
         android:fontFamily="sans-serif-black"
         android:textColor="@color/white"
         android:background="@color/rosso_bordeaux"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/infoEsami"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-condensed"
+        app:autoSizeTextType="uniform"
         android:visibility="visible"/>
 
     <ProgressBar

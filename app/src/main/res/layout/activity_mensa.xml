@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Mensa"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="match_parent"
@@ -19,4 +20,52 @@
         android:textColor="@color/white"
         android:background="@color/rosso_bordeaux"
         android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/infoUtente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-condensed"
+        app:autoSizeTextType="uniform"
+        android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/separatoreMenu"
+        android:text="MENU' DEL GIORNO"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/black"
+        />
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:fontFamily="sans-serif-condensed"
+        app:autoSizeTextType="uniform"
+        android:visibility="visible"/>
+
+
+    <Button
+        android:id="@+id/bottone"
+        android:layout_marginTop="20dp"
+        android:layout_width="130dp"
+        android:layout_height="80dp"
+        android:text="SCANSIONA QR"
+        android:visibility="visible"
+        android:backgroundTint="@color/verde_opaco"
+        android:layout_gravity="center"
+        app:cornerRadius="8dp"
+        android:textColor="@color/white" />
+
 </LinearLayout>
