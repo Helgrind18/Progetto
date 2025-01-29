@@ -12,7 +12,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
 import com.example.progetto.Entity.Corso
+import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +68,8 @@ class MainActivity : AppCompatActivity() {
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
-            tassa4 = false
+            tassa4 = false,
+            36
         )
 
         val studente1 = Studente(
@@ -81,7 +84,8 @@ class MainActivity : AppCompatActivity() {
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
-            tassa4 = false
+            tassa4 = false,
+            0
         )
 
         val studente2 = Studente(
@@ -96,22 +100,23 @@ class MainActivity : AppCompatActivity() {
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
-            tassa4 = false
+            tassa4 = false,
+            0
         )
 
-       /* lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
-                    dbViewModel.inserisciStudente(studenteTest)
-                    dbViewModel.inserisciStudente(studente1)
-                    dbViewModel.inserisciStudente(studente2)
-                    Log.d("MainActivityDEBUG", "Studente inserito correttamente")
-                } catch (e: Exception) {
-                    Log.e("MainActivityDEBUG", "Errore durante l'inserimento dello studente", e)
-                }
-            }
-        }
-*/
+        /* lifecycleScope.launch {
+             withContext(Dispatchers.IO) {
+                 try {
+                     dbViewModel.inserisciStudente(studenteTest)
+                     dbViewModel.inserisciStudente(studente1)
+                     dbViewModel.inserisciStudente(studente2)
+                     Log.d("MainActivityDEBUG", "Studente inserito correttamente")
+                 } catch (e: Exception) {
+                     Log.e("MainActivityDEBUG", "Errore durante l'inserimento dello studente", e)
+                 }
+             }
+         }
+ */
 
         // Creazione di 3 studenti
         val studente4 = Studente(
@@ -126,7 +131,8 @@ class MainActivity : AppCompatActivity() {
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
-            tassa4 = false
+            tassa4 = false,
+            0
         )
 
         val studente5 = Studente(
@@ -141,7 +147,8 @@ class MainActivity : AppCompatActivity() {
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
-            tassa4 = false
+            tassa4 = false,
+            0
         )
 
         val studente6 = Studente(
@@ -156,7 +163,8 @@ class MainActivity : AppCompatActivity() {
             tassa1 = false,
             tassa2 = false,
             tassa3 = false,
-            tassa4 = false
+            tassa4 = false,
+            0
         )
 
 // Creazione di 3 libri
@@ -239,9 +247,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val corso1 = Corso(id = 1, nome = "Ingegneria del Software", CFU = 12,3)
-        val corso2 = Corso(id = 2, nome = "Basi di Dati", CFU = 9,3)
-        val corso3 = Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6,3)
+        val corso1 = Corso(id = 1, nome = "Ingegneria del Software", CFU = 12, 3)
+        val corso2 = Corso(id = 2, nome = "Basi di Dati", CFU = 9, 3)
+        val corso3 = Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6, 3)
         val corso4 = Corso(id = 4, nome = "Analisi Matematica 1", CFU = 9, anno = 1)
         val corso5 = Corso(id = 5, nome = "Fisica 1", CFU = 6, anno = 1)
         val corso6 = Corso(id = 6, nome = "Programmazione 1", CFU = 12, anno = 1)
@@ -294,7 +302,7 @@ class MainActivity : AppCompatActivity() {
             giorno = "Lunedì",
             ora = "10:00",
             aula = "A1",
-            voto=-1,
+            voto = -1,
             1
         ) // Mario segue Ingegneria del Software
 
@@ -304,7 +312,7 @@ class MainActivity : AppCompatActivity() {
             giorno = "Martedì",
             ora = "14:30",
             aula = "B2",
-            voto=-1,
+            voto = -1,
             0
         ) // Mario segue Basi di Dati
 
@@ -314,7 +322,7 @@ class MainActivity : AppCompatActivity() {
             giorno = "Mercoledì",
             ora = "09:00",
             aula = "C3",
-            voto=-1,
+            voto = -1,
             0
         ) // Luigi segue Reti di Calcolatori
 
@@ -325,7 +333,7 @@ class MainActivity : AppCompatActivity() {
             ora = "11:00",
             aula = "B1",
             voto = -1,
-           0
+            0
         )
 
         val relazione5 = RelazioneStudenteCorso(
@@ -385,7 +393,7 @@ class MainActivity : AppCompatActivity() {
             ora = "10:00",
             aula = "E1",
             voto = -1,
-           0
+            0
         )
         val relazione11 = RelazioneStudenteCorso(
             corsoId = 11,
@@ -501,6 +509,75 @@ class MainActivity : AppCompatActivity() {
                     }
                 } catch (e: Exception) {
                     Log.e("getCorsiSeguitiDaStudente", "Errore durante il recupero dei corsi", e)
+                }
+            }
+        }
+
+
+        val cdl1 = CorsoDiLaurea(1, "Ingegneria Informatica")
+        val cdl2 = CorsoDiLaurea(2, "Ingegneria Meccanica")
+        val cdl3 = CorsoDiLaurea(3, "Ingegneria Electronica")
+
+        //Li inserisco
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    dbViewModel.inserisciCorsoDiLaurea(cdl1)
+                    dbViewModel.inserisciCorsoDiLaurea(cdl2)
+                    dbViewModel.inserisciCorsoDiLaurea(cdl3)
+                    Log.d("MainActivityDEBUG", "Relazioni cdlCorso inserite correttamente")
+
+                } catch (e: Exception) {
+                    Log.e("MainActivityDEBUG", "Errore durante l'inserimento delle relazioni", e)
+                }
+            }
+        }
+
+        // Creazione delle relazioni CDL-Corsi (invertiti)
+        val cdlCorso1 = RelazioneCDLCorso(1, 1)
+        val cdlCorso2 = RelazioneCDLCorso(2, 1)
+        val cdlCorso3 = RelazioneCDLCorso(3, 1)
+        val cdlCorso4 = RelazioneCDLCorso(6, 1)
+        val cdlCorso5 = RelazioneCDLCorso(9, 1)
+
+        val cdlCorso6 = RelazioneCDLCorso(4, 2)
+        val cdlCorso7 = RelazioneCDLCorso(5, 2)
+        val cdlCorso8 = RelazioneCDLCorso(7, 2)
+        val cdlCorso9 = RelazioneCDLCorso(8, 2)
+        val cdlCorso10 = RelazioneCDLCorso(14, 2)
+
+        val cdlCorso11 = RelazioneCDLCorso(10, 3)
+        val cdlCorso12 = RelazioneCDLCorso(11, 3)
+        val cdlCorso13 = RelazioneCDLCorso(12, 3)
+        val cdlCorso14 = RelazioneCDLCorso(15, 3)
+        val cdlCorso15 = RelazioneCDLCorso(16, 3)
+        val cdlCorso16 = RelazioneCDLCorso(17, 3)
+
+
+        //Li inserisco
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso1)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso2)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso3)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso4)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso5)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso6)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso7)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso8)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso9)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso10)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso11)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso12)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso13)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso14)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso15)
+                    dbViewModel.inserisciRelazioneCDLCorso(cdlCorso16)
+                    Log.d("MainActivityDEBUG", "Relazioni cdlCorso inserite correttamente")
+
+                } catch (e: Exception) {
+                    Log.e("MainActivityDEBUG", "Errore durante l'inserimento delle relazioni", e)
                 }
             }
         }

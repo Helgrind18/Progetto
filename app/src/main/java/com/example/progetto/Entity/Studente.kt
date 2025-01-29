@@ -19,6 +19,7 @@ data class Studente(
     @ColumnInfo(name = "tassa2") var tassa2: Boolean,
     @ColumnInfo(name = "tassa3") var tassa3: Boolean,
     @ColumnInfo(name = "tassa4") var tassa4: Boolean,
+    @ColumnInfo(name = "pastiEffettuati") var pastiEffettuati: Int
 ){
     override fun toString(): String {
         var ris: String=""

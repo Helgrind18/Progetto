@@ -34,7 +34,7 @@ class Tasse : AppCompatActivity() {
             insets
         }
 
-        var studente: Studente = Studente(1, "", "", "", "", 0, "", 0,false, false, false, false)
+        var studente: Studente = Studente(1, "", "", "", "", 0, "", 0,false, false, false, false,0)
         dbViewModel = DBViewModel(application)
         val username = intent.getIntExtra("username", 1)
         val data: Calendar = Calendar.getInstance()

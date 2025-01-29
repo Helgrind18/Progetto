@@ -8,7 +8,9 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Corso
+import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.Studente
 
@@ -20,7 +22,9 @@ import com.example.progetto.Entity.Studente
         Libro::class,
         Aula::class,
         Corso::class,
-        RelazioneStudenteCorso::class // Include la tabella intermedia many-to-many
+        RelazioneStudenteCorso::class, // Include la tabella intermedia many-to-many
+        RelazioneCDLCorso::class, // Include la tabella intermedia many-to-many
+        CorsoDiLaurea::class
     ],
     version = 1
 )
@@ -30,6 +34,8 @@ abstract class DataBaseApp : RoomDatabase() {
     abstract fun getAulaDao(): AulaDao
     abstract fun getCorsoDao(): CorsoDao
     abstract fun getRelazioneStudenteCorsoDao(): RelazioneStudenteCorsoDao
+    abstract fun getRelazioneCDLCorsoDao(): RelazioneCDLCorsoDao
+    abstract fun getCDLDao(): CorsoDiLaureaDao
     companion object {
         @Volatile
         private var INSTANCE: DataBaseApp? = null
@@ -40,7 +46,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseProjectUnical32"
+                    "DatabaseProjectUnical34"
                 )
                     .build()
                 INSTANCE = instance

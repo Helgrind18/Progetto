@@ -79,7 +79,8 @@ class RegistrazioneActivity : AppCompatActivity() {
                     false,
                     false,
                     false,
-                    false
+                    false,
+                    0
                 )
 
                 lifecycleScope.launch {

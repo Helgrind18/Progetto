@@ -8,7 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
 import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Corso
+import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.RelazioneStudenteSegueCorsi
 import com.example.progetto.Entity.Studente
@@ -24,7 +26,9 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     private val corsoDAO = DataBaseApp.getDatabase(application).getCorsoDao()
     private val relazioneStudenteCorsoDAO =
         DataBaseApp.getDatabase(application).getRelazioneStudenteCorsoDao()
-
+    private val relazioneCDLCorsoDAO =
+        DataBaseApp.getDatabase(application).getRelazioneCDLCorsoDao()
+    private val corsoDiLaureaDAO = DataBaseApp.getDatabase(application).getCDLDao()
 
     //STUDENTE
 
@@ -65,6 +69,10 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
                 Log.e("DBViewModelDEBUG", "Errore durante l'eliminazione dello studente", e)
             }
         }
+    }
+
+    fun getPastiEffettuati(matricola: Int): Int? {
+        return studenteDAO.getPastiEffettuati(matricola)
     }
 
 
@@ -178,16 +186,17 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             null
         }
     }
-/*
-    fun getStudentiDiCorso(corsoId: Int): List<Int>? {
-        return try {
-            relazioneStudenteCorsoDAO.getStudentiDiCorso(corsoId)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
+
+    /*
+        fun getStudentiDiCorso(corsoId: Int): List<Int>? {
+            return try {
+                relazioneStudenteCorsoDAO.getStudentiDiCorso(corsoId)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
         }
-    }
-*/
+    */
     fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>? {
         return try {
             relazioneStudenteCorsoDAO.getCorsiSeguitiDaStudenteInUnGiorno(giorno)
@@ -251,6 +260,75 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    //CDL
+
+    fun getAll(): LiveData<List<CorsoDiLaurea>> = corsoDiLaureaDAO.getAll()
+
+    fun inserisciCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                corsoDiLaureaDAO.inserisciCorsoDiLaurea(corsoDiLaurea)
+                Log.d("DBViewModelDEBUG", "Corso inserito nel database")
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del corso", e)
+            }
+        }
+    }
+
+    fun rimuoviCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
+        viewModelScope.launch(Dispatchers.IO) {
+            corsoDiLaureaDAO.rimuoviCorsoDiLaurea(corsoDiLaurea)
+        }
+    }
+
+    fun getCDLById(id: Int): LiveData<CorsoDiLaurea>? {
+        return try {
+            corsoDiLaureaDAO.getCDLById(id)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    //// RELAZIONE CDL - CORSO
+
+    fun inserisciRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                relazioneCDLCorsoDAO.inserisciRelazione(relazione)
+                Log.d("DBViewModelDEBUG", "inserisciRelazioneCDLCorso inserito nel database")
+            } catch (e: Exception) {
+                Log.e(
+                    "DBViewModelDEBUG",
+                    "Errore durante l'inserimento inserisciRelazioneCDLCorso",
+                    e
+                )
+            }
+        }
+    }
+
+    fun rimuoviRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
+        viewModelScope.launch {
+            try {
+                relazioneCDLCorsoDAO.rimuoviRelazione(relazione)
+            } catch (e: Exception) {
+                Log.e(
+                    "DBViewModelDEBUG",
+                    "Errore durante l'eliminazione rimuoviRelazioneCDLCorso",
+                    e
+                )
+            }
+        }
+    }
+
+    fun getCorsiDiCDL(cdl: String): List<Corso>? {
+        return try {
+            relazioneCDLCorsoDAO.getCorsiDiCDL(cdl)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
 }
 
 
