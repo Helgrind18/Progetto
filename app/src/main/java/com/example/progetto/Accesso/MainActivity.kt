@@ -198,6 +198,7 @@ class MainActivity : AppCompatActivity() {
             RelazioneStudenteCorso(16, 15, "Mercoledì", "14:00", "H1", -1, 0),
             RelazioneStudenteCorso(17, 15, "Mercoledì", "16:00", "H2", -1, 0),
             RelazioneStudenteCorso(18, 15, "Giovedì", "10:00", "I1", -1, 0)
+
         )
 
 // Inserimento delle relazioni nel database usando forEach
