@@ -96,8 +96,11 @@ class Libretto : AppCompatActivity() {
     ): String {
         var ris: StringBuilder = StringBuilder()
         ris.append("Esami superati: ${lista.size}")
+        ris.append("\n")
         ris.append("Media: $media")
+        ris.append("\n")
         ris.append("Media ponderata: $mediaPonderata")
+        ris.append("\n")
         Log.d("TasseDEBUG", "Testo info: ${ris.toString()}")
         return ris.toString()
     }
@@ -106,7 +109,6 @@ class Libretto : AppCompatActivity() {
         val progress: ProgressBar = findViewById(R.id.progresso)
         progress.visibility = ProgressBar.VISIBLE
         Handler(Looper.getMainLooper()).postDelayed({
-            //progress.visibility = View.GONE
             progress.progress = size
         }, 100)
     }

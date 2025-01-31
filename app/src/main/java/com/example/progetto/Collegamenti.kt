@@ -3,6 +3,7 @@ package com.example.progetto
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,17 +23,18 @@ class Collegamenti : AppCompatActivity() {
         }
 
         // Associazione dei click ai link
-        intentImplicitoBrowser(R.id.TWSitoUnical, "https://www.unical.it")
-        intentImplicitoBrowser(R.id.TWSoscr, "https://soscr.unical.it")
-        intentImplicitoBrowser(R.id.TWInstagram, "https://www.instagram.com/unical_official/")
-        intentImplicitoBrowser(R.id.TWX, "https://x.com/UniCalPortale/status/1640303607147905026")
+        intentImplicitoBrowser(R.id.sitoUnical, R.id.bottoneSito, "https://www.unical.it")
+        intentImplicitoBrowser(R.id.Soscr,R.id.bottonesoscr, "https://soscr.unical.it")
+        intentImplicitoBrowser(R.id.insta, R.id.bottoneinsta,"https://www.instagram.com/unical_official/")
+        intentImplicitoBrowser(R.id.twitter, R.id.bottoneTwitter,"https://x.com/UniCalPortale/status/1640303607147905026")
     }
 
     // Funzione per impostare il click listener su un TextView
-    private fun intentImplicitoBrowser(textViewId: Int, url: String) {
+    private fun intentImplicitoBrowser(textViewId: Int, bottone: Int, url: String) {
         //Questa funzione prende l'ID del TextView e l'URL da aprire.
         val textView = findViewById<TextView>(textViewId)
-        textView.setOnClickListener {
+        val bottone = findViewById<Button>(bottone)
+        bottone.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             //Utilizziamo Intent.ACTION_VIEW con un Uri.parse(url) per indirizzare al browser l'apertura dell'URL
             startActivity(intent)

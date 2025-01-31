@@ -12,11 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.example.progetto.Entity.Piatto
 import com.example.progetto.Entity.Studente
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Calendar
+import kotlin.random.Random
 
 class Mensa : AppCompatActivity() {
     //TODO: implementazione scan qr e stampa menù giornaliero, mostrare anche, per l'utente, quanti pasti ha fatto
@@ -36,6 +39,18 @@ class Mensa : AppCompatActivity() {
         val username = intent.getIntExtra("username", 1)
         dbViewModel = DBViewModel(application)
         val REQUEST_IMAGE_CAPTURE = 1
+        val calendar= Calendar.getInstance()
+        val mese= calendar.get(Calendar.MONTH)
+        val giorno= calendar.get(Calendar.DAY_OF_MONTH)
+        val anno= calendar.get(Calendar.YEAR)
+        val seed = mese+giorno+anno
+        val random: Random= Random(seed)
+        val ris= random.nextInt(seed)
+        Log.d("TasseDEBUG", "Risultato random: $ris")
+
+        var listaPrimi: List<Piatto> = emptyList()
+        var listaSecondi: List<Piatto> = emptyList()
+        var listaContorni: List<Piatto> = emptyList()
 
         lifecycleScope.launch {
             Log.d("TasseDEBUG", "Inizio query per studente")
@@ -50,9 +65,33 @@ class Mensa : AppCompatActivity() {
             val info: TextView = findViewById(R.id.infoUtente)
             info.text = testoInfo(studente, costo)
 
+
+            listaPrimi= withContext(Dispatchers.IO) {
+                dbViewModel.getPiattiByTipo(1)!!
+            }
+            Log.d("TasseDEBUG", "Lista primi: $listaPrimi")
+            listaSecondi= withContext(Dispatchers.IO) {
+                dbViewModel.getPiattiByTipo(2)!!
+            }
+            Log.d("TasseDEBUG", "Lista secondi: $listaSecondi")
+            listaContorni= withContext(Dispatchers.IO) {
+                dbViewModel.getPiattiByTipo(3)!!
+            }
+            Log.d("TasseDEBUG", "Lista contorni: $listaContorni")
+
+
+
+            val primo= listaPrimi[ris%listaPrimi.size]
+            Log.d("TasseDEBUG", "Primo: $primo")
+            val secondo= listaSecondi[ris%listaSecondi.size]
+            Log.d("TasseDEBUG", "Secondo: $secondo")
+            val contorno= listaContorni[ris%listaContorni.size]
+            Log.d("TasseDEBUG", "Contorno: $contorno")
+
+
             // Configura i bottoni di pagamento
             val menu: TextView= findViewById(R.id.menu)
-            menu.text="Prova,\n ci vuole il random"
+            menu.text=mostraMenu(primo, secondo, contorno)
             val bottonePagamento1: Button= findViewById(R.id.bottone)
             bottonePagamento1.setOnClickListener {
                 dispatchTakePictureIntent(REQUEST_IMAGE_CAPTURE)
@@ -97,6 +136,17 @@ class Mensa : AppCompatActivity() {
             startActivityForResult(takePictureIntent, request)
         } catch (e: ActivityNotFoundException) {
         }
+    }
+
+    private fun mostraMenu(primo: Piatto, secondo: Piatto, contorno: Piatto): String{
+        var ris: StringBuilder= StringBuilder()
+        ris.append("Primo: ${primo.nome}")
+        ris.append("\n")
+        ris.append("Secondo: ${secondo.nome}")
+        ris.append("\n")
+        ris.append("Contorno: ${contorno.nome}")
+        ris.append("\n")
+        return ris.toString()
     }
 
 }

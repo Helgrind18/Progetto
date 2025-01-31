@@ -22,122 +22,169 @@
         android:visibility="visible" />
 
     <LinearLayout
-        android:id="@+id/link_container"
-        android:layout_width="wrap_content"
+        android:id="@+id/siti"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:gravity="center"
         android:orientation="vertical">
 
-        <!-- Primo link con testo descrittivo -->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:visibility="visible"
+            android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/SitoUnical"
-                android:layout_width="wrap_content"
+                android:id="@+id/sitoUnical"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="Sito Unical"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_margin="10dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="18sp"
+                android:visibility="visible"
+                android:text="SITO D'ATENEO"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
 
-            <TextView
-                android:id="@+id/TWSitoUnical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:text="https://www.unical.it"
-                android:textColor="@android:color/holo_blue_light"
-                android:textSize="14sp" />
+            <Button
+                android:id="@+id/bottoneSito"
+                android:layout_marginTop="20dp"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:text="Clicca qui!"
+                android:visibility="visible"
+                android:backgroundTint="@color/rosso_bordeaux"
+                android:layout_gravity="center"
+                app:cornerRadius="8dp" android:textColor="@color/white"/>
+
         </LinearLayout>
 
-        <!-- Secondo link con testo descrittivo -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="16dp">
-
-            <TextView
-                android:id="@+id/TWPortaleStudenti"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="Portale Studenti"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/TWSoscr"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:text="https://soscr.unical.it"
-                android:textColor="@android:color/holo_blue_light"
-                android:textSize="14sp" />
-        </LinearLayout>
+        <View
+            android:id="@+id/sep1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/black"
+            android:visibility="visible"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
+            android:visibility="visible">
 
             <TextView
-                android:id="@+id/Instagram"
-                android:layout_width="wrap_content"
+                android:id="@+id/Soscr"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="Instagram"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:visibility="visible"
+                android:text="PORTALE SOSCR"
+                android:textAlignment="center"
 
-            <TextView
-                android:id="@+id/TWInstagram"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:text="https://www.instagram.com/unical_official/"
-                android:textColor="@android:color/holo_blue_light"
-                android:textSize="14sp" />
+                android:layout_margin="10dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/bottonesoscr"
+                android:layout_marginTop="20dp"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:text="Clicca qui!"
+                android:visibility="visible"
+                android:backgroundTint="@color/rosso_bordeaux"
+                android:layout_gravity="center"
+                app:cornerRadius="8dp"
+                android:textColor="@color/white"/>
         </LinearLayout>
+
+        <View
+            android:id="@+id/sep2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/black"
+            android:visibility="visible"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="16dp">
-
+            android:visibility="visible">
             <TextView
-                android:id="@+id/X"
-                android:layout_width="wrap_content"
+                android:id="@+id/insta"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="4dp"
-                android:text="Portale X"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:visibility="visible"
+                android:layout_margin="10dp"
+                android:textAlignment="center"
+                android:text="PAGINA INSTAGRAM"
+                android:layout_gravity="center"
+                android:textColor="@color/black"/>
 
-            <TextView
-                android:id="@+id/TWX"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:minHeight="48dp"
-                android:text="https://x.com/UniCalPortale/status/1640303607147905026"
-                android:textColor="@android:color/holo_blue_light"
-                android:textSize="14sp" />
+            <Button
+                android:id="@+id/bottoneinsta"
+                android:layout_marginTop="20dp"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:text="Clicca qui!"
+                android:visibility="visible"
+                android:backgroundTint="@color/rosso_bordeaux"
+                android:layout_gravity="center"
+                app:cornerRadius="8dp"
+                android:textColor="@color/white"/>
         </LinearLayout>
+
+        <View
+            android:id="@+id/sep3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/black"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+            <TextView
+                android:id="@+id/twitter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif-condensed"
+                android:visibility="visible"
+                android:text="PROFILO X"
+                android:textAlignment="center"
+                android:layout_margin="10dp"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/bottoneTwitter"
+                android:layout_marginTop="20dp"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:text="Clicca qui!"
+                android:visibility="visible"
+                android:backgroundTint="@color/rosso_bordeaux"
+                android:layout_gravity="center"
+                app:cornerRadius="8dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/sep4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/black"
+            android:visibility="visible"/>
 
     </LinearLayout>
 
