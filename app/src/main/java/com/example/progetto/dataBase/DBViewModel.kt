@@ -10,6 +10,7 @@ import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.Piatto
 import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.RelazioneStudenteSegueCorsi
@@ -29,6 +30,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     private val relazioneCDLCorsoDAO =
         DataBaseApp.getDatabase(application).getRelazioneCDLCorsoDao()
     private val corsoDiLaureaDAO = DataBaseApp.getDatabase(application).getCDLDao()
+    private val piattoDAO = DataBaseApp.getDatabase(application).getPiattoDao()
 
     //STUDENTE
 
@@ -260,6 +262,24 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getMedia(matricola: Int): Double? {
+        return try {
+            relazioneStudenteCorsoDAO.getMedia(matricola)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getMediaPonderata(matricola: Int): Double? {
+        return try {
+            relazioneStudenteCorsoDAO.getMediaPonderata(matricola)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
     //CDL
 
     fun getAll(): LiveData<List<CorsoDiLaurea>> = corsoDiLaureaDAO.getAll()
@@ -329,6 +349,52 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             null
         }
     }
+
+//// PIATTO
+
+    fun inserisciPiatto(piatto: Piatto) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                piattoDAO.inserisciPiatto(piatto)
+                Log.d("DBViewModelDEBUG", "Piatto inserito nel database")
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del piatto", e)
+            }
+        }
+    }
+
+    fun eliminaPiatto(piatto: Piatto) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                piattoDAO.rimuoviPiatto(piatto)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'eliminazione dello studente", e)
+            }
+        }
+    }
+
+    fun getPiatti(): LiveData<List<Piatto>> {
+        return piattoDAO.getAll()
+    }
+
+    fun getPiattiByTipo(tipo: Int): List<Piatto>? {
+        return try {
+            piattoDAO.getPiattiByTipo(tipo)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
+
+    fun getPiattoById(id: Int): Piatto? {
+        return try {
+            piattoDAO.getPiattoById(id)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            null
+        }
+    }
 }
+
 
 

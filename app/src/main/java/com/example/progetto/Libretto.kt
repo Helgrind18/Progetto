@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.RelazioneStudenteCorso
+import com.example.progetto.Entity.Studente
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,81 +38,77 @@ class Libretto : AppCompatActivity() {
 
         dbViewModel = DBViewModel(application)
         var lista: List<RelazioneStudenteCorso> = emptyList()
-        val username= intent.getIntExtra("username",1)
-
+        val username = intent.getIntExtra("username", 1)
+        var studente: Studente =
+            Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
         lifecycleScope.launch {
             Log.d("TasseDEBUG", "Inizio query per studente")
-            // Esegui la query di database su un thread di I/O
-            lista = withContext(Dispatchers.IO) {
-                dbViewModel.getEsamiDiStudente(username)!!  // Query al database
-            }
-            Log.d("TasseDEBUG", "Risultato query: $lista")
-
-
-            val media: Double = calcolaMedia(lista)
-            val mediaPonderata: Double= calcolaMediaPonderata(lista, dbViewModel)
-            Log.d("MEDIE", "MEDIE CALCOLATE $media, $mediaPonderata" )
-            val info: TextView = findViewById(R.id.infoEsame)
-            info.text = testoInfo(username, media, mediaPonderata, lista)
-
-            /*
-            gestisciProgressBar(lista.size)
-
-             */
-        }
-
-    }
-
-    private fun calcolaMedia(lista: List<RelazioneStudenteCorso>): Double {
-        var somma = 0.0
-        for (c in lista) {
-            somma += c.voto
-        }
-        return somma / lista.size
-    }
-
-    private fun calcolaMediaPonderata(lista: List<RelazioneStudenteCorso>, dbViewModel: DBViewModel): Double {
-        var somma: Double = 0.0
-        var sommaCFU: Double= 0.0
-        for (c in lista) {
-            val cfu: Int= trovaCFU(c.corsoId, dbViewModel)
-            if (cfu==0){
-                Log.d("ZERO", "C'è uno zero in corrispondenza di ${c.corsoId}")
-            }
-            somma += c.voto * cfu
-            sommaCFU+= cfu
-        }
-        return (somma/sommaCFU)
-    }
-
-    private fun trovaCFU(id: Int, db: DBViewModel): Int{
-        var cfu: Int= 0
-        lifecycleScope.launch{
-            withContext(Dispatchers.IO) {
-                cfu = withContext(Dispatchers.IO) {
-                    db.getCorsoById(id)!!.CFU // Query al database
+            try {
+                studente = withContext(Dispatchers.IO) {
+                    dbViewModel.studenteByMatricola(username)!!
                 }
-                Log.d("ZEROCFU", "Risultato query: $cfu con corso $id")
+                Log.d("TasseDEBUG", "Risultato studente: $studente")
+            } catch (e: Exception) {
+                Log.e("TasseDEBUG", "Errore nel recupero studente", e)
+            }
+
+            try {
+                lista = withContext(Dispatchers.IO) {
+                    dbViewModel.getEsamiDiStudente(username)!!
+                }
+                Log.d("TasseDEBUG", "Risultato esami: $lista")
+                gestisciProgressBar(lista.size)
+            } catch (e: Exception) {
+                Log.e("TasseDEBUG", "Errore nel recupero esami", e)
+            }
+
+            try {
+                val media = withContext(Dispatchers.IO) {
+                    dbViewModel.getMedia(studente.matricola) ?: 0.0
+                }
+                Log.d("TasseDEBUG", "Risultato media: $media")
+                try {
+                    val mediaPonderata = withContext(Dispatchers.IO) {
+                        dbViewModel.getMediaPonderata(studente.matricola) ?: 0.0
+                    }
+                    Log.d("TasseDEBUG", "Risultato media ponderata: $mediaPonderata")
+                    val info: TextView = findViewById(R.id.infoLibretto)
+                    info.text = testoInfo(username, media, mediaPonderata, lista)
+
+
+                } catch (e: Exception) {
+                    Log.e("TasseDEBUG", "Errore nel recupero media ponderata", e)
+                }
+
+            } catch (e: Exception) {
+                Log.e("TasseDEBUG", "Errore nel recupero media", e)
             }
         }
-        return cfu
+
 
     }
 
-    private fun testoInfo(username: Int, media: Double, mediaPonderata: Double, lista: List<RelazioneStudenteCorso>): String {
-     var ris: StringBuilder= StringBuilder()
-     ris.append("Esami superati: ${lista.size}")
-     ris.append("Media: $media")
-     ris.append("Media ponderata: $mediaPonderata")
-    return ris.toString()
+    private fun testoInfo(
+        username: Int,
+        media: Double,
+        mediaPonderata: Double,
+        lista: List<RelazioneStudenteCorso>
+    ): String {
+        var ris: StringBuilder = StringBuilder()
+        ris.append("Esami superati: ${lista.size}")
+        ris.append("Media: $media")
+        ris.append("Media ponderata: $mediaPonderata")
+        Log.d("TasseDEBUG", "Testo info: ${ris.toString()}")
+        return ris.toString()
     }
 
-    private fun gestisciProgressBar(size: Int){
-        val progress: ProgressBar= findViewById(R.id.progresso)
+    private fun gestisciProgressBar(size: Int) {
+        val progress: ProgressBar = findViewById(R.id.progresso)
         progress.visibility = ProgressBar.VISIBLE
         Handler(Looper.getMainLooper()).postDelayed({
-            progress.visibility = View.GONE
-            progress.progress=size
+            //progress.visibility = View.GONE
+            progress.progress = size
         }, 100)
     }
+
 }

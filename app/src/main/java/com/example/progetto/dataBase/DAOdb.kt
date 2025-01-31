@@ -11,6 +11,7 @@ import com.example.progetto.Entity.Aula
 import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.Piatto
 import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.Studente
@@ -68,7 +69,6 @@ interface StudenteDao {
     fun getPastiEffettuati(matricola: Int): Int?
 
 }
-
 
 @Dao
 interface AulaDao{
@@ -143,17 +143,6 @@ interface RelazioneStudenteCorsoDao {
         @Query("SELECT r.corsoId FROM RelazioneStudenteCorso r WHERE r.matricola = :matricola")
         fun getCorsiDiStudente(matricola: Int): List<Int>?
 
-
-
-/*
-        // Recupera tutti gli studenti iscritti a un corso dato
-        @Transaction
-        @Query("SELECT r.matricola FROM RelazioneStudenteCorso r WHERE r.corsoId = :corsoId")
-        fun getStudentiDiCorso(corsoId: Int): List<Int>
-*/
-
-
-
         //Recupera tutti i corsi seguiti da uno studente in un determinato giorno
         @Transaction
         @Query("SELECT r.aula FROM RelazioneStudenteCorso r where r.giorno = :giorno")
@@ -198,10 +187,28 @@ interface RelazioneStudenteCorsoDao {
                 "AND (anno = :anno -s.annoImmatricolazione+1)<=c.anno AND r.prenotazione = 1"
         )
         fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>?
+
+        //Calcola la media aritmetica dello studente
+        @Transaction
+        @Query("SELECT  AVG(r.voto) " +
+                "FROM RelazioneStudenteCorso r, Corso c " +
+                "WHERE r.matricola = :matricola " +
+                "AND r.corsoId = c.corsoId " +
+                "AND r.voto >= 18 " +
+                "GROUP BY r.matricola")
+        fun getMedia(matricola: Int): Double?
+
+
+        //Calcola la media ponderata dello studente
+        @Transaction
+        @Query("SELECT  SUM(r.voto*c.CFU) / SUM(c.CFU) " +
+                "FROM RelazioneStudenteCorso r, Corso c " +
+                "WHERE r.matricola = :matricola " +
+                "AND r.corsoId = c.corsoId " +
+                "AND r.voto >= 18 " +
+                "GROUP BY r.matricola")
+        fun getMediaPonderata(matricola: Int): Double?
 }
-
-
-
 
 @Dao
 interface RelazioneCDLCorsoDao {
@@ -226,6 +233,25 @@ interface RelazioneCDLCorsoDao {
     @Query("SELECT DISTINCT c.* FROM RelazioneCDLCorso r, CorsoDiLaurea c WHERE r.corsoId = :corso " +
             "AND r.corsoLaureaId = c.corsoLaureaId")
     fun getCDLDiCorso(corso: Int): List<CorsoDiLaurea>?
+}
 
+@Dao
+interface PiattoDao{
+    @Query("SELECT * FROM Piatto")
+    fun getAll(): LiveData<List<Piatto>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun inserisciPiatto(piatto: Piatto)
+
+    @Delete
+    fun rimuoviPiatto(piatto: Piatto)
+
+    //Recupera il piatto dall'id
+    @Query("SELECT * FROM Piatto p WHERE p.piattoId = :id")
+    fun getPiattoById(id: Int): Piatto?
+
+    //Recupera i piatti per tipo
+    @Query("SELECT * FROM Piatto p WHERE p.tipo = :tipo")
+    fun getPiattiByTipo(tipo: Int): List<Piatto>?
 }
 
