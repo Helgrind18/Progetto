@@ -38,7 +38,7 @@ class Tasse : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
         val username = intent.getIntExtra("username", 1)
         val data: Calendar = Calendar.getInstance()
-        val mese: Int = data.get(Calendar.MONTH) + 1
+        val mese: Int = data.get(Calendar.MONTH)
 
 
         lifecycleScope.launch {
