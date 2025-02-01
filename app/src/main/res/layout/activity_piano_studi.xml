@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PianoStudi"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="match_parent"
@@ -19,5 +20,118 @@
         android:textColor="@color/white"
         android:background="@color/rosso_bordeaux"
         android:visibility="visible"/>
+
+    <View
+        android:id="@+id/sepPsTop"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@android:color/white" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:text="ESAMI PRIMO ANNO"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    android:fontFamily="sans-serif-black"
+                    android:textColor="@color/white"
+                    android:background="@color/rosso_bordeaux"
+                    android:visibility="visible"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/lista1anno"
+                    android:layout_width="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        <TextView
+            android:id="@+id/sepPS1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/white"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="ESAMI SECONDO ANNO"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/white"
+                android:background="@color/rosso_bordeaux"
+                android:visibility="visible"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lista2anno"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sepPS2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="25sp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/white"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:text="ESAMI TERZO ANNO"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:fontFamily="sans-serif-black"
+                android:textColor="@color/white"
+                android:background="@color/rosso_bordeaux"
+                android:visibility="visible"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lista3anno"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>

@@ -1,28 +1,20 @@
 package com.example.progetto.Esami
 
-import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.R
-import com.example.progetto.dataBase.DBViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-class EsamiAdapter() : ListAdapter<RelazioneStudenteCorso, EsamiAdapter.EsamiViewHolder>(DIFF_CALLBACK) {
+
+class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, RelazioneStudenteCorsoAdapter.EsamiViewHolder>(DIFF_CALLBACK) {
 
     override fun onBindViewHolder(holder: EsamiViewHolder, position: Int) {
         val esame = getItem(position)

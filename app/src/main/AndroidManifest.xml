@@ -18,9 +18,13 @@
         android:theme="@style/Theme.Progetto"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityRiutilizzabile"
+            android:exported="false" />
+        <activity
             android:name=".Esami.AppelliPrenotati"
             android:exported="false" />
-        <activity android:name=".Esami.AppelliDisponibili"
+        <activity
+            android:name=".Esami.AppelliDisponibili"
             android:exported="false" />
         <activity
             android:name=".AreeBiblioteca.Prestiti_Personali"

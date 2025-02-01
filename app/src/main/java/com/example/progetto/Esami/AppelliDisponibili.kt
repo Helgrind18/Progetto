@@ -16,7 +16,7 @@ import java.util.Calendar
 class AppelliDisponibili : AppCompatActivity() {
 
     private lateinit var dbViewModel: DBViewModel
-    private lateinit var esamiAdapter: EsamiAdapter
+    private lateinit var esamiAdapter: RelazioneStudenteCorsoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class AppelliDisponibili : AppCompatActivity() {
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
-        esamiAdapter = EsamiAdapter()
+        esamiAdapter = RelazioneStudenteCorsoAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = esamiAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
