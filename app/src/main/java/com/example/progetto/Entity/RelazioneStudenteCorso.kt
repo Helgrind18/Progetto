@@ -19,4 +19,5 @@ data class RelazioneStudenteCorso(
     @ColumnInfo(name = "prenotazione") var prenotazione: Int // Indica se l'esame è stato prenotato o meno
                                                                 //1 = studente prenotato per un esame
                                                                 //0 = studente non prenotato per un esame
+
 )

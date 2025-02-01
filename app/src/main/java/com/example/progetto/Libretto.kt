@@ -23,9 +23,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class Libretto : AppCompatActivity() {
-
     private lateinit var dbViewModel: DBViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -74,8 +72,6 @@ class Libretto : AppCompatActivity() {
                     Log.d("TasseDEBUG", "Risultato media ponderata: $mediaPonderata")
                     val info: TextView = findViewById(R.id.infoLibretto)
                     info.text = testoInfo(username, media, mediaPonderata, lista)
-
-
                 } catch (e: Exception) {
                     Log.e("TasseDEBUG", "Errore nel recupero media ponderata", e)
                 }

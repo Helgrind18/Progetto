@@ -143,28 +143,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Creazione dei corsi
+
         val corso = listOf(
-            Corso(id = 1, nome = "Ingegneria del Software", CFU = 12, anno = 3),
-            Corso(id = 2, nome = "Basi di Dati", CFU = 9, anno = 3),
-            Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6, anno = 3),
-            Corso(id = 4, nome = "Analisi Matematica 1", CFU = 9, anno = 1),
-            Corso(id = 5, nome = "Fisica 1", CFU = 6, anno = 1),
-            Corso(id = 6, nome = "Programmazione 1", CFU = 12, anno = 1),
-            Corso(id = 7, nome = "Sistemi Operativi", CFU = 9, anno = 2),
-            Corso(id = 8, nome = "Ingegneria del Web", CFU = 6, anno = 2),
-            Corso(id = 9, nome = "Algoritmi e Strutture Dati", CFU = 12, anno = 2),
-            Corso(id = 10, nome = "Calcolo Numerico", CFU = 6, anno = 3),
-            Corso(id = 11, nome = "Intelligenza Artificiale", CFU = 9, anno = 3),
-            Corso(id = 12, nome = "Sicurezza Informatica", CFU = 6, anno = 3),
-            Corso(id = 13, nome = "Economia Aziendale", CFU = 6, anno = 1),
-            Corso(id = 14, nome = "Reti di Telecomunicazioni", CFU = 9, anno = 2),
-            Corso(id = 15, nome = "Progettazione Software", CFU = 9, anno = 3),
-            Corso(id = 16, nome = "Sviluppo Mobile", CFU = 6, anno = 3),
-            Corso(id = 17, nome = "Elaborazione di Immagini", CFU = 6, anno = 3),
-            Corso(id = 18, nome = "Matematica Discreta", CFU = 9, anno = 1)
+            Corso(id = 1, nome = "Ingegneria del Software", CFU = 12, semestre = 1, anno = 3, descrizione = "Il corso fornisce conoscenze sui principi, le metodologie e gli strumenti dell'ingegneria del software."),
+            Corso(id = 2, nome = "Basi di Dati", CFU = 9, semestre = 2, anno = 3, descrizione = "Si studiano i fondamenti delle basi di dati, con particolare attenzione ai modelli relazionali e SQL."),
+            Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6, semestre = 1, anno = 3, descrizione = "Il corso introduce i principi delle reti di calcolatori, i protocolli di comunicazione e la sicurezza delle reti."),
+            Corso(id = 4, nome = "Analisi Matematica 1", CFU = 9, semestre = 1, anno = 1, descrizione = "Studio delle funzioni reali, limiti, derivate, integrali e serie numeriche."),
+            Corso(id = 5, nome = "Fisica 1", CFU = 6, semestre = 2, anno = 1, descrizione = "Fondamenti di meccanica classica, dinamica e termodinamica."),
+            Corso(id = 6, nome = "Programmazione 1", CFU = 12, semestre = 1, anno = 1, descrizione = "Introduzione alla programmazione con focus su algoritmi e strutture dati di base."),
+            Corso(id = 7, nome = "Sistemi Operativi", CFU = 9, semestre = 2, anno = 2, descrizione = "Approfondimento sui principi e le funzionalità dei sistemi operativi moderni."),
+            Corso(id = 8, nome = "Ingegneria del Web", CFU = 6, semestre = 1, anno = 2, descrizione = "Tecnologie e metodologie per la progettazione e lo sviluppo di applicazioni web."),
+            Corso(id = 9, nome = "Algoritmi e Strutture Dati", CFU = 12, semestre = 2, anno = 2, descrizione = "Studio degli algoritmi avanzati e delle strutture dati fondamentali."),
+            Corso(id = 10, nome = "Calcolo Numerico", CFU = 6, semestre = 1, anno = 3, descrizione = "Tecniche numeriche per la risoluzione di problemi matematici e computazionali."),
+            Corso(id = 11, nome = "Intelligenza Artificiale", CFU = 9, semestre = 2, anno = 3, descrizione = "Introduzione alle tecniche di AI, machine learning e reti neurali."),
+            Corso(id = 12, nome = "Sicurezza Informatica", CFU = 6, semestre = 1, anno = 3, descrizione = "Principi di sicurezza informatica, crittografia e protezione dei sistemi."),
+            Corso(id = 13, nome = "Economia Aziendale", CFU = 6, semestre = 2, anno = 1, descrizione = "Fondamenti di economia e gestione aziendale."),
+            Corso(id = 14, nome = "Reti di Telecomunicazioni", CFU = 9, semestre = 1, anno = 2, descrizione = "Analisi delle reti di telecomunicazione e delle loro architetture."),
+            Corso(id = 15, nome = "Progettazione Software", CFU = 9, semestre = 2, anno = 3, descrizione = "Metodologie e strumenti per la progettazione di sistemi software complessi."),
+            Corso(id = 16, nome = "Sviluppo Mobile", CFU = 6, semestre = 1, anno = 3, descrizione = "Introduzione allo sviluppo di applicazioni mobili per Android e iOS."),
+            Corso(id = 17, nome = "Elaborazione di Immagini", CFU = 6, semestre = 2, anno = 3, descrizione = "Tecniche di elaborazione e analisi delle immagini digitali."),
+            Corso(id = 18, nome = "Matematica Discreta", CFU = 9, semestre = 1, anno = 1, descrizione = "Studio delle strutture discrete, teoria dei grafi e combinatoria.")
         )
 
-// Inserimento dei corsi nel database usando forEach
+        // Inserimento dei corsi nel database usando forEach
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {

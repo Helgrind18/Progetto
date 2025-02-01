@@ -1,6 +1,7 @@
 package com.example.progetto
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,9 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class ActivityRiutilizzabile : AppCompatActivity() {
-
     private lateinit var dbViewModel: DBViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,9 +29,21 @@ class ActivityRiutilizzabile : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
         val nomeCorso: TextView = findViewById(R.id.nomeCorso)
         nomeCorso.text = intent.getStringExtra("nome")
-        var corso: Corso= Corso(0,"",0,0)
+        var corso: Corso = Corso(0,"",0,0,0,"")
         val id = intent.getIntExtra("id", 1)
-
+        lifecycleScope.launch {
+            Log.d("ActivityRiutilizzabileDEBUG", "Inizio query ")
+            try {
+                corso = withContext(Dispatchers.IO) {
+                    dbViewModel.getCorsoById(id)!!
+                }
+                val desc: TextView = findViewById(R.id.DescCorso)
+                desc.text = descrizioneCorso(corso)
+                Log.d("ActivityRiutilizzabileDEBUG", "Risultato corso: $corso")
+            }catch (e: Exception){
+                Log.e("ActivityRiutilizzabileDEBUG", "Errore nel recupero corso", e)
+            }
+        }
 
     }
 
@@ -41,6 +52,8 @@ class ActivityRiutilizzabile : AppCompatActivity() {
         ris.append("CFU: ${corso.CFU}")
         ris.append("\n")
         ris.append("CFU: ${corso.id}")
+        ris.append("\n")
+        ris.append("Descrizione: ${corso.descrizione}")
         ris.append("\n")
         return ris.toString()
     }

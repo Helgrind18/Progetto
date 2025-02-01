@@ -9,5 +9,7 @@ data class Corso(
     @ColumnInfo(name = "corsoId") @PrimaryKey val id: Int,
     val nome: String,
     val CFU: Int,
-    val anno: Int
+    val semestre: Int,
+    val anno: Int,
+    val descrizione: String
 )
