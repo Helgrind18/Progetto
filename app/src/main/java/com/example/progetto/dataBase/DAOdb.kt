@@ -154,6 +154,11 @@ interface RelazioneStudenteCorsoDao {
                 " where r.matricola = :matricola AND r.voto >= 18 AND r.corsoId = c.corsoId")
         fun getEsamiDiStudente(matricola: Int): List<RelazioneStudenteCorso>?
 
+        @Transaction
+        @Query("SELECT r.* FROM RelazioneStudenteCorso r, Corso c" +
+                " where r.matricola = :matricola AND r.corsoId = c.corsoId")
+        fun getEsamiDiStudenteLD(matricola: Int): LiveData<List<RelazioneStudenteCorso>>?
+
         //Recupera tutti gli esami che uno studente ancora non ha sostenuto
         @Transaction
         @Query("SELECT c.* FROM RelazioneStudenteCorso r, Corso c where " +

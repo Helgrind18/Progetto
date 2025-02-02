@@ -208,193 +208,206 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getEsamiDiStudente(matricola: Int): List<RelazioneStudenteCorso>? {
+    fun getEsamiDiStudenteLD(matricola: Int): LiveData<List<RelazioneStudenteCorso>>? {
         return try {
-            relazioneStudenteCorsoDAO.getEsamiDiStudente(matricola)
+            relazioneStudenteCorsoDAO.getEsamiDiStudenteLD(matricola)
         } catch (e: Exception) {
             Log.e("DBViewModelDEBUG", "Errore durante la query", e)
             null
         }
     }
 
-    fun getEsamiDaStudente(matricola: Int): LiveData<List<Corso>>? {
-        return try {
-            relazioneStudenteCorsoDAO.getEsamiDaFareStudente(matricola)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    fun getEsamiDaFareDiUnAnno(matricola: Int, anno: Int): LiveData<List<Corso>>? {
-        return try {
-            relazioneStudenteCorsoDAO.getEsamiDaFareDiUnAnno(matricola, anno)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    fun getEsamiDaFareCompatibili(matricola: Int, anno: Int): LiveData<List<Corso>>? {
-        return try {
-            relazioneStudenteCorsoDAO.getEsamiDaFareCompatibili(matricola, anno)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    fun getEsamiPrenotabili(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>? {
-        return try {
-            relazioneStudenteCorsoDAO.getEsamiPrenotabili(matricola, anno)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>? {
-        return try {
-            relazioneStudenteCorsoDAO.getEsamiPrenotati(matricola, anno)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    fun getMedia(matricola: Int): Double? {
-        return try {
-            relazioneStudenteCorsoDAO.getMedia(matricola)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    fun getMediaPonderata(matricola: Int): Double? {
-        return try {
-            relazioneStudenteCorsoDAO.getMediaPonderata(matricola)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    //CDL
-
-    fun getAll(): LiveData<List<CorsoDiLaurea>> = corsoDiLaureaDAO.getAll()
-
-    fun inserisciCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                corsoDiLaureaDAO.inserisciCorsoDiLaurea(corsoDiLaurea)
-                Log.d("DBViewModelDEBUG", "Corso inserito nel database")
+        fun getEsamiDiStudente(matricola: Int): List<RelazioneStudenteCorso>? {
+            return try {
+                relazioneStudenteCorsoDAO.getEsamiDiStudente(matricola)
             } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del corso", e)
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
             }
         }
-    }
 
-    fun rimuoviCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
-        viewModelScope.launch(Dispatchers.IO) {
-            corsoDiLaureaDAO.rimuoviCorsoDiLaurea(corsoDiLaurea)
-        }
-    }
-
-    fun getCDLById(id: Int): LiveData<CorsoDiLaurea>? {
-        return try {
-            corsoDiLaureaDAO.getCDLById(id)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    //// RELAZIONE CDL - CORSO
-
-    fun inserisciRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                relazioneCDLCorsoDAO.inserisciRelazione(relazione)
-                Log.d("DBViewModelDEBUG", "inserisciRelazioneCDLCorso inserito nel database")
+        fun getEsamiDaStudente(matricola: Int): LiveData<List<Corso>>? {
+            return try {
+                relazioneStudenteCorsoDAO.getEsamiDaFareStudente(matricola)
             } catch (e: Exception) {
-                Log.e(
-                    "DBViewModelDEBUG",
-                    "Errore durante l'inserimento inserisciRelazioneCDLCorso",
-                    e
-                )
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
             }
         }
-    }
 
-    fun rimuoviRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
-        viewModelScope.launch {
-            try {
-                relazioneCDLCorsoDAO.rimuoviRelazione(relazione)
+        fun getEsamiDaFareDiUnAnno(matricola: Int, anno: Int): LiveData<List<Corso>>? {
+            return try {
+                relazioneStudenteCorsoDAO.getEsamiDaFareDiUnAnno(matricola, anno)
             } catch (e: Exception) {
-                Log.e(
-                    "DBViewModelDEBUG",
-                    "Errore durante l'eliminazione rimuoviRelazioneCDLCorso",
-                    e
-                )
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
             }
         }
-    }
 
-    fun getCorsiDiCDL(cdl: String): List<Corso>? {
-        return try {
-            relazioneCDLCorsoDAO.getCorsiDiCDL(cdl)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
+        fun getEsamiDaFareCompatibili(matricola: Int, anno: Int): LiveData<List<Corso>>? {
+            return try {
+                relazioneStudenteCorsoDAO.getEsamiDaFareCompatibili(matricola, anno)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
         }
-    }
+
+        fun getEsamiPrenotabili(
+            matricola: Int,
+            anno: Int
+        ): LiveData<List<RelazioneStudenteCorso>>? {
+            return try {
+                relazioneStudenteCorsoDAO.getEsamiPrenotabili(matricola, anno)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
+
+        fun getEsamiPrenotati(matricola: Int, anno: Int): LiveData<List<RelazioneStudenteCorso>>? {
+            return try {
+                relazioneStudenteCorsoDAO.getEsamiPrenotati(matricola, anno)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
+
+        fun getMedia(matricola: Int): Double? {
+            return try {
+                relazioneStudenteCorsoDAO.getMedia(matricola)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
+
+        fun getMediaPonderata(matricola: Int): Double? {
+            return try {
+                relazioneStudenteCorsoDAO.getMediaPonderata(matricola)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
+
+        //CDL
+
+        fun getAll(): LiveData<List<CorsoDiLaurea>> = corsoDiLaureaDAO.getAll()
+
+        fun inserisciCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    corsoDiLaureaDAO.inserisciCorsoDiLaurea(corsoDiLaurea)
+                    Log.d("DBViewModelDEBUG", "Corso inserito nel database")
+                } catch (e: Exception) {
+                    Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del corso", e)
+                }
+            }
+        }
+
+        fun rimuoviCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
+            viewModelScope.launch(Dispatchers.IO) {
+                corsoDiLaureaDAO.rimuoviCorsoDiLaurea(corsoDiLaurea)
+            }
+        }
+
+        fun getCDLById(id: Int): LiveData<CorsoDiLaurea>? {
+            return try {
+                corsoDiLaureaDAO.getCDLById(id)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
+
+        //// RELAZIONE CDL - CORSO
+
+        fun inserisciRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    relazioneCDLCorsoDAO.inserisciRelazione(relazione)
+                    Log.d("DBViewModelDEBUG", "inserisciRelazioneCDLCorso inserito nel database")
+                } catch (e: Exception) {
+                    Log.e(
+                        "DBViewModelDEBUG",
+                        "Errore durante l'inserimento inserisciRelazioneCDLCorso",
+                        e
+                    )
+                }
+            }
+        }
+
+        fun rimuoviRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
+            viewModelScope.launch {
+                try {
+                    relazioneCDLCorsoDAO.rimuoviRelazione(relazione)
+                } catch (e: Exception) {
+                    Log.e(
+                        "DBViewModelDEBUG",
+                        "Errore durante l'eliminazione rimuoviRelazioneCDLCorso",
+                        e
+                    )
+                }
+            }
+        }
+
+        fun getCorsiDiCDL(cdl: String): List<Corso>? {
+            return try {
+                relazioneCDLCorsoDAO.getCorsiDiCDL(cdl)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
 
 //// PIATTO
 
-    fun inserisciPiatto(piatto: Piatto) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                piattoDAO.inserisciPiatto(piatto)
-                Log.d("DBViewModelDEBUG", "Piatto inserito nel database")
+        fun inserisciPiatto(piatto: Piatto) {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    piattoDAO.inserisciPiatto(piatto)
+                    Log.d("DBViewModelDEBUG", "Piatto inserito nel database")
+                } catch (e: Exception) {
+                    Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del piatto", e)
+                }
+            }
+        }
+
+        fun eliminaPiatto(piatto: Piatto) {
+            viewModelScope.launch(Dispatchers.IO) {
+                try {
+                    piattoDAO.rimuoviPiatto(piatto)
+                } catch (e: Exception) {
+                    Log.e("DBViewModelDEBUG", "Errore durante l'eliminazione dello studente", e)
+                }
+            }
+        }
+
+        fun getPiatti(): LiveData<List<Piatto>> {
+            return piattoDAO.getAll()
+        }
+
+        fun getPiattiByTipo(tipo: Int): List<Piatto>? {
+            return try {
+                piattoDAO.getPiattiByTipo(tipo)
             } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del piatto", e)
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
+
+        fun getPiattoById(id: Int): Piatto? {
+            return try {
+                piattoDAO.getPiattoById(id)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
             }
         }
     }
 
-    fun eliminaPiatto(piatto: Piatto) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                piattoDAO.rimuoviPiatto(piatto)
-            } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante l'eliminazione dello studente", e)
-            }
-        }
-    }
-
-    fun getPiatti(): LiveData<List<Piatto>> {
-        return piattoDAO.getAll()
-    }
-
-    fun getPiattiByTipo(tipo: Int): List<Piatto>? {
-        return try {
-            piattoDAO.getPiattiByTipo(tipo)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-
-    fun getPiattoById(id: Int): Piatto? {
-        return try {
-            piattoDAO.getPiattoById(id)
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-            null
-        }
-    }
-}
 
 
 

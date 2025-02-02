@@ -42,7 +42,25 @@
         android:max="25"
         android:min="0"
         android:progressBackgroundTint="@color/blu_moonstone"
-        android:progressTint="@color/hunyadi_yellow"/>
+        android:progressTint="@color/hunyadi_yellow"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Lista Esami"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/white"
+        android:background="@color/rosso_bordeaux"
+        android:visibility="visible"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista"

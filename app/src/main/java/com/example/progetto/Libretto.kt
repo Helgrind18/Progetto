@@ -1,5 +1,6 @@
 package com.example.progetto
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,10 +14,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.progetto.AreeBiblioteca.LibroAdapter
 import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.Studente
+import com.example.progetto.Esami.EsameAdapter
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,6 +34,8 @@ class Libretto : AppCompatActivity() {
 
 
     private lateinit var dbViewModel: DBViewModel
+    private lateinit var esameListAdapter: EsameAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,6 +51,17 @@ class Libretto : AppCompatActivity() {
         val username = intent.getIntExtra("username", 1)
         var studente: Studente =
             Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
+
+        val recyclerView = findViewById<RecyclerView>(R.id.lista)
+        esameListAdapter = EsameAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = esameListAdapter
+        dbViewModel.getEsamiDiStudenteLD(username)?.observe(
+            this,
+            Observer{ esami -> esameListAdapter.submitList(esami)
+            })
+
+
         lifecycleScope.launch {
             Log.d("TasseDEBUG", "Inizio query per studente")
             try {
