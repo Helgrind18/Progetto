@@ -18,6 +18,9 @@
         android:theme="@style/Theme.Progetto"
         tools:targetApi="31">
         <activity
+            android:name=".AreeBiblioteca.Area_Biblioteca_Riutlizzabile"
+            android:exported="false" />
+        <activity
             android:name=".ActivityRiutilizzabile"
             android:exported="false" />
         <activity

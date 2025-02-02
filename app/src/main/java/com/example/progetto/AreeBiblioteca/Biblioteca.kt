@@ -46,65 +46,67 @@ class Biblioteca : AppCompatActivity() {
         // Inizio inserimento libri
         inserisciLibri()
 
-        /*
-        bottonePersonale.setOnClickListener{
-            val intent = Intent(this, Prestiti_Personali::class.java).apply {
-                putExtra("username", username)
-            }
-            startActivity(intent)
-        }
-         */
+        val linguistica: String= "linguistica"
 
         bottoneLinguistica.setOnClickListener {
             val intent = Intent(this, Area_Linguistica::class.java).apply {
+                intent.putExtra("area", linguistica)
             }
             startActivity(intent)
         }
 
         bottoneMatematica.setOnClickListener {
             val intent = Intent(this, Area_Matematica::class.java).apply {
+                intent.putExtra("area", "Matematica")
             }
             startActivity(intent)
         }
 
         bottoneInformatica.setOnClickListener {
             val intent = Intent(this, Area_Informatica::class.java).apply {
+                intent.putExtra("area", "Informatica")
             }
             startActivity(intent)
         }
 
         bottoneGiuridico.setOnClickListener {
             val intent = Intent(this, Area_Giuridica::class.java).apply {
+                intent.putExtra("area", "Giuridico")
             }
             startActivity(intent)
         }
 
         bottoneEconomico.setOnClickListener {
             val intent = Intent(this, Area_Economica::class.java).apply {
+                intent.putExtra("area", "Economica")
             }
             startActivity(intent)
         }
 
         bottoneStorico.setOnClickListener {
             val intent = Intent(this, Area_Storica::class.java).apply {
+                intent.putExtra("area", "Storico")
             }
             startActivity(intent)
         }
 
         bottoneFilosofico.setOnClickListener {
             val intent = Intent(this, Area_Filosofica::class.java).apply {
+                intent.putExtra("area", "Filosofico")
             }
             startActivity(intent)
         }
 
         bottonePsicologico.setOnClickListener {
             val intent = Intent(this, Area_Psicologica::class.java).apply {
+                intent.putExtra("area", "Psicologico")
             }
             startActivity(intent)
         }
 
         bottonePedagogico.setOnClickListener {
             val intent = Intent(this, Area_Pedagogica::class.java).apply {
+                intent.putExtra("area", "Pedagogico")
             }
             startActivity(intent)
         }

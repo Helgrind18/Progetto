@@ -37,8 +37,15 @@ class ActivityRiutilizzabile : AppCompatActivity() {
                 corso = withContext(Dispatchers.IO) {
                     dbViewModel.getCorsoById(id)!!
                 }
-                val desc: TextView = findViewById(R.id.DescCorso)
-                desc.text = descrizioneCorso(corso)
+                val semestre: TextView = findViewById(R.id.TestoSemestre)
+                semestre.text = corso.semestre.toString()
+                val anno: TextView = findViewById(R.id.TestoAnno)
+                anno.text = corso.anno.toString()
+                val cfu: TextView= findViewById(R.id.TestoCFU)
+                cfu.text = corso.CFU.toString()
+                val desc: TextView= findViewById(R.id.TestoDesc)
+                desc.text = corso.descrizione
+
                 Log.d("ActivityRiutilizzabileDEBUG", "Risultato corso: $corso")
             }catch (e: Exception){
                 Log.e("ActivityRiutilizzabileDEBUG", "Errore nel recupero corso", e)
