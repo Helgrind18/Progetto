@@ -44,6 +44,12 @@
         android:progressBackgroundTint="@color/blu_moonstone"
         android:progressTint="@color/hunyadi_yellow"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"/>
+
 
 
 </LinearLayout>
