@@ -45,23 +45,6 @@
         android:progressTint="@color/hunyadi_yellow"
         android:layout_margin="10dp"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:text="Lista Esami"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="25sp"
-        android:fontFamily="sans-serif-black"
-        android:textColor="@color/white"
-        android:background="@color/rosso_bordeaux"
-        android:visibility="visible"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/white" />
-
     <Button
         android:id="@+id/bottoneLista"
         android:layout_marginTop="20dp"
@@ -73,6 +56,25 @@
         android:layout_gravity="center"
         app:cornerRadius="8dp"
         android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/intEsami"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Lista Esami"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/white"
+        android:background="@color/rosso_bordeaux"
+        android:visibility="gone"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white" />
+
 
     <ProgressBar
         android:id="@+id/progressBar"

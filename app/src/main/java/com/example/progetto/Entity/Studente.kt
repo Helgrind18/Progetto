@@ -26,7 +26,7 @@ data class Studente(
         ris+= "NOME:        $nome\n"
         ris+= "COGNOME:  $cognome\n"
         ris+= "MATRICOLA: $matricola\n"
-        ris+= "ANNO DI IMMATRICOLAZIONE $annoImmatricolazione\${$annoImmatricolazione+1}"
+        ris+= "ANNO DI IMMATRICOLAZIONE $annoImmatricolazione"
         ris+= "EMAIL:      $email\n"
         return ris
     }

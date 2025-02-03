@@ -105,12 +105,13 @@ class Libretto : AppCompatActivity() {
 
             val listaBottone: Button = findViewById(R.id.bottoneLista)
             listaBottone.setOnClickListener {
-
+                val listaEs: TextView= findViewById(R.id.intEsami)
                 val progressBar: ProgressBar = findViewById(R.id.progressBar)
                 progressBar.visibility = ProgressBar.VISIBLE
                 Handler(Looper.getMainLooper()).postDelayed({
                     listaBottone.visibility= Button.GONE
                     progressBar.visibility = View.GONE
+                    listaEs.visibility= TextView.VISIBLE
                     recyclerView.visibility= RecyclerView.VISIBLE
                 }, 1000)
             }
@@ -128,9 +129,9 @@ class Libretto : AppCompatActivity() {
         var ris: StringBuilder = StringBuilder()
         ris.append("Esami superati: ${lista.size}")
         ris.append("\n")
-        ris.append("Media: $media")
+        ris.append("Media: ${media}/30.0")
         ris.append("\n")
-        ris.append("Media ponderata: $mediaPonderata")
+        ris.append("Media ponderata: ${mediaPonderata}/30.0")
         ris.append("\n")
         Log.d("TasseDEBUG", "Testo info: ${ris.toString()}")
         return ris.toString()
