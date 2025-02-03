@@ -102,6 +102,18 @@ class Libretto : AppCompatActivity() {
             } catch (e: Exception) {
                 Log.e("TasseDEBUG", "Errore nel recupero media", e)
             }
+
+            val listaBottone: Button = findViewById(R.id.bottoneLista)
+            listaBottone.setOnClickListener {
+
+                val progressBar: ProgressBar = findViewById(R.id.progressBar)
+                progressBar.visibility = ProgressBar.VISIBLE
+                Handler(Looper.getMainLooper()).postDelayed({
+                    listaBottone.visibility= Button.GONE
+                    progressBar.visibility = View.GONE
+                    recyclerView.visibility= RecyclerView.VISIBLE
+                }, 1000)
+            }
         }
 
 

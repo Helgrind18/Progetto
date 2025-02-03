@@ -62,11 +62,33 @@
         android:layout_height="1dp"
         android:background="@color/white" />
 
+    <Button
+        android:id="@+id/bottoneLista"
+        android:layout_marginTop="20dp"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:text="Lista degli esami"
+        android:visibility="visible"
+        android:backgroundTint="@color/verde_opaco"
+        android:layout_gravity="center"
+        app:cornerRadius="8dp"
+        android:textColor="@color/white"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_marginTop="70dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/lista"
         android:layout_width="match_parent"
         android:layout_gravity="center"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
 
 
