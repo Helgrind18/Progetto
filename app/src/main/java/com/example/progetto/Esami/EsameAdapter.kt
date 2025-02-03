@@ -41,7 +41,7 @@ class EsameAdapter(): ListAdapter<RelazioneStudenteCorso, EsameAdapter.EsamiView
         private val sep: View= itemView.findViewById(R.id.sepEL)
 
         fun bind(esame: RelazioneStudenteCorso) {
-            titleTextView.text = esame.corsoId.toString()
+            titleTextView.text = esame.nomeCorso.toString()
 
 
             if (esame.voto!=-1){

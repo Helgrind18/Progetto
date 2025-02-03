@@ -2,6 +2,7 @@ package com.example.progetto.AreeBiblioteca
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -113,532 +114,264 @@ class Biblioteca : AppCompatActivity() {
     }
 
     private fun inserisciLibri() {
-        val libro1 = Libro(name = "Il Signore degli Anelli", autore = "J.R.R. Tolkien", settore = "Fantasy")
-        val libro2 = Libro(name = "Orgoglio e Pregiudizio", autore = "Jane Austen", settore = "Romanzo")
-        val libro3 = Libro(name = "Le Cronache del Ghiaccio e del Fuoco: Il Trono di Spade", autore = "George R.R. Martin", settore = "Fantasy")
-        val libro4 = Libro(name = "1984", autore = "George Orwell", settore = "linguistica")
-        val libro5 = Libro(name = "Il Piccolo Principe", autore = "Antoine de Saint-Exupéry", settore = "linguistica")
-        val libro6 = Libro(name = "Delitto e Castigo", autore = "Fëdor Dostoevskij", settore = "Classico")
-        val libro7 = Libro(name = "Cime tempestose", autore = "Emily Brontë", settore = "Gotico")
-        val libro8 = Libro(name = "L'Odissea", autore = "Omero", settore = "linguistica")
-        val libro9 = Libro(name = "Moby Dick", autore = "Herman Melville", settore = "Avventura")
-        val libro10 = Libro(name = "Il Processo", autore = "Franz Kafka", settore = "linguistica")
-        val libro11 = Libro(name = "Dieci piccoli indiani", autore = "Agatha Christie", settore = "linguistica")
-        val libro12 = Libro(name = "Il Nome della Rosa", autore = "Umberto Eco", settore = "Storico")
-        val libro13 = Libro(name = "Neuromante", autore = "William Gibson", settore = "linguistica")
-        val libro14 = Libro(name = "Fondazione", autore = "Isaac Asimov", settore = "Fantascienza")
-        val libro15 = Libro(name = "Dune", autore = "Frank Herbert", settore = "linguistica")
-        val libro16 = Libro(name = "La struttura delle lingue", autore = "Noam Chomsky", settore = "linguistica")
-        val libro17 = Libro(name = "Introduzione alla linguistica generale", autore = "Ferdinand de Saussure", settore = "linguistica")
-        val libro18 = Libro(name = "Linguistica generale", autore = "Morris Halle", settore = "linguistica")
-        val libro19 = Libro(name = "Language and Mind", autore = "Noam Chomsky", settore = "linguistica")
-        val libro20 = Libro(name = "Semantica e Pragmatica", autore = "Paul Grice", settore = "linguistica")
-        val libro21 = Libro(name = "La lingua come sistema di segni", autore = "Ferdinand de Saussure", settore = "linguistica")
-        val libro22 = Libro(name = "Lingua e cultura", autore = "Edward Sapir", settore = "linguistica")
-        val libro23 = Libro(name = "I segni del linguaggio", autore = "Charles Peirce", settore = "linguistica")
-        val libro24 = Libro(name = "Sintassi delle lingue del mondo", autore = "Joseph Greenberg", settore = "linguistica")
-        val libro25 = Libro(name = "Linguistica cognitiva", autore = "George Lakoff", settore = "linguistica")
-        val libro26 = Libro(name = "Fonologia e fonetica", autore = "Peter Ladefoged", settore = "linguistica")
-        val libro27 = Libro(name = "Lingue e linguaggi", autore = "Roman Jakobson", settore = "linguistica")
-        val libro28 = Libro(name = "Evoluzione del linguaggio", autore = "Derek Bickerton", settore = "linguistica")
-        val libro29 = Libro(name = "Linguistica comparata", autore = "Franz Bopp", settore = "linguistica")
-        val libro30 = Libro(name = "La grammatica universale", autore = "Noam Chomsky", settore = "linguistica")
-        val libro31 = Libro(name = "Teoria della comunicazione", autore = "Roman Jakobson", settore = "linguistica")
-        val libro32 = Libro(name = "Il significato nelle lingue", autore = "Paul Grice", settore = "linguistica")
-        val libro33 = Libro(name = "Linguistica storica", autore = "August Schleicher", settore = "linguistica")
-        val libro34 = Libro(name = "Sociolinguistica", autore = "William Labov", settore = "linguistica")
-        val libro35 = Libro(name = "Psicolinguistica", autore = "Jean Berko Gleason", settore = "linguistica")
-        val libro36 = Libro(name = "Linguaggio e società", autore = "Dell Hymes", settore = "linguistica")
-        val libro37 = Libro(name = "Il potere del linguaggio", autore = "Deborah Tannen", settore = "linguistica")
-        val libro38 = Libro(name = "Traduzione e linguistica", autore = "Eugene Nida", settore = "linguistica")
-        val libro39 = Libro(name = "Grammatica del discorso", autore = "Michael Halliday", settore = "linguistica")
-        val libro40 = Libro(name = "Lingue in contatto", autore = "Uriel Weinreich", settore = "linguistica")
-        val libro41 = Libro(name = "Semiotica e linguistica", autore = "Umberto Eco", settore = "linguistica")
-        val libro42 = Libro(name = "Analisi del testo linguistico", autore = "Teun van Dijk", settore = "linguistica")
-        val libro43 = Libro(name = "Lingue artificiali", autore = "John Quijada", settore = "linguistica")
-        val libro44 = Libro(name = "Pragmatica linguistica", autore = "Stephen Levinson", settore = "linguistica")
-        val libro45 = Libro(name = "Linguaggio e cognizione", autore = "Ray Jackendoff", settore = "linguistica")
 
-        val libro46 = Libro(name = "Clean Code", autore = "Robert C. Martin", settore = "Informatica")
-        val libro47 = Libro(name = "Introduction to Algorithms", autore = "Thomas H. Cormen", settore = "Informatica")
-        val libro48 = Libro(name = "The Pragmatic Programmer", autore = "Andrew Hunt", settore = "Informatica")
-        val libro49 = Libro(name = "Design Patterns", autore = "Erich Gamma", settore = "Informatica")
-        val libro50 = Libro(name = "Artificial Intelligence: A Modern Approach", autore = "Stuart Russell", settore = "Informatica")
-        val libro51 = Libro(name = "Computer Networking: A Top-Down Approach", autore = "James Kurose", settore = "Informatica")
-        val libro52 = Libro(name = "The Mythical Man-Month", autore = "Frederick P. Brooks Jr.", settore = "Informatica")
-        val libro53 = Libro(name = "Structure and Interpretation of Computer Programs", autore = "Harold Abelson", settore = "Informatica")
-        val libro54 = Libro(name = "The Art of Computer Programming", autore = "Donald E. Knuth", settore = "Informatica")
-        val libro55 = Libro(name = "Python Crash Course", autore = "Eric Matthes", settore = "Informatica")
-        val libro56 = Libro(name = "Algorithms", autore = "Robert Sedgewick", settore = "Informatica")
-        val libro57 = Libro(name = "Operating System Concepts", autore = "Abraham Silberschatz", settore = "Informatica")
-        val libro58 = Libro(name = "Code Complete", autore = "Steve McConnell", settore = "Informatica")
-        val libro59 = Libro(name = "Software Engineering", autore = "Ian Sommerville", settore = "Informatica")
-        val libro60 = Libro(name = "Computer Architecture: A Quantitative Approach", autore = "John L. Hennessy", settore = "Informatica")
-        val libro61 = Libro(name = "Artificial Intelligence: Foundations of Computational Agents", autore = "David L. Poole", settore = "Informatica")
-        val libro62 = Libro(name = "Compilers: Principles, Techniques, and Tools", autore = "Alfred V. Aho", settore = "Informatica")
-        val libro63 = Libro(name = "Java: The Complete Reference", autore = "Herbert Schildt", settore = "Informatica")
-        val libro64 = Libro(name = "Design Patterns: Elements of Reusable Object-Oriented Software", autore = "Erich Gamma", settore = "Informatica")
-        val libro65 = Libro(name = "Distributed Systems: Concepts and Design", autore = "George Coulouris", settore = "Informatica")
-        val libro66 = Libro(name = "Introduction to the Theory of Computation", autore = "Michael Sipser", settore = "Informatica")
-        val libro67 = Libro(name = "Modern Operating Systems", autore = "Andrew S. Tanenbaum", settore = "Informatica")
-        val libro68 = Libro(name = "Linux Pocket Guide", autore = "Daniel J. Barrett", settore = "Informatica")
-        val libro69 = Libro(name = "Eloquent JavaScript", autore = "Marijn Haverbeke", settore = "Informatica")
-        val libro70 = Libro(name = "The C Programming Language", autore = "Brian W. Kernighan", settore = "Informatica")
-
-        val libro71 = Libro(name = "Principles of Economics", autore = "N. Gregory Mankiw", settore = "Economica")
-        val libro72 = Libro(name = "The Wealth of Nations", autore = "Adam Smith", settore = "Economica")
-        val libro73 = Libro(name = "Capital in the Twenty-First Century", autore = "Thomas Piketty", settore = "Economica")
-        val libro74 = Libro(name = "Freakonomics", autore = "Steven D. Levitt", settore = "Economica")
-        val libro75 = Libro(name = "The Big Short", autore = "Michael Lewis", settore = "Economica")
-        val libro76 = Libro(name = "The General Theory of Employment, Interest, and Money", autore = "John Maynard Keynes", settore = "Economica")
-        val libro77 = Libro(name = "Thinking, Fast and Slow", autore = "Daniel Kahneman", settore = "Economica")
-        val libro78 = Libro(name = "The Road to Serfdom", autore = "Friedrich Hayek", settore = "Economica")
-        val libro79 = Libro(name = "Das Kapital", autore = "Karl Marx", settore = "Economica")
-        val libro80 = Libro(name = "The Intelligent Investor", autore = "Benjamin Graham", settore = "Economica")
-        val libro81 = Libro(name = "The Origins of Political Order", autore = "Francis Fukuyama", settore = "Economica")
-        val libro82 = Libro(name = "A Random Walk Down Wall Street", autore = "Burton G. Malkiel", settore = "Economica")
-        val libro83 = Libro(name = "Good to Great", autore = "Jim Collins", settore = "Economica")
-        val libro84 = Libro(name = "The Lean Startup", autore = "Eric Ries", settore = "Economica")
-        val libro85 = Libro(name = "The Black Swan", autore = "Nassim Nicholas Taleb", settore = "Economica")
-        val libro86 = Libro(name = "The End of Poverty", autore = "Jeffrey Sachs", settore = "Economica")
-        val libro87 = Libro(name = "Globalization and Its Discontents", autore = "Joseph E. Stiglitz", settore = "Economica")
-        val libro88 = Libro(name = "The New Jim Crow", autore = "Michelle Alexander", settore = "Economica")
-        val libro89 = Libro(name = "Debt: The First 5000 Years", autore = "David Graeber", settore = "Economica")
-        val libro90 = Libro(name = "The Shock Doctrine", autore = "Naomi Klein", settore = "Economica")
-        val libro91 = Libro(name = "The Power of Habit", autore = "Charles Duhigg", settore = "Economica")
-        val libro92 = Libro(name = "Rich Dad Poor Dad", autore = "Robert T. Kiyosaki", settore = "Economica")
-        val libro93 = Libro(name = "Economics in One Lesson", autore = "Henry Hazlitt", settore = "Economica")
-        val libro94 = Libro(name = "The Ascent of Money", autore = "Niall Ferguson", settore = "Economica")
-        val libro95 = Libro(name = "The Four", autore = "Scott Galloway", settore = "Economica")
-        val libro96 = Libro(name = "The Millionaire Next Door", autore = "Thomas J. Stanley", settore = "Economica")
-
-        val libro101 = Libro(name = "The Elements", autore = "Euclid", settore = "Matematica")
-        val libro102 = Libro(name = "Principia Mathematica", autore = "Alfred North Whitehead, Bertrand Russell", settore = "Matematica")
-        val libro103 = Libro(name = "The Princeton Companion to Mathematics", autore = "Timothy Gowers", settore = "Matematica")
-        val libro104 = Libro(name = "Gödel, Escher, Bach: An Eternal Golden Braid", autore = "Douglas Hofstadter", settore = "Matematica")
-        val libro105 = Libro(name = "Mathematics: Its Content, Methods, and Meaning", autore = "A.D. Aleksandrov", settore = "Matematica")
-        val libro106 = Libro(name = "Introduction to Probability", autore = "Dimitri P. Bertsekas, John N. Tsitsiklis", settore = "Matematica")
-        val libro107 = Libro(name = "Calculus", autore = "Michael Spivak", settore = "Matematica")
-        val libro108 = Libro(name = "A Brief History of Time", autore = "Stephen Hawking", settore = "Matematica")
-        val libro109 = Libro(name = "The Art of Computer Programming", autore = "Donald E. Knuth", settore = "Matematica")
-        val libro110 = Libro(name = "Flatland: A Romance of Many Dimensions", autore = "Edwin A. Abbott", settore = "Matematica")
-        val libro111 = Libro(name = "The Feynman Lectures on Physics", autore = "Richard P. Feynman", settore = "Matematica")
-        val libro112 = Libro(name = "The Mathematical Theory of Communication", autore = "Claude E. Shannon, Warren Weaver", settore = "Matematica")
-        val libro113 = Libro(name = "How to Prove It: A Structured Approach", autore = "Daniel Velleman", settore = "Matematica")
-        val libro114 = Libro(name = "The Joy of x: A Guided Tour of Math, from One to Infinity", autore = "Steven Strogatz", settore = "Matematica")
-        val libro115 = Libro(name = "The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography", autore = "Simon Singh", settore = "Matematica")
-        val libro116 = Libro(name = "An Introduction to Mathematical Thinking", autore = "William P. Thurston", settore = "Matematica")
-        val libro117 = Libro(name = "Mathematics for the Nonmathematician", autore = "Morris Kline", settore = "Matematica")
-        val libro118 = Libro(name = "The Metric Tensor", autore = "Michael P. Do Carmo", settore = "Matematica")
-        val libro119 = Libro(name = "Differential Geometry of Curves and Surfaces", autore = "Manfredo P. do Carmo", settore = "Matematica")
-        val libro120 = Libro(name = "Linear Algebra Done Right", autore = "Sheldon Axler", settore = "Matematica")
-        val libro121 = Libro(name = "Concrete Mathematics", autore = "Ronald L. Graham, Donald E. Knuth, Oren Patashnik", settore = "Matematica")
-        val libro122 = Libro(name = "Introduction to Graph Theory", autore = "Douglas B. West", settore = "Matematica")
-        val libro123 = Libro(name = "Calculus of Variations", autore = "I.M. Gelfand, S.V. Fomin", settore = "Matematica")
-        val libro124 = Libro(name = "Number Theory", autore = "David M. Burton", settore = "Matematica")
-        val libro125 = Libro(name = "Topology", autore = "James R. Munkres", settore = "Matematica")
-
-        val libro126 = Libro(name = "Il Contratto", autore = "René David", settore = "Giuridico")
-        val libro127 = Libro(name = "Lezioni di diritto privato", autore = "Giovanni Costa", settore = "Giuridico")
-        val libro128 = Libro(name = "I principi del diritto civile", autore = "Francesco Galgano", settore = "Giuridico")
-        val libro129 = Libro(name = "Manuale di diritto costituzionale", autore = "Giuseppe Branca", settore = "Giuridico")
-        val libro130 = Libro(name = "Diritto penale", autore = "Francesco Salvia", settore = "Giuridico")
-        val libro131 = Libro(name = "Teoria generale del diritto", autore = "Enrico Colombo", settore = "Giuridico")
-        val libro132 = Libro(name = "Diritto internazionale", autore = "Antonio Cassese", settore = "Giuridico")
-        val libro133 = Libro(name = "Introduzione al diritto comparato", autore = "Pierluigi Chiassoni", settore = "Giuridico")
-        val libro134 = Libro(name = "Trattato di diritto civile", autore = "Vittorio Sgroi", settore = "Giuridico")
-        val libro135 = Libro(name = "Il diritto romano", autore = "Giuseppe Chiovenda", settore = "Giuridico")
-        val libro136 = Libro(name = "Manuale di diritto commerciale", autore = "Giuseppe Benacchio", settore = "Giuridico")
-        val libro137 = Libro(name = "Diritto amministrativo", autore = "Sabino Cassese", settore = "Giuridico")
-        val libro138 = Libro(name = "Diritto di famiglia", autore = "Alberto L. A. Zamboni", settore = "Giuridico")
-        val libro139 = Libro(name = "Codice civile commentato", autore = "Giorgio Giampaoletti", settore = "Giuridico")
-        val libro140 = Libro(name = "Il diritto del lavoro", autore = "Giorgio Ghezzi", settore = "Giuridico")
-        val libro141 = Libro(name = "Diritto penale: Parte generale", autore = "Vincenzo Spataro", settore = "Giuridico")
-        val libro142 = Libro(name = "Manuale di diritto tributario", autore = "Giuseppe Zizzo", settore = "Giuridico")
-        val libro143 = Libro(name = "I diritti fondamentali", autore = "Luigi Ferrajoli", settore = "Giuridico")
-        val libro144 = Libro(name = "La costituzione italiana", autore = "Massimo Luciani", settore = "Giuridico")
-        val libro145 = Libro(name = "Diritto commerciale internazionale", autore = "Federico M. Mucci", settore = "Giuridico")
-        val libro146 = Libro(name = "Lezioni di diritto pubblico", autore = "Vittorio Emanuele Orlando", settore = "Giuridico")
-        val libro147 = Libro(name = "Il diritto della concorrenza", autore = "Francesco Sticchi Damiani", settore = "Giuridico")
-        val libro148 = Libro(name = "Storia del diritto medievale", autore = "Giorgio Vasari", settore = "Giuridico")
-        val libro149 = Libro(name = "La giustizia penale", autore = "Giuliano Marini", settore = "Giuridico")
-        val libro150 = Libro(name = "I principi del diritto europeo", autore = "Rainer Arnold", settore = "Giuridico")
-
-        val libro151 = Libro(name = "Storia della Roma antica", autore = "Theodor Mommsen", settore = "Storico")
-        val libro152 = Libro(name = "Le origini della seconda guerra mondiale", autore = "A.J.P. Taylor", settore = "Storico")
-        val libro153 = Libro(name = "Il Medioevo", autore = "Jacques Le Goff", settore = "Storico")
-        val libro154 = Libro(name = "Storia moderna", autore = "Peter N. Stearns", settore = "Storico")
-        val libro155 = Libro(name = "La storia della Grecia antica", autore = "Robin Osborne", settore = "Storico")
-        val libro156 = Libro(name = "Le guerre puniche", autore = "Adrian Goldsworthy", settore = "Storico")
-        val libro157 = Libro(name = "Storia dell'Europa moderna", autore = "Norman Davies", settore = "Storico")
-        val libro158 = Libro(name = "La rivoluzione francese", autore = "Georges Lefebvre", settore = "Storico")
-        val libro159 = Libro(name = "Storia della Cina", autore = "John King Fairbank", settore = "Storico")
-        val libro160 = Libro(name = "La storia delle Crociate", autore = "Steven Runciman", settore = "Storico")
-        val libro161 = Libro(name = "La storia dell'Antica Roma", autore = "Mary Beard", settore = "Storico")
-        val libro162 = Libro(name = "Il risorgimento italiano", autore = "Alessandro Barbero", settore = "Storico")
-        val libro163 = Libro(name = "Storia della Seconda Guerra Mondiale", autore = "Winston Churchill", settore = "Storico")
-        val libro164 = Libro(name = "La guerra dei trent'anni", autore = "C.V. Wedgwood", settore = "Storico")
-        val libro165 = Libro(name = "Storia della filosofia medievale", autore = "Etienne Gilson", settore = "Storico")
-        val libro166 = Libro(name = "La guerra civile americana", autore = "James McPherson", settore = "Storico")
-        val libro167 = Libro(name = "La storia delle civiltà", autore = "Will Durant", settore = "Storico")
-        val libro168 = Libro(name = "Il mondo antico", autore = "M.I. Finley", settore = "Storico")
-        val libro169 = Libro(name = "Le origini del fascismo", autore = "Renzo De Felice", settore = "Storico")
-        val libro170 = Libro(name = "La storia della Russia", autore = "Robert Service", settore = "Storico")
-        val libro171 = Libro(name = "Storia del nazismo", autore = "Ian Kershaw", settore = "Storico")
-        val libro172 = Libro(name = "La storia della Grecia", autore = "N.G.L. Hammond", settore = "Storico")
-        val libro173 = Libro(name = "Il Novecento", autore = "Eric Hobsbawm", settore = "Storico")
-        val libro174 = Libro(name = "La Storia del Cristianesimo", autore = "Jaroslav Pelikan", settore = "Storico")
-        val libro175 = Libro(name = "Il Medioevo e la nascita dell'Europa", autore = "Barbara Tuchman", settore = "Storico")
-
-        val libro176 = Libro(name = "La Repubblica", autore = "Platone", settore = "Filosofico")
-        val libro177 = Libro(name = "Critica della ragion pura", autore = "Immanuel Kant", settore = "Filosofico")
-        val libro178 = Libro(name = "Così parlò Zarathustra", autore = "Friedrich Nietzsche", settore = "Filosofico")
-        val libro179 = Libro(name = "Il mondo come volontà e rappresentazione", autore = "Arthur Schopenhauer", settore = "Filosofico")
-        val libro180 = Libro(name = "Fenomenologia dello spirito", autore = "Georg Wilhelm Friedrich Hegel", settore = "Filosofico")
-        val libro181 = Libro(name = "Meditazioni", autore = "Marco Aurelio", settore = "Filosofico")
-        val libro182 = Libro(name = "La genealogia della morale", autore = "Friedrich Nietzsche", settore = "Filosofico")
-        val libro183 = Libro(name = "La logica", autore = "Aristotele", settore = "Filosofico")
-        val libro184 = Libro(name = "Essere e tempo", autore = "Martin Heidegger", settore = "Filosofico")
-        val libro185 = Libro(name = "Il contratto sociale", autore = "Jean-Jacques Rousseau", settore = "Filosofico")
-        val libro186 = Libro(name = "Critica della ragion pratica", autore = "Immanuel Kant", settore = "Filosofico")
-        val libro187 = Libro(name = "Il discorso sul metodo", autore = "René Descartes", settore = "Filosofico")
-        val libro188 = Libro(name = "La struttura delle rivoluzioni scientifiche", autore = "Thomas S. Kuhn", settore = "Filosofico")
-        val libro189 = Libro(name = "Il capitale", autore = "Karl Marx", settore = "Filosofico")
-        val libro190 = Libro(name = "La società industriale e il suo futuro", autore = "Herbert Marcuse", settore = "Filosofico")
-        val libro191 = Libro(name = "Il problema dell'induzione", autore = "David Hume", settore = "Filosofico")
-        val libro192 = Libro(name = "Trattato di filosofia", autore = "Baruch Spinoza", settore = "Filosofico")
-        val libro193 = Libro(name = "La morale della libertà", autore = "Jean-Paul Sartre", settore = "Filosofico")
-        val libro194 = Libro(name = "Filosofia della scienza", autore = "Karl Popper", settore = "Filosofico")
-        val libro195 = Libro(name = "La dialettica dell'illuminismo", autore = "Theodor W. Adorno", settore = "Filosofico")
-        val libro196 = Libro(name = "Filosofia della storia", autore = "Georg Wilhelm Friedrich Hegel", settore = "Filosofico")
-        val libro197 = Libro(name = "Il pensiero occidentale", autore = "Giovanni Reale", settore = "Filosofico")
-        val libro198 = Libro(name = "La filosofia della libertà", autore = "Rudolf Steiner", settore = "Filosofico")
-        val libro199 = Libro(name = "Logica e linguaggio", autore = "Ludwig Wittgenstein", settore = "Filosofico")
-        val libro200 = Libro(name = "Introduzione alla filosofia", autore = "Niccolò Machiavelli", settore = "Filosofico")
-
-        val libro201 = Libro(name = "L'interpretazione dei sogni", autore = "Sigmund Freud", settore = "Psicologico")
-        val libro202 = Libro(name = "Psicologia delle masse", autore = "Sigmund Freud", settore = "Psicologico")
-        val libro203 = Libro(name = "Il disagio della civiltà", autore = "Sigmund Freud", settore = "Psicologico")
-        val libro204 = Libro(name = "Introduzione alla psicoanalisi", autore = "Sigmund Freud", settore = "Psicologico")
-        val libro205 = Libro(name = "Psicologia e educazione", autore = "John Dewey", settore = "Psicologico")
-        val libro206 = Libro(name = "Il comportamento dei gruppi", autore = "William McDougall", settore = "Psicologico")
-        val libro207 = Libro(name = "La psicologia del bambino", autore = "Jean Piaget", settore = "Psicologico")
-        val libro208 = Libro(name = "Psicologia sociale", autore = "Gordon Allport", settore = "Psicologico")
-        val libro209 = Libro(name = "Psicologia della personalità", autore = "Erik Erikson", settore = "Psicologico")
-        val libro210 = Libro(name = "Psicologia dinamica", autore = "Carl Jung", settore = "Psicologico")
-        val libro211 = Libro(name = "Il comportamento umano", autore = "B.F. Skinner", settore = "Psicologico")
-        val libro212 = Libro(name = "Teoria dell'apprendimento", autore = "Edward Thorndike", settore = "Psicologico")
-        val libro213 = Libro(name = "Psicologia cognitiva", autore = "Ulric Neisser", settore = "Psicologico")
-        val libro214 = Libro(name = "Sviluppo e psicologia del bambino", autore = "Lev Vygotsky", settore = "Psicologico")
-        val libro215 = Libro(name = "La mente sociale", autore = "William McDougall", settore = "Psicologico")
-        val libro216 = Libro(name = "Psicologia delle emozioni", autore = "Paul Ekman", settore = "Psicologico")
-        val libro217 = Libro(name = "Psicologia del lavoro", autore = "Hugo Münsterberg", settore = "Psicologico")
-        val libro218 = Libro(name = "Il pensiero positivo", autore = "Norman Vincent Peale", settore = "Psicologico")
-        val libro219 = Libro(name = "Psicoterapia", autore = "Carl Rogers", settore = "Psicologico")
-        val libro220 = Libro(name = "Psicologia dell'adolescenza", autore = "David Elkind", settore = "Psicologico")
-        val libro221 = Libro(name = "La psiche e il corpo", autore = "Sigmund Freud", settore = "Psicologico")
-        val libro222 = Libro(name = "Teoria della motivazione", autore = "Abraham Maslow", settore = "Psicologico")
-        val libro223 = Libro(name = "Psicologia dell'apprendimento", autore = "B.F. Skinner", settore = "Psicologico")
-        val libro224 = Libro(name = "Psicologia della salute", autore = "Robert Sapolsky", settore = "Psicologico")
-        val libro225 = Libro(name = "Psicologia della comunicazione", autore = "Wilbur Schramm", settore = "Psicologico")
-
-        val libro226 = Libro(name = "Pedagogia", autore = "Giovanni Gentile", settore = "Pedagogico")
-        val libro227 = Libro(name = "La scuola come comunità", autore = "John Dewey", settore = "Pedagogico")
-        val libro228 = Libro(name = "L'educazione come libertà", autore = "Paulo Freire", settore = "Pedagogico")
-        val libro229 = Libro(name = "La pedagogia del futuro", autore = "Maria Montessori", settore = "Pedagogico")
-        val libro230 = Libro(name = "La pedagogia scientifica", autore = "Gianfranco Zavalloni", settore = "Pedagogico")
-        val libro231 = Libro(name = "L'arte dell'insegnamento", autore = "Richard Sennett", settore = "Pedagogico")
-        val libro232 = Libro(name = "Il diritto all'educazione", autore = "Nel Noddings", settore = "Pedagogico")
-        val libro233 = Libro(name = "L'educazione dell'infanzia", autore = "Jean Piaget", settore = "Pedagogico")
-        val libro234 = Libro(name = "Teoria pedagogica", autore = "Erik Erikson", settore = "Pedagogico")
-        val libro235 = Libro(name = "La scuola come agenzia sociale", autore = "Durkheim Emile", settore = "Pedagogico")
-        val libro236 = Libro(name = "Educare alla vita", autore = "Giorgio Santi", settore = "Pedagogico")
-        val libro237 = Libro(name = "La formazione degli insegnanti", autore = "Robert L. Ebel", settore = "Pedagogico")
-        val libro238 = Libro(name = "La psicologia dell'insegnamento", autore = "Lev Vygotsky", settore = "Pedagogico")
-        val libro239 = Libro(name = "Metodi educativi", autore = "Gianfranco Zavalloni", settore = "Pedagogico")
-        val libro240 = Libro(name = "Pedagogia della libertà", autore = "Paulo Freire", settore = "Pedagogico")
-        val libro241 = Libro(name = "Pedagogia e cultura", autore = "John Dewey", settore = "Pedagogico")
-        val libro242 = Libro(name = "L'educazione integrale", autore = "Maria Montessori", settore = "Pedagogico")
-        val libro243 = Libro(name = "Educazione e crescita", autore = "Jean-Jacques Rousseau", settore = "Pedagogico")
-        val libro244 = Libro(name = "Il futuro dell'educazione", autore = "Paulo Freire", settore = "Pedagogico")
-        val libro245 = Libro(name = "Psicopedagogia", autore = "Sabrina D'Angelo", settore = "Pedagogico")
-        val libro246 = Libro(name = "Educazione e inclusività", autore = "Sally Brown", settore = "Pedagogico")
-        val libro247 = Libro(name = "Sociologia dell'educazione", autore = "Pierre Bourdieu", settore = "Pedagogico")
-        val libro248 = Libro(name = "La pedagogia del bambino", autore = "Maria Montessori", settore = "Pedagogico")
-        val libro249 = Libro(name = "L'insegnamento come arte", autore = "Maxine Greene", settore = "Pedagogico")
-        val libro250 = Libro(name = "La didattica delle lingue", autore = "David Nunan", settore = "Pedagogico")
+        val libri = listOf(
+            Libro(name = "Il Signore degli Anelli", autore = "J.R.R. Tolkien", settore = "Fantasy", sinossi = "Un'epica avventura nella Terra di Mezzo, dove un gruppo di eroi deve distruggere un anello magico per salvare il mondo."),
+            Libro(name = "Orgoglio e Pregiudizio", autore = "Jane Austen", settore = "Romanzo", sinossi = "Una storia d'amore e pregiudizi sociali tra Elizabeth Bennet e Mr. Darcy nella società inglese del XIX secolo."),
+            Libro(name = "Le Cronache del Ghiaccio e del Fuoco: Il Trono di Spade", autore = "George R.R. Martin", settore = "Fantasy", sinossi = "Le lotte dinastiche per il Trono di Spade, in un mondo medievale popolato da magia, intrighi e guerre."),
+            Libro(name = "1984", autore = "George Orwell", settore = "Linguistica", sinossi = "Un inquietante futuro distopico dominato da un regime totalitario che controlla ogni aspetto della vita."),
+            Libro(name = "Il Piccolo Principe", autore = "Antoine de Saint-Exupéry", settore = "Linguistica", sinossi = "Un racconto poetico e filosofico sulla vita e sull'amore attraverso gli occhi di un bambino."),
+            Libro(name = "Delitto e Castigo", autore = "Fëdor Dostoevskij", settore = "Classico", sinossi = "La tormentata vicenda di un giovane studente che commette un omicidio e lotta con il senso di colpa."),
+            Libro(name = "Cime tempestose", autore = "Emily Brontë", settore = "Gotico", sinossi = "Una tragica storia d'amore e vendetta ambientata nelle brughiere inglesi."),
+            Libro(name = "L'Odissea", autore = "Omero", settore = "Linguistica", sinossi = "Il leggendario viaggio di Ulisse per tornare a casa dopo la guerra di Troia."),
+            Libro(name = "Moby Dick", autore = "Herman Melville", settore = "Avventura", sinossi = "La caccia ossessiva del capitano Achab contro la balena bianca."),
+            Libro(name = "Il Processo", autore = "Franz Kafka", settore = "Linguistica", sinossi = "Un uomo viene arrestato e processato senza mai conoscere l'accusa, in un mondo assurdo e burocratico."),
+            Libro(name = "Dieci piccoli indiani", autore = "Agatha Christie", settore = "Linguistica", sinossi = "Dieci sconosciuti vengono invitati su un'isola e muoiono misteriosamente uno dopo l'altro."),
+            Libro(name = "Il Nome della Rosa", autore = "Umberto Eco", settore = "Storico", sinossi = "Un monaco e il suo giovane allievo indagano su una serie di omicidi in un'abbazia medievale."),
+            Libro(name = "Neuromante", autore = "William Gibson", settore = "Linguistica", sinossi = "Il romanzo che ha definito il cyberpunk, tra hacker, intelligenze artificiali e realtà virtuale."),
+            Libro(name = "Fondazione", autore = "Isaac Asimov", settore = "Fantascienza", sinossi = "La storia della caduta e rinascita di un impero galattico grazie alla psicostoria."),
+            Libro(name = "Dune", autore = "Frank Herbert", settore = "Linguistica", sinossi = "Un'epopea fantascientifica ambientata su un pianeta desertico, tra intrighi politici e poteri mistici."),
+            Libro(name = "La struttura delle lingue", autore = "Noam Chomsky", settore = "Linguistica", sinossi = "Un'analisi della grammatica universale e delle strutture linguistiche umane."),
+            Libro(name = "Introduzione alla linguistica generale", autore = "Ferdinand de Saussure", settore = "Linguistica", sinossi = "Il testo fondamentale della linguistica moderna."),
+            Libro(name = "Linguistica generale", autore = "Morris Halle", settore = "Linguistica", sinossi = "Una panoramica delle teorie linguistiche e delle loro applicazioni."),
+            Libro(name = "Language and Mind", autore = "Noam Chomsky", settore = "Linguistica", sinossi = "Un'esplorazione della relazione tra linguaggio e pensiero umano."),
+            Libro(name = "Semantica e Pragmatica", autore = "Paul Grice", settore = "Linguistica", sinossi = "Un'analisi del significato e dell'uso del linguaggio nella comunicazione."),
+            Libro(name = "La lingua come sistema di segni", autore = "Ferdinand de Saussure", settore = "Linguistica", sinossi = "Una delle opere fondative della semiotica e della linguistica strutturale."),
+            Libro(name = "Lingua e cultura", autore = "Edward Sapir", settore = "Linguistica", sinossi = "Un'indagine sulle interazioni tra linguaggio, cultura e pensiero."),
+            Libro(name = "I segni del linguaggio", autore = "Charles Peirce", settore = "Linguistica", sinossi = "Un'introduzione alla semiotica e ai segni nel linguaggio."),
+            Libro(name = "Sintassi delle lingue del mondo", autore = "Joseph Greenberg", settore = "Linguistica", sinossi = "Uno studio comparativo sulle strutture sintattiche delle lingue."),
+            Libro(name = "Linguistica cognitiva", autore = "George Lakoff", settore = "Linguistica", sinossi = "Un'esplorazione del rapporto tra linguaggio e cognizione."),
+            Libro(name = "Fonologia e fonetica", autore = "Peter Ladefoged", settore = "Linguistica", sinossi = "Un'analisi scientifica dei suoni del linguaggio umano."),
+            Libro(name = "Lingue e linguaggi", autore = "Roman Jakobson", settore = "Linguistica", sinossi = "Uno studio sulle funzioni e le strutture del linguaggio."),
+            Libro(name = "Evoluzione del linguaggio", autore = "Derek Bickerton", settore = "Linguistica", sinossi = "Un'analisi di come il linguaggio umano si sia evoluto nel tempo."),
+            Libro(name = "Linguistica comparata", autore = "Franz Bopp", settore = "Linguistica", sinossi = "Uno studio comparativo sulle lingue indoeuropee."),
+            Libro(name = "La grammatica universale", autore = "Noam Chomsky", settore = "Linguistica", sinossi = "La teoria della grammatica universale e delle regole innate del linguaggio."),
+            Libro(name = "Teoria della comunicazione", autore = "Roman Jakobson", settore = "Linguistica", sinossi = "Un'analisi dei sei fattori della comunicazione e delle funzioni del linguaggio."),
+            Libro(name = "Il significato nelle lingue", autore = "Paul Grice", settore = "Linguistica", sinossi = "Uno studio sui meccanismi del significato e dell'interpretazione nel linguaggio."),
+            Libro(name = "Linguistica storica", autore = "August Schleicher", settore = "Linguistica", sinossi = "Un'esplorazione dei cambiamenti linguistici nel tempo."),
+            Libro(name = "Sociolinguistica", autore = "William Labov", settore = "Linguistica", sinossi = "Un'analisi del rapporto tra lingua e società."),
+            Libro(name = "Psicolinguistica", autore = "Jean Berko Gleason", settore = "Linguistica", sinossi = "Uno studio sulla relazione tra linguaggio e mente."),
+            Libro(name = "Linguaggio e società", autore = "Dell Hymes", settore = "Linguistica", sinossi = "Un'indagine sociolinguistica sul linguaggio e la comunicazione."),
+            Libro(name = "Il potere del linguaggio", autore = "Deborah Tannen", settore = "Linguistica", sinossi = "Un'analisi dell'influenza del linguaggio nelle relazioni sociali."),
+            Libro(name = "Traduzione e linguistica", autore = "Eugene Nida", settore = "Linguistica", sinossi = "Un'introduzione alla teoria e alla pratica della traduzione."),
+            Libro(name = "Grammatica del discorso", autore = "Michael Halliday", settore = "Linguistica", sinossi = "Uno studio sulla struttura del discorso."),
+            Libro(name = "Lingue in contatto", autore = "Uriel Weinreich", settore = "Linguistica", sinossi = "Un'analisi del fenomeno del bilinguismo."),
+            Libro(name = "Semiotica e linguistica", autore = "Umberto Eco", settore = "Linguistica", sinossi = "Un'analisi approfondita dei segni, del significato e della comunicazione nel linguaggio umano."),
+            Libro(name = "Analisi del testo linguistico", autore = "Teun van Dijk", settore = "Linguistica", sinossi = "Un'esplorazione delle strategie di analisi testuale e del discorso in ambito linguistico e sociale."),
+            Libro(name = "Lingue artificiali", autore = "John Quijada", settore = "Linguistica", sinossi = "Uno studio sulle lingue costruite, la loro struttura e il loro utilizzo nella comunicazione."),
+            Libro(name = "Pragmatica linguistica", autore = "Stephen Levinson", settore = "Linguistica", sinossi = "Un'indagine su come il contesto influisce sul significato e sull'uso del linguaggio."),
+            Libro(name = "Linguaggio e cognizione", autore = "Ray Jackendoff", settore = "Linguistica", sinossi = "Un'analisi della relazione tra struttura linguistica e processi cognitivi umani."),
+            Libro(name = "Clean Code", autore = "Robert C. Martin", settore = "Informatica", sinossi = "Un libro essenziale per gli sviluppatori che vogliono scrivere codice pulito, leggibile e manutenibile."),
+            Libro(name = "Introduction to Algorithms", autore = "Thomas H. Cormen", settore = "Informatica", sinossi = "Un'opera di riferimento sulle strutture dati e algoritmi, con spiegazioni dettagliate e analisi delle complessità."),
+            Libro(name = "The Pragmatic Programmer", autore = "Andrew Hunt", settore = "Informatica", sinossi = "Una guida per diventare programmatori migliori, con consigli pratici su produttività e sviluppo software."),
+            Libro(name = "Design Patterns", autore = "Erich Gamma", settore = "Informatica", sinossi = "Un classico della programmazione orientata agli oggetti, che introduce i design pattern per creare software scalabile e manutenibile."),
+            Libro(name = "Artificial Intelligence: A Modern Approach", autore = "Stuart Russell", settore = "Informatica", sinossi = "Un'introduzione completa all'intelligenza artificiale, dai fondamenti teorici alle applicazioni pratiche."),
+            Libro(name = "Computer Networking: A Top-Down Approach", autore = "James Kurose", settore = "Informatica", sinossi = "Un libro che spiega il funzionamento delle reti informatiche partendo dalle applicazioni fino ai livelli più bassi del networking."),
+            Libro(name = "The Mythical Man-Month", autore = "Frederick P. Brooks Jr.", settore = "Informatica", sinossi = "Una raccolta di saggi sulla gestione dello sviluppo software e sulle problematiche legate alla produttività."),
+            Libro(name = "Structure and Interpretation of Computer Programs", autore = "Harold Abelson", settore = "Informatica", sinossi = "Un libro fondamentale per comprendere i principi della programmazione e della progettazione di software."),
+            Libro(name = "The Art of Computer Programming", autore = "Donald E. Knuth", settore = "Informatica", sinossi = "Un'opera monumentale sull'analisi degli algoritmi e sulle basi teoriche dell'informatica."),
+            Libro(name = "Python Crash Course", autore = "Eric Matthes", settore = "Informatica", sinossi = "Una guida pratica e accessibile per imparare Python e applicarlo nello sviluppo di software."),
+            Libro(name = "Algorithms", autore = "Robert Sedgewick", settore = "Informatica", sinossi = "Un'analisi dettagliata degli algoritmi più utilizzati in informatica, con implementazioni e spiegazioni approfondite."),
+            Libro(name = "Operating System Concepts", autore = "Abraham Silberschatz", settore = "Informatica", sinossi = "Un'introduzione ai sistemi operativi, con dettagli su gestione della memoria, file system e processi."),
+            Libro(name = "Code Complete", autore = "Steve McConnell", settore = "Informatica", sinossi = "Una guida pratica per lo sviluppo software che copre best practices, design e qualità del codice."),
+            Libro(name = "Software Engineering", autore = "Ian Sommerville", settore = "Informatica", sinossi = "Un'introduzione ai principi e alle metodologie dell'ingegneria del software."),
+            Libro(name = "Computer Architecture: A Quantitative Approach", autore = "John L. Hennessy", settore = "Informatica", sinossi = "Uno studio avanzato sull'architettura dei computer e sulle tecniche per ottimizzare le prestazioni hardware."),
+            Libro(name = "Artificial Intelligence: Foundations of Computational Agents", autore = "David L. Poole", settore = "Informatica", sinossi = "Un approfondimento sull'intelligenza artificiale e sui modelli computazionali per la simulazione dell'intelligenza."),
+            Libro(name = "Compilers: Principles, Techniques, and Tools", autore = "Alfred V. Aho", settore = "Informatica", sinossi = "Conosciuto come il 'Libro del Drago', è il testo di riferimento per la teoria e la pratica della compilazione."),
+            Libro(name = "Java: The Complete Reference", autore = "Herbert Schildt", settore = "Informatica", sinossi = "Una guida completa per imparare e approfondire Java, con esempi pratici e dettagliati."),
+            Libro(name = "Design Patterns: Elements of Reusable Object-Oriented Software", autore = "Erich Gamma", settore = "Informatica", sinossi = "Un libro chiave per lo sviluppo software, che illustra i pattern progettuali più utilizzati."),
+            Libro(name = "Distributed Systems: Concepts and Design", autore = "George Coulouris", settore = "Informatica", sinossi = "Un testo di riferimento sui sistemi distribuiti, con spiegazioni su architetture, modelli e protocolli."),
+            Libro(name = "Introduction to the Theory of Computation", autore = "Michael Sipser", settore = "Informatica", sinossi = "Un libro fondamentale sulla teoria della computazione, che copre automi, linguaggi formali e complessità computazionale."),
+            Libro(name = "Modern Operating Systems", autore = "Andrew S. Tanenbaum", settore = "Informatica", sinossi = "Una guida moderna ai sistemi operativi, con esempi pratici e spiegazioni chiare."),
+            Libro(name = "Linux Pocket Guide", autore = "Daniel J. Barrett", settore = "Informatica", sinossi = "Un manuale pratico per utilizzare i comandi più utili di Linux."),
+            Libro(name = "Eloquent JavaScript", autore = "Marijn Haverbeke", settore = "Informatica", sinossi = "Un'introduzione moderna a JavaScript, con esempi interattivi e spiegazioni dettagliate."),
+            Libro(name = "The C Programming Language", autore = "Brian W. Kernighan", settore = "Informatica", sinossi = "Il testo di riferimento per il linguaggio C, scritto dai suoi creatori."),
+            Libro(name = "Principles of Economics", autore = "N. Gregory Mankiw", settore = "Economica", sinossi = "Un'introduzione ai principi fondamentali dell'economia, adatta sia per principianti che per studenti universitari."),
+            Libro(name = "The Wealth of Nations", autore = "Adam Smith", settore = "Economica", sinossi = "Il classico fondamentale che getta le basi per la teoria economica moderna, con l'analisi del mercato e della divisione del lavoro."),
+            Libro(name = "Capital in the Twenty-First Century", autore = "Thomas Piketty", settore = "Economica", sinossi = "Un'analisi della disuguaglianza economica e dei suoi effetti sul capitale e sulla società nel XXI secolo."),
+            Libro(name = "Freakonomics", autore = "Steven D. Levitt", settore = "Economica", sinossi = "Un libro che esplora l'economia comportamentale, analizzando fenomeni sociali attraverso il punto di vista economico."),
+            Libro(name = "The Big Short", autore = "Michael Lewis", settore = "Economica", sinossi = "Una narrazione coinvolgente delle cause e degli eventi che hanno portato alla crisi finanziaria globale del 2008."),
+            Libro(name = "The General Theory of Employment, Interest, and Money", autore = "John Maynard Keynes", settore = "Economica", sinossi = "Il libro che ha fondato la macroeconomia moderna, con teorie sulle politiche economiche e la gestione della disoccupazione."),
+            Libro(name = "Thinking, Fast and Slow", autore = "Daniel Kahneman", settore = "Economica", sinossi = "Un'analisi dei due sistemi di pensiero che guidano il nostro comportamento: il pensiero rapido e intuitivo, e quello lento e razionale."),
+            Libro(name = "The Road to Serfdom", autore = "Friedrich Hayek", settore = "Economica", sinossi = "Un'opera che avverte dei pericoli del centralismo e delle economie pianificate, sostenendo la libertà individuale e l'economia di mercato."),
+            Libro(name = "Das Kapital", autore = "Karl Marx", settore = "Economica", sinossi = "Il lavoro fondamentale che analizza la teoria del valore-lavoro e il funzionamento del capitalismo e le sue contraddizioni."),
+            Libro(name = "The Intelligent Investor", autore = "Benjamin Graham", settore = "Economica", sinossi = "Una guida alla filosofia di investimento di valore, con focus sul lungo periodo e sulla gestione del rischio."),
+            Libro(name = "The Origins of Political Order", autore = "Francis Fukuyama", settore = "Economica", sinossi = "Un'analisi delle origini delle istituzioni politiche, economiche e legali, dalle società tribali alle democrazie moderne."),
+            Libro(name = "A Random Walk Down Wall Street", autore = "Burton G. Malkiel", settore = "Economica", sinossi = "Una panoramica dei mercati finanziari e una critica delle strategie di investimento basate sulla previsione dei mercati."),
+            Libro(name = "Good to Great", autore = "Jim Collins", settore = "Economica", sinossi = "Un'analisi approfondita di come le aziende possono passare da buone a grandi, basata su anni di ricerca e studio."),
+            Libro(name = "The Lean Startup", autore = "Eric Ries", settore = "Economica", sinossi = "Una metodologia per creare startup di successo, basata sull'innovazione continua, il miglioramento rapido e il feedback del cliente."),
+            Libro(name = "The Black Swan", autore = "Nassim Nicholas Taleb", settore = "Economica", sinossi = "Un libro che esplora eventi rari e imprevedibili, chiamati 'Cigni Neri', e il loro impatto sul mondo e sull'economia."),
+            Libro(name = "The End of Poverty", autore = "Jeffrey Sachs", settore = "Economica", sinossi = "Una discussione sulle cause della povertà globale e sulle politiche che potrebbero porvi fine."),
+            Libro(name = "Globalization and Its Discontents", autore = "Joseph E. Stiglitz", settore = "Economica", sinossi = "Una critica alla globalizzazione e alle politiche economiche imposte da organizzazioni come il FMI e la Banca Mondiale."),
+            Libro(name = "The New Jim Crow", autore = "Michelle Alexander", settore = "Economica", sinossi = "Un'analisi della discriminazione razziale negli Stati Uniti e del sistema di giustizia penale come strumento di oppressione."),
+            Libro(name = "Debt: The First 5000 Years", autore = "David Graeber", settore = "Economica", sinossi = "Un viaggio storico attraverso il concetto di debito, esplorando come è stato una forza determinante nelle economie globali."),
+            Libro(name = "The Shock Doctrine", autore = "Naomi Klein", settore = "Economica", sinossi = "Un libro che esplora come le crisi globali sono state sfruttate per attuare politiche economiche neoliberiste."),
+            Libro(name = "The Power of Habit", autore = "Charles Duhigg", settore = "Economica", sinossi = "Una riflessione sul potere delle abitudini nella vita quotidiana e negli ambienti professionali ed economici."),
+            Libro(name = "Rich Dad Poor Dad", autore = "Robert T. Kiyosaki", settore = "Economica", sinossi = "Un libro che mette in discussione le convinzioni tradizionali sulla finanza personale, enfatizzando l'importanza degli investimenti e dell'educazione finanziaria."),
+            Libro(name = "Economics in One Lesson", autore = "Henry Hazlitt", settore = "Economica", sinossi = "Un libro che spiega in modo semplice le leggi economiche fondamentali e le loro implicazioni per la politica economica."),
+            Libro(name = "The Ascent of Money", autore = "Niall Ferguson", settore = "Economica", sinossi = "Una panoramica sulla storia della finanza e del denaro, e su come hanno modellato la nostra società."),
+            Libro(name = "The Four", autore = "Scott Galloway", settore = "Economica", sinossi = "Un'analisi dei quattro colossi tecnologici (Amazon, Apple, Facebook, Google) e del loro impatto sull'economia globale."),
+            Libro(name = "The Millionaire Next Door", autore = "Thomas J. Stanley", settore = "Economica", sinossi = "Un'indagine su come le persone che accumulano ricchezza spesso vivono in modo frugale e discreto."),
+            Libro(name = "The Elements", autore = "Euclid", settore = "Matematica", sinossi = "L'opera fondamentale di Euclide che presenta la geometria come sistema deduttivo, organizzando teoremi e postulati in una struttura logica."),
+            Libro(name = "Principia Mathematica", autore = "Alfred North Whitehead, Bertrand Russell", settore = "Matematica", sinossi = "Una delle opere più influenti della logica e della matematica moderna, che cerca di derivare l'intera matematica dalla logica formale."),
+            Libro(name = "The Princeton Companion to Mathematics", autore = "Timothy Gowers", settore = "Matematica", sinossi = "Una panoramica completa della matematica moderna, comprendente teorie, rami e applicazioni in vari campi."),
+            Libro(name = "Gödel, Escher, Bach: An Eternal Golden Braid", autore = "Douglas Hofstadter", settore = "Matematica", sinossi = "Un'affascinante esplorazione delle connessioni tra matematica, arte e musica, con focus sulla teoria dei sistemi complessi."),
+            Libro(name = "Mathematics: Its Content, Methods, and Meaning", autore = "A.D. Aleksandrov", settore = "Matematica", sinossi = "Una trattazione approfondita dei metodi e dei contenuti principali della matematica, accessibile a studenti e appassionati."),
+            Libro(name = "Introduction to Probability", autore = "Dimitri P. Bertsekas, John N. Tsitsiklis", settore = "Matematica", sinossi = "Un'introduzione completa alla teoria della probabilità, utile sia per studenti che per professionisti del settore."),
+            Libro(name = "Calculus", autore = "Michael Spivak", settore = "Matematica", sinossi = "Un'opera esaustiva sulla teoria del calcolo, adatta per chi desidera una comprensione profonda del calcolo infinitesimale."),
+            Libro(name = "A Brief History of Time", autore = "Stephen Hawking", settore = "Matematica", sinossi = "Un libro che esplora le origini e la natura dell'universo, combinando fisica e matematica in modo accessibile."),
+            Libro(name = "The Art of Computer Programming", autore = "Donald E. Knuth", settore = "Matematica", sinossi = "Una delle opere più complete e influenti in informatica, che tratta algoritmi e tecniche avanzate di programmazione con un rigoroso approccio matematico."),
+            Libro(name = "Flatland: A Romance of Many Dimensions", autore = "Edwin A. Abbott", settore = "Matematica", sinossi = "Un racconto che esplora la geometria in modo innovativo, proponendo una realtà bidimensionale e le sue implicazioni filosofiche."),
+            Libro(name = "The Feynman Lectures on Physics", autore = "Richard P. Feynman", settore = "Matematica", sinossi = "Le famose lezioni di Feynman che coprono concetti di fisica e matematica, spiegati in modo chiaro e coinvolgente."),
+            Libro(name = "The Mathematical Theory of Communication", autore = "Claude E. Shannon, Warren Weaver", settore = "Matematica", sinossi = "Un libro fondamentale sulla teoria dell'informazione, che ha avuto un impatto profondo sulla matematica, la linguistica e l'ingegneria."),
+            Libro(name = "How to Prove It: A Structured Approach", autore = "Daniel Velleman", settore = "Matematica", sinossi = "Un manuale pratico su come affrontare la prova matematica, adatto a chi è alle prime armi con la matematica formale."),
+            Libro(name = "The Joy of x: A Guided Tour of Math, from One to Infinity", autore = "Steven Strogatz", settore = "Matematica", sinossi = "Un'introduzione entusiastica alla bellezza della matematica, che esplora concetti e idee in modo divertente e accessibile."),
+            Libro(name = "The Code Book: The Science of Secrecy from Ancient Egypt to Quantum Cryptography", autore = "Simon Singh", settore = "Matematica", sinossi = "Un'analisi affascinante della crittografia e della matematica che sta dietro alla sicurezza delle comunicazioni."),
+            Libro(name = "An Introduction to Mathematical Thinking", autore = "William P. Thurston", settore = "Matematica", sinossi = "Un'introduzione alla matematica come pensiero logico e deduttivo, non solo come calcolo e numeri."),
+            Libro(name = "Mathematics for the Nonmathematician", autore = "Morris Kline", settore = "Matematica", sinossi = "Un libro che rende la matematica accessibile a chi non ha una formazione matematica, ma vuole comprendere il suo significato e impatto."),
+            Libro(name = "The Metric Tensor", autore = "Michael P. Do Carmo", settore = "Matematica", sinossi = "Un'introduzione alla geometria differenziale e al concetto di tensore metrico, fondamentale per comprendere la relatività e la geometria spaziale."),
+            Libro(name = "Differential Geometry of Curves and Surfaces", autore = "Manfredo P. do Carmo", settore = "Matematica", sinossi = "Un classico che introduce i concetti fondamentali della geometria differenziale, in particolare per quanto riguarda curve e superfici."),
+            Libro(name = "Linear Algebra Done Right", autore = "Sheldon Axler", settore = "Matematica", sinossi = "Un'approfondita introduzione all'algebra lineare, che sfida le convenzioni tradizionali per un approccio più rigoroso e concettuale."),
+            Libro(name = "Concrete Mathematics", autore = "Ronald L. Graham, Donald E. Knuth, Oren Patashnik", settore = "Matematica", sinossi = "Una raccolta di argomenti avanzati e tecniche matematiche, fondamentale per chi si occupa di matematica discreta e informatica."),
+            Libro(name = "Introduction to Graph Theory", autore = "Douglas B. West", settore = "Matematica", sinossi = "Un testo introduttivo alla teoria dei grafi, un campo della matematica discreta che ha applicazioni in molte aree, tra cui informatica e ingegneria."),
+            Libro(name = "Calculus of Variations", autore = "I.M. Gelfand, S.V. Fomin", settore = "Matematica", sinossi = "Un'analisi delle equazioni differenziali e del calcolo delle variazioni, con applicazioni in fisica e ingegneria."),
+            Libro(name = "Number Theory", autore = "David M. Burton", settore = "Matematica", sinossi = "Un classico trattato sulla teoria dei numeri, che esplora i numeri primi, la congruenza e altri concetti fondamentali."),
+            Libro(name = "Topology", autore = "James R. Munkres", settore = "Matematica", sinossi = "Un testo standard sulla topologia, che tratta i concetti fondamentali e le tecniche avanzate utilizzate nella disciplina."),
+            Libro(name = "Il Contratto", autore = "René David", settore = "Giuridico", sinossi = "Un'analisi approfondita del contratto come istituto giuridico, con particolare attenzione agli elementi costitutivi e alle diverse teorie contrattuali."),
+            Libro(name = "Lezioni di diritto privato", autore = "Giovanni Costa", settore = "Giuridico", sinossi = "Un manuale che affronta i principali istituti del diritto privato, come contratti, responsabilità e proprietà, con un approccio teorico e pratico."),
+            Libro(name = "I principi del diritto civile", autore = "Francesco Galgano", settore = "Giuridico", sinossi = "Un'opera che esplora i principi fondamentali del diritto civile, con un focus sul sistema giuridico italiano e le sue applicazioni."),
+            Libro(name = "Manuale di diritto costituzionale", autore = "Giuseppe Branca", settore = "Giuridico", sinossi = "Un manuale completo che analizza la Costituzione italiana, le sue evoluzioni storiche e le principali questioni di diritto costituzionale."),
+            Libro(name = "Diritto penale", autore = "Francesco Salvia", settore = "Giuridico", sinossi = "Un trattato di diritto penale che esamina i principi e le norme applicabili alle infrazioni penali, incluse le teorie delle pene e la responsabilità penale."),
+            Libro(name = "Teoria generale del diritto", autore = "Enrico Colombo", settore = "Giuridico", sinossi = "Un testo che esplora la teoria del diritto come disciplina, analizzando le sue basi, i concetti fondamentali e i modelli interpretativi."),
+            Libro(name = "Diritto internazionale", autore = "Antonio Cassese", settore = "Giuridico", sinossi = "Un'opera che offre una panoramica sul diritto internazionale, coprendo le norme che regolano le relazioni tra Stati, individui e organizzazioni internazionali."),
+            Libro(name = "Introduzione al diritto comparato", autore = "Pierluigi Chiassoni", settore = "Giuridico", sinossi = "Un'introduzione al diritto comparato, che esamina i sistemi giuridici di diverse nazioni e le modalità di confronto tra le diverse tradizioni giuridiche."),
+            Libro(name = "Trattato di diritto civile", autore = "Vittorio Sgroi", settore = "Giuridico", sinossi = "Un trattato completo e dettagliato che analizza i principali settori del diritto civile, dalle obbligazioni al diritto di famiglia."),
+            Libro(name = "Il diritto romano", autore = "Giuseppe Chiovenda", settore = "Giuridico", sinossi = "Un'opera che esplora le origini e lo sviluppo del diritto romano, mettendo in evidenza il suo impatto sulla giurisprudenza moderna."),
+            Libro(name = "Manuale di diritto commerciale", autore = "Giuseppe Benacchio", settore = "Giuridico", sinossi = "Un manuale che analizza i concetti principali del diritto commerciale, come contratti, società e fallimenti, con un focus sulla legislazione italiana."),
+            Libro(name = "Diritto amministrativo", autore = "Sabino Cassese", settore = "Giuridico", sinossi = "Un'analisi approfondita del diritto amministrativo, che regola le relazioni tra gli enti pubblici e i cittadini, e il funzionamento della pubblica amministrazione."),
+            Libro(name = "Diritto di famiglia", autore = "Alberto L. A. Zamboni", settore = "Giuridico", sinossi = "Un trattato sul diritto di famiglia, che analizza le principali problematiche giuridiche legate al matrimonio, alla filiazione e alle relazioni familiari."),
+            Libro(name = "Codice civile commentato", autore = "Giorgio Giampaoletti", settore = "Giuridico", sinossi = "Un commento approfondito al Codice Civile italiano, con spiegazioni dettagliate degli articoli e delle norme più rilevanti."),
+            Libro(name = "Il diritto del lavoro", autore = "Giorgio Ghezzi", settore = "Giuridico", sinossi = "Un manuale che esplora i principi del diritto del lavoro, analizzando il contratto di lavoro, le tutele dei lavoratori e la regolamentazione delle controversie."),
+            Libro(name = "Diritto penale: Parte generale", autore = "Vincenzo Spataro", settore = "Giuridico", sinossi = "Un'analisi della parte generale del diritto penale, che affronta i principi fondamentali della responsabilità penale e le sanzioni previste dal codice penale."),
+            Libro(name = "Manuale di diritto tributario", autore = "Giuseppe Zizzo", settore = "Giuridico", sinossi = "Un manuale che esplora la legislazione tributaria italiana, analizzando la fiscalità, le imposte e i procedimenti relativi alla tassazione."),
+            Libro(name = "I diritti fondamentali", autore = "Luigi Ferrajoli", settore = "Giuridico", sinossi = "Un'analisi dei diritti fondamentali, esplorando il concetto di giustizia e i diritti inviolabili riconosciuti a ogni individuo."),
+            Libro(name = "La costituzione italiana", autore = "Massimo Luciani", settore = "Giuridico", sinossi = "Un'opera che analizza la Costituzione italiana, la sua evoluzione storica e il ruolo fondamentale che ricopre nel sistema giuridico e politico del paese."),
+            Libro(name = "Diritto commerciale internazionale", autore = "Federico M. Mucci", settore = "Giuridico", sinossi = "Un testo che esplora il diritto commerciale internazionale, le norme che regolano il commercio tra Stati e le pratiche giuridiche globali."),
+            Libro(name = "Lezioni di diritto pubblico", autore = "Vittorio Emanuele Orlando", settore = "Giuridico", sinossi = "Un manuale che esplora i principi del diritto pubblico, con particolare attenzione alla struttura dello Stato e alla sua organizzazione."),
+            Libro(name = "Il diritto della concorrenza", autore = "Francesco Sticchi Damiani", settore = "Giuridico", sinossi = "Un trattato che analizza le leggi e le normative relative alla concorrenza, la protezione contro le pratiche anticoncorrenziali e la tutela del mercato."),
+            Libro(name = "Storia del diritto medievale", autore = "Giorgio Vasari", settore = "Giuridico", sinossi = "Un'analisi storica del diritto medievale, con un focus sull'evoluzione delle istituzioni giuridiche e le norme vigenti nel Medioevo."),
+            Libro(name = "La giustizia penale", autore = "Giuliano Marini", settore = "Giuridico", sinossi = "Un'opera che esplora il sistema di giustizia penale, analizzando le procedure legali, il ruolo dei giudici e il trattamento dei reati."),
+            Libro(name = "I principi del diritto europeo", autore = "Rainer Arnold", settore = "Giuridico", sinossi = "Un libro che esplora i principi fondamentali del diritto europeo, le sue istituzioni e le norme che regolano l'Unione Europea e i suoi Stati membri."),
+            Libro(name = "Storia della Roma antica", autore = "Theodor Mommsen", settore = "Storico", sinossi = "Un'analisi approfondita della storia della Roma antica, dalla fondazione alla sua caduta, trattando gli aspetti politici, sociali e culturali."),
+            Libro(name = "Le origini della seconda guerra mondiale", autore = "A.J.P. Taylor", settore = "Storico", sinossi = "Un'interpretazione storica delle cause che hanno portato alla Seconda Guerra Mondiale, analizzando le dinamiche politiche e le scelte dei leader."),
+            Libro(name = "Il Medioevo", autore = "Jacques Le Goff", settore = "Storico", sinossi = "Un'analisi del periodo medievale, esplorando la sua cultura, economia, religione e politica, e il contributo alla formazione della società moderna."),
+            Libro(name = "Storia moderna", autore = "Peter N. Stearns", settore = "Storico", sinossi = "Un quadro completo della storia moderna, dal Rinascimento alla contemporaneità, esplorando le trasformazioni politiche, sociali ed economiche."),
+            Libro(name = "La storia della Grecia antica", autore = "Robin Osborne", settore = "Storico", sinossi = "Un'indagine sulla Grecia antica, dalla sua nascita alla sua ascesa come civiltà dominante, con un focus sulla cultura, filosofia e politica."),
+            Libro(name = "Le guerre puniche", autore = "Adrian Goldsworthy", settore = "Storico", sinossi = "Un'analisi delle guerre puniche tra Roma e Cartagine, esplorando le battaglie cruciali e gli effetti di questi conflitti sulla storia antica."),
+            Libro(name = "Storia dell'Europa moderna", autore = "Norman Davies", settore = "Storico", sinossi = "Una panoramica sulla storia dell'Europa moderna, trattando eventi significativi e il loro impatto sulla configurazione politica ed economica del continente."),
+            Libro(name = "La rivoluzione francese", autore = "Georges Lefebvre", settore = "Storico", sinossi = "Un'analisi della Rivoluzione francese, i suoi eventi e le sue conseguenze sulla politica europea e sulla formazione della società moderna."),
+            Libro(name = "Storia della Cina", autore = "John King Fairbank", settore = "Storico", sinossi = "Un'opera che ripercorre la lunga e affascinante storia della Cina, dalle sue origini antiche ai suoi sviluppi nella Cina moderna."),
+            Libro(name = "La storia delle Crociate", autore = "Steven Runciman", settore = "Storico", sinossi = "Un'analisi delle Crociate, esplorando le cause religiose e politiche, e gli effetti a lungo termine che ebbero sulle relazioni tra cristiani e musulmani."),
+            Libro(name = "La storia dell'Antica Roma", autore = "Mary Beard", settore = "Storico", sinossi = "Un'affascinante ricostruzione della storia di Roma, esplorando le sue radici, la crescita e l'evoluzione di una delle più grandi civiltà della storia."),
+            Libro(name = "Il risorgimento italiano", autore = "Alessandro Barbero", settore = "Storico", sinossi = "Un'analisi del Risorgimento italiano, con un focus sugli eventi, i protagonisti e le tensioni sociali che hanno portato alla formazione dello Stato italiano."),
+            Libro(name = "Storia della Seconda Guerra Mondiale", autore = "Winston Churchill", settore = "Storico", sinossi = "Un racconto epico della Seconda Guerra Mondiale, scritto dal primo ministro britannico Winston Churchill, che analizza gli eventi e le decisioni cruciali del conflitto."),
+            Libro(name = "La guerra dei trent'anni", autore = "C.V. Wedgwood", settore = "Storico", sinossi = "Un'analisi approfondita della Guerra dei Trent'anni, un conflitto devastante che ha segnato la storia dell'Europa nel XVII secolo."),
+            Libro(name = "Storia della filosofia medievale", autore = "Etienne Gilson", settore = "Storico", sinossi = "Un'opera che esplora la filosofia medievale, le sue radici nel pensiero cristiano e le sue implicazioni per lo sviluppo della filosofia occidentale."),
+            Libro(name = "La guerra civile americana", autore = "James McPherson", settore = "Storico", sinossi = "Un'analisi della Guerra Civile Americana, esaminando le sue cause, le battaglie e gli effetti sulla società e sulla politica degli Stati Uniti."),
+            Libro(name = "La storia delle civiltà", autore = "Will Durant", settore = "Storico", sinossi = "Un viaggio attraverso la storia delle grandi civiltà, dal passato remoto fino ai giorni nostri, esplorando le culture che hanno plasmato il mondo."),
+            Libro(name = "Il mondo antico", autore = "M.I. Finley", settore = "Storico", sinossi = "Un'opera che esplora la storia del mondo antico, concentrandosi sulla Grecia, Roma e le altre civiltà del Mediterraneo e del Vicino Oriente."),
+            Libro(name = "Le origini del fascismo", autore = "Renzo De Felice", settore = "Storico", sinossi = "Un'analisi delle origini del fascismo, le sue radici ideologiche e politiche, e il suo impatto sullo sviluppo della politica europea nel XX secolo."),
+            Libro(name = "La storia della Russia", autore = "Robert Service", settore = "Storico", sinossi = "Un'opera che traccia la storia della Russia, dalla sua nascita fino all'era contemporanea, esaminando le sue trasformazioni politiche e sociali."),
+            Libro(name = "Storia del nazismo", autore = "Ian Kershaw", settore = "Storico", sinossi = "Un'analisi del nazismo, le sue origini, le sue ideologie e l'impatto che ha avuto sull'Europa e sul mondo."),
+            Libro(name = "La storia della Grecia", autore = "N.G.L. Hammond", settore = "Storico", sinossi = "Un'opera che esplora la storia della Grecia, dalla sua formazione alle guerre che hanno plasmato la sua civiltà e il suo posto nella storia."),
+            Libro(name = "Il Novecento", autore = "Eric Hobsbawm", settore = "Storico", sinossi = "Un'analisi del XX secolo, con un focus sugli eventi mondiali più significativi e le trasformazioni politiche, sociali ed economiche."),
+            Libro(name = "La Storia del Cristianesimo", autore = "Jaroslav Pelikan", settore = "Storico", sinossi = "Un'opera che esplora la storia del cristianesimo, le sue origini e la sua evoluzione, con un'analisi delle sue principali correnti teologiche."),
+            Libro(name = "Il Medioevo e la nascita dell'Europa", autore = "Barbara Tuchman", settore = "Storico", sinossi = "Un'analisi del Medioevo, con particolare attenzione alla nascita dell'Europa come entità politica e culturale, e le sfide che affrontò."),
+            Libro(name = "La Repubblica", autore = "Platone", settore = "Filosofico", sinossi = "Un'opera fondamentale in cui Platone esplora la giustizia, la politica e la natura dell'anima attraverso il dialogo tra Socrate e altri interlocutori."),
+            Libro(name = "Critica della ragion pura", autore = "Immanuel Kant", settore = "Filosofico", sinossi = "Un'opera chiave della filosofia moderna, in cui Kant analizza i limiti della conoscenza umana e la relazione tra esperienza e razionalità."),
+            Libro(name = "Così parlò Zarathustra", autore = "Friedrich Nietzsche", settore = "Filosofico", sinossi = "Un'opera filosofica in forma di narrazione in cui Nietzsche esplora il concetto dell'Übermensch e critica le convenzioni morali della società."),
+            Libro(name = "Il mondo come volontà e rappresentazione", autore = "Arthur Schopenhauer", settore = "Filosofico", sinossi = "Un'opera che sviluppa la teoria della volontà come forza fondamentale che dà origine a tutte le cose, presentando una visione pessimistica della realtà."),
+            Libro(name = "Fenomenologia dello spirito", autore = "Georg Wilhelm Friedrich Hegel", settore = "Filosofico", sinossi = "Un'opera complessa che traccia il cammino dello spirito umano dalla percezione immediata alla consapevolezza di sé, attraversando la storia della filosofia e della cultura."),
+            Libro(name = "Meditazioni", autore = "Marco Aurelio", settore = "Filosofico", sinossi = "Un'opera che raccoglie i pensieri e le riflessioni di Marco Aurelio, imperatore romano, sulla vita, il destino e la pratica della filosofia stoica."),
+            Libro(name = "La genealogia della morale", autore = "Friedrich Nietzsche", settore = "Filosofico", sinossi = "Un'analisi delle origini della morale, con un'attenzione particolare alla nozione di 'buono' e 'cattivo' e il suo sviluppo nella cultura occidentale."),
+            Libro(name = "La logica", autore = "Aristotele", settore = "Filosofico", sinossi = "L'opera fondante della logica, in cui Aristotele esplora i principi del ragionamento valido, l'inferenza e il sillogismo."),
+            Libro(name = "Essere e tempo", autore = "Martin Heidegger", settore = "Filosofico", sinossi = "Un'opera che indaga il significato dell'essere, analizzando l'esperienza umana e la temporalità come elementi fondamentali dell'esistenza."),
+            Libro(name = "Il contratto sociale", autore = "Jean-Jacques Rousseau", settore = "Filosofico", sinossi = "Un trattato politico che esplora la natura della libertà e della giustizia, proponendo la teoria del contratto sociale come fondamento della legittimità politica."),
+            Libro(name = "Critica della ragion pratica", autore = "Immanuel Kant", settore = "Filosofico", sinossi = "Un'opera che esplora la moralità, definendo la legge morale come universale e autonoma, con una riflessione sull'etica e la libertà."),
+            Libro(name = "Il discorso sul metodo", autore = "René Descartes", settore = "Filosofico", sinossi = "Un'opera che getta le basi del metodo scientifico moderno, incentrato sul dubbio e sulla ricerca di certezze assolute, come nel famoso 'Cogito, ergo sum'."),
+            Libro(name = "La struttura delle rivoluzioni scientifiche", autore = "Thomas S. Kuhn", settore = "Filosofico", sinossi = "Un'opera che ha rivoluzionato la comprensione della scienza, descrivendo come le rivoluzioni scientifiche avvengano attraverso cambiamenti di paradigma."),
+            Libro(name = "Il capitale", autore = "Karl Marx", settore = "Filosofico", sinossi = "Un'analisi economica e filosofica del capitalismo, in cui Marx esplora le dinamiche di produzione, lavoro e sfruttamento all'interno della società capitalistica."),
+            Libro(name = "La società industriale e il suo futuro", autore = "Herbert Marcuse", settore = "Filosofico", sinossi = "Un'analisi critica della società industriale moderna, incentrata sulle dinamiche di alienazione e controllo sociale nella società capitalista."),
+            Libro(name = "Il problema dell'induzione", autore = "David Hume", settore = "Filosofico", sinossi = "Un'opera che esplora il problema dell'induzione, mettendo in discussione la validità della conoscenza scientifica e il fondamento delle leggi naturali."),
+            Libro(name = "Trattato di filosofia", autore = "Baruch Spinoza", settore = "Filosofico", sinossi = "Un'opera che espone la filosofia della natura e della mente, con un'analisi sulla razionalità e l'interconnessione di tutte le cose."),
+            Libro(name = "La morale della libertà", autore = "Jean-Paul Sartre", settore = "Filosofico", sinossi = "Un'opera che esplora il concetto di libertà nella filosofia esistenzialista, ponendo l'accento sulla responsabilità individuale e la scelta."),
+            Libro(name = "Filosofia della scienza", autore = "Karl Popper", settore = "Filosofico", sinossi = "Un'opera che analizza la filosofia della scienza, introducendo il concetto di falsificabilità come criterio per distinguere la scienza dalla pseudoscienza."),
+            Libro(name = "La dialettica dell'illuminismo", autore = "Theodor W. Adorno", settore = "Filosofico", sinossi = "Un'analisi critica dell'Illuminismo, che esplora come la razionalità e la modernità possano condurre alla dominazione e alla repressione."),
+            Libro(name = "Filosofia della storia", autore = "Georg Wilhelm Friedrich Hegel", settore = "Filosofico", sinossi = "Un'opera che descrive la storia come il progresso della libertà e della coscienza umana attraverso le contraddizioni e le risoluzioni dialettiche."),
+            Libro(name = "Il pensiero occidentale", autore = "Giovanni Reale", settore = "Filosofico", sinossi = "Un'opera che traccia la storia del pensiero filosofico occidentale, dall'antichità alla filosofia contemporanea."),
+            Libro(name = "La filosofia della libertà", autore = "Rudolf Steiner", settore = "Filosofico", sinossi = "Un'opera che esplora il concetto di libertà, con un focus sulla libertà spirituale e la responsabilità personale."),
+            Libro(name = "Logica e linguaggio", autore = "Ludwig Wittgenstein", settore = "Filosofico", sinossi = "Un'opera che esplora le connessioni tra linguaggio e realtà, e la logica come strumento per comprendere il significato delle affermazioni."),
+            Libro(name = "Introduzione alla filosofia", autore = "Niccolò Machiavelli", settore = "Filosofico", sinossi = "Un'opera che offre una panoramica sulla filosofia politica e la teoria del potere, focalizzandosi sul pensiero politico di Machiavelli."),
+            Libro(name = "L'interpretazione dei sogni", autore = "Sigmund Freud", settore = "Psicologico", sinossi = "L'opera fondamentale di Freud in cui esplora il significato dei sogni e la loro connessione con l'inconscio."),
+            Libro(name = "Psicologia delle masse", autore = "Sigmund Freud", settore = "Psicologico", sinossi = "Un'analisi della psicologia collettiva, esplorando come le masse influenzano il comportamento individuale."),
+            Libro(name = "Il disagio della civiltà", autore = "Sigmund Freud", settore = "Psicologico", sinossi = "Un'opera in cui Freud analizza le tensioni tra le esigenze dell'individuo e le restrizioni imposte dalla società."),
+            Libro(name = "Introduzione alla psicoanalisi", autore = "Sigmund Freud", settore = "Psicologico", sinossi = "Un'introduzione alla teoria psicoanalitica, in cui Freud espone i concetti fondamentali del suo pensiero."),
+            Libro(name = "Psicologia e educazione", autore = "John Dewey", settore = "Psicologico", sinossi = "Un'opera che esplora l'interazione tra psicologia ed educazione, enfatizzando l'importanza dell'esperienza e dell'apprendimento attivo."),
+            Libro(name = "Il comportamento dei gruppi", autore = "William McDougall", settore = "Psicologico", sinossi = "Un'analisi delle dinamiche psicologiche che influenzano il comportamento di gruppo."),
+            Libro(name = "La psicologia del bambino", autore = "Jean Piaget", settore = "Psicologico", sinossi = "Un'opera che esplora lo sviluppo cognitivo e psicologico del bambino, analizzando le fasi del pensiero infantile."),
+            Libro(name = "Psicologia sociale", autore = "Gordon Allport", settore = "Psicologico", sinossi = "Un'opera che esplora il comportamento sociale, l'influenza del gruppo e la psicologia delle relazioni interpersonali."),
+            Libro(name = "Psicologia della personalità", autore = "Erik Erikson", settore = "Psicologico", sinossi = "Un'analisi dello sviluppo della personalità umana, esplorando le sue fasi e i conflitti che definiscono la crescita psicologica."),
+            Libro(name = "Psicologia dinamica", autore = "Carl Jung", settore = "Psicologico", sinossi = "Un'opera in cui Jung esplora la psicologia analitica, concentrandosi sull'inconscio collettivo e le archetipi."),
+            Libro(name = "Il comportamento umano", autore = "B.F. Skinner", settore = "Psicologico", sinossi = "Un'analisi del comportamento umano attraverso la lente del comportamentismo, enfatizzando il ruolo dell'ambiente."),
+            Libro(name = "Teoria dell'apprendimento", autore = "Edward Thorndike", settore = "Psicologico", sinossi = "Un'opera che esplora le leggi dell'apprendimento e le sue applicazioni nel comportamento umano."),
+            Libro(name = "Psicologia cognitiva", autore = "Ulric Neisser", settore = "Psicologico", sinossi = "Un'opera che esplora come le persone percepiscono, apprendono e memorizzano informazioni."),
+            Libro(name = "Sviluppo e psicologia del bambino", autore = "Lev Vygotsky", settore = "Psicologico", sinossi = "Un'opera che esplora come il contesto sociale e culturale influenzano lo sviluppo cognitivo dei bambini."),
+            Libro(name = "La mente sociale", autore = "William McDougall", settore = "Psicologico", sinossi = "Un'analisi del comportamento umano in relazione alle forze sociali e come l'individuo si integra nella società."),
+            Libro(name = "Psicologia delle emozioni", autore = "Paul Ekman", settore = "Psicologico", sinossi = "Un'analisi delle emozioni umane, esplorando come vengono espressi e percepiti universalmente."),
+            Libro(name = "Psicologia del lavoro", autore = "Hugo Münsterberg", settore = "Psicologico", sinossi = "Un'opera che esplora le applicazioni della psicologia nel contesto lavorativo, enfatizzando la selezione e il rendimento sul posto di lavoro."),
+            Libro(name = "Il pensiero positivo", autore = "Norman Vincent Peale", settore = "Psicologico", sinossi = "Un'opera che esplora il potere del pensiero positivo e come esso può influenzare la vita di una persona."),
+            Libro(name = "Psicoterapia", autore = "Carl Rogers", settore = "Psicologico", sinossi = "Un'opera che espone le basi della psicoterapia centrata sulla persona, enfatizzando il ruolo della relazione terapeutica."),
+            Libro(name = "Psicologia dell'adolescenza", autore = "David Elkind", settore = "Psicologico", sinossi = "Un'analisi dello sviluppo psicologico durante l'adolescenza, affrontando tematiche come l'identità e la crescita sociale."),
+            Libro(name = "La psiche e il corpo", autore = "Sigmund Freud", settore = "Psicologico", sinossi = "Un'opera in cui Freud esplora la connessione tra la mente e il corpo e il ruolo dell'inconscio nelle malattie psicosomatiche."),
+            Libro(name = "Teoria della motivazione", autore = "Abraham Maslow", settore = "Psicologico", sinossi = "Un'opera che espone la teoria della motivazione umana, inclusa la famosa piramide dei bisogni."),
+            Libro(name = "Psicologia dell'apprendimento", autore = "B.F. Skinner", settore = "Psicologico", sinossi = "Un'opera che esplora i principi del comportamentismo e il modo in cui gli individui apprendono attraverso rinforzi e punizioni."),
+            Libro(name = "Psicologia della salute", autore = "Robert Sapolsky", settore = "Psicologico", sinossi = "Un'analisi delle interazioni tra psicologia, salute fisica e stress, con un focus sulle risposte fisiologiche agli stimoli psicologici."),
+            Libro(name = "Psicologia della comunicazione", autore = "Wilbur Schramm", settore = "Psicologico", sinossi = "Un'opera che esplora i meccanismi psicologici alla base della comunicazione, con un'analisi dei processi di ricezione e interpretazione dei messaggi."),
+            Libro(name = "Pedagogia", autore = "Giovanni Gentile", settore = "Pedagogico", sinossi = "Un'opera fondamentale che esplora la teoria pedagogica e l'importanza dell'educazione nella società."),
+        Libro(name = "La scuola come comunità", autore = "John Dewey", settore = "Pedagogico", sinossi = "Un'opera che sottolinea l'importanza della scuola come luogo di crescita e comunità per il miglioramento sociale."),
+        Libro(name = "L'educazione come libertà", autore = "Paulo Freire", settore = "Pedagogico", sinossi = "Un libro che esplora la libertà educativa come un processo di empowerment per gli studenti."),
+        Libro(name = "La pedagogia del futuro", autore = "Maria Montessori", settore = "Pedagogico", sinossi = "Un'opera in cui Montessori esplora la pedagogia innovativa e l'approccio individualizzato per l'educazione dei bambini."),
+        Libro(name = "La pedagogia scientifica", autore = "Gianfranco Zavalloni", settore = "Pedagogico", sinossi = "Un'analisi della pedagogia come scienza che deve essere basata sull'osservazione e sull'esperienza."),
+        Libro(name = "L'arte dell'insegnamento", autore = "Richard Sennett", settore = "Pedagogico", sinossi = "Un'opera che esplora il ruolo dell'insegnante come artigiano e la sua capacità di lavorare in modo creativo con gli studenti."),
+        Libro(name = "Il diritto all'educazione", autore = "Nel Noddings", settore = "Pedagogico", sinossi = "Un libro che esplora la teoria dell'educazione e i diritti degli studenti all'istruzione."),
+        Libro(name = "L'educazione dell'infanzia", autore = "Jean Piaget", settore = "Pedagogico", sinossi = "Un'opera che esplora lo sviluppo cognitivo del bambino, con un focus sull'educazione infantile."),
+        Libro(name = "Teoria pedagogica", autore = "Erik Erikson", settore = "Pedagogico", sinossi = "Un'analisi dello sviluppo psicologico dell'individuo e il suo impatto sull'educazione."),
+        Libro(name = "La scuola come agenzia sociale", autore = "Durkheim Emile", settore = "Pedagogico", sinossi = "Un'analisi del ruolo della scuola come agenzia di socializzazione e trasmissione culturale."),
+        Libro(name = "Educare alla vita", autore = "Giorgio Santi", settore = "Pedagogico", sinossi = "Un'opera che esplora come l'educazione possa essere un mezzo per preparare gli studenti alla vita e alla società."),
+        Libro(name = "La formazione degli insegnanti", autore = "Robert L. Ebel", settore = "Pedagogico", sinossi = "Un'opera che esplora come formare gli insegnanti affinché siano preparati a rispondere alle esigenze della classe."),
+        Libro(name = "La psicologia dell'insegnamento", autore = "Lev Vygotsky", settore = "Pedagogico", sinossi = "Un'analisi dei processi psicologici che influenzano l'insegnamento e l'apprendimento."),
+        Libro(name = "Metodi educativi", autore = "Gianfranco Zavalloni", settore = "Pedagogico", sinossi = "Un'opera che esplora le diverse metodologie educative e il loro impatto sull'insegnamento."),
+        Libro(name = "Pedagogia della libertà", autore = "Paulo Freire", settore = "Pedagogico", sinossi = "Un'opera che esplora l'importanza della libertà educativa e della consapevolezza critica in ogni processo di apprendimento."),
+        Libro(name = "Pedagogia e cultura", autore = "John Dewey", settore = "Pedagogico", sinossi = "Un'analisi del rapporto tra pedagogia e cultura, con un focus sull'influenza della cultura nella formazione educativa."),
+        Libro(name = "L'educazione integrale", autore = "Maria Montessori", settore = "Pedagogico", sinossi = "Un'opera che esplora l'educazione integrale, enfatizzando lo sviluppo fisico, emotivo e intellettuale del bambino."),
+        Libro(name = "Educazione e crescita", autore = "Jean-Jacques Rousseau", settore = "Pedagogico", sinossi = "Un'opera che esplora la visione di Rousseau sull'educazione naturale e il suo impatto sullo sviluppo umano."),
+        Libro(name = "Il futuro dell'educazione", autore = "Paulo Freire", settore = "Pedagogico", sinossi = "Un'opera che esplora le sfide future dell'educazione e la necessità di un approccio critico e liberatorio."),
+        Libro(name = "Psicopedagogia", autore = "Sabrina D'Angelo", settore = "Pedagogico", sinossi = "Un'analisi della psicopedagogia, che combina la psicologia e la pedagogia per affrontare le difficoltà educative degli studenti."),
+        Libro(name = "Educazione e inclusività", autore = "Sally Brown", settore = "Pedagogico", sinossi = "Un'opera che esplora l'importanza dell'inclusività nell'educazione, con un focus sull'integrazione di studenti con diverse abilità."),
+        Libro(name = "Sociologia dell'educazione", autore = "Pierre Bourdieu", settore = "Pedagogico", sinossi = "Un'analisi sociologica dell'educazione, esplorando come l'educazione sia influenzata da fattori sociali ed economici."),
+        Libro(name = "La pedagogia del bambino", autore = "Maria Montessori", settore = "Pedagogico", sinossi = "Un'opera che esplora il metodo Montessori, focalizzandosi sull'educazione e sullo sviluppo del bambino."),
+        Libro(name = "L'insegnamento come arte", autore = "Maxine Greene", settore = "Pedagogico", sinossi = "Un'opera che esplora il ruolo dell'insegnamento come forma d'arte e creatività."),
+        Libro(name = "La didattica delle lingue", autore = "David Nunan", settore = "Pedagogico", sinossi = "Un'opera che esplora i metodi e le teorie didattiche per insegnare le lingue straniere."))
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
-                dbViewModel.aggiungiLibro(libro1)
-                dbViewModel.aggiungiLibro(libro2)
-                dbViewModel.aggiungiLibro(libro3)
-                dbViewModel.aggiungiLibro(libro4)
-                dbViewModel.aggiungiLibro(libro5)
-                dbViewModel.aggiungiLibro(libro6)
-                dbViewModel.aggiungiLibro(libro7)
-                dbViewModel.aggiungiLibro(libro8)
-                dbViewModel.aggiungiLibro(libro9)
-                dbViewModel.aggiungiLibro(libro10)
-                dbViewModel.aggiungiLibro(libro11)
-                dbViewModel.aggiungiLibro(libro12)
-                dbViewModel.aggiungiLibro(libro13)
-                dbViewModel.aggiungiLibro(libro14)
-                dbViewModel.aggiungiLibro(libro15)
-                dbViewModel.aggiungiLibro(libro1)
-                dbViewModel.aggiungiLibro(libro2)
-                dbViewModel.aggiungiLibro(libro3)
-                dbViewModel.aggiungiLibro(libro4)
-                dbViewModel.aggiungiLibro(libro5)
-                dbViewModel.aggiungiLibro(libro6)
-                dbViewModel.aggiungiLibro(libro7)
-                dbViewModel.aggiungiLibro(libro8)
-                dbViewModel.aggiungiLibro(libro9)
-                dbViewModel.aggiungiLibro(libro10)
-                dbViewModel.aggiungiLibro(libro11)
-                dbViewModel.aggiungiLibro(libro12)
-                dbViewModel.aggiungiLibro(libro13)
-                dbViewModel.aggiungiLibro(libro14)
-                dbViewModel.aggiungiLibro(libro15)
-                dbViewModel.aggiungiLibro(libro16)
-                dbViewModel.aggiungiLibro(libro17)
-                dbViewModel.aggiungiLibro(libro18)
-                dbViewModel.aggiungiLibro(libro19)
-                dbViewModel.aggiungiLibro(libro20)
-                dbViewModel.aggiungiLibro(libro21)
-                dbViewModel.aggiungiLibro(libro22)
-                dbViewModel.aggiungiLibro(libro23)
-                dbViewModel.aggiungiLibro(libro24)
-                dbViewModel.aggiungiLibro(libro25)
-                dbViewModel.aggiungiLibro(libro26)
-                dbViewModel.aggiungiLibro(libro27)
-                dbViewModel.aggiungiLibro(libro28)
-                dbViewModel.aggiungiLibro(libro29)
-                dbViewModel.aggiungiLibro(libro30)
-                dbViewModel.aggiungiLibro(libro31)
-                dbViewModel.aggiungiLibro(libro32)
-                dbViewModel.aggiungiLibro(libro33)
-                dbViewModel.aggiungiLibro(libro34)
-                dbViewModel.aggiungiLibro(libro35)
-                dbViewModel.aggiungiLibro(libro36)
-                dbViewModel.aggiungiLibro(libro37)
-                dbViewModel.aggiungiLibro(libro38)
-                dbViewModel.aggiungiLibro(libro39)
-                dbViewModel.aggiungiLibro(libro40)
-                dbViewModel.aggiungiLibro(libro41)
-                dbViewModel.aggiungiLibro(libro42)
-                dbViewModel.aggiungiLibro(libro43)
-                dbViewModel.aggiungiLibro(libro44)
-                dbViewModel.aggiungiLibro(libro45)
-
-                dbViewModel.aggiungiLibro(libro46)
-                dbViewModel.aggiungiLibro(libro47)
-                dbViewModel.aggiungiLibro(libro48)
-                dbViewModel.aggiungiLibro(libro49)
-                dbViewModel.aggiungiLibro(libro50)
-                dbViewModel.aggiungiLibro(libro51)
-                dbViewModel.aggiungiLibro(libro52)
-                dbViewModel.aggiungiLibro(libro53)
-                dbViewModel.aggiungiLibro(libro54)
-                dbViewModel.aggiungiLibro(libro55)
-                dbViewModel.aggiungiLibro(libro56)
-                dbViewModel.aggiungiLibro(libro57)
-                dbViewModel.aggiungiLibro(libro58)
-                dbViewModel.aggiungiLibro(libro59)
-                dbViewModel.aggiungiLibro(libro60)
-                dbViewModel.aggiungiLibro(libro61)
-                dbViewModel.aggiungiLibro(libro62)
-                dbViewModel.aggiungiLibro(libro63)
-                dbViewModel.aggiungiLibro(libro64)
-                dbViewModel.aggiungiLibro(libro65)
-                dbViewModel.aggiungiLibro(libro66)
-                dbViewModel.aggiungiLibro(libro67)
-                dbViewModel.aggiungiLibro(libro68)
-                dbViewModel.aggiungiLibro(libro69)
-                dbViewModel.aggiungiLibro(libro70)
-
-                dbViewModel.aggiungiLibro(libro71)
-                dbViewModel.aggiungiLibro(libro72)
-                dbViewModel.aggiungiLibro(libro73)
-                dbViewModel.aggiungiLibro(libro74)
-                dbViewModel.aggiungiLibro(libro75)
-                dbViewModel.aggiungiLibro(libro76)
-                dbViewModel.aggiungiLibro(libro77)
-                dbViewModel.aggiungiLibro(libro78)
-                dbViewModel.aggiungiLibro(libro79)
-                dbViewModel.aggiungiLibro(libro80)
-                dbViewModel.aggiungiLibro(libro81)
-                dbViewModel.aggiungiLibro(libro82)
-                dbViewModel.aggiungiLibro(libro83)
-                dbViewModel.aggiungiLibro(libro84)
-                dbViewModel.aggiungiLibro(libro85)
-                dbViewModel.aggiungiLibro(libro86)
-                dbViewModel.aggiungiLibro(libro87)
-                dbViewModel.aggiungiLibro(libro88)
-                dbViewModel.aggiungiLibro(libro89)
-                dbViewModel.aggiungiLibro(libro90)
-                dbViewModel.aggiungiLibro(libro91)
-                dbViewModel.aggiungiLibro(libro92)
-                dbViewModel.aggiungiLibro(libro93)
-                dbViewModel.aggiungiLibro(libro94)
-                dbViewModel.aggiungiLibro(libro95)
-                dbViewModel.aggiungiLibro(libro96)
-
-                dbViewModel.aggiungiLibro(libro101)
-                dbViewModel.aggiungiLibro(libro102)
-                dbViewModel.aggiungiLibro(libro103)
-                dbViewModel.aggiungiLibro(libro104)
-                dbViewModel.aggiungiLibro(libro105)
-                dbViewModel.aggiungiLibro(libro106)
-                dbViewModel.aggiungiLibro(libro107)
-                dbViewModel.aggiungiLibro(libro108)
-                dbViewModel.aggiungiLibro(libro109)
-                dbViewModel.aggiungiLibro(libro110)
-                dbViewModel.aggiungiLibro(libro111)
-                dbViewModel.aggiungiLibro(libro112)
-                dbViewModel.aggiungiLibro(libro113)
-                dbViewModel.aggiungiLibro(libro114)
-                dbViewModel.aggiungiLibro(libro115)
-                dbViewModel.aggiungiLibro(libro116)
-                dbViewModel.aggiungiLibro(libro117)
-                dbViewModel.aggiungiLibro(libro118)
-                dbViewModel.aggiungiLibro(libro119)
-                dbViewModel.aggiungiLibro(libro120)
-                dbViewModel.aggiungiLibro(libro121)
-                dbViewModel.aggiungiLibro(libro122)
-                dbViewModel.aggiungiLibro(libro123)
-                dbViewModel.aggiungiLibro(libro124)
-                dbViewModel.aggiungiLibro(libro125)
-
-                dbViewModel.aggiungiLibro(libro126)
-                dbViewModel.aggiungiLibro(libro127)
-                dbViewModel.aggiungiLibro(libro128)
-                dbViewModel.aggiungiLibro(libro129)
-                dbViewModel.aggiungiLibro(libro130)
-                dbViewModel.aggiungiLibro(libro131)
-                dbViewModel.aggiungiLibro(libro132)
-                dbViewModel.aggiungiLibro(libro133)
-                dbViewModel.aggiungiLibro(libro134)
-                dbViewModel.aggiungiLibro(libro135)
-                dbViewModel.aggiungiLibro(libro136)
-                dbViewModel.aggiungiLibro(libro137)
-                dbViewModel.aggiungiLibro(libro138)
-                dbViewModel.aggiungiLibro(libro139)
-                dbViewModel.aggiungiLibro(libro140)
-                dbViewModel.aggiungiLibro(libro141)
-                dbViewModel.aggiungiLibro(libro142)
-                dbViewModel.aggiungiLibro(libro143)
-                dbViewModel.aggiungiLibro(libro144)
-                dbViewModel.aggiungiLibro(libro145)
-                dbViewModel.aggiungiLibro(libro146)
-                dbViewModel.aggiungiLibro(libro147)
-                dbViewModel.aggiungiLibro(libro148)
-                dbViewModel.aggiungiLibro(libro149)
-                dbViewModel.aggiungiLibro(libro150)
-
-                dbViewModel.aggiungiLibro(libro151)
-                dbViewModel.aggiungiLibro(libro152)
-                dbViewModel.aggiungiLibro(libro153)
-                dbViewModel.aggiungiLibro(libro154)
-                dbViewModel.aggiungiLibro(libro155)
-                dbViewModel.aggiungiLibro(libro156)
-                dbViewModel.aggiungiLibro(libro157)
-                dbViewModel.aggiungiLibro(libro158)
-                dbViewModel.aggiungiLibro(libro159)
-                dbViewModel.aggiungiLibro(libro160)
-                dbViewModel.aggiungiLibro(libro161)
-                dbViewModel.aggiungiLibro(libro162)
-                dbViewModel.aggiungiLibro(libro163)
-                dbViewModel.aggiungiLibro(libro164)
-                dbViewModel.aggiungiLibro(libro165)
-                dbViewModel.aggiungiLibro(libro166)
-                dbViewModel.aggiungiLibro(libro167)
-                dbViewModel.aggiungiLibro(libro168)
-                dbViewModel.aggiungiLibro(libro169)
-                dbViewModel.aggiungiLibro(libro170)
-                dbViewModel.aggiungiLibro(libro171)
-                dbViewModel.aggiungiLibro(libro172)
-                dbViewModel.aggiungiLibro(libro173)
-                dbViewModel.aggiungiLibro(libro174)
-                dbViewModel.aggiungiLibro(libro175)
-
-                dbViewModel.aggiungiLibro(libro176)
-                dbViewModel.aggiungiLibro(libro177)
-                dbViewModel.aggiungiLibro(libro178)
-                dbViewModel.aggiungiLibro(libro179)
-                dbViewModel.aggiungiLibro(libro180)
-                dbViewModel.aggiungiLibro(libro181)
-                dbViewModel.aggiungiLibro(libro182)
-                dbViewModel.aggiungiLibro(libro183)
-                dbViewModel.aggiungiLibro(libro184)
-                dbViewModel.aggiungiLibro(libro185)
-                dbViewModel.aggiungiLibro(libro186)
-                dbViewModel.aggiungiLibro(libro187)
-                dbViewModel.aggiungiLibro(libro188)
-                dbViewModel.aggiungiLibro(libro189)
-                dbViewModel.aggiungiLibro(libro190)
-                dbViewModel.aggiungiLibro(libro191)
-                dbViewModel.aggiungiLibro(libro192)
-                dbViewModel.aggiungiLibro(libro193)
-                dbViewModel.aggiungiLibro(libro194)
-                dbViewModel.aggiungiLibro(libro195)
-                dbViewModel.aggiungiLibro(libro196)
-                dbViewModel.aggiungiLibro(libro197)
-                dbViewModel.aggiungiLibro(libro198)
-                dbViewModel.aggiungiLibro(libro199)
-                dbViewModel.aggiungiLibro(libro200)
-
-                dbViewModel.aggiungiLibro(libro201)
-                dbViewModel.aggiungiLibro(libro202)
-                dbViewModel.aggiungiLibro(libro203)
-                dbViewModel.aggiungiLibro(libro204)
-                dbViewModel.aggiungiLibro(libro205)
-                dbViewModel.aggiungiLibro(libro206)
-                dbViewModel.aggiungiLibro(libro207)
-                dbViewModel.aggiungiLibro(libro208)
-                dbViewModel.aggiungiLibro(libro209)
-                dbViewModel.aggiungiLibro(libro210)
-                dbViewModel.aggiungiLibro(libro211)
-                dbViewModel.aggiungiLibro(libro212)
-                dbViewModel.aggiungiLibro(libro213)
-                dbViewModel.aggiungiLibro(libro214)
-                dbViewModel.aggiungiLibro(libro215)
-                dbViewModel.aggiungiLibro(libro216)
-                dbViewModel.aggiungiLibro(libro217)
-                dbViewModel.aggiungiLibro(libro218)
-                dbViewModel.aggiungiLibro(libro219)
-                dbViewModel.aggiungiLibro(libro220)
-                dbViewModel.aggiungiLibro(libro221)
-                dbViewModel.aggiungiLibro(libro222)
-                dbViewModel.aggiungiLibro(libro223)
-                dbViewModel.aggiungiLibro(libro224)
-                dbViewModel.aggiungiLibro(libro225)
-
-                dbViewModel.aggiungiLibro(libro226)
-                dbViewModel.aggiungiLibro(libro227)
-                dbViewModel.aggiungiLibro(libro228)
-                dbViewModel.aggiungiLibro(libro229)
-                dbViewModel.aggiungiLibro(libro230)
-                dbViewModel.aggiungiLibro(libro231)
-                dbViewModel.aggiungiLibro(libro232)
-                dbViewModel.aggiungiLibro(libro233)
-                dbViewModel.aggiungiLibro(libro234)
-                dbViewModel.aggiungiLibro(libro235)
-                dbViewModel.aggiungiLibro(libro236)
-                dbViewModel.aggiungiLibro(libro237)
-                dbViewModel.aggiungiLibro(libro238)
-                dbViewModel.aggiungiLibro(libro239)
-                dbViewModel.aggiungiLibro(libro240)
-                dbViewModel.aggiungiLibro(libro241)
-                dbViewModel.aggiungiLibro(libro242)
-                dbViewModel.aggiungiLibro(libro243)
-                dbViewModel.aggiungiLibro(libro244)
-                dbViewModel.aggiungiLibro(libro245)
-                dbViewModel.aggiungiLibro(libro246)
-                dbViewModel.aggiungiLibro(libro247)
-                dbViewModel.aggiungiLibro(libro248)
-                dbViewModel.aggiungiLibro(libro249)
-                dbViewModel.aggiungiLibro(libro250)
+              try {
+                  libri.forEach{    it ->
+                      dbViewModel.aggiungiLibro(it)
+                  }
+              }catch (e: Exception){
+                  Log.e("BibliotecaDEBUG", "Errore durante l'inserimento dei libri", e)
+              }
             }
             withContext(Dispatchers.Main) {
                 // Mostra un messaggio di conferma

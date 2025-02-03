@@ -79,46 +79,45 @@ class MainActivity : AppCompatActivity() {
                 name = "Introduzione alla Psicologia",
                 autore = "John Smith",
                 settore = "Psicologia",
-                iSBN = 1234567890123L,
-                matricolaStudente = studenteTest.matricola
+                matricolaStudente = studenteTest.matricola,
+                sinossi = "Un libro che offre una panoramica generale sulla psicologia, esplorando le sue teorie, metodi e applicazioni nella vita quotidiana."
             ),
             Libro(
                 name = "Teoria della Relatività",
                 autore = "Albert Einstein",
                 settore = "Fisica",
-                iSBN = 9876543210987L,
-                matricolaStudente = studenteTest.matricola
+                matricolaStudente = studenteTest.matricola,
+                sinossi = "Un'opera fondamentale che introduce la teoria della relatività, esplorando concetti come il tempo, lo spazio e la gravità."
             ),
             Libro(
                 name = "Storia delle Idee Filosofiche",
                 autore = "Sofia Lorenzi",
                 settore = "Filosofia",
-                iSBN = 4567891234567L,
-                matricolaStudente = studenteTest.matricola
+                matricolaStudente = studenteTest.matricola,
+                sinossi = "Un viaggio attraverso la storia del pensiero filosofico, dalle origini della filosofia antica fino alle correnti moderne."
             ),
             Libro(
                 name = "Il codice della mente straordinaria",
                 autore = "Vittorino Andreoli",
                 settore = "Psicologia",
-                iSBN = 1234567890123L,
-                matricolaStudente = studenteTest.matricola
+                matricolaStudente = studenteTest.matricola,
+                sinossi = "Un'opera che esplora i segreti della mente umana e come comprendere e migliorare le nostre capacità cognitive e emotive."
             ),
             Libro(
                 name = "La psicologia del futuro",
                 autore = "Giovanni Rossi",
                 settore = "Psicologia",
-                iSBN = 1234567890456L,
-                matricolaStudente = null
+                matricolaStudente = null,
+                sinossi = "Un libro che anticipa le future tendenze nella psicologia, esplorando come la scienza psicologica evolverà con l'avanzamento della tecnologia."
             ),
             Libro(
                 name = "Introduzione alla filosofia",
                 autore = "Alessandro Verdi",
                 settore = "Filosofia",
-                iSBN = 1234567890789L,
-                matricolaStudente = null
+                matricolaStudente = null,
+                sinossi = "Un'opera che introduce i principali concetti e autori della filosofia, esplorando le idee fondamentali che hanno plasmato il pensiero umano."
             )
         )
-
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
@@ -165,47 +164,37 @@ class MainActivity : AppCompatActivity() {
             Corso(id = 18, nome = "Matematica Discreta", CFU = 9, semestre = 1, anno = 1, descrizione = "Studio delle strutture discrete, teoria dei grafi e combinatoria.")
         )
 
-        // Inserimento dei corsi nel database usando forEach
+        // Creazione delle relazioni Studente-Corso
+
+        val relazioni = listOf(
+            RelazioneStudenteCorso(1, 15, "Lunedì", "10:00", "A1", -1, 1, corso.first { it.id == 1 }.nome),
+            RelazioneStudenteCorso(2, 15, "Martedì", "14:30", "B2", 30, 0, corso.first { it.id == 2 }.nome),
+            RelazioneStudenteCorso(3, 15, "Mercoledì", "09:00", "C3", 18, 0, corso.first { it.id == 3 }.nome),
+            RelazioneStudenteCorso(4, 15, "Martedì", "11:00", "B1", -1, 0, corso.first { it.id == 4 }.nome),
+            RelazioneStudenteCorso(5, 15, "Martedì", "14:00", "B2", -1, 0, corso.first { it.id == 5 }.nome),
+            RelazioneStudenteCorso(6, 15, "Mercoledì", "10:00", "C1", 30, 0, corso.first { it.id == 6 }.nome),
+            RelazioneStudenteCorso(7, 15, "Mercoledì", "15:00", "C2", -1, 1, corso.first { it.id == 7 }.nome),
+            RelazioneStudenteCorso(8, 15, "Giovedì", "09:00", "D1", -1, 1, corso.first { it.id == 8 }.nome),
+            RelazioneStudenteCorso(9, 15, "Giovedì", "13:00", "D2", -1, 1, corso.first { it.id == 9 }.nome),
+            RelazioneStudenteCorso(10, 15, "Venerdì", "10:00", "E1", 30, 0, corso.first { it.id == 10 }.nome),
+            RelazioneStudenteCorso(11, 15, "Venerdì", "12:00", "E2", 18, 0, corso.first { it.id == 11 }.nome),
+            RelazioneStudenteCorso(12, 15, "Lunedì", "14:00", "F1", 19, 0, corso.first { it.id == 12 }.nome),
+            RelazioneStudenteCorso(13, 15, "Lunedì", "16:00", "F2", 20, 0, corso.first { it.id == 13 }.nome),
+            RelazioneStudenteCorso(14, 15, "Martedì", "09:00", "G1", -1, 1, corso.first { it.id == 14 }.nome),
+            RelazioneStudenteCorso(15, 15, "Martedì", "11:00", "G2", 30, 0, corso.first { it.id == 15 }.nome),
+            RelazioneStudenteCorso(16, 15, "Mercoledì", "14:00", "H1", -1, 0, corso.first { it.id == 16 }.nome),
+            RelazioneStudenteCorso(17, 15, "Mercoledì", "16:00", "H2", -1, 0, corso.first { it.id == 17 }.nome),
+            RelazioneStudenteCorso(18, 15, "Giovedì", "10:00", "I1", -1, 0, corso.first { it.id == 18 }.nome)
+        )
+
+
+// Inserimento delle relazioni nel database usando forEach
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     corso.forEach { corso ->
                         dbViewModel.inserisciCorso(corso)
                     }
-                    Log.d("MainActivityDEBUG", "Corsi inseriti correttamente")
-                } catch (e: Exception) {
-                    Log.e("MainActivityDEBUG", "Errore durante l'inserimento dei corsi", e)
-                }
-            }
-        }
-
-        // Creazione delle relazioni Studente-Corso
-        val relazioni = listOf(
-            RelazioneStudenteCorso(1, 15, "Lunedì", "10:00", "A1", -1, 1),
-            RelazioneStudenteCorso(2, 15, "Martedì", "14:30", "B2", 30, 0),
-            RelazioneStudenteCorso(3, 15, "Mercoledì", "09:00", "C3", 18, 0),
-            RelazioneStudenteCorso(4, 15, "Martedì", "11:00", "B1", -1, 0),
-            RelazioneStudenteCorso(5, 15, "Martedì", "14:00", "B2", -1, 0),
-            RelazioneStudenteCorso(6, 15, "Mercoledì", "10:00", "C1", 30, 0),
-            RelazioneStudenteCorso(7, 15, "Mercoledì", "15:00", "C2", -1, 1),
-            RelazioneStudenteCorso(8, 15, "Giovedì", "09:00", "D1", -1, 1),
-            RelazioneStudenteCorso(9, 15, "Giovedì", "13:00", "D2", -1, 1),
-            RelazioneStudenteCorso(10, 15, "Venerdì", "10:00", "E1", 30, 0),
-            RelazioneStudenteCorso(11, 15, "Venerdì", "12:00", "E2", 18, 0),
-            RelazioneStudenteCorso(12, 15, "Lunedì", "14:00", "F1", 19, 0),
-            RelazioneStudenteCorso(13, 15, "Lunedì", "16:00", "F2", 20, 0),
-            RelazioneStudenteCorso(14, 15, "Martedì", "09:00", "G1", -1, 1),
-            RelazioneStudenteCorso(15, 15, "Martedì", "11:00", "G2", 30, 0),
-            RelazioneStudenteCorso(16, 15, "Mercoledì", "14:00", "H1", -1, 0),
-            RelazioneStudenteCorso(17, 15, "Mercoledì", "16:00", "H2", -1, 0),
-            RelazioneStudenteCorso(18, 15, "Giovedì", "10:00", "I1", -1, 0)
-
-        )
-
-// Inserimento delle relazioni nel database usando forEach
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
                     relazioni.forEach { relazione ->
                         dbViewModel.inserisciRelazioneStudenteCorso(relazione)
                     }

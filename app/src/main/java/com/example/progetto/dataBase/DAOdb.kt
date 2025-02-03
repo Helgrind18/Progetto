@@ -30,9 +30,6 @@ interface LibroDao {
     @Delete
     fun rimuoviLibro(libro: Libro)
 
-    @Query("DELETE FROM Libro WHERE ISBN = :iSBN")
-    fun rimuoviLibroByISBN(iSBN: Long)
-
     @Query("SELECT * FROM Libro WHERE NAME = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
 
@@ -154,12 +151,14 @@ interface RelazioneStudenteCorsoDao {
                 " where r.matricola = :matricola AND r.voto >= 18 AND r.corsoId = c.corsoId")
         fun getEsamiDiStudente(matricola: Int): List<RelazioneStudenteCorso>?
 
-        @Transaction
-        @Query("SELECT r.* FROM RelazioneStudenteCorso r, Corso c" +
-                " where r.matricola = :matricola AND r.corsoId = c.corsoId")
-        fun getEsamiDiStudenteLD(matricola: Int): LiveData<List<RelazioneStudenteCorso>>?
+    @Transaction
+    @Query("SELECT r.* FROM RelazioneStudenteCorso r, Corso c" +
+            " WHERE r.matricola = :matricola AND r.corsoId = c.corsoId" +
+            " ORDER BY c.anno ASC, c.semestre ASC")
+    fun getEsamiDiStudenteLD(matricola: Int): LiveData<List<RelazioneStudenteCorso>>?
 
-        //Recupera tutti gli esami che uno studente ancora non ha sostenuto
+
+    //Recupera tutti gli esami che uno studente ancora non ha sostenuto
         @Transaction
         @Query("SELECT c.* FROM RelazioneStudenteCorso r, Corso c where " +
                 "r.matricola = :matricola AND r.voto = -1 and r.corsoId = c.corsoId")
@@ -213,6 +212,7 @@ interface RelazioneStudenteCorsoDao {
                 "AND r.voto >= 18 " +
                 "GROUP BY r.matricola")
         fun getMediaPonderata(matricola: Int): Double?
+
 }
 
 @Dao

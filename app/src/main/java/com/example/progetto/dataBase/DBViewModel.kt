@@ -95,19 +95,18 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun aggiungiLibro(name: String, autore: String, settore: String, iSBN: Long) {
+    fun aggiungiLibro(name: String, autore: String, settore: String,matricolaStudente: Int?, sinossi: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            val libro = Libro(name = name, autore = autore, settore = settore, iSBN = iSBN)
+            val libro = Libro(
+                name = name, autore = autore, settore = settore,
+                matricolaStudente = matricolaStudente,
+                sinossi = sinossi
+            )
             libroDAO.inserisciLibro(libro)
         }
     }
 
 
-    fun eliminaLibro(iSBN: Long) {
-        viewModelScope.launch(Dispatchers.IO) {
-            libroDAO.rimuoviLibroByISBN(iSBN)
-        }
-    }
 
     fun getLibriByStudente(matricola: Int): LiveData<List<Libro>> {
         return libroDAO.getLibriByStudente(matricola)

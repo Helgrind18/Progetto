@@ -20,9 +20,9 @@ data class Libro(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "autore") val autore: String,
     @ColumnInfo(name = "settore") val settore: String,
-    @ColumnInfo(name = "isbn") val iSBN: Long = 0L, // Non è più una chiave primaria
     // Relazione:
     // Studente -> Libro è 0:n (uno studente può prendere più libri)
     // Libro -> Studente è 0:1 (un libro può essere preso da uno studente)
-    @ColumnInfo(name = "matricolaStudente") val matricolaStudente: Int? = null // Foreign key
+    @ColumnInfo(name = "matricolaStudente") val matricolaStudente: Int? = null, // Foreign key
+    @ColumnInfo(name = "sinossi") val sinossi: String
 )
