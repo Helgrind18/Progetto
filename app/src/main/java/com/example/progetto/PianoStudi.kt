@@ -1,6 +1,8 @@
 package com.example.progetto
 
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -34,25 +36,49 @@ class PianoStudi : AppCompatActivity() {
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
         val matricola= intent.getIntExtra("username",1)
 
+        val primoAnno: TextView = findViewById(R.id.EsPrimoAnno)
         val lista1 = findViewById<RecyclerView>(R.id.lista1anno)
         lista1.layoutManager = LinearLayoutManager(this)
         corsoListAdapter1 = CorsoAdapter(this)
         lista1.adapter = corsoListAdapter1
         dbViewModel.getEsamiDaFareDiUnAnno(matricola,1)?.observe(this, Observer{ corsi -> corsoListAdapter1.submitList(corsi)
         })
+        primoAnno.setOnClickListener{
+            if (lista1.visibility==View.GONE){
+                lista1.visibility=View.VISIBLE
+            }else if(lista1.visibility==View.VISIBLE){
+                lista1.visibility=View.GONE
+            }
+        }
 
+        val secondoAnno: TextView = findViewById(R.id.EsSecondoAnno)
         val lista2 = findViewById<RecyclerView>(R.id.lista2anno)
         lista2.layoutManager = LinearLayoutManager(this)
         corsoListAdapter2 = CorsoAdapter(this)
         lista2.adapter = corsoListAdapter2
         dbViewModel.getEsamiDaFareDiUnAnno(matricola,2)?.observe(this, Observer{ corsi -> corsoListAdapter2.submitList(corsi)
         })
+        secondoAnno.setOnClickListener {
+            if (lista2.visibility == View.GONE) {
+                lista2.visibility = View.VISIBLE
+            } else if (lista2.visibility == View.VISIBLE) {
+                lista2.visibility = View.GONE
+            }
+        }
 
+        val terzoAnno: TextView = findViewById(R.id.EsTerzoAnno)
         val lista3 = findViewById<RecyclerView>(R.id.lista3anno)
         lista3.layoutManager = LinearLayoutManager(this)
         corsoListAdapter3 = CorsoAdapter(this)
         lista3.adapter = corsoListAdapter3
         dbViewModel.getEsamiDaFareDiUnAnno(matricola,3)?.observe(this, Observer{ corsi -> corsoListAdapter3.submitList(corsi)
         })
+        terzoAnno.setOnClickListener {
+            if (lista3.visibility == View.GONE) {
+                lista3.visibility = View.VISIBLE
+            } else if (lista3.visibility == View.VISIBLE) {
+                lista3.visibility = View.GONE
+            }
+        }
     }
 }
