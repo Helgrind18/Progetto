@@ -55,7 +55,7 @@
                     android:id="@+id/lista1anno"
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
@@ -87,7 +87,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lista2anno"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"/>
@@ -122,7 +122,7 @@
                 android:id="@+id/lista3anno"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 

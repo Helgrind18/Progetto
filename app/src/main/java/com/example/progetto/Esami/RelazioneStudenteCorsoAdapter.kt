@@ -44,7 +44,7 @@ class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, Rela
 
         fun bind(esame: RelazioneStudenteCorso) {
             titleTextView.text = buildString {
-                append(esame.corsoId)
+                append(esame.nomeCorso)
                 append(", ")
                 append(esame.giorno)
                 append(", ")

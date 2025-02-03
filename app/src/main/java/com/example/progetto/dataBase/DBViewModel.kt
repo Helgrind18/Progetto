@@ -106,6 +106,10 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun getLibroByNomeAutore(nome: String, autore: String): Libro? {
+        return libroDAO.getLibroByNomeAutore(nome, autore)
+    }
+
 
 
     fun getLibriByStudente(matricola: Int): LiveData<List<Libro>> {

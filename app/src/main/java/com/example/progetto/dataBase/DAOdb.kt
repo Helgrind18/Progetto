@@ -33,6 +33,10 @@ interface LibroDao {
     @Query("SELECT * FROM Libro WHERE NAME = :name")
     fun getLibroByName(name: String): LiveData<List<Libro>>
 
+    @Transaction
+    @Query("SELECT * FROM Libro WHERE name = :nome AND autore = :autore")
+    fun getLibroByNomeAutore(nome: String, autore: String): Libro?
+
     //!!!!!!!! ATTENZIONE NON SO SE FUNZIONA LA QUERY DI SOTTO!!!!!!!!
 
     @Transaction //È necessario per garantire che le query multiple (relazionali) vengano eseguite come un'unica transazione atomica.

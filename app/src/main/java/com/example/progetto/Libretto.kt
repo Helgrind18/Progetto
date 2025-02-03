@@ -78,7 +78,6 @@ class Libretto : AppCompatActivity() {
                     dbViewModel.getEsamiDiStudente(username)!!
                 }
                 Log.d("TasseDEBUG", "Risultato esami: $lista")
-                gestisciProgressBar(lista.size)
             } catch (e: Exception) {
                 Log.e("TasseDEBUG", "Errore nel recupero esami", e)
             }
@@ -137,12 +136,5 @@ class Libretto : AppCompatActivity() {
         return ris.toString()
     }
 
-    private fun gestisciProgressBar(size: Int) {
-        val progress: ProgressBar = findViewById(R.id.progresso)
-        progress.visibility = ProgressBar.VISIBLE
-        Handler(Looper.getMainLooper()).postDelayed({
-            progress.progress = size
-        }, 100)
-    }
 
 }

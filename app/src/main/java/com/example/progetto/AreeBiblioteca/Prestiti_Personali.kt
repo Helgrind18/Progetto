@@ -28,10 +28,10 @@ class Prestiti_Personali : AppCompatActivity() {
             insets
         }
 
-
+        val username = intent.getIntExtra("username", 1)
 
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
-        libroListAdapter = LibroAdapter()
+        libroListAdapter = LibroAdapter(this,username)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)

@@ -27,8 +27,10 @@ class Area_Pedagogica : AppCompatActivity() {
             insets
         }
 
+        val matricola = intent.getIntExtra("matricola", 0)
+
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
-        libroListAdapter = LibroAdapter()
+        libroListAdapter = LibroAdapter(this,matricola)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = libroListAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)

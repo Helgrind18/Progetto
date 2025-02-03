@@ -32,18 +32,6 @@
         app:autoSizeTextType="uniform"
         android:visibility="visible"/>
 
-    <ProgressBar
-        android:id="@+id/progresso"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:progress="12"
-        android:max="25"
-        android:min="0"
-        android:progressBackgroundTint="@color/blu_moonstone"
-        android:progressTint="@color/hunyadi_yellow"
-        android:layout_margin="10dp"/>
 
     <Button
         android:id="@+id/bottoneLista"

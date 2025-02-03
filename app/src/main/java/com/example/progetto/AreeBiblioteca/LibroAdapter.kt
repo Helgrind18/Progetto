@@ -1,5 +1,7 @@
 package com.example.progetto.AreeBiblioteca
 
+import android.content.Context
+import android.content.Intent
 import android.util.Log
 import com.example.progetto.R
 import android.view.LayoutInflater
@@ -9,16 +11,20 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.progetto.Entity.Libro
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.example.progetto.OrarioLezioni
 
-class LibroAdapter : ListAdapter<Libro, LibroAdapter.LibroViewHolder>(
+class LibroAdapter(var context: Context, var matricola: Int) : ListAdapter<Libro, LibroAdapter.LibroViewHolder>(
     DIFF_CALLBACK
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup,viewType: Int): LibroViewHolder {
+        val context: Context = context
+        val matricola: Int = matricola
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_libro, parent, false)
-        return LibroViewHolder(itemView)
+        return LibroViewHolder(itemView, context,matricola)
     }
 
     override fun onBindViewHolder(holder: LibroViewHolder, position: Int) {
@@ -37,14 +43,25 @@ class LibroAdapter : ListAdapter<Libro, LibroAdapter.LibroViewHolder>(
         }
     }
 
-    class LibroViewHolder(itemView: View) : ViewHolder(itemView) {
+    class LibroViewHolder(itemView: View, context: Context, matricola: Int) : ViewHolder(itemView) {
         private val titleTextView: TextView = itemView.findViewById(R.id.nomeLibro)
+        private val context: Context = context
+        private val matricola: Int = matricola
 
         fun bind(libro: Libro) {
             titleTextView.text = buildString {
                 append(libro.name)
                 append(", ")
                 append(libro.autore)
+            }
+
+            titleTextView.setOnClickListener{
+                val intent = Intent(context, Libro_Riutilizzabile::class.java).apply {
+                    putExtra("nome", libro.name)
+                    putExtra("autore", libro.autore)
+                    putExtra("matricola", matricola)
+                }
+                context.startActivity(intent)
             }
         }
 

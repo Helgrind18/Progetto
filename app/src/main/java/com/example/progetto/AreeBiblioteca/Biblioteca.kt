@@ -32,6 +32,8 @@ class Biblioteca : AppCompatActivity() {
             insets
         }
 
+        val matricola = intent.getIntExtra("matricola", 0)
+
         val bottoneLinguistica: Button = findViewById(R.id.linguistica)
         val bottoneMatematica: Button = findViewById(R.id.matematica)
         val bottoneInformatica: Button = findViewById(R.id.informatica)
@@ -52,6 +54,7 @@ class Biblioteca : AppCompatActivity() {
         bottoneLinguistica.setOnClickListener {
             val intent = Intent(this, Area_Linguistica::class.java).apply {
                 intent.putExtra("area", linguistica)
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -59,6 +62,7 @@ class Biblioteca : AppCompatActivity() {
         bottoneMatematica.setOnClickListener {
             val intent = Intent(this, Area_Matematica::class.java).apply {
                 intent.putExtra("area", "Matematica")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -66,6 +70,7 @@ class Biblioteca : AppCompatActivity() {
         bottoneInformatica.setOnClickListener {
             val intent = Intent(this, Area_Informatica::class.java).apply {
                 intent.putExtra("area", "Informatica")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -73,6 +78,7 @@ class Biblioteca : AppCompatActivity() {
         bottoneGiuridico.setOnClickListener {
             val intent = Intent(this, Area_Giuridica::class.java).apply {
                 intent.putExtra("area", "Giuridico")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -80,6 +86,7 @@ class Biblioteca : AppCompatActivity() {
         bottoneEconomico.setOnClickListener {
             val intent = Intent(this, Area_Economica::class.java).apply {
                 intent.putExtra("area", "Economica")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -87,6 +94,7 @@ class Biblioteca : AppCompatActivity() {
         bottoneStorico.setOnClickListener {
             val intent = Intent(this, Area_Storica::class.java).apply {
                 intent.putExtra("area", "Storico")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -94,6 +102,7 @@ class Biblioteca : AppCompatActivity() {
         bottoneFilosofico.setOnClickListener {
             val intent = Intent(this, Area_Filosofica::class.java).apply {
                 intent.putExtra("area", "Filosofico")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -101,6 +110,7 @@ class Biblioteca : AppCompatActivity() {
         bottonePsicologico.setOnClickListener {
             val intent = Intent(this, Area_Psicologica::class.java).apply {
                 intent.putExtra("area", "Psicologico")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
@@ -108,6 +118,7 @@ class Biblioteca : AppCompatActivity() {
         bottonePedagogico.setOnClickListener {
             val intent = Intent(this, Area_Pedagogica::class.java).apply {
                 intent.putExtra("area", "Pedagogico")
+                intent.putExtra("matricola", matricola)
             }
             startActivity(intent)
         }
