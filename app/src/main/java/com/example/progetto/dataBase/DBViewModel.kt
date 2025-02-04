@@ -161,15 +161,12 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // RELAZIONE STUDENTE-CORSO
-
     fun inserisciRelazioneStudenteCorso(relazione: RelazioneStudenteCorso) {
-        viewModelScope.launch(Dispatchers.IO) {
-            try {
-                relazioneStudenteCorsoDAO.inserisciRelazione(relazione)
-                Log.d("DBViewModelDEBUG", "Relazione inserita con successo")
-            } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento della relazione", e)
-            }
+        try {
+            relazioneStudenteCorsoDAO.inserisciRelazione(relazione)
+            Log.d("DBViewModelDEBUGRel", "✅ Relazione ${relazione.matricola} ${relazione.corsoId} inserita con successo")
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUGRel", "❌ Errore durante l'inserimento della relazione", e)
         }
     }
 
