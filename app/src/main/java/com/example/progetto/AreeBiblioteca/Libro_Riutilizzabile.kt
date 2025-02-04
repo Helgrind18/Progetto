@@ -1,6 +1,7 @@
 package com.example.progetto.AreeBiblioteca
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -30,8 +31,8 @@ class Libro_Riutilizzabile : AppCompatActivity() {
 
         val nome= intent.getStringExtra("nome")
         val autore= intent.getStringExtra("autore")
-        val matricola= intent.getIntExtra("matricola",0)
-
+        val matricola= intent.getIntExtra("username",0)
+        Log.d("LibroDebu", "Recupero della matricola: $matricola")
         val nomeLibro: TextView = findViewById(R.id.nomeLibro)
         nomeLibro.text = nome
 
@@ -61,7 +62,9 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                 lifecycleScope.launch {
                      withContext(Dispatchers.IO) {
                          try {
-                             dbViewModel.aggiungiLibro(libro.name, libro.autore, libro.settore, matricola, libro.sinossi)
+                             libro.matricolaStudente=matricola
+                             Log.d("LibroDebu", "Libro: $libro")
+                             dbViewModel.aggiungiLibro(libro)
                          }catch (e: Exception){
                              e.printStackTrace()
                          }

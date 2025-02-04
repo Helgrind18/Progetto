@@ -59,7 +59,7 @@ class LibroAdapter(var context: Context, var matricola: Int) : ListAdapter<Libro
                 val intent = Intent(context, Libro_Riutilizzabile::class.java).apply {
                     putExtra("nome", libro.name)
                     putExtra("autore", libro.autore)
-                    putExtra("matricola", matricola)
+                    putExtra("username", matricola)
                 }
                 context.startActivity(intent)
             }

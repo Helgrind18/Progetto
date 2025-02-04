@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var dbViewModel: DBViewModel
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("LoginActivityDEBUG", "onCreate called")
         super.onCreate(savedInstanceState)

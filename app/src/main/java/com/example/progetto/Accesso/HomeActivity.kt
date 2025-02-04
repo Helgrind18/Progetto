@@ -153,7 +153,8 @@ class HomeActivity : AppCompatActivity() {
         }
         biblioteca.setOnClickListener {
             val intent = Intent(this, Biblioteca::class.java).apply {
-                putExtra("matricola", username)
+                Log.d("HomeActivityDEBUG", "Username prima di passare alla biblioteca: $username")
+                putExtra("username", username)
             }
             startActivity(intent)
         }

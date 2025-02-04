@@ -306,31 +306,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
-                    // Esegui la query per ottenere i piatti di un tipo specifico
-                    val tipo = 1 // Sostituisci con il tipo che desideri cercare
-                    val piattii = dbViewModel.getPiattiByTipo(tipo)
-
-                    // Esegui la query per ottenere un piatto tramite id
-                    val piattoId = 1 // Sostituisci con l'ID che desideri cercare
-                    val piattoo = dbViewModel.getPiattoById(piattoId)
-
-                    // Esegui la query per ottenere la media ponderata di uno studente
-                    val mediaPonderata = dbViewModel.getMediaPonderata(studenteTest.matricola)
-
-                    // Log per verificare i risultati
-                    Log.d("MainActivityDEBUGTEST", "Piatti di tipo '$tipo': $piattii")
-                    Log.d("MainActivityDEBUGTEST", "Piatto con ID $piattoId: $piattoo")
-                    Log.d("MainActivityDEBUGTEST", "Media ponderata per matricola \n$studenteTest: $mediaPonderata")
-
-                } catch (e: Exception) {
-                    Log.e("MainActivityDEBUG", "Errore durante l'esecuzione delle query", e)
-                }
-            }
-        }
-
-
     }
 }

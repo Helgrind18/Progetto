@@ -1,6 +1,7 @@
 package com.example.progetto.AreeBiblioteca
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -27,7 +28,8 @@ class Area_Linguistica : AppCompatActivity() {
             insets
         }
 
-        val matricola = intent.getIntExtra("matricola", 0)
+        val matricola = intent.getIntExtra("username", 0)  // Usa la stessa chiave che usi in Biblioteca
+        Log.d("LingDebu","matricola $matricola")
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
         libroListAdapter = LibroAdapter(this,matricola)
         recyclerView.layoutManager = LinearLayoutManager(this)

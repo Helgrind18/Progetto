@@ -32,8 +32,8 @@ class Biblioteca : AppCompatActivity() {
             insets
         }
 
-        val matricola = intent.getIntExtra("matricola", 0)
-
+        val matricola = intent.getIntExtra("username", 0)
+        Log.d("BiblioDebu", "Recupero della matricola: $matricola")
         val bottoneLinguistica: Button = findViewById(R.id.linguistica)
         val bottoneMatematica: Button = findViewById(R.id.matematica)
         val bottoneInformatica: Button = findViewById(R.id.informatica)
@@ -54,7 +54,8 @@ class Biblioteca : AppCompatActivity() {
         bottoneLinguistica.setOnClickListener {
             val intent = Intent(this, Area_Linguistica::class.java).apply {
                 intent.putExtra("area", linguistica)
-                intent.putExtra("matricola", matricola)
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Linguistica: $matricola")
             }
             startActivity(intent)
         }
