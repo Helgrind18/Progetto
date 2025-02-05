@@ -448,6 +448,16 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         return null
     }
 
+    fun getPullmanByOrarioPartenzaEDestinazione(orarioPartenza: Int, destinazione: String): LiveData<List<Pullman>>?{
+        try {
+            Log.d("DBViewModelDEBUG", "Eseguo query con orario di partenza: $orarioPartenza e destinazione: $destinazione")
+            return pullmanDAO.getPullmanByOrarioPartenzaEDestinazione(orarioPartenza, destinazione)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante l'esecuzione della query", e)
+        }
+        return null
+    }
+
 }
 
 

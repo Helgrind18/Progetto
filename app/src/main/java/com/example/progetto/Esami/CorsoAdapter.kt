@@ -10,9 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.progetto.ActivityRiutilizzabile
-import com.example.progetto.BachecaEsiti
 import com.example.progetto.Entity.Corso
-import com.example.progetto.PianoStudi
 import com.example.progetto.R
 
 class CorsoAdapter(var context: Context): ListAdapter<Corso, CorsoAdapter.CorsoViewHolder>(DIFF_CALLBACK)  {

@@ -11,9 +11,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.progetto.AreaPersonale
-import com.example.progetto.BachecaEsiti
+import com.example.progetto.SezioneTrasporti
 import com.example.progetto.AreeBiblioteca.Biblioteca
-import com.example.progetto.Esami.CalendarioEsami
 import com.example.progetto.Collegamenti
 import com.example.progetto.Esami.AppelliDisponibili
 import com.example.progetto.Libretto
@@ -55,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
         val mensa: Button = findViewById(R.id.mensa)
         val tasse: Button = findViewById(R.id.tasse)
         val libretto: Button = findViewById(R.id.libretto)
-        val bachecaEsiti: Button = findViewById(R.id.bachecaEsiti)
+        val sezioneTrasporti: Button = findViewById(R.id.bachecaEsiti)
         val questionari: Button = findViewById(R.id.questionari)
         val pianoStudi: Button = findViewById(R.id.pianoStudi)
         val collegamenti: Button = findViewById(R.id.collegamenti)
@@ -121,8 +120,8 @@ class HomeActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
-        bachecaEsiti.setOnClickListener {
-            val intent = Intent(this, BachecaEsiti::class.java).apply {
+        sezioneTrasporti.setOnClickListener {
+            val intent = Intent(this, SezioneTrasporti::class.java).apply {
                 putExtra("username", username)
             }
             startActivity(intent)

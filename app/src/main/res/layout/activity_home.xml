@@ -10,10 +10,17 @@
     android:orientation="horizontal">
 
     <!-- Banda rossa in alto -->
-    <View
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:text="HOME"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/white"
         android:background="@color/rosso_bordeaux"
+        android:visibility="visible"
         android:layout_rowSpan="1"
         android:layout_columnSpan="3"/>
 
@@ -106,7 +113,7 @@
         android:layout_rowWeight="1"
         android:insetLeft="8dp"
         android:insetRight="8dp"
-        android:text="Bacheca Esiti"
+        android:text="Sezione Trasporti"
         android:textSize="12sp"
         android:gravity="center"
         android:textColor="@color/white"
