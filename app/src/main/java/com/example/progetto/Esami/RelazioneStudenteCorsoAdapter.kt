@@ -52,13 +52,13 @@ class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, Rela
                 append(esame.aula)
             }
             bottonePrestiti.setOnClickListener {
-                gestisciClickPrestiti(titleTextView, bottonePrestiti, barra, esame)
+                gestisciClickPrenotazioni(titleTextView, bottonePrestiti, barra, esame)
             }
         }
     }
 }
 
-private fun gestisciClickPrestiti(tview: TextView, button: Button, barra: View, esame: RelazioneStudenteCorso) {
+private fun gestisciClickPrenotazioni(tview: TextView, button: Button, barra: View, esame: RelazioneStudenteCorso) {
     esame.prenotazione=1
     Handler(Looper.getMainLooper()).postDelayed({
         tview.visibility = TextView.GONE
