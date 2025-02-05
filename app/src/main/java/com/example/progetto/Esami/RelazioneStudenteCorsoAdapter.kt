@@ -58,6 +58,7 @@ class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, Rela
     }
 }
 
+
 private fun gestisciClickPrenotazioni(tview: TextView, button: Button, barra: View, esame: RelazioneStudenteCorso) {
     esame.prenotazione=1
     Handler(Looper.getMainLooper()).postDelayed({
