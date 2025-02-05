@@ -11,6 +11,7 @@ import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Piatto
+import com.example.progetto.Entity.Pullman
 import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.RelazioneStudenteSegueCorsi
@@ -31,7 +32,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         DataBaseApp.getDatabase(application).getRelazioneCDLCorsoDao()
     private val corsoDiLaureaDAO = DataBaseApp.getDatabase(application).getCDLDao()
     private val piattoDAO = DataBaseApp.getDatabase(application).getPiattoDao()
-
+    private val pullmanDAO = DataBaseApp.getDatabase(application).getPullmanDao()
     //STUDENTE
 
     //Funzione per restituire tutti gli studenti
@@ -406,7 +407,49 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
                 null
             }
         }
+    //Pullman
+    fun inserisciPullman(pullman: Pullman) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                pullmanDAO.inserisciPullman(pullman)
+                Log.d("DBViewModelDEBUG", "Pullman ${pullman.id} inserito nel database")
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del pullman", e)
+            }
+        }
     }
+
+    fun getPullmanById(id: Int): Pullman? {
+        return try {
+            pullmanDAO.getPullmanById(id)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+            throw e
+        }
+    }
+
+    fun getPullmanByOrarioPartenza(orarioPartenza: Int): List<Pullman>? {
+        try {
+            Log.d("DBViewModelDEBUG", "Eseguo query con orario di partenza: $orarioPartenza")
+            return pullmanDAO.getPullmanByOrarioPartenza(orarioPartenza)
+        } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante l'esecuzione della query", e)
+        }
+        return null
+    }
+
+    fun getPullmanByDestinazione(destinazione: String): List<Pullman>?{
+        try {
+            Log.d("DBViewModelDEBUG", "Eseguo query con destinazione: $destinazione")
+            return pullmanDAO.getPullmanByDestinazione(destinazione)
+            } catch (e: Exception) {
+            Log.e("DBViewModelDEBUG", "Errore durante l'esecuzione della query", e)
+        }
+        return null
+    }
+
+}
+
 
 
 

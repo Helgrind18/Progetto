@@ -15,6 +15,7 @@ import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Piatto
+import com.example.progetto.Entity.Pullman
 import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.dataBase.DBViewModel
@@ -144,57 +145,348 @@ class MainActivity : AppCompatActivity() {
         // Creazione dei corsi
 
         val corso = listOf(
-            Corso(id = 1, nome = "Ingegneria del Software", CFU = 12, semestre = 1, anno = 3, descrizione = "Il corso fornisce conoscenze sui principi, le metodologie e gli strumenti dell'ingegneria del software."),
-            Corso(id = 2, nome = "Basi di Dati", CFU = 9, semestre = 2, anno = 3, descrizione = "Si studiano i fondamenti delle basi di dati, con particolare attenzione ai modelli relazionali e SQL."),
-            Corso(id = 3, nome = "Reti di Calcolatori", CFU = 6, semestre = 1, anno = 3, descrizione = "Il corso introduce i principi delle reti di calcolatori, i protocolli di comunicazione e la sicurezza delle reti."),
-            Corso(id = 4, nome = "Analisi Matematica 1", CFU = 9, semestre = 1, anno = 1, descrizione = "Studio delle funzioni reali, limiti, derivate, integrali e serie numeriche."),
-            Corso(id = 5, nome = "Fisica 1", CFU = 6, semestre = 2, anno = 1, descrizione = "Fondamenti di meccanica classica, dinamica e termodinamica."),
-            Corso(id = 6, nome = "Programmazione 1", CFU = 12, semestre = 1, anno = 1, descrizione = "Introduzione alla programmazione con focus su algoritmi e strutture dati di base."),
-            Corso(id = 7, nome = "Sistemi Operativi", CFU = 9, semestre = 2, anno = 2, descrizione = "Approfondimento sui principi e le funzionalità dei sistemi operativi moderni."),
-            Corso(id = 8, nome = "Ingegneria del Web", CFU = 6, semestre = 1, anno = 2, descrizione = "Tecnologie e metodologie per la progettazione e lo sviluppo di applicazioni web."),
-            Corso(id = 9, nome = "Algoritmi e Strutture Dati", CFU = 12, semestre = 2, anno = 2, descrizione = "Studio degli algoritmi avanzati e delle strutture dati fondamentali."),
-            Corso(id = 10, nome = "Calcolo Numerico", CFU = 6, semestre = 1, anno = 3, descrizione = "Tecniche numeriche per la risoluzione di problemi matematici e computazionali."),
-            Corso(id = 11, nome = "Intelligenza Artificiale", CFU = 9, semestre = 2, anno = 3, descrizione = "Introduzione alle tecniche di AI, machine learning e reti neurali."),
-            Corso(id = 12, nome = "Sicurezza Informatica", CFU = 6, semestre = 1, anno = 3, descrizione = "Principi di sicurezza informatica, crittografia e protezione dei sistemi."),
-            Corso(id = 13, nome = "Economia Aziendale", CFU = 6, semestre = 2, anno = 1, descrizione = "Fondamenti di economia e gestione aziendale."),
-            Corso(id = 14, nome = "Reti di Telecomunicazioni", CFU = 9, semestre = 1, anno = 2, descrizione = "Analisi delle reti di telecomunicazione e delle loro architetture."),
-            Corso(id = 15, nome = "Progettazione Software", CFU = 9, semestre = 2, anno = 3, descrizione = "Metodologie e strumenti per la progettazione di sistemi software complessi."),
-            Corso(id = 16, nome = "Sviluppo Mobile", CFU = 6, semestre = 1, anno = 3, descrizione = "Introduzione allo sviluppo di applicazioni mobili per Android e iOS."),
-            Corso(id = 17, nome = "Elaborazione di Immagini", CFU = 6, semestre = 2, anno = 3, descrizione = "Tecniche di elaborazione e analisi delle immagini digitali."),
-            Corso(id = 18, nome = "Matematica Discreta", CFU = 9, semestre = 1, anno = 1, descrizione = "Studio delle strutture discrete, teoria dei grafi e combinatoria.")
+            Corso(
+                id = 1,
+                nome = "Ingegneria del Software",
+                CFU = 12,
+                semestre = 1,
+                anno = 3,
+                descrizione = "Il corso fornisce conoscenze sui principi, le metodologie e gli strumenti dell'ingegneria del software."
+            ),
+            Corso(
+                id = 2,
+                nome = "Basi di Dati",
+                CFU = 9,
+                semestre = 2,
+                anno = 3,
+                descrizione = "Si studiano i fondamenti delle basi di dati, con particolare attenzione ai modelli relazionali e SQL."
+            ),
+            Corso(
+                id = 3,
+                nome = "Reti di Calcolatori",
+                CFU = 6,
+                semestre = 1,
+                anno = 3,
+                descrizione = "Il corso introduce i principi delle reti di calcolatori, i protocolli di comunicazione e la sicurezza delle reti."
+            ),
+            Corso(
+                id = 4,
+                nome = "Analisi Matematica 1",
+                CFU = 9,
+                semestre = 1,
+                anno = 1,
+                descrizione = "Studio delle funzioni reali, limiti, derivate, integrali e serie numeriche."
+            ),
+            Corso(
+                id = 5,
+                nome = "Fisica 1",
+                CFU = 6,
+                semestre = 2,
+                anno = 1,
+                descrizione = "Fondamenti di meccanica classica, dinamica e termodinamica."
+            ),
+            Corso(
+                id = 6,
+                nome = "Programmazione 1",
+                CFU = 12,
+                semestre = 1,
+                anno = 1,
+                descrizione = "Introduzione alla programmazione con focus su algoritmi e strutture dati di base."
+            ),
+            Corso(
+                id = 7,
+                nome = "Sistemi Operativi",
+                CFU = 9,
+                semestre = 2,
+                anno = 2,
+                descrizione = "Approfondimento sui principi e le funzionalità dei sistemi operativi moderni."
+            ),
+            Corso(
+                id = 8,
+                nome = "Ingegneria del Web",
+                CFU = 6,
+                semestre = 1,
+                anno = 2,
+                descrizione = "Tecnologie e metodologie per la progettazione e lo sviluppo di applicazioni web."
+            ),
+            Corso(
+                id = 9,
+                nome = "Algoritmi e Strutture Dati",
+                CFU = 12,
+                semestre = 2,
+                anno = 2,
+                descrizione = "Studio degli algoritmi avanzati e delle strutture dati fondamentali."
+            ),
+            Corso(
+                id = 10,
+                nome = "Calcolo Numerico",
+                CFU = 6,
+                semestre = 1,
+                anno = 3,
+                descrizione = "Tecniche numeriche per la risoluzione di problemi matematici e computazionali."
+            ),
+            Corso(
+                id = 11,
+                nome = "Intelligenza Artificiale",
+                CFU = 9,
+                semestre = 2,
+                anno = 3,
+                descrizione = "Introduzione alle tecniche di AI, machine learning e reti neurali."
+            ),
+            Corso(
+                id = 12,
+                nome = "Sicurezza Informatica",
+                CFU = 6,
+                semestre = 1,
+                anno = 3,
+                descrizione = "Principi di sicurezza informatica, crittografia e protezione dei sistemi."
+            ),
+            Corso(
+                id = 13,
+                nome = "Economia Aziendale",
+                CFU = 6,
+                semestre = 2,
+                anno = 1,
+                descrizione = "Fondamenti di economia e gestione aziendale."
+            ),
+            Corso(
+                id = 14,
+                nome = "Reti di Telecomunicazioni",
+                CFU = 9,
+                semestre = 1,
+                anno = 2,
+                descrizione = "Analisi delle reti di telecomunicazione e delle loro architetture."
+            ),
+            Corso(
+                id = 15,
+                nome = "Progettazione Software",
+                CFU = 9,
+                semestre = 2,
+                anno = 3,
+                descrizione = "Metodologie e strumenti per la progettazione di sistemi software complessi."
+            ),
+            Corso(
+                id = 16,
+                nome = "Sviluppo Mobile",
+                CFU = 6,
+                semestre = 1,
+                anno = 3,
+                descrizione = "Introduzione allo sviluppo di applicazioni mobili per Android e iOS."
+            ),
+            Corso(
+                id = 17,
+                nome = "Elaborazione di Immagini",
+                CFU = 6,
+                semestre = 2,
+                anno = 3,
+                descrizione = "Tecniche di elaborazione e analisi delle immagini digitali."
+            ),
+            Corso(
+                id = 18,
+                nome = "Matematica Discreta",
+                CFU = 9,
+                semestre = 1,
+                anno = 1,
+                descrizione = "Studio delle strutture discrete, teoria dei grafi e combinatoria."
+            )
         )
 
         // Creazione delle relazioni Studente-Corso
 
         val relazioni = listOf(
-            RelazioneStudenteCorso(1, 15, "Lunedì", "10:00", "A1", -1, 1, corso.first { it.id == 1 }.nome),
-            RelazioneStudenteCorso(2, 15, "Martedì", "14:30", "B2", 30, 0, corso.first { it.id == 2 }.nome),
-            RelazioneStudenteCorso(3, 15, "Mercoledì", "09:00", "C3", 29, 0, corso.first { it.id == 3 }.nome),
-            RelazioneStudenteCorso(4, 15, "Martedì", "11:00", "B1", -1, 0, corso.first { it.id == 4 }.nome),
-            RelazioneStudenteCorso(5, 15, "Martedì", "14:00", "B2", -1, 0, corso.first { it.id == 5 }.nome),
-            RelazioneStudenteCorso(6, 15, "Mercoledì", "10:00", "C1", 28, 0, corso.first { it.id == 6 }.nome),
-            RelazioneStudenteCorso(7, 15, "Mercoledì", "15:00", "C2", -1, 1, corso.first { it.id == 7 }.nome),
-            RelazioneStudenteCorso(8, 15, "Giovedì", "09:00", "D1", -1, 1, corso.first { it.id == 8 }.nome),
-            RelazioneStudenteCorso(9, 15, "Giovedì", "13:00", "D2", -1, 1, corso.first { it.id == 9 }.nome),
-            RelazioneStudenteCorso(10, 15, "Venerdì", "10:00", "E1", 27, 0, corso.first { it.id == 10 }.nome),
-            RelazioneStudenteCorso(11, 15, "Venerdì", "12:00", "E2", 26, 0, corso.first { it.id == 11 }.nome),
-            RelazioneStudenteCorso(12, 15, "Lunedì", "14:00", "F1", 25, 0, corso.first { it.id == 12 }.nome),
-            RelazioneStudenteCorso(13, 15, "Lunedì", "16:00", "F2", 24, 0, corso.first { it.id == 13 }.nome),
-            RelazioneStudenteCorso(14, 15, "Martedì", "09:00", "G1", -1, 1, corso.first { it.id == 14 }.nome),
-            RelazioneStudenteCorso(15, 15, "Martedì", "11:00", "G2", 23, 0, corso.first { it.id == 15 }.nome),
-            RelazioneStudenteCorso(16, 15, "Mercoledì", "14:00", "H1", -1, 0, corso.first { it.id == 16 }.nome),
-            RelazioneStudenteCorso(17, 15, "Mercoledì", "16:00", "H2", -1, 0, corso.first { it.id == 17 }.nome),
-            RelazioneStudenteCorso(18, 15, "Giovedì", "10:00", "I1", -1, 0, corso.first { it.id == 18 }.nome)
+            RelazioneStudenteCorso(
+                1,
+                15,
+                "Lunedì",
+                "10:00",
+                "A1",
+                -1,
+                1,
+                corso.first { it.id == 1 }.nome
+            ),
+            RelazioneStudenteCorso(
+                2,
+                15,
+                "Martedì",
+                "14:30",
+                "B2",
+                30,
+                0,
+                corso.first { it.id == 2 }.nome
+            ),
+            RelazioneStudenteCorso(
+                3,
+                15,
+                "Mercoledì",
+                "09:00",
+                "C3",
+                29,
+                0,
+                corso.first { it.id == 3 }.nome
+            ),
+            RelazioneStudenteCorso(
+                4,
+                15,
+                "Martedì",
+                "11:00",
+                "B1",
+                -1,
+                0,
+                corso.first { it.id == 4 }.nome
+            ),
+            RelazioneStudenteCorso(
+                5,
+                15,
+                "Martedì",
+                "14:00",
+                "B2",
+                -1,
+                0,
+                corso.first { it.id == 5 }.nome
+            ),
+            RelazioneStudenteCorso(
+                6,
+                15,
+                "Mercoledì",
+                "10:00",
+                "C1",
+                28,
+                0,
+                corso.first { it.id == 6 }.nome
+            ),
+            RelazioneStudenteCorso(
+                7,
+                15,
+                "Mercoledì",
+                "15:00",
+                "C2",
+                -1,
+                1,
+                corso.first { it.id == 7 }.nome
+            ),
+            RelazioneStudenteCorso(
+                8,
+                15,
+                "Giovedì",
+                "09:00",
+                "D1",
+                -1,
+                1,
+                corso.first { it.id == 8 }.nome
+            ),
+            RelazioneStudenteCorso(
+                9,
+                15,
+                "Giovedì",
+                "13:00",
+                "D2",
+                -1,
+                1,
+                corso.first { it.id == 9 }.nome
+            ),
+            RelazioneStudenteCorso(
+                10,
+                15,
+                "Venerdì",
+                "10:00",
+                "E1",
+                27,
+                0,
+                corso.first { it.id == 10 }.nome
+            ),
+            RelazioneStudenteCorso(
+                11,
+                15,
+                "Venerdì",
+                "12:00",
+                "E2",
+                26,
+                0,
+                corso.first { it.id == 11 }.nome
+            ),
+            RelazioneStudenteCorso(
+                12,
+                15,
+                "Lunedì",
+                "14:00",
+                "F1",
+                25,
+                0,
+                corso.first { it.id == 12 }.nome
+            ),
+            RelazioneStudenteCorso(
+                13,
+                15,
+                "Lunedì",
+                "16:00",
+                "F2",
+                24,
+                0,
+                corso.first { it.id == 13 }.nome
+            ),
+            RelazioneStudenteCorso(
+                14,
+                15,
+                "Martedì",
+                "09:00",
+                "G1",
+                -1,
+                1,
+                corso.first { it.id == 14 }.nome
+            ),
+            RelazioneStudenteCorso(
+                15,
+                15,
+                "Martedì",
+                "11:00",
+                "G2",
+                23,
+                0,
+                corso.first { it.id == 15 }.nome
+            ),
+            RelazioneStudenteCorso(
+                16,
+                15,
+                "Mercoledì",
+                "14:00",
+                "H1",
+                -1,
+                0,
+                corso.first { it.id == 16 }.nome
+            ),
+            RelazioneStudenteCorso(
+                17,
+                15,
+                "Mercoledì",
+                "16:00",
+                "H2",
+                -1,
+                0,
+                corso.first { it.id == 17 }.nome
+            ),
+            RelazioneStudenteCorso(
+                18,
+                15,
+                "Giovedì",
+                "10:00",
+                "I1",
+                -1,
+                0,
+                corso.first { it.id == 18 }.nome
+            )
         )
 
-    //Inserimento delle relazioni
+        //Inserimento delle relazioni
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 corso.forEach { dbViewModel.inserisciCorso(it) }
                 for (relazione in relazioni) {
                     //Uso questo for per inserire tutte le relazioni in ordine
                     dbViewModel.inserisciRelazioneStudenteCorso(relazione)
-                    Log.d("DEBUGRel", "Tentativo di inserimento: ${relazione.nomeCorso}, Voto: ${relazione.voto}")
+                    Log.d(
+                        "DEBUGRel",
+                        "Tentativo di inserimento: ${relazione.nomeCorso}, Voto: ${relazione.voto}"
+                    )
 
                 }
 
@@ -255,7 +547,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     Log.d("MainActivityDEBUG", "Relazioni CDL-Corsi inserite correttamente")
                 } catch (e: Exception) {
-                    Log.e("MainActivityDEBUG", "Errore durante l'inserimento delle relazioni CDL-Corso", e)
+                    Log.e(
+                        "MainActivityDEBUG",
+                        "Errore durante l'inserimento delle relazioni CDL-Corso",
+                        e
+                    )
                 }
             }
         }
@@ -306,6 +602,73 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+        val pullmanList = listOf(
+            Pullman(id = 1, nomePullman = "Express 101", orarioPartenza = 800, destinazione = "Arcavacata"),
+            Pullman(id = 2, nomePullman = "City Link", orarioPartenza = 930, destinazione = "Centro Storico"),
+            Pullman(id = 3, nomePullman = "Fast Travel", orarioPartenza = 1100, destinazione = "Quattromiglia"),
+            Pullman(id = 4, nomePullman = "Night Rider", orarioPartenza = 2200, destinazione = "Santo Stefano"),
+            Pullman(id = 5, nomePullman = "Morning Star", orarioPartenza = 600, destinazione = "Commenda"),
+            Pullman(id = 6, nomePullman = "Weekend Express", orarioPartenza = 1400, destinazione = "Surdo"),
+            Pullman(id = 7, nomePullman = "Sunset Trip", orarioPartenza = 1800, destinazione = "Roges"),
+            Pullman(id = 8, nomePullman = "Mountain Express", orarioPartenza = 700, destinazione = "Saporito"),
+            Pullman(id = 9, nomePullman = "Sea Breeze", orarioPartenza = 1600, destinazione = "Arcavacata"),
+            Pullman(id = 10, nomePullman = "Holiday Coach", orarioPartenza = 1200, destinazione = "Centro Storico"),
+            Pullman(id = 11, nomePullman = "Golden Route", orarioPartenza = 1000, destinazione = "Quattromiglia"),
+            Pullman(id = 12, nomePullman = "Silver Line", orarioPartenza = 1300, destinazione = "Santo Stefano"),
+            Pullman(id = 13, nomePullman = "Blue Sky", orarioPartenza = 1500, destinazione = "Commenda"),
+            Pullman(id = 14, nomePullman = "Emerald Voyage", orarioPartenza = 1700, destinazione = "Surdo"),
+            Pullman(id = 15, nomePullman = "Ruby Express", orarioPartenza = 1900, destinazione = "Roges"),
+            Pullman(id = 16, nomePullman = "Diamond Travel", orarioPartenza = 2100, destinazione = "Saporito"),
+            Pullman(id = 17, nomePullman = "Pearl Bus", orarioPartenza = 500, destinazione = "Arcavacata"),
+            Pullman(id = 18, nomePullman = "Opal Route", orarioPartenza = 1130, destinazione = "Centro Storico"),
+            Pullman(id = 19, nomePullman = "Sapphire Ride", orarioPartenza = 1330, destinazione = "Quattromiglia"),
+            Pullman(id = 20, nomePullman = "Amber Path", orarioPartenza = 1530, destinazione = "Santo Stefano"),
+            Pullman(id = 21, nomePullman = "Turquoise Express", orarioPartenza = 1730, destinazione = "Commenda"),
+            Pullman(id = 22, nomePullman = "Coral Journey", orarioPartenza = 1930, destinazione = "Surdo"),
+            Pullman(id = 23, nomePullman = "Onyx Adventure", orarioPartenza = 2130, destinazione = "Roges"),
+            Pullman(id = 24, nomePullman = "Jet Express", orarioPartenza = 2330, destinazione = "Saporito")
+        )
+
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    pullmanList.forEach { pullman ->
+                        dbViewModel.inserisciPullman(pullman)
+                    }
+                    Log.d("MainActivityDEBUGPul", "Pullman inseriti correttamente")
+                } catch (e: Exception) {
+                    Log.e("MainActivityDEBUGPul", "Errore durante l'inserimento dei pullman", e)
+                }
+            }
+
+        }
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    val destinazione = "Quattromiglia"
+                    val pl = dbViewModel.getPullmanByDestinazione(destinazione)
+                    Log.d("MainActivityDEBUGPullman", "Pullman trovati: $pl")
+                } catch (e: Exception) {
+                    Log.e("MainActivityDEBUGPullman", "Errore nel recupero dei pullman", e)
+                }
+            }
+        }
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    val orarioAttuale = Calendar.HOUR
+                    val pl1 = dbViewModel.getPullmanByOrarioPartenza(orarioAttuale*100)
+                    //NB: il *100 è dovuto al fatto che Calendar mi dia soramente l'orario per 12h (le 22 sono le 10)
+                    Log.d("MainActivityDEBUGPullmanOrario", "L'ora è $orarioAttuale \n Pullman trovati: $pl1")
+                } catch (e: Exception) {
+                    Log.e("MainActivityDEBUGPullmanOrario", "Errore nel recupero dei pullman", e)
+                }
+            }
+        }
+
+
     }
 }
-

@@ -11,6 +11,7 @@ import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Piatto
+import com.example.progetto.Entity.Pullman
 import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.Studente
@@ -26,7 +27,8 @@ import com.example.progetto.Entity.Studente
         RelazioneStudenteCorso::class, // Include la tabella intermedia many-to-many
         RelazioneCDLCorso::class, // Include la tabella intermedia many-to-many
         CorsoDiLaurea::class,
-        Piatto::class
+        Piatto::class,
+        Pullman::class
     ],
     version = 1
 )
@@ -39,6 +41,7 @@ abstract class DataBaseApp : RoomDatabase() {
     abstract fun getRelazioneCDLCorsoDao(): RelazioneCDLCorsoDao
     abstract fun getCDLDao(): CorsoDiLaureaDao
     abstract fun getPiattoDao(): PiattoDao
+    abstract fun getPullmanDao(): PullmanDao
     companion object {
         @Volatile
         private var INSTANCE: DataBaseApp? = null
@@ -49,7 +52,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseProjectUnical57"
+                    "DatabaseProjectUnical59"
                 )
                     .build()
                 INSTANCE = instance

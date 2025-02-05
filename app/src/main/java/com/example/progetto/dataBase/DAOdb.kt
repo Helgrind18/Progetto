@@ -12,6 +12,7 @@ import com.example.progetto.Entity.Corso
 import com.example.progetto.Entity.CorsoDiLaurea
 import com.example.progetto.Entity.Libro
 import com.example.progetto.Entity.Piatto
+import com.example.progetto.Entity.Pullman
 import com.example.progetto.Entity.RelazioneCDLCorso
 import com.example.progetto.Entity.RelazioneStudenteCorso
 import com.example.progetto.Entity.Studente
@@ -263,5 +264,29 @@ interface PiattoDao{
     //Recupera i piatti per tipo
     @Query("SELECT * FROM Piatto p WHERE p.tipo = :tipo")
     fun getPiattiByTipo(tipo: Int): List<Piatto>?
+}
+
+@Dao
+interface PullmanDao{
+    //Recupera i pullman
+    @Query("SELECT * FROM Pullman")
+    fun getAll(): LiveData<List<Pullman>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun inserisciPullman(pullman: Pullman)
+
+    //Recupera il pullman dato l'id
+    @Query("SELECT * FROM Pullman p WHERE p.id = :id")
+    fun getPullmanById(id: Int): Pullman?
+
+    //Recupera i pullman dato un orario di partenza
+    @Query("SELECT * FROM Pullman p WHERE (p.orarioPartenza - :orarioPartenza) > 0")
+    //Significa che l'orario di partenza sia maggiore di quello attuale, quindi il pullman deve ancora passare
+    fun getPullmanByOrarioPartenza(orarioPartenza: Int): List<Pullman>?
+
+    //Recupera i pullman data una destinazione
+    @Query("SELECT * FROM Pullman p WHERE p.destinazione = :destinazione")
+    fun getPullmanByDestinazione(destinazione: String): List<Pullman>?
+
 }
 
