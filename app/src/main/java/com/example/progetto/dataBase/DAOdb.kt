@@ -94,6 +94,7 @@ interface CorsoDao {
     @Query("SELECT * FROM Corso")
     fun getAll(): LiveData<List<Corso>>
 
+    @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciCorso(corso: Corso)
 
