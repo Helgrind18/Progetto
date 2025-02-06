@@ -31,6 +31,25 @@
         android:textColor="@color/black"
         android:textColorHint="@color/black" />
 
+    <TextView
+        android:id="@+id/scegliCDL"
+        android:text="Clicca per selezionare il Corso di Laurea"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:minHeight="48dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
 
 
 
