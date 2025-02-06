@@ -282,7 +282,7 @@ interface PullmanDao{
     //Recupera i pullman dato un orario di partenza
     @Query("SELECT * FROM Pullman p WHERE (p.orarioPartenza - :orarioPartenza) > 0")
     //Significa che l'orario di partenza sia maggiore di quello attuale, quindi il pullman deve ancora passare
-    fun getPullmanByOrarioPartenza(orarioPartenza: Int): List<Pullman>?
+    fun getPullmanByOrarioPartenza(orarioPartenza: Int): LiveData<List<Pullman>>?
 
     //Recupera i pullman data una destinazione
     @Query("SELECT * FROM Pullman p WHERE p.destinazione = :destinazione")

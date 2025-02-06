@@ -43,7 +43,8 @@
             android:id="@+id/bottoneCerca"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/lente"/>
+            android:src="@drawable/lente"
+            android:background="@color/white"/>
     </LinearLayout>
 
     <View
@@ -56,12 +57,67 @@
         android:layout_height="1dp"
         android:background="@color/black" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="49dp">
+
+        <TextView
+            android:id="@+id/idCorsaH"
+            android:layout_width="100dp"
+            android:text="ID\n corsa"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textAlignment="center"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/destinazioneH"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:text="Destinazione"
+            android:textSize="20sp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textAlignment="center" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/partenzaH"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textSize="20sp"
+            android:text="Orario di partenza"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/sepCorsa"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black" />
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listacorse"
         android:layout_width="match_parent"
         android:layout_gravity="center"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_height="fill_parent"/>
 
 </LinearLayout>

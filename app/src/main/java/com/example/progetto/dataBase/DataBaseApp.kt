@@ -52,7 +52,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseProjectUnical61"
+                    "DatabaseProjectUnical62"
                 )
                     .build()
                 INSTANCE = instance

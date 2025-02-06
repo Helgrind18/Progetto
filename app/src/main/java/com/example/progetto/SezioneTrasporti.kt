@@ -39,22 +39,29 @@ class SezioneTrasporti : AppCompatActivity() {
         val ora: Int= data.get(Calendar.HOUR_OF_DAY)
         Log.d("PullDebug", "ora: $ora")
         val minuto: Int= data.get(Calendar.MINUTE)
-        //val dataUtile= "1130".toInt()
         val dataUtile= ora*100+minuto
         Log.d("PullDebug", "dataUtile: $dataUtile")
 
         val bottoneCerca: ImageButton = findViewById(R.id.bottoneCerca)
         val barra: EditText = findViewById(R.id.dest)
+        val recyclerView: RecyclerView = findViewById(R.id.listacorse)
+        corsaAdapter = CorseAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(this as Context?)
+        recyclerView.adapter = corsaAdapter
+        dbViewModel.getPullmanByOrarioPartenza(dataUtile)?.observe(this as LifecycleOwner, Observer { corse -> corsaAdapter.submitList(corse) })
         bottoneCerca.setOnClickListener {
                 val ricerca = barra.text.toString().toUpperCase().trim()
-                Log.d("PullDebug", "ho cliccato il bottone con $ricerca e $dataUtile")
-                corsaAdapter = CorseAdapter()
-                val recyclerView: RecyclerView = findViewById(R.id.listacorse)
-                recyclerView.layoutManager = LinearLayoutManager(this as Context?)
-                recyclerView.adapter = corsaAdapter
-                dbViewModel.getPullmanByOrarioPartenzaEDestinazione(dataUtile, ricerca)?.observe(this as LifecycleOwner, Observer { corse -> corsaAdapter.submitList(corse) })
-                Log.d("PullDebug", "ho preso la lista")
-                recyclerView.visibility = RecyclerView.VISIBLE
+                if (ricerca.isEmpty()) {
+                    dbViewModel.getPullmanByOrarioPartenza(dataUtile)?.observe(this as LifecycleOwner, Observer { corse -> corsaAdapter.submitList(corse) })
+
+                }else {
+                    Log.d("PullDebug", "ho cliccato il bottone con $ricerca e $dataUtile")
+                    dbViewModel.getPullmanByOrarioPartenzaEDestinazione(dataUtile, ricerca)
+                        ?.observe(
+                            this as LifecycleOwner,
+                            Observer { corse -> corsaAdapter.submitList(corse) })
+                    Log.d("PullDebug", "ho preso la lista")
+                }
         }
     }
 }

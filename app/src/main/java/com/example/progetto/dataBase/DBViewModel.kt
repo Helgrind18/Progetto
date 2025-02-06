@@ -428,7 +428,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun getPullmanByOrarioPartenza(orarioPartenza: Int): List<Pullman>? {
+    fun getPullmanByOrarioPartenza(orarioPartenza: Int): LiveData<List<Pullman>>? {
         try {
             Log.d("DBViewModelDEBUG", "Eseguo query con orario di partenza: $orarioPartenza")
             return pullmanDAO.getPullmanByOrarioPartenza(orarioPartenza)
