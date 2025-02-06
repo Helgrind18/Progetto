@@ -53,7 +53,7 @@ class Biblioteca : AppCompatActivity() {
 
         bottoneLinguistica.setOnClickListener {
             val intent = Intent(this, Area_Linguistica::class.java).apply {
-                intent.putExtra("area", linguistica)
+                putExtra("area", linguistica)
                 putExtra("username", matricola)  // Usa la stessa chiave "username"
                 Log.d("BiblioDebu", "Passo la matricola a Area_Linguistica: $matricola")
             }
@@ -62,64 +62,72 @@ class Biblioteca : AppCompatActivity() {
 
         bottoneMatematica.setOnClickListener {
             val intent = Intent(this, Area_Matematica::class.java).apply {
-                intent.putExtra("area", "Matematica")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Matematica")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Matematica: $matricola")
             }
             startActivity(intent)
         }
 
         bottoneInformatica.setOnClickListener {
             val intent = Intent(this, Area_Informatica::class.java).apply {
-                intent.putExtra("area", "Informatica")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Informatica")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Informatica: $matricola")
             }
             startActivity(intent)
         }
 
         bottoneGiuridico.setOnClickListener {
             val intent = Intent(this, Area_Giuridica::class.java).apply {
-                intent.putExtra("area", "Giuridico")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Giuridico")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Giuridica: $matricola")
             }
             startActivity(intent)
         }
 
         bottoneEconomico.setOnClickListener {
             val intent = Intent(this, Area_Economica::class.java).apply {
-                intent.putExtra("area", "Economica")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Economica")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Economica: $matricola")
             }
             startActivity(intent)
         }
 
         bottoneStorico.setOnClickListener {
             val intent = Intent(this, Area_Storica::class.java).apply {
-                intent.putExtra("area", "Storico")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Storico")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Storica: $matricola")
             }
             startActivity(intent)
         }
 
         bottoneFilosofico.setOnClickListener {
             val intent = Intent(this, Area_Filosofica::class.java).apply {
-                intent.putExtra("area", "Filosofico")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Filosofico")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Filosofica: $matricola")
             }
             startActivity(intent)
         }
 
         bottonePsicologico.setOnClickListener {
             val intent = Intent(this, Area_Psicologica::class.java).apply {
-                intent.putExtra("area", "Psicologico")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Psicologico")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Psicologica: $matricola")
             }
             startActivity(intent)
         }
 
         bottonePedagogico.setOnClickListener {
             val intent = Intent(this, Area_Pedagogica::class.java).apply {
-                intent.putExtra("area", "Pedagogico")
-                intent.putExtra("matricola", matricola)
+                putExtra("area", "Pedagogico")
+                putExtra("username", matricola)  // Usa la stessa chiave "username"
+                Log.d("BiblioDebu", "Passo la matricola a Area_Pedagogica: $matricola")
             }
             startActivity(intent)
         }

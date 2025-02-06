@@ -32,7 +32,7 @@ class Libro_Riutilizzabile : AppCompatActivity() {
         val nome= intent.getStringExtra("nome")
         val autore= intent.getStringExtra("autore")
         val matricola= intent.getIntExtra("username",0)
-        Log.d("LibroDebu", "Recupero della matricola: $matricola")
+        Log.d("BiblioDebu", "Recupero della matricola: $matricola")
         val nomeLibro: TextView = findViewById(R.id.nomeLibro)
         nomeLibro.text = nome
 
@@ -47,6 +47,7 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                 libro = withContext(Dispatchers.IO) {
                     dbViewModel.getLibroByNomeAutore(nome.toString(), autore.toString())!!
                 }
+                Log.d("BiblioDebu", "Recupero del libro ${libro.name}")
                 val settoreTv: TextView= findViewById(R.id.TestoSettore)
                 settoreTv.text=libro.settore
                 val sinossiTv: TextView= findViewById(R.id.TestoSinossi)
@@ -55,15 +56,13 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                 e.printStackTrace()
             }
 
-            //TODO: Da gestire, l'app crasha se clicco
-
             val bottoneRichiesta: TextView= findViewById(R.id.bottoneRichiesta)
             bottoneRichiesta.setOnClickListener {
                 lifecycleScope.launch {
                      withContext(Dispatchers.IO) {
                          try {
                              libro.matricolaStudente=matricola
-                             Log.d("LibroDebu", "Libro: $libro")
+                             Log.d("BiblioDebu", "Libro: $libro")
                              dbViewModel.aggiungiLibro(libro)
                          }catch (e: Exception){
                              e.printStackTrace()

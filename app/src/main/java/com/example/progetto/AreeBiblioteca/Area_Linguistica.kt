@@ -28,8 +28,8 @@ class Area_Linguistica : AppCompatActivity() {
             insets
         }
 
-        val matricola = intent.getIntExtra("username", 0)  // Usa la stessa chiave che usi in Biblioteca
-        Log.d("LingDebu","matricola $matricola")
+        val matricola = intent.getIntExtra("username", 0) // Usa la stessa chiave che usi in Biblioteca
+        Log.d("BiblioDebu","matricola $matricola")
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
         libroListAdapter = LibroAdapter(this,matricola)
         recyclerView.layoutManager = LinearLayoutManager(this)
