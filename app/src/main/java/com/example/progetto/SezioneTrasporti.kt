@@ -39,13 +39,14 @@ class SezioneTrasporti : AppCompatActivity() {
         val ora: Int= data.get(Calendar.HOUR_OF_DAY)
         Log.d("PullDebug", "ora: $ora")
         val minuto: Int= data.get(Calendar.MINUTE)
-        val dataUtile= "1130".toInt()
+        //val dataUtile= "1130".toInt()
+        val dataUtile= ora*100+minuto
         Log.d("PullDebug", "dataUtile: $dataUtile")
 
         val bottoneCerca: ImageButton = findViewById(R.id.bottoneCerca)
         val barra: EditText = findViewById(R.id.dest)
         bottoneCerca.setOnClickListener {
-                val ricerca = barra.text.toString()
+                val ricerca = barra.text.toString().toUpperCase().trim()
                 Log.d("PullDebug", "ho cliccato il bottone con $ricerca e $dataUtile")
                 corsaAdapter = CorseAdapter()
                 val recyclerView: RecyclerView = findViewById(R.id.listacorse)

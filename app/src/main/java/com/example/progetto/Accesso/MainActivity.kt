@@ -604,31 +604,32 @@ class MainActivity : AppCompatActivity() {
 
 
         val pullmanList = listOf(
-            Pullman(id = 1, nomePullman = "Express 101", orarioPartenza = 800, destinazione = "Arcavacata"),
-            Pullman(id = 2, nomePullman = "City Link", orarioPartenza = 930, destinazione = "Centro Storico"),
-            Pullman(id = 3, nomePullman = "Fast Travel", orarioPartenza = 1100, destinazione = "Quattromiglia"),
-            Pullman(id = 4, nomePullman = "Night Rider", orarioPartenza = 2200, destinazione = "Santo Stefano"),
-            Pullman(id = 5, nomePullman = "Morning Star", orarioPartenza = 600, destinazione = "Commenda"),
-            Pullman(id = 6, nomePullman = "Weekend Express", orarioPartenza = 1400, destinazione = "Surdo"),
-            Pullman(id = 7, nomePullman = "Sunset Trip", orarioPartenza = 1800, destinazione = "Roges"),
-            Pullman(id = 8, nomePullman = "Mountain Express", orarioPartenza = 700, destinazione = "Saporito"),
-            Pullman(id = 9, nomePullman = "Sea Breeze", orarioPartenza = 1600, destinazione = "Arcavacata"),
-            Pullman(id = 10, nomePullman = "Holiday Coach", orarioPartenza = 1200, destinazione = "Centro Storico"),
-            Pullman(id = 11, nomePullman = "Golden Route", orarioPartenza = 1000, destinazione = "Quattromiglia"),
-            Pullman(id = 12, nomePullman = "Silver Line", orarioPartenza = 1300, destinazione = "Santo Stefano"),
-            Pullman(id = 13, nomePullman = "Blue Sky", orarioPartenza = 1500, destinazione = "Commenda"),
-            Pullman(id = 14, nomePullman = "Emerald Voyage", orarioPartenza = 1700, destinazione = "Surdo"),
-            Pullman(id = 15, nomePullman = "Ruby Express", orarioPartenza = 1900, destinazione = "Roges"),
-            Pullman(id = 16, nomePullman = "Diamond Travel", orarioPartenza = 2100, destinazione = "Saporito"),
-            Pullman(id = 17, nomePullman = "Pearl Bus", orarioPartenza = 500, destinazione = "Arcavacata"),
-            Pullman(id = 18, nomePullman = "Opal Route", orarioPartenza = 1130, destinazione = "Centro Storico"),
-            Pullman(id = 19, nomePullman = "Sapphire Ride", orarioPartenza = 1330, destinazione = "Quattromiglia"),
-            Pullman(id = 20, nomePullman = "Amber Path", orarioPartenza = 1530, destinazione = "Santo Stefano"),
-            Pullman(id = 21, nomePullman = "Turquoise Express", orarioPartenza = 1730, destinazione = "Commenda"),
-            Pullman(id = 22, nomePullman = "Coral Journey", orarioPartenza = 1930, destinazione = "Surdo"),
-            Pullman(id = 23, nomePullman = "Onyx Adventure", orarioPartenza = 2130, destinazione = "Roges"),
-            Pullman(id = 24, nomePullman = "Jet Express", orarioPartenza = 2330, destinazione = "Saporito")
+            Pullman(id = 1, nomePullman = "Express 101", orarioPartenza = 800, destinazione = "ARCAVACATA"),
+            Pullman(id = 2, nomePullman = "City Link", orarioPartenza = 930, destinazione = "CENTRO STORICO"),
+            Pullman(id = 3, nomePullman = "Fast Travel", orarioPartenza = 1100, destinazione = "QUATTROMIGLIA"),
+            Pullman(id = 4, nomePullman = "Night Rider", orarioPartenza = 2200, destinazione = "SANTO STEFANO"),
+            Pullman(id = 5, nomePullman = "Morning Star", orarioPartenza = 600, destinazione = "COMMENDA"),
+            Pullman(id = 6, nomePullman = "Weekend Express", orarioPartenza = 1400, destinazione = "SURDO"),
+            Pullman(id = 7, nomePullman = "Sunset Trip", orarioPartenza = 1800, destinazione = "ROGES"),
+            Pullman(id = 8, nomePullman = "Mountain Express", orarioPartenza = 700, destinazione = "SAPORITO"),
+            Pullman(id = 9, nomePullman = "Sea Breeze", orarioPartenza = 1600, destinazione = "ARCAVACATA"),
+            Pullman(id = 10, nomePullman = "Holiday Coach", orarioPartenza = 1200, destinazione = "CENTRO STORICO"),
+            Pullman(id = 11, nomePullman = "Golden Route", orarioPartenza = 1000, destinazione = "QUATTROMIGLIA"),
+            Pullman(id = 12, nomePullman = "Silver Line", orarioPartenza = 1300, destinazione = "SANTO STEFANO"),
+            Pullman(id = 13, nomePullman = "Blue Sky", orarioPartenza = 1500, destinazione = "COMMENDA"),
+            Pullman(id = 14, nomePullman = "Emerald Voyage", orarioPartenza = 1700, destinazione = "SURDO"),
+            Pullman(id = 15, nomePullman = "Ruby Express", orarioPartenza = 1900, destinazione = "ROGES"),
+            Pullman(id = 16, nomePullman = "Diamond Travel", orarioPartenza = 2100, destinazione = "SAPORITO"),
+            Pullman(id = 17, nomePullman = "Pearl Bus", orarioPartenza = 500, destinazione = "ARCAVACATA"),
+            Pullman(id = 18, nomePullman = "Opal Route", orarioPartenza = 1130, destinazione = "CENTRO STORICO"),
+            Pullman(id = 19, nomePullman = "Sapphire Ride", orarioPartenza = 1330, destinazione = "QUATTROMIGLIA"),
+            Pullman(id = 20, nomePullman = "Amber Path", orarioPartenza = 1530, destinazione = "SANTO STEFANO"),
+            Pullman(id = 21, nomePullman = "Turquoise Express", orarioPartenza = 1730, destinazione = "COMMENDA"),
+            Pullman(id = 22, nomePullman = "Coral Journey", orarioPartenza = 1930, destinazione = "SURDO"),
+            Pullman(id = 23, nomePullman = "Onyx Adventure", orarioPartenza = 2130, destinazione = "ROGES"),
+            Pullman(id = 24, nomePullman = "Jet Express", orarioPartenza = 2330, destinazione = "SAPORITO")
         )
+
 
 
         lifecycleScope.launch {
@@ -649,7 +650,7 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 try {
                     val destinazione = "Quattromiglia"
-                    val pl = dbViewModel.getPullmanByDestinazione(destinazione)
+                    val pl = dbViewModel.getPullmanByDestinazione(destinazione.toUpperCase())
                     Log.d("MainActivityDEBUGPullman", "Pullman trovati: $pl")
                 } catch (e: Exception) {
                     Log.e("MainActivityDEBUGPullman", "Errore nel recupero dei pullman", e)
