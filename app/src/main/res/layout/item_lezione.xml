@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/nomeLezione"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:background="@color/rosso_bordeaux"
+            android:textColor="@color/white"
+            android:text="NOME\n DEL CORSO"
+            android:textAlignment="center"
+            android:textSize="20sp">
+        </TextView>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/TestoNomeLezione"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="20sp">
+        </TextView>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/sep1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/AulaLezione"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:background="@color/rosso_bordeaux"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:text="AULA"
+            android:textSize="20sp">
+        </TextView>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/TestoAulaLezione"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="20sp">
+        </TextView>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/sep2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:visibility="visible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/inizioLezione"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:background="@color/rosso_bordeaux"
+            android:textColor="@color/white"
+            android:text="ORARIO \n DI INIZIO"
+            android:textAlignment="center"
+            android:textSize="20sp">
+        </TextView>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black" />
+
+        <TextView
+            android:id="@+id/TestoInizioLezione"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textSize="20sp">
+        </TextView>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/sep3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:visibility="visible"/>
+
+
+
+    <View
+        android:id="@+id/sep5"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"
+        android:visibility="visible"/>
+
+</LinearLayout>

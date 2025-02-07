@@ -1,17 +1,27 @@
 package com.example.progetto.Accesso
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.progetto.Entity.Schemi.Studente
+import com.example.progetto.Esami.CDLAdapter
 import com.example.progetto.R
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +30,7 @@ import kotlinx.coroutines.withContext
 
 class RegistrazioneActivity : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel // Aggiungi questa riga per il viewModel
+    private lateinit var cdladapter: CDLAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +55,23 @@ class RegistrazioneActivity : AppCompatActivity() {
 
         // Inizializza il ViewModel
         dbViewModel = DBViewModel(application)
+        val sceltaCDL: TextView = findViewById(R.id.scegliCDL)
+        val lista: RecyclerView = findViewById(R.id.listaCDL)
+        cdladapter = CDLAdapter()
+        lista.layoutManager = LinearLayoutManager(this as Context?)
+        lista.adapter = cdladapter
+        dbViewModel= ViewModelProvider(this as ViewModelStoreOwner).get(DBViewModel::class.java)
+        dbViewModel.getAll()?.observe(this as LifecycleOwner, Observer { corsi ->
+            cdladapter.submitList(corsi)
+        })
+        Log.d("RegBug", "Lista corsi caricata ${cdladapter.itemCount}")
+        sceltaCDL.setOnClickListener {
+            if (lista.visibility == View.GONE) {
+                lista.visibility = View.VISIBLE
+            } else {
+                lista.visibility = View.GONE
+            }
+        }
 
         bottoneInvia.setOnClickListener {
             if (campiVuoti(
