@@ -1,8 +1,9 @@
-package com.example.progetto.Entity
+package com.example.progetto.Entity.Relazioni
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import com.example.progetto.Entity.Schemi.Corso
 
 //Questa è la relazione che collega uno studente e corso
 //uno studente può seguire più corsi, uno stesso corso è seguito da più studenti
@@ -20,7 +21,7 @@ import androidx.room.ForeignKey
 data class RelazioneStudenteCorso(
     @ColumnInfo(name = "corsoId") val corsoId: Int,  // FK corretta
     @ColumnInfo(name = "matricola") val matricola: Int,
-    @ColumnInfo(name = "giorno") val giorno: String,
+    @ColumnInfo(name = "giorno") val giorno: Int,
     @ColumnInfo(name = "ora") val ora: String,
     @ColumnInfo(name = "aula") val aula: String,
     @ColumnInfo(name = "voto") val voto: Int,

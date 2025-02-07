@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.progetto.Entity.RelazioneStudenteCorso
+import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.R
 
 

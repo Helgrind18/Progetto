@@ -1,9 +1,7 @@
-package com.example.progetto.Entity
+package com.example.progetto.Entity.Schemi
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.Relation
 
 @Entity(tableName = "Aula")
 data class Aula(

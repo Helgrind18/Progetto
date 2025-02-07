@@ -4,17 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
-import com.example.progetto.Entity.Aula
-import com.example.progetto.Entity.Corso
-import com.example.progetto.Entity.CorsoDiLaurea
-import com.example.progetto.Entity.Libro
-import com.example.progetto.Entity.Piatto
-import com.example.progetto.Entity.Pullman
-import com.example.progetto.Entity.RelazioneCDLCorso
-import com.example.progetto.Entity.RelazioneStudenteCorso
-import com.example.progetto.Entity.Studente
+import com.example.progetto.Entity.Schemi.Aula
+import com.example.progetto.Entity.Schemi.Corso
+import com.example.progetto.Entity.Schemi.CorsoDiLaurea
+import com.example.progetto.Entity.Schemi.Libro
+import com.example.progetto.Entity.Schemi.Piatto
+import com.example.progetto.Entity.Schemi.Pullman
+import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
+import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
+import com.example.progetto.Entity.Schemi.Studente
 
 // Questa classe definisce il database e le entità associate.
 // Funziona come punto di accesso principale dell'app ai dati persistenti
@@ -52,7 +50,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseProjectUnical62"
+                    "DatabaseProjectUnical64"
                 )
                     .build()
                 INSTANCE = instance

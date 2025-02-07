@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.Schemi.Libro
 import com.example.progetto.R
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
@@ -41,7 +41,7 @@ class Libro_Riutilizzabile : AppCompatActivity() {
         testoNome.text = nome
         val autoreTV: TextView = findViewById(R.id.TestoAutore)
         autoreTV.text = autore
-        var libro: Libro=Libro("","","",0,"")
+        var libro: Libro = Libro("","","",0,"")
         lifecycleScope.launch {
             try {
                 libro = withContext(Dispatchers.IO) {

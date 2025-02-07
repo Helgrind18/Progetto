@@ -6,16 +6,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
-import com.example.progetto.Entity.Aula
-import com.example.progetto.Entity.Corso
-import com.example.progetto.Entity.CorsoDiLaurea
-import com.example.progetto.Entity.Libro
-import com.example.progetto.Entity.Piatto
-import com.example.progetto.Entity.Pullman
-import com.example.progetto.Entity.RelazioneCDLCorso
-import com.example.progetto.Entity.RelazioneStudenteCorso
-import com.example.progetto.Entity.RelazioneStudenteSegueCorsi
-import com.example.progetto.Entity.Studente
+import com.example.progetto.Entity.Schemi.Aula
+import com.example.progetto.Entity.Schemi.Corso
+import com.example.progetto.Entity.Schemi.CorsoDiLaurea
+import com.example.progetto.Entity.Schemi.Libro
+import com.example.progetto.Entity.Schemi.Piatto
+import com.example.progetto.Entity.Schemi.Pullman
+import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
+import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
+import com.example.progetto.Entity.Schemi.Studente
 import kotlinx.coroutines.launch
 
 //Collega i dati (DAO/Database) con l’interfaccia utente. Contiene tutta la logica per interagire con il db
@@ -190,16 +189,6 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    /*
-        fun getStudentiDiCorso(corsoId: Int): List<Int>? {
-            return try {
-                relazioneStudenteCorsoDAO.getStudentiDiCorso(corsoId)
-            } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-                null
-            }
-        }
-    */
     fun getCorsiSeguitiDaStudenteInUnGiorno(giorno: String): List<String>? {
         return try {
             relazioneStudenteCorsoDAO.getCorsiSeguitiDaStudenteInUnGiorno(giorno)
@@ -287,6 +276,15 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         fun getMediaPonderata(matricola: Int): Double? {
             return try {
                 relazioneStudenteCorsoDAO.getMediaPonderata(matricola)
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                null
+            }
+        }
+
+        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): List<RelazioneStudenteCorso>? {
+            return try {
+                relazioneStudenteCorsoDAO.getLezioni(giorno, matricola, anno, semestre)
             } catch (e: Exception) {
                 Log.e("DBViewModelDEBUG", "Errore durante la query", e)
                 null

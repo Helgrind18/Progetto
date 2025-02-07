@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.progetto.Entity.Piatto
-import com.example.progetto.Entity.Studente
+import com.example.progetto.Entity.Schemi.Piatto
+import com.example.progetto.Entity.Schemi.Studente
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

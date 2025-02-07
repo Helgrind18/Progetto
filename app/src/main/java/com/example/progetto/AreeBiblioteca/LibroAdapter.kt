@@ -9,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.Schemi.Libro
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.progetto.OrarioLezioni
 
 class LibroAdapter(var context: Context, var matricola: Int) : ListAdapter<Libro, LibroAdapter.LibroViewHolder>(
     DIFF_CALLBACK

@@ -11,7 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.progetto.dataBase.DBViewModel
-import com.example.progetto.Entity.Libro
+import com.example.progetto.Entity.Schemi.Libro
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -381,7 +381,8 @@ class Biblioteca : AppCompatActivity() {
         Libro(name = "Sociologia dell'educazione", autore = "Pierre Bourdieu", settore = "Pedagogico", sinossi = "Un'analisi sociologica dell'educazione, esplorando come l'educazione sia influenzata da fattori sociali ed economici."),
         Libro(name = "La pedagogia del bambino", autore = "Maria Montessori", settore = "Pedagogico", sinossi = "Un'opera che esplora il metodo Montessori, focalizzandosi sull'educazione e sullo sviluppo del bambino."),
         Libro(name = "L'insegnamento come arte", autore = "Maxine Greene", settore = "Pedagogico", sinossi = "Un'opera che esplora il ruolo dell'insegnamento come forma d'arte e creatività."),
-        Libro(name = "La didattica delle lingue", autore = "David Nunan", settore = "Pedagogico", sinossi = "Un'opera che esplora i metodi e le teorie didattiche per insegnare le lingue straniere."))
+        Libro(name = "La didattica delle lingue", autore = "David Nunan", settore = "Pedagogico", sinossi = "Un'opera che esplora i metodi e le teorie didattiche per insegnare le lingue straniere.")
+        )
 
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {

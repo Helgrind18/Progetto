@@ -9,20 +9,19 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.lifecycleScope
-import com.example.progetto.Entity.Corso
-import com.example.progetto.Entity.CorsoDiLaurea
-import com.example.progetto.Entity.Libro
-import com.example.progetto.Entity.Piatto
-import com.example.progetto.Entity.Pullman
-import com.example.progetto.Entity.RelazioneCDLCorso
-import com.example.progetto.Entity.RelazioneStudenteCorso
+import com.example.progetto.Entity.Schemi.Corso
+import com.example.progetto.Entity.Schemi.CorsoDiLaurea
+import com.example.progetto.Entity.Schemi.Libro
+import com.example.progetto.Entity.Schemi.Piatto
+import com.example.progetto.Entity.Schemi.Pullman
+import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
+import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.example.progetto.Entity.Studente
+import com.example.progetto.Entity.Schemi.Studente
 import com.example.progetto.R
 
 class MainActivity : AppCompatActivity() {
@@ -294,186 +293,24 @@ class MainActivity : AppCompatActivity() {
         // Creazione delle relazioni Studente-Corso
 
         val relazioni = listOf(
-            RelazioneStudenteCorso(
-                1,
-                15,
-                "Lunedì",
-                "10:00",
-                "A1",
-                -1,
-                1,
-                corso.first { it.id == 1 }.nome
-            ),
-            RelazioneStudenteCorso(
-                2,
-                15,
-                "Martedì",
-                "14:30",
-                "B2",
-                30,
-                0,
-                corso.first { it.id == 2 }.nome
-            ),
-            RelazioneStudenteCorso(
-                3,
-                15,
-                "Mercoledì",
-                "09:00",
-                "C3",
-                29,
-                0,
-                corso.first { it.id == 3 }.nome
-            ),
-            RelazioneStudenteCorso(
-                4,
-                15,
-                "Martedì",
-                "11:00",
-                "B1",
-                -1,
-                0,
-                corso.first { it.id == 4 }.nome
-            ),
-            RelazioneStudenteCorso(
-                5,
-                15,
-                "Martedì",
-                "14:00",
-                "B2",
-                -1,
-                0,
-                corso.first { it.id == 5 }.nome
-            ),
-            RelazioneStudenteCorso(
-                6,
-                15,
-                "Mercoledì",
-                "10:00",
-                "C1",
-                28,
-                0,
-                corso.first { it.id == 6 }.nome
-            ),
-            RelazioneStudenteCorso(
-                7,
-                15,
-                "Mercoledì",
-                "15:00",
-                "C2",
-                -1,
-                1,
-                corso.first { it.id == 7 }.nome
-            ),
-            RelazioneStudenteCorso(
-                8,
-                15,
-                "Giovedì",
-                "09:00",
-                "D1",
-                -1,
-                1,
-                corso.first { it.id == 8 }.nome
-            ),
-            RelazioneStudenteCorso(
-                9,
-                15,
-                "Giovedì",
-                "13:00",
-                "D2",
-                -1,
-                1,
-                corso.first { it.id == 9 }.nome
-            ),
-            RelazioneStudenteCorso(
-                10,
-                15,
-                "Venerdì",
-                "10:00",
-                "E1",
-                27,
-                0,
-                corso.first { it.id == 10 }.nome
-            ),
-            RelazioneStudenteCorso(
-                11,
-                15,
-                "Venerdì",
-                "12:00",
-                "E2",
-                26,
-                0,
-                corso.first { it.id == 11 }.nome
-            ),
-            RelazioneStudenteCorso(
-                12,
-                15,
-                "Lunedì",
-                "14:00",
-                "F1",
-                25,
-                0,
-                corso.first { it.id == 12 }.nome
-            ),
-            RelazioneStudenteCorso(
-                13,
-                15,
-                "Lunedì",
-                "16:00",
-                "F2",
-                24,
-                0,
-                corso.first { it.id == 13 }.nome
-            ),
-            RelazioneStudenteCorso(
-                14,
-                15,
-                "Martedì",
-                "09:00",
-                "G1",
-                -1,
-                1,
-                corso.first { it.id == 14 }.nome
-            ),
-            RelazioneStudenteCorso(
-                15,
-                15,
-                "Martedì",
-                "11:00",
-                "G2",
-                23,
-                0,
-                corso.first { it.id == 15 }.nome
-            ),
-            RelazioneStudenteCorso(
-                16,
-                15,
-                "Mercoledì",
-                "14:00",
-                "H1",
-                -1,
-                0,
-                corso.first { it.id == 16 }.nome
-            ),
-            RelazioneStudenteCorso(
-                17,
-                15,
-                "Mercoledì",
-                "16:00",
-                "H2",
-                -1,
-                0,
-                corso.first { it.id == 17 }.nome
-            ),
-            RelazioneStudenteCorso(
-                18,
-                15,
-                "Giovedì",
-                "10:00",
-                "I1",
-                -1,
-                0,
-                corso.first { it.id == 18 }.nome
-            )
+            RelazioneStudenteCorso(1, 15, Calendar.MONDAY, "10:00", "A1", -1, 1, corso.first { it.id == 1 }.nome),
+            RelazioneStudenteCorso(2, 15, Calendar.TUESDAY, "14:30", "B2", 30, 0, corso.first { it.id == 2 }.nome),
+            RelazioneStudenteCorso(3, 15, Calendar.WEDNESDAY, "09:00", "C3", 29, 0, corso.first { it.id == 3 }.nome),
+            RelazioneStudenteCorso(4, 15, Calendar.TUESDAY, "11:00", "B1", -1, 0, corso.first { it.id == 4 }.nome),
+            RelazioneStudenteCorso(5, 15, Calendar.TUESDAY, "14:00", "B2", -1, 0, corso.first { it.id == 5 }.nome),
+            RelazioneStudenteCorso(6, 15, Calendar.WEDNESDAY, "10:00", "C1", 28, 0, corso.first { it.id == 6 }.nome),
+            RelazioneStudenteCorso(7, 15, Calendar.WEDNESDAY, "15:00", "C2", -1, 1, corso.first { it.id == 7 }.nome),
+            RelazioneStudenteCorso(8, 15, Calendar.THURSDAY, "09:00", "D1", -1, 1, corso.first { it.id == 8 }.nome),
+            RelazioneStudenteCorso(9, 15, Calendar.THURSDAY, "13:00", "D2", -1, 1, corso.first { it.id == 9 }.nome),
+            RelazioneStudenteCorso(10, 15, Calendar.FRIDAY, "10:00", "E1", 27, 0, corso.first { it.id == 10 }.nome),
+            RelazioneStudenteCorso(11, 15, Calendar.FRIDAY, "12:00", "E2", 26, 0, corso.first { it.id == 11 }.nome),
+            RelazioneStudenteCorso(12, 15, Calendar.MONDAY, "14:00", "F1", 25, 0, corso.first { it.id == 12 }.nome),
+            RelazioneStudenteCorso(13, 15, Calendar.MONDAY, "16:00", "F2", 24, 0, corso.first { it.id == 13 }.nome),
+            RelazioneStudenteCorso(14, 15, Calendar.TUESDAY, "09:00", "G1", -1, 1, corso.first { it.id == 14 }.nome),
+            RelazioneStudenteCorso(15, 15, Calendar.TUESDAY, "11:00", "G2", 23, 0, corso.first { it.id == 15 }.nome),
+            RelazioneStudenteCorso(16, 15, Calendar.WEDNESDAY, "14:00", "H1", -1, 0, corso.first { it.id == 16 }.nome),
+            RelazioneStudenteCorso(17, 15, Calendar.WEDNESDAY, "16:00", "H2", -1, 0, corso.first { it.id == 17 }.nome),
+            RelazioneStudenteCorso(18, 15, Calendar.THURSDAY, "10:00", "I1", -1, 0, corso.first { it.id == 18 }.nome)
         )
 
         //Inserimento delle relazioni
@@ -489,6 +326,8 @@ class MainActivity : AppCompatActivity() {
                     )
 
                 }
+                val lez=dbViewModel.getLezioni(Calendar.WEDNESDAY,15,2,2)
+                Log.d("MainActivityDEBUGLez", "Lezioni trovate: $lez")
 
                 Log.d("DEBUG", "Inserimento completato")
             } catch (e: Exception) {
@@ -646,29 +485,6 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
-                    val destinazione = "Quattromiglia"
-                    val pl = dbViewModel.getPullmanByDestinazione(destinazione.toUpperCase())
-                    Log.d("MainActivityDEBUGPullman", "Pullman trovati: $pl")
-                } catch (e: Exception) {
-                    Log.e("MainActivityDEBUGPullman", "Errore nel recupero dei pullman", e)
-                }
-            }
-        }
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
-                    val orarioAttuale = Calendar.HOUR
-                    val pl1 = dbViewModel.getPullmanByOrarioPartenza(orarioAttuale*100)
-                    //NB: il *100 è dovuto al fatto che Calendar mi dia soramente l'orario per 12h (le 22 sono le 10)
-                    Log.d("MainActivityDEBUGPullmanOrario", "L'ora è $orarioAttuale \n Pullman trovati: $pl1")
-                } catch (e: Exception) {
-                    Log.e("MainActivityDEBUGPullmanOrario", "Errore nel recupero dei pullman", e)
-                }
-            }
-        }
 
 
     }

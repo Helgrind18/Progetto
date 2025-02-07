@@ -1,4 +1,4 @@
-package com.example.progetto.Entity
+package com.example.progetto.Entity.Schemi
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo

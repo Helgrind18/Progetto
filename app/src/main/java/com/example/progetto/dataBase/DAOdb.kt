@@ -7,16 +7,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.progetto.Entity.Aula
-import com.example.progetto.Entity.Corso
-import com.example.progetto.Entity.CorsoDiLaurea
-import com.example.progetto.Entity.Libro
-import com.example.progetto.Entity.Piatto
-import com.example.progetto.Entity.Pullman
-import com.example.progetto.Entity.RelazioneCDLCorso
-import com.example.progetto.Entity.RelazioneStudenteCorso
-import com.example.progetto.Entity.Studente
-import com.example.progetto.Entity.RelazioneStudenteSegueCorsi
+import com.example.progetto.Entity.Schemi.Aula
+import com.example.progetto.Entity.Schemi.Corso
+import com.example.progetto.Entity.Schemi.CorsoDiLaurea
+import com.example.progetto.Entity.Schemi.Libro
+import com.example.progetto.Entity.Schemi.Piatto
+import com.example.progetto.Entity.Schemi.Pullman
+import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
+import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
+import com.example.progetto.Entity.Schemi.Studente
 
 
 @Dao
@@ -157,14 +156,14 @@ interface RelazioneStudenteCorsoDao {
                 " where r.matricola = :matricola AND r.voto >= 18 AND r.corsoId = c.corsoId")
         fun getEsamiDiStudente(matricola: Int): List<RelazioneStudenteCorso>?
 
-    @Transaction
-    @Query("SELECT r.* FROM RelazioneStudenteCorso r, Corso c" +
+        @Transaction
+        @Query("SELECT r.* FROM RelazioneStudenteCorso r, Corso c" +
             " WHERE r.matricola = :matricola AND r.corsoId = c.corsoId" +
             " ORDER BY c.anno ASC, c.semestre ASC")
-    fun getEsamiDiStudenteLD(matricola: Int): LiveData<List<RelazioneStudenteCorso>>?
+        fun getEsamiDiStudenteLD(matricola: Int): LiveData<List<RelazioneStudenteCorso>>?
 
 
-    //Recupera tutti gli esami che uno studente ancora non ha sostenuto
+        //Recupera tutti gli esami che uno studente ancora non ha sostenuto
         @Transaction
         @Query("SELECT c.* FROM RelazioneStudenteCorso r, Corso c where " +
                 "r.matricola = :matricola AND r.voto = -1 and r.corsoId = c.corsoId")
@@ -218,6 +217,19 @@ interface RelazioneStudenteCorsoDao {
                 "AND r.voto >= 18 " +
                 "GROUP BY r.matricola")
         fun getMediaPonderata(matricola: Int): Double?
+
+        //Recupera le lezioni dato un giorno della settimana (tiene conto anche dell'anno e dello studente)
+        @Transaction
+        @Query(
+            "SELECT DISTINCT r.*" +
+            "FROM RelazioneStudenteCorso r, Corso c " +
+            "WHERE r.matricola = :matricola " +
+            "AND r.giorno = :giorno " +
+            "AND r.corsoId = c.corsoId "+
+            "AND c.anno = :anno " +
+            "AND c.semestre = :semestre "
+        )
+        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): List<RelazioneStudenteCorso>?
 
 }
 

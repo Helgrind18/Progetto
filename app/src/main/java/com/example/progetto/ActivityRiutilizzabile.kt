@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.progetto.Entity.Corso
+import com.example.progetto.Entity.Schemi.Corso
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

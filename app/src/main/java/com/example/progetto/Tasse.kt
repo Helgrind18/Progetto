@@ -6,7 +6,6 @@ import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -15,13 +14,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
-import com.example.progetto.Entity.Studente
+import com.example.progetto.Entity.Schemi.Studente
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Calendar
-import java.util.Date
+
 class Tasse : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel
     override fun onCreate(savedInstanceState: Bundle?) {

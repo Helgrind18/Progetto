@@ -3,12 +3,11 @@ package com.example.progetto.Esami
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.progetto.Entity.RelazioneStudenteCorso
+import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.R
 
 class EsameAdapter(): ListAdapter<RelazioneStudenteCorso, EsameAdapter.EsamiViewHolder>(DIFF_CALLBACK) {

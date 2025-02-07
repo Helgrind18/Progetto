@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import java.util.Calendar
 
 class OrarioLezioni : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,4 +22,17 @@ class OrarioLezioni : AppCompatActivity() {
         //L'utente è collegato ad una serie di corsi, quindi a schermo dovremmo avere una serie di corsi
 
     }
+    fun giornoToString(giorno: Int): String {
+        return when (giorno) {
+            Calendar.SUNDAY -> "Domenica"
+            Calendar.MONDAY -> "Lunedì"
+            Calendar.TUESDAY -> "Martedì"
+            Calendar.WEDNESDAY -> "Mercoledì"
+            Calendar.THURSDAY -> "Giovedì"
+            Calendar.FRIDAY -> "Venerdì"
+            Calendar.SATURDAY -> "Sabato"
+            else -> "Sconosciuto"
+        }
+    }
+
 }
