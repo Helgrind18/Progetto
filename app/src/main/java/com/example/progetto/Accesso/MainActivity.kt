@@ -393,11 +393,6 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     Log.d("MainActivityDEBUGRelCDL", "Relazioni CDL-Corsi inserite correttamente")
-
-                    // Aspetta un attimo prima di leggere i dati
-                    delay(100)
-
-
                 } catch (e: Exception) {
                     Log.e(
                         "MainActivityDEBUG",
