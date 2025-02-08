@@ -43,7 +43,7 @@ class OrarioLezioni : AppCompatActivity() {
         var studente: Studente =
             Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
 
-        lifecycleScope.launch {
+      /*  lifecycleScope.launch {
             Log.d("TasseDEBUG", "Inizio query per studente")
             try {
                 studente = withContext(Dispatchers.IO) {
@@ -67,7 +67,7 @@ class OrarioLezioni : AppCompatActivity() {
                 Log.e("TasseDEBUG", "Errore nel recupero lezioni", e)
             }
 
-        }
+        }*/
 
 
     }

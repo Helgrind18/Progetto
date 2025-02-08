@@ -36,7 +36,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
 
     //Funzione per restituire tutti gli studenti
     fun getAllStudenti(): LiveData<List<Studente>> {
-        return studenteDAO.getAll()
+        return studenteDAO.getAllStudenti()
     }
 
     //Funzione per inserire un nuovo studente
@@ -119,7 +119,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     /////////////// CORSO //////////////////////////
     // CORSO
 
-    fun getAllCorsi(): LiveData<List<Corso>> = corsoDAO.getAll()
+    fun getAllCorsi(): LiveData<List<Corso>> = corsoDAO.getAllCorsi()
 
     fun inserisciCorso(corso: Corso) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -161,6 +161,11 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     // RELAZIONE STUDENTE-CORSO
+
+    fun getAllRelazioniStudenteCorso(): List<RelazioneStudenteCorso> {
+        return relazioneStudenteCorsoDAO.getAllRelazioniStudenteCorso()
+    }
+
     fun inserisciRelazioneStudenteCorso(relazione: RelazioneStudenteCorso) {
         try {
             relazioneStudenteCorsoDAO.inserisciRelazione(relazione)
@@ -282,7 +287,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): LiveData<List<RelazioneStudenteCorso>>? {
+        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int):List<RelazioneStudenteCorso>? {
             return try {
                 relazioneStudenteCorsoDAO.getLezioni(giorno, matricola, anno, semestre)
             } catch (e: Exception) {
@@ -293,7 +298,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
 
         //CDL
 
-        fun getAll(): LiveData<List<CorsoDiLaurea>> = corsoDiLaureaDAO.getAll()
+        fun getAllCDL(): LiveData<List<CorsoDiLaurea>> = corsoDiLaureaDAO.getAllCDL()
 
         fun inserisciCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
             viewModelScope.launch(Dispatchers.IO) {
@@ -384,8 +389,8 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        fun getPiatti(): LiveData<List<Piatto>> {
-            return piattoDAO.getAll()
+        fun getAllPiatti(): LiveData<List<Piatto>> {
+            return piattoDAO.getAllPiatti()
         }
 
         fun getPiattiByTipo(tipo: Int): List<Piatto>? {

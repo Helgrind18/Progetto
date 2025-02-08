@@ -22,7 +22,7 @@ import com.example.progetto.Entity.Schemi.Studente
 interface LibroDao {
 
     @Query("SELECT * FROM Libro")
-    fun getAll(): LiveData<List<Libro>>
+    fun getAllLibri(): LiveData<List<Libro>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciLibro(libro: Libro)
@@ -52,7 +52,7 @@ interface LibroDao {
 interface StudenteDao {
 
     @Query("SELECT * FROM Studente")
-    fun getAll(): LiveData<List<Studente>>
+    fun getAllStudenti(): LiveData<List<Studente>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciStudente(studente: Studente)
@@ -75,7 +75,7 @@ interface StudenteDao {
 interface AulaDao{
 
     @Query("SELECT * FROM Aula")
-    fun getAll(): LiveData<List<Aula>>
+    fun getAllAule(): LiveData<List<Aula>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciAula(aula: Aula)
@@ -92,7 +92,7 @@ interface AulaDao{
 @Dao
 interface CorsoDao {
     @Query("SELECT * FROM Corso")
-    fun getAll(): LiveData<List<Corso>>
+    fun getAllCorsi(): LiveData<List<Corso>>
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -114,7 +114,7 @@ interface CorsoDao {
 interface CorsoDiLaureaDao {
 
     @Query("SELECT * FROM CorsoDiLaurea")
-    fun getAll(): LiveData<List<CorsoDiLaurea>>
+    fun getAllCDL(): LiveData<List<CorsoDiLaurea>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea)
@@ -130,6 +130,11 @@ interface CorsoDiLaureaDao {
 
 @Dao
 interface RelazioneStudenteCorsoDao {
+        //Recupera tutte le relazioni
+        @Transaction
+        @Query("SELECT * FROM RelazioneStudenteCorso")
+        fun getAllRelazioniStudenteCorso(): List<RelazioneStudenteCorso>
+
         // Inserisce una relazione tra uno studente e un corso
         @Transaction
         @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -221,7 +226,7 @@ interface RelazioneStudenteCorsoDao {
         //Recupera le lezioni dato un giorno della settimana (tiene conto anche dell'anno e dello studente)
         @Transaction
         @Query(
-            "SELECT DISTINCT r.*" +
+            "SELECT r.* " +
             "FROM RelazioneStudenteCorso r, Corso c " +
             "WHERE r.matricola = :matricola " +
             "AND r.giorno = :giorno " +
@@ -229,7 +234,7 @@ interface RelazioneStudenteCorsoDao {
             "AND c.anno = :anno " +
             "AND c.semestre = :semestre "
         )
-        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): LiveData<List<RelazioneStudenteCorso>>?
+        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): List<RelazioneStudenteCorso>?
 
 }
 
@@ -261,7 +266,7 @@ interface RelazioneCDLCorsoDao {
 @Dao
 interface PiattoDao{
     @Query("SELECT * FROM Piatto")
-    fun getAll(): LiveData<List<Piatto>>
+    fun getAllPiatti(): LiveData<List<Piatto>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciPiatto(piatto: Piatto)
@@ -282,7 +287,7 @@ interface PiattoDao{
 interface PullmanDao{
     //Recupera i pullman
     @Query("SELECT * FROM Pullman")
-    fun getAll(): LiveData<List<Pullman>>
+    fun getAllPullman(): LiveData<List<Pullman>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun inserisciPullman(pullman: Pullman)

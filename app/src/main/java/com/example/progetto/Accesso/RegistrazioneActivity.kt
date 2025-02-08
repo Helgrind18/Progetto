@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RegistrazioneActivity : AppCompatActivity() {
-    private lateinit var dbViewModel: DBViewModel // Aggiungi questa riga per il viewModel
+    private lateinit var dbViewModel: DBViewModel
     private lateinit var cdladapter: CDLAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +61,7 @@ class RegistrazioneActivity : AppCompatActivity() {
         lista.layoutManager = LinearLayoutManager(this as Context?)
         lista.adapter = cdladapter
         dbViewModel= ViewModelProvider(this as ViewModelStoreOwner).get(DBViewModel::class.java)
-        dbViewModel.getAll()?.observe(this as LifecycleOwner, Observer { corsi ->
+        dbViewModel.getAllCDL()?.observe(this as LifecycleOwner, Observer { corsi ->
             cdladapter.submitList(corsi)
         })
         Log.d("RegBug", "Lista corsi caricata ${cdladapter.itemCount}")
