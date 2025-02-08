@@ -376,21 +376,28 @@ class MainActivity : AppCompatActivity() {
             RelazioneCDLCorso(17, 3)
         )
 
-        // Iterazione per inserire nel database
+        /// Iterazione per inserire nel database
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
                 try {
                     corsiDiLaurea.forEach { corso ->
-                        delay(10)
+                        delay(10) // Per evitare possibili conflitti
                         dbViewModel.inserisciCorsoDiLaurea(corso)
                         Log.d("MainActivityDEBUGCDL", "Inserito corso: ${corso.nomeCDL}")
                     }
+
                     corsi.forEach { corso ->
                         delay(10)
                         dbViewModel.inserisciRelazioneCDLCorso(corso)
-                        Log.d("MainActivityDEBUGRelCDL", "Inserito corso: ${corso.corsoId}")
+                        Log.d("MainActivityDEBUGRelCDL", "Inserita relazione per corso: ${corso.corsoId}")
                     }
+
                     Log.d("MainActivityDEBUGRelCDL", "Relazioni CDL-Corsi inserite correttamente")
+
+                    // Aspetta un attimo prima di leggere i dati
+                    delay(100)
+
+
                 } catch (e: Exception) {
                     Log.e(
                         "MainActivityDEBUG",
@@ -400,6 +407,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
 
         val piatti = listOf(
             Piatto(id = 1, tipo = 3, nome = "Bruschetta al pomodoro"),
