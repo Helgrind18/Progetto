@@ -29,11 +29,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-//TOOD: Bisogna gestire quanto di seguito
-/*
-* All'accesso dell'utente bisogna fare il calcolo, prendendo la relazione Biblioteca - Studente, verificare quanti giorni mancano (sostanzialmente è un controllo sul counter) e segnalare se ci siano libri da restituire
-*
-* Se la scadenza è minore di 5, mando una notifica per segnalare di portare indietro il libro*/
 class HomeActivity : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,18 +59,13 @@ class HomeActivity : AppCompatActivity() {
 
         Log.d("HomeActivityDEBUG", "Username: $username")
 
-        //TODO: Recuperare eventuali libri da restituire (verificare mediante la dataDiScadenza)
-
         dbViewModel = DBViewModel(application)
         //Ora cerco di risalire allo studente
-        // Usa coroutines per eseguire la query in background con Dispatchers.IO
-        lifecycleScope.launch {
+        lifecycleScope.launch(Dispatchers.IO) {
 
             Log.d("HomeActivityDEBUG", "Inizio query per studente")
             // Esegui la query di database su un thread di I/O
-            val studente = withContext(Dispatchers.IO) {
-                dbViewModel.studenteByMatricola(username)  // Query al database
-            }
+            val studente = dbViewModel.studenteByMatricola(username)  // Query al database
             Log.d("HomeActivityDEBUG", "Risultato query: $studente")
 
 

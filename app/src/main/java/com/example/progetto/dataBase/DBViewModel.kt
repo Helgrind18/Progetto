@@ -17,8 +17,6 @@ import kotlinx.coroutines.launch
 
 //Collega i dati (DAO/Database) con l’interfaccia utente. Contiene tutta la logica per interagire con il db
 class DBViewModel(application: Application) : AndroidViewModel(application) {
-
-
     private val studenteDAO = DataBaseApp.getDatabase(application).getStudenteDao()
     private val libroDAO = DataBaseApp.getDatabase(application).getLibroDao()
     private val aulaDAO = DataBaseApp.getDatabase(application).getAulaDao()
@@ -157,16 +155,22 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
 
     // RELAZIONE STUDENTE-CORSO
 
-    fun getAllRelazioniStudenteCorso(): List<RelazioneStudenteCorso> {
+    fun getAllRelazioniStudenteCorso(): LiveData<List<RelazioneStudenteCorso>> {
         return relazioneStudenteCorsoDAO.getAllRelazioniStudenteCorso()
     }
 
+    fun getAllRelazioniStudenteCorsoList(): List<RelazioneStudenteCorso> {
+        return relazioneStudenteCorsoDAO.getAllRelazioniStudenteCorsoList()
+    }
+
     fun inserisciRelazioneStudenteCorso(relazione: RelazioneStudenteCorso) {
-        try {
-            relazioneStudenteCorsoDAO.inserisciRelazione(relazione)
-            Log.d("DBViewModelDEBUGRel", "✅ Relazione ${relazione.matricola} ${relazione.corsoId} inserita con successo")
-        } catch (e: Exception) {
-            Log.e("DBViewModelDEBUGRel", "❌ Errore durante l'inserimento della relazione", e)
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                relazioneStudenteCorsoDAO.inserisciRelazione(relazione)
+                Log.d("DBViewModelDEBUGRel", "✅ Relazione ${relazione.matricola} ${relazione.corsoId} inserita con successo")
+            } catch (e: Exception) {
+                Log.e("DBViewModelDEBUGRel", "❌ Errore durante l'inserimento della relazione", e)
+            }
         }
     }
 
@@ -243,14 +247,12 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        fun getEsamiPrenotabili(
-            matricola: Int,
-            anno: Int
-        ): LiveData<List<RelazioneStudenteCorso>>? {
+        fun getEsamiPrenotabili(matricola: Int,anno: Int): LiveData<List<RelazioneStudenteCorso>>? {
             return try {
+                Log.d("DBViewModelDEBUG", "Eseguo query getEsamiPrenotabili con matricola: $matricola")
                 relazioneStudenteCorsoDAO.getEsamiPrenotabili(matricola, anno)
             } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
+                Log.e("DBViewModelDEBUG", "Errore durante la query getEsamiPrenotabili ", e)
                 null
             }
         }

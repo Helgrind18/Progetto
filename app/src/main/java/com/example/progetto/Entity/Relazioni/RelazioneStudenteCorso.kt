@@ -20,7 +20,7 @@ import com.example.progetto.Entity.Schemi.Corso
 )
 data class RelazioneStudenteCorso(
     @ColumnInfo(name = "corsoId") val corsoId: Int,  // FK corretta
-    @ColumnInfo(name = "matricola") val matricola: Int,
+    @ColumnInfo(name = "matricola") var matricola: Int,
     @ColumnInfo(name = "giorno") val giorno: Int,
     @ColumnInfo(name = "ora") val ora: String,
     @ColumnInfo(name = "aula") val aula: String,

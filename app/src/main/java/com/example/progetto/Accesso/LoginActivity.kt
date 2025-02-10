@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.progetto.R
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -50,57 +51,52 @@ class LoginActivity : AppCompatActivity() {
             } else {
             val matricola: Int = textMatricola.text.toString().toInt()
             val pwd = textPassword.text.toString().trim()
-                lifecycleScope.launch {
+                lifecycleScope.launch(Dispatchers.IO) {
                     try {
-                        // Esegui la query di database su un thread di I/O
-                        val studente = withContext(Dispatchers.IO) {
-                            // Chiamata al database in un thread separato
-                            dbViewModel.studenteByMatricola(matricola)
+                        val studente = dbViewModel.studenteByMatricola(matricola)
+                        /*val relazioni = dbViewModel.getRelazioniByMatricola(matricola)
+                        relazioni.forEach { relazione ->
+                            Log.d("LoginActivityDEBUG", "Relazione trovata: $relazione")
+                        }*/
+                      /*  delay(500)
+                        lifecycleScope.launch(Dispatchers.IO) {
+                            val allRelazioni = dbViewModel.getAllRelazioniStudenteCorso()
+                            allRelazioni.forEach { relazione ->
+                                Log.d("LoginActivityDEBUG", "Relazione trovata: $relazione")
+                            }
+                        }*/
+
+                        withContext(Dispatchers.IO){
+                            val relazioni = dbViewModel.getAllRelazioniStudenteCorsoList()
+                            relazioni.forEach { relazione ->
+                                delay(10)
+                                relazione.matricola = matricola
+                                dbViewModel.inserisciRelazioneStudenteCorso(relazione)
+                            }
                         }
 
-                        // Una volta ottenuto il risultato, torna al thread principale
                         withContext(Dispatchers.Main) {
                             if (studente != null) {
                                 if (studente.pswd == pwd) {
-                                    // login riuscito
-                                    Toast.makeText(
-                                        this@LoginActivity,
-                                        "Benvenuto ${studente.nome}",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    // Passa alla HomeActivity
-                                    val intent =
-                                        Intent(this@LoginActivity, HomeActivity::class.java).apply {
-                                            putExtra("username", matricola)
-                                        }
+                                    Toast.makeText(this@LoginActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
+                                        putExtra("username", matricola)
+                                    }
                                     startActivity(intent)
                                 } else {
-                                    Toast.makeText(
-                                        this@LoginActivity,
-                                        "Password errata",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                                    Toast.makeText(this@LoginActivity, "Password errata", Toast.LENGTH_SHORT).show()
                                 }
-                            } else {
-                                Toast.makeText(
-                                    this@LoginActivity,
-                                    "Studente non trovato",
-                                    Toast.LENGTH_SHORT
-                                ).show()
                             }
                         }
                     } catch (e: Exception) {
-                        // Log l'eccezione per aiutare con il debug
                         Log.e("LoginActivityDEBUG", "Errore durante il login", e)
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "Si è verificato un errore, riprova più tardi",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@LoginActivity, "Si è verificato un errore, riprova più tardi", Toast.LENGTH_SHORT).show()
+                        }
                     }
-            }
+                }
 
-            // Gestione salvataggio credenziali
+                // Gestione salvataggio credenziali
             if (ricordami.isChecked) {
                 salvaUtente(matricola, pwd)
                 Toast.makeText(this, "Salvato", Toast.LENGTH_SHORT).show()

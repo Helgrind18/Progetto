@@ -1,6 +1,7 @@
 package com.example.progetto.Esami
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,17 +29,23 @@ class AppelliDisponibili : AppCompatActivity() {
             insets
         }
 
-        var cal: Calendar= Calendar.getInstance()
-        val anno: Int=cal.get(Calendar.YEAR)
-
+        val anno: Int= Calendar.getInstance().get(Calendar.YEAR)
+        Log.d("AppelliDisponibiliDEBUG", "Anno corrente: $anno")
 
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
         esamiAdapter = RelazioneStudenteCorsoAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = esamiAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
-        dbViewModel.getEsamiPrenotabili(intent.getIntExtra("username",1),anno)?.observe(this, Observer{ esami -> esamiAdapter.submitList(esami)
+        //Recupero la matricola
+        val username = intent.getIntExtra("username",1)
+        Log.d("AppelliDisponibiliDEBUG", "Username ricevuto: $username")
+        dbViewModel.getEsamiPrenotabili(username, anno)?.observe(this, Observer { esami ->
+            Log.d("AppelliDisponibiliDEBUG", "Esami ricevuti: ${esami.size}")
+            esami.forEach { Log.d("AppelliDisponibiliDEBUG", "Esame: $it") }
+            esamiAdapter.submitList(esami)
         })
+
 
 
     }

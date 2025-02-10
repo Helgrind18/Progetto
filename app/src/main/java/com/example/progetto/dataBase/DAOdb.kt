@@ -114,16 +114,19 @@ interface RelazioneStudenteCorsoDao {
         //Recupera tutte le relazioni
         @Transaction
         @Query("SELECT * FROM RelazioneStudenteCorso")
-        fun getAllRelazioniStudenteCorso(): List<RelazioneStudenteCorso>
+        fun getAllRelazioniStudenteCorso(): LiveData<List<RelazioneStudenteCorso>>
+
+        //Recupera tutte le relazioni sotto forma di lista
+        @Transaction
+        @Query("SELECT * FROM RelazioneStudenteCorso")
+        fun getAllRelazioniStudenteCorsoList(): List<RelazioneStudenteCorso>
 
         // Inserisce una relazione tra uno studente e un corso
-        @Transaction
         @Insert(onConflict = OnConflictStrategy.REPLACE)
         fun inserisciRelazione(relazione: RelazioneStudenteCorso)
 
         // Rimuove una relazione specifica
         @Delete
-        @Transaction
         fun rimuoviRelazione(relazione: RelazioneStudenteCorso)
 
         // Recupera tutti i corsi di uno studente dato
