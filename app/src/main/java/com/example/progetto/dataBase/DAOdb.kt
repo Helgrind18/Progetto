@@ -9,11 +9,9 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.example.progetto.Entity.Schemi.Aula
 import com.example.progetto.Entity.Schemi.Corso
-import com.example.progetto.Entity.Schemi.CorsoDiLaurea
 import com.example.progetto.Entity.Schemi.Libro
 import com.example.progetto.Entity.Schemi.Piatto
 import com.example.progetto.Entity.Schemi.Pullman
-import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
 import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.Entity.Schemi.Studente
 
@@ -110,23 +108,6 @@ interface CorsoDao {
 
 }
 
-@Dao
-interface CorsoDiLaureaDao {
-
-    @Query("SELECT * FROM CorsoDiLaurea")
-    fun getAllCDL(): LiveData<List<CorsoDiLaurea>>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun inserisciCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea)
-
-    @Delete
-    fun rimuoviCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea)
-
-    //Recupera il corso dall'id
-    @Query("SELECT * FROM CorsoDiLaurea c WHERE c.corsoLaureaId = :id")
-    fun getCDLById(id: Int): LiveData<CorsoDiLaurea>?
-
-}
 
 @Dao
 interface RelazioneStudenteCorsoDao {
@@ -236,31 +217,6 @@ interface RelazioneStudenteCorsoDao {
         )
         fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): List<RelazioneStudenteCorso>?
 
-}
-
-@Dao
-interface RelazioneCDLCorsoDao {
-    // Inserisce una relazione tra un corso e un CDL
-    @Transaction
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun inserisciRelazione(relazione: RelazioneCDLCorso)
-
-    //Rimuove la relazione
-    @Transaction
-    @Delete
-    fun rimuoviRelazione(relazione: RelazioneCDLCorso)
-
-    //Recupera tutti i corsi dato un CDL
-    @Transaction
-    @Query("SELECT DISTINCT c.* FROM RelazioneCDLCorso r, Corso c WHERE r.corsoLaureaId = :cdl " +
-            "AND r.corsoId = c.corsoId")
-    fun getCorsiDiCDL(cdl: String): List<Corso>?
-
-    //Recupera i CDL dato un corso
-    @Transaction
-    @Query("SELECT DISTINCT c.* FROM RelazioneCDLCorso r, CorsoDiLaurea c WHERE r.corsoId = :corso " +
-            "AND r.corsoLaureaId = c.corsoLaureaId")
-    fun getCDLDiCorso(corso: Int): List<CorsoDiLaurea>?
 }
 
 @Dao

@@ -8,11 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import androidx.lifecycle.viewModelScope
 import com.example.progetto.Entity.Schemi.Aula
 import com.example.progetto.Entity.Schemi.Corso
-import com.example.progetto.Entity.Schemi.CorsoDiLaurea
 import com.example.progetto.Entity.Schemi.Libro
 import com.example.progetto.Entity.Schemi.Piatto
 import com.example.progetto.Entity.Schemi.Pullman
-import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
 import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.Entity.Schemi.Studente
 import kotlinx.coroutines.launch
@@ -27,9 +25,6 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     private val corsoDAO = DataBaseApp.getDatabase(application).getCorsoDao()
     private val relazioneStudenteCorsoDAO =
         DataBaseApp.getDatabase(application).getRelazioneStudenteCorsoDao()
-    private val relazioneCDLCorsoDAO =
-        DataBaseApp.getDatabase(application).getRelazioneCDLCorsoDao()
-    private val corsoDiLaureaDAO = DataBaseApp.getDatabase(application).getCDLDao()
     private val piattoDAO = DataBaseApp.getDatabase(application).getPiattoDao()
     private val pullmanDAO = DataBaseApp.getDatabase(application).getPullmanDao()
     //STUDENTE
@@ -296,75 +291,6 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        //CDL
-
-        fun getAllCDL(): LiveData<List<CorsoDiLaurea>> = corsoDiLaureaDAO.getAllCDL()
-
-        fun inserisciCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    corsoDiLaureaDAO.inserisciCorsoDiLaurea(corsoDiLaurea)
-                    Log.d("DBViewModelDEBUG", "Corso inserito nel database")
-                } catch (e: Exception) {
-                    Log.e("DBViewModelDEBUG", "Errore durante l'inserimento del corso", e)
-                }
-            }
-        }
-
-        fun rimuoviCorsoDiLaurea(corsoDiLaurea: CorsoDiLaurea) {
-            viewModelScope.launch(Dispatchers.IO) {
-                corsoDiLaureaDAO.rimuoviCorsoDiLaurea(corsoDiLaurea)
-            }
-        }
-
-        fun getCDLById(id: Int): LiveData<CorsoDiLaurea>? {
-            return try {
-                corsoDiLaureaDAO.getCDLById(id)
-            } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-                null
-            }
-        }
-
-        //// RELAZIONE CDL - CORSO
-
-        fun inserisciRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
-            viewModelScope.launch(Dispatchers.IO) {
-                try {
-                    relazioneCDLCorsoDAO.inserisciRelazione(relazione)
-                    Log.d("DBViewModelDEBUG", "inserisciRelazioneCDLCorso inserito nel database")
-                } catch (e: Exception) {
-                    Log.e(
-                        "DBViewModelDEBUG",
-                        "Errore durante l'inserimento inserisciRelazioneCDLCorso",
-                        e
-                    )
-                }
-            }
-        }
-
-        fun rimuoviRelazioneCDLCorso(relazione: RelazioneCDLCorso) {
-            viewModelScope.launch {
-                try {
-                    relazioneCDLCorsoDAO.rimuoviRelazione(relazione)
-                } catch (e: Exception) {
-                    Log.e(
-                        "DBViewModelDEBUG",
-                        "Errore durante l'eliminazione rimuoviRelazioneCDLCorso",
-                        e
-                    )
-                }
-            }
-        }
-
-        fun getCorsiDiCDL(cdl: String): List<Corso>? {
-            return try {
-                relazioneCDLCorsoDAO.getCorsiDiCDL(cdl)
-            } catch (e: Exception) {
-                Log.e("DBViewModelDEBUG", "Errore durante la query", e)
-                null
-            }
-        }
 
 //// PIATTO
 

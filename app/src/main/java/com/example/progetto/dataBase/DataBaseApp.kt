@@ -6,11 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.progetto.Entity.Schemi.Aula
 import com.example.progetto.Entity.Schemi.Corso
-import com.example.progetto.Entity.Schemi.CorsoDiLaurea
 import com.example.progetto.Entity.Schemi.Libro
 import com.example.progetto.Entity.Schemi.Piatto
 import com.example.progetto.Entity.Schemi.Pullman
-import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
 import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.Entity.Schemi.Studente
 
@@ -23,8 +21,6 @@ import com.example.progetto.Entity.Schemi.Studente
         Aula::class,
         Corso::class,
         RelazioneStudenteCorso::class, // Include la tabella intermedia many-to-many
-        RelazioneCDLCorso::class, // Include la tabella intermedia many-to-many
-        CorsoDiLaurea::class,
         Piatto::class,
         Pullman::class
     ],
@@ -36,8 +32,6 @@ abstract class DataBaseApp : RoomDatabase() {
     abstract fun getAulaDao(): AulaDao
     abstract fun getCorsoDao(): CorsoDao
     abstract fun getRelazioneStudenteCorsoDao(): RelazioneStudenteCorsoDao
-    abstract fun getRelazioneCDLCorsoDao(): RelazioneCDLCorsoDao
-    abstract fun getCDLDao(): CorsoDiLaureaDao
     abstract fun getPiattoDao(): PiattoDao
     abstract fun getPullmanDao(): PullmanDao
     companion object {
@@ -50,7 +44,7 @@ abstract class DataBaseApp : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DataBaseApp::class.java,
-                    "DatabaseProjectUnical72"
+                    "DatabaseProjectUnical78"
                 )
                     .build()
                 INSTANCE = instance

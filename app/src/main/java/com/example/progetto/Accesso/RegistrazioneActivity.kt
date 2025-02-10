@@ -2,6 +2,7 @@ package com.example.progetto.Accesso
 
 import android.content.Context
 import android.content.Intent
+import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -20,17 +21,20 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
+import com.example.progetto.Entity.Schemi.Corso
 import com.example.progetto.Entity.Schemi.Studente
-import com.example.progetto.Esami.CDLAdapter
+
 import com.example.progetto.R
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RegistrazioneActivity : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel
-    private lateinit var cdladapter: CDLAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +61,7 @@ class RegistrazioneActivity : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
         val sceltaCDL: TextView = findViewById(R.id.scegliCDL)
         val lista: RecyclerView = findViewById(R.id.listaCDL)
-        cdladapter = CDLAdapter()
+       /* cdladapter = CDLAdapter()
         lista.layoutManager = LinearLayoutManager(this as Context?)
         lista.adapter = cdladapter
         dbViewModel= ViewModelProvider(this as ViewModelStoreOwner).get(DBViewModel::class.java)
@@ -71,7 +75,7 @@ class RegistrazioneActivity : AppCompatActivity() {
             } else {
                 lista.visibility = View.GONE
             }
-        }
+        }*/
 
         bottoneInvia.setOnClickListener {
             if (campiVuoti(
@@ -109,6 +113,172 @@ class RegistrazioneActivity : AppCompatActivity() {
                     false,
                     0
                 )
+                val corso = listOf(
+                    Corso(
+                        id = 1,
+                        nome = "Ingegneria del Software",
+                        CFU = 12,
+                        semestre = 1,
+                        anno = 3,
+                        descrizione = "Il corso fornisce conoscenze sui principi, le metodologie e gli strumenti dell'ingegneria del software."
+                    ),
+                    Corso(
+                        id = 2,
+                        nome = "Basi di Dati",
+                        CFU = 9,
+                        semestre = 2,
+                        anno = 3,
+                        descrizione = "Si studiano i fondamenti delle basi di dati, con particolare attenzione ai modelli relazionali e SQL."
+                    ),
+                    Corso(
+                        id = 3,
+                        nome = "Reti di Calcolatori",
+                        CFU = 6,
+                        semestre = 1,
+                        anno = 3,
+                        descrizione = "Il corso introduce i principi delle reti di calcolatori, i protocolli di comunicazione e la sicurezza delle reti."
+                    ),
+                    Corso(
+                        id = 4,
+                        nome = "Analisi Matematica 1",
+                        CFU = 9,
+                        semestre = 1,
+                        anno = 1,
+                        descrizione = "Studio delle funzioni reali, limiti, derivate, integrali e serie numeriche."
+                    ),
+                    Corso(
+                        id = 5,
+                        nome = "Fisica 1",
+                        CFU = 6,
+                        semestre = 2,
+                        anno = 1,
+                        descrizione = "Fondamenti di meccanica classica, dinamica e termodinamica."
+                    ),
+                    Corso(
+                        id = 6,
+                        nome = "Programmazione 1",
+                        CFU = 12,
+                        semestre = 1,
+                        anno = 1,
+                        descrizione = "Introduzione alla programmazione con focus su algoritmi e strutture dati di base."
+                    ),
+                    Corso(
+                        id = 7,
+                        nome = "Sistemi Operativi",
+                        CFU = 9,
+                        semestre = 2,
+                        anno = 2,
+                        descrizione = "Approfondimento sui principi e le funzionalità dei sistemi operativi moderni."
+                    ),
+                    Corso(
+                        id = 8,
+                        nome = "Ingegneria del Web",
+                        CFU = 6,
+                        semestre = 1,
+                        anno = 2,
+                        descrizione = "Tecnologie e metodologie per la progettazione e lo sviluppo di applicazioni web."
+                    ),
+                    Corso(
+                        id = 9,
+                        nome = "Algoritmi e Strutture Dati",
+                        CFU = 12,
+                        semestre = 2,
+                        anno = 2,
+                        descrizione = "Studio degli algoritmi avanzati e delle strutture dati fondamentali."
+                    ),
+                    Corso(
+                        id = 10,
+                        nome = "Calcolo Numerico",
+                        CFU = 6,
+                        semestre = 1,
+                        anno = 3,
+                        descrizione = "Tecniche numeriche per la risoluzione di problemi matematici e computazionali."
+                    ),
+                    Corso(
+                        id = 11,
+                        nome = "Intelligenza Artificiale",
+                        CFU = 9,
+                        semestre = 2,
+                        anno = 3,
+                        descrizione = "Introduzione alle tecniche di AI, machine learning e reti neurali."
+                    ),
+                    Corso(
+                        id = 12,
+                        nome = "Sicurezza Informatica",
+                        CFU = 6,
+                        semestre = 1,
+                        anno = 3,
+                        descrizione = "Principi di sicurezza informatica, crittografia e protezione dei sistemi."
+                    ),
+                    Corso(
+                        id = 13,
+                        nome = "Economia Aziendale",
+                        CFU = 6,
+                        semestre = 2,
+                        anno = 1,
+                        descrizione = "Fondamenti di economia e gestione aziendale."
+                    ),
+                    Corso(
+                        id = 14,
+                        nome = "Reti di Telecomunicazioni",
+                        CFU = 9,
+                        semestre = 1,
+                        anno = 2,
+                        descrizione = "Analisi delle reti di telecomunicazione e delle loro architetture."
+                    ),
+                    Corso(
+                        id = 15,
+                        nome = "Progettazione Software",
+                        CFU = 9,
+                        semestre = 2,
+                        anno = 3,
+                        descrizione = "Metodologie e strumenti per la progettazione di sistemi software complessi."
+                    ),
+                    Corso(
+                        id = 16,
+                        nome = "Sviluppo Mobile",
+                        CFU = 6,
+                        semestre = 1,
+                        anno = 3,
+                        descrizione = "Introduzione allo sviluppo di applicazioni mobili per Android e iOS."
+                    ),
+                    Corso(
+                        id = 17,
+                        nome = "Elaborazione di Immagini",
+                        CFU = 6,
+                        semestre = 2,
+                        anno = 3,
+                        descrizione = "Tecniche di elaborazione e analisi delle immagini digitali."
+                    ),
+                    Corso(
+                        id = 18,
+                        nome = "Matematica Discreta",
+                        CFU = 9,
+                        semestre = 1,
+                        anno = 1,
+                        descrizione = "Studio delle strutture discrete, teoria dei grafi e combinatoria."
+                    )
+                )
+                val relazioni = listOf(
+                    RelazioneStudenteCorso(1, matricola, Calendar.MONDAY, "10:00", "A1", -1, 1, corso.first { it.id == 1 }.nome),
+                    RelazioneStudenteCorso(2, matricola, Calendar.TUESDAY, "14:30", "B2", -1, 0, corso.first { it.id == 2 }.nome),
+                    RelazioneStudenteCorso(3, matricola, Calendar.WEDNESDAY, "09:00", "C3", -1, 0, corso.first { it.id == 3 }.nome),
+                    RelazioneStudenteCorso(4, matricola, Calendar.TUESDAY, "11:00", "B1", -1, 0, corso.first { it.id == 4 }.nome),
+                    RelazioneStudenteCorso(5, matricola, Calendar.TUESDAY, "14:00", "B2", -1, 0, corso.first { it.id == 5 }.nome),
+                    RelazioneStudenteCorso(6, matricola, Calendar.WEDNESDAY, "10:00", "C1", -1, 0, corso.first { it.id == 6 }.nome),
+                    RelazioneStudenteCorso(7, matricola, Calendar.WEDNESDAY, "15:00", "C2", -1, 1, corso.first { it.id == 7 }.nome),
+                    RelazioneStudenteCorso(8, matricola, Calendar.MONDAY, "09:00", "D1", -1, 1, corso.first { it.id == 8 }.nome),
+                    RelazioneStudenteCorso(9, matricola, Calendar.THURSDAY, "13:00", "D2", -1, 1, corso.first { it.id == 9 }.nome),
+                    RelazioneStudenteCorso(10, matricola, Calendar.FRIDAY, "10:00", "E1", -1, 0, corso.first { it.id == 10 }.nome),
+                    RelazioneStudenteCorso(11, matricola, Calendar.FRIDAY, "12:00", "E2", -1, 0, corso.first { it.id == 11 }.nome),
+                    RelazioneStudenteCorso(12, matricola, Calendar.MONDAY, "14:00", "F1", -1, 0, corso.first { it.id == 12 }.nome),
+                    RelazioneStudenteCorso(13, matricola, Calendar.MONDAY, "16:00", "F2", -1, 0, corso.first { it.id == 13 }.nome),
+                    RelazioneStudenteCorso(14, matricola, Calendar.MONDAY, "09:00", "G1", -1, 1, corso.first { it.id == 14 }.nome),
+                    RelazioneStudenteCorso(15, matricola, Calendar.TUESDAY, "11:00", "G2", -1, 0, corso.first { it.id == 15 }.nome),
+                    RelazioneStudenteCorso(16, matricola, Calendar.WEDNESDAY, "14:00", "H1", -1, 0, corso.first { it.id == 16 }.nome),
+                    RelazioneStudenteCorso(17, matricola, Calendar.WEDNESDAY, "16:00", "H2", -1, 0, corso.first { it.id == 17 }.nome),
+                    RelazioneStudenteCorso(18, matricola, Calendar.THURSDAY, "10:00", "I1", -1, 0, corso.first { it.id == 18 }.nome)
+                )
 
                 lifecycleScope.launch {
 
@@ -124,6 +294,8 @@ class RegistrazioneActivity : AppCompatActivity() {
                         try {
                             // Con Dispatcher.IO eseguiamo l'inserimento in un thread di background
                             withContext(Dispatchers.IO) {
+
+
                                 Log.d(
                                     "RegistrazioneActivityDEBUG",
                                     "Inserimento dello studente in corso"
@@ -133,6 +305,25 @@ class RegistrazioneActivity : AppCompatActivity() {
                                     "RegistrazioneActivityDEBUG",
                                     "Studente inserito correttamente"
                                 )
+                                // Inserisci i corsi
+                                corso.forEach { dbViewModel.inserisciCorso(it) }
+
+                                // Inserisci tutte le relazioni una per una, aspettando il completamento
+                                relazioni.forEach { relazione ->
+                                    delay(10)
+                                    dbViewModel.inserisciRelazioneStudenteCorso(relazione)
+                                }
+
+                                Log.d("DEBUGRegistrazioneActivity", "Inserimento completato, aspetto la conferma del DB...")
+
+                                // ⚠️ ASPETTA che Room completi gli inserimenti con una piccola pausa ⚠️
+                                delay(500) // (facoltativo, aiuta Room a scrivere le modifiche)
+
+                                // Recupera le relazioni solo dopo il completamento degli inserimenti
+                                val allRelazioni = dbViewModel.getAllRelazioniStudenteCorso()
+                                allRelazioni.forEach { relazione ->
+                                    Log.d("DEBUGRegistrazioneActivity", "Relazione trovata: $relazione")
+                                }
                             }
 
                             // Una volta inserito lo studente, torniamo al thread principale per aggiornare la UI

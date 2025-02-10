@@ -11,11 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.progetto.Entity.Schemi.Corso
-import com.example.progetto.Entity.Schemi.CorsoDiLaurea
 import com.example.progetto.Entity.Schemi.Libro
 import com.example.progetto.Entity.Schemi.Piatto
 import com.example.progetto.Entity.Schemi.Pullman
-import com.example.progetto.Entity.Relazioni.RelazioneCDLCorso
 import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.Dispatchers
@@ -345,61 +343,6 @@ class MainActivity : AppCompatActivity() {
 
             } catch (e: Exception) {
                 Log.e("MainActivityDEBUG", "Errore durante l'inserimento/recupero", e)
-            }
-        }
-
-        val corsiDiLaurea = listOf(
-            CorsoDiLaurea(1, "Ingegneria Informatica"),
-            CorsoDiLaurea(2, "Ingegneria Meccanica"),
-            CorsoDiLaurea(3, "Ingegneria Elettronica")
-        )
-
-        // Creazione delle relazioni CDL-Corsi (invertiti)
-        val corsi = listOf(
-            RelazioneCDLCorso(1, 1),
-            RelazioneCDLCorso(2, 1),
-            RelazioneCDLCorso(3, 1),
-            RelazioneCDLCorso(6, 1),
-            RelazioneCDLCorso(9, 1),
-
-            RelazioneCDLCorso(4, 2),
-            RelazioneCDLCorso(5, 2),
-            RelazioneCDLCorso(7, 2),
-            RelazioneCDLCorso(8, 2),
-            RelazioneCDLCorso(14, 2),
-
-            RelazioneCDLCorso(10, 3),
-            RelazioneCDLCorso(11, 3),
-            RelazioneCDLCorso(12, 3),
-            RelazioneCDLCorso(15, 3),
-            RelazioneCDLCorso(16, 3),
-            RelazioneCDLCorso(17, 3)
-        )
-
-        /// Iterazione per inserire nel database
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                try {
-                    corsiDiLaurea.forEach { corso ->
-                        delay(10) // Per evitare possibili conflitti
-                        dbViewModel.inserisciCorsoDiLaurea(corso)
-                        Log.d("MainActivityDEBUGCDL", "Inserito corso: ${corso.nomeCDL}")
-                    }
-
-                    corsi.forEach { corso ->
-                        delay(10)
-                        dbViewModel.inserisciRelazioneCDLCorso(corso)
-                        Log.d("MainActivityDEBUGRelCDL", "Inserita relazione per corso: ${corso.corsoId}")
-                    }
-
-                    Log.d("MainActivityDEBUGRelCDL", "Relazioni CDL-Corsi inserite correttamente")
-                } catch (e: Exception) {
-                    Log.e(
-                        "MainActivityDEBUG",
-                        "Errore durante l'inserimento delle relazioni CDL-Corso",
-                        e
-                    )
-                }
             }
         }
 

@@ -248,4 +248,11 @@ class Mappa : AppCompatActivity(), LocationListener {
             startLocationUpdates()
         }
     }
+
+    //Deregistro il location manager al fine di evitare sprechi di risorse
+    override fun onDestroy() {
+        super.onDestroy()
+        locationManager.removeUpdates(this)
+    }
+
 }

@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.progetto.Entity.Schemi.CorsoDiLaurea
 import com.example.progetto.R
 
-class CDLAdapter(): ListAdapter<CorsoDiLaurea, CDLAdapter.CDLViewHolder>(DIFF_CALLBACK) {
+/*class CDLAdapter(): ListAdapter<CorsoDiLaurea, CDLAdapter.CDLViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -57,4 +56,4 @@ class CDLAdapter(): ListAdapter<CorsoDiLaurea, CDLAdapter.CDLViewHolder>(DIFF_CA
 
     }
 
-}
+}*/
