@@ -43,12 +43,17 @@ class CorseAdapter(): ListAdapter<Pullman, CorseAdapter.CorseViewHolder>(DIFF_CA
         fun bind(corsa: Pullman) {
             idCorsa.text = corsa.id.toString()
             destinazione.text = corsa.destinazione
-            // dividere la stringa orario in ore e minuti
-            val orarioPartenza = corsa.orarioPartenza.toString()
-            val ore = orarioPartenza.substring(0, 2)
-            val minuti = orarioPartenza.substring(2, 4)
-            val restitutire= "$ore:$minuti"
-            partenza.text = restitutire
+
+            val orarioPartenza = corsa.orarioPartenza.toString().padStart(4, '0') // Garantisce almeno 4 cifre
+
+            if (orarioPartenza.length >= 4) {
+                val ore = orarioPartenza.substring(0, 2)
+                val minuti = orarioPartenza.substring(2, 4)
+                partenza.text = "$ore:$minuti"
+            } else {
+                partenza.text = "??:??"  // Valore di default in caso di errore
+            }
         }
+
     }
 }

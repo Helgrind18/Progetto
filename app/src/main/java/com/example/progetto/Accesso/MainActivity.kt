@@ -482,6 +482,7 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.IO) {
                 try {
                     pullmanList.forEach { pullman ->
+                        Log.d("MainActivityDEBUGPul","Inserisco il pullman $pullman")
                         dbViewModel.inserisciPullman(pullman)
                     }
                     Log.d("MainActivityDEBUGPul", "Pullman inseriti correttamente")
