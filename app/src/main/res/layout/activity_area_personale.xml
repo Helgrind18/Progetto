@@ -8,6 +8,7 @@
     android:background="@color/white"
     tools:context=".AreaPersonale"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
@@ -60,7 +61,7 @@
         android:layout_height="80dp"
         android:text="PRESTITI"
         android:visibility="invisible"
-        android:backgroundTint="@color/verde_opaco"
+        android:backgroundTint="@color/blue_ncs"
         android:layout_gravity="center"
         app:cornerRadius="8dp"
         android:textColor="@color/white"/>

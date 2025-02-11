@@ -44,7 +44,7 @@ class CorsoAdapter(var context: Context): ListAdapter<Corso, CorsoAdapter.CorsoV
         fun bind(corso: Corso) {
             titleTextView.text = buildString {
                 append(corso.nome)
-                append(", ")
+                append(", CFU: ")
                 append(corso.CFU)
             }
             titleTextView.setOnClickListener {

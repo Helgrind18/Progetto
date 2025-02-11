@@ -54,7 +54,7 @@
                 android:layout_height="80dp"
                 android:text="Clicca qui!"
                 android:visibility="visible"
-                android:backgroundTint="@color/rosso_bordeaux"
+                android:backgroundTint="@color/orange_wheel"
                 android:layout_gravity="center"
                 app:cornerRadius="8dp" android:textColor="@color/white"/>
 
@@ -95,7 +95,7 @@
                 android:layout_height="80dp"
                 android:text="Clicca qui!"
                 android:visibility="visible"
-                android:backgroundTint="@color/rosso_bordeaux"
+                android:backgroundTint="@color/blu_moonstone"
                 android:layout_gravity="center"
                 app:cornerRadius="8dp"
                 android:textColor="@color/white"/>
@@ -134,7 +134,7 @@
                 android:layout_height="80dp"
                 android:text="Clicca qui!"
                 android:visibility="visible"
-                android:backgroundTint="@color/rosso_bordeaux"
+                android:backgroundTint="@color/verde_opaco"
                 android:layout_gravity="center"
                 app:cornerRadius="8dp"
                 android:textColor="@color/white"/>
@@ -172,7 +172,7 @@
                 android:layout_height="80dp"
                 android:text="Clicca qui!"
                 android:visibility="visible"
-                android:backgroundTint="@color/rosso_bordeaux"
+                android:backgroundTint="@color/gunmetal"
                 android:layout_gravity="center"
                 app:cornerRadius="8dp"
                 android:textColor="@color/white"/>

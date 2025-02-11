@@ -45,10 +45,11 @@ class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, Rela
         fun bind(esame: RelazioneStudenteCorso) {
             titleTextView.text = buildString {
                 append(esame.nomeCorso)
-                append(", ")
+                append("\nGiorno: ")
                 append(esame.giorno)
-                append(", ")
+                append("\nOra: ")
                 append(esame.ora)
+                append("\nAula: ")
                 append(esame.aula)
             }
             bottonePrestiti.setOnClickListener {

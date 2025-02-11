@@ -46,9 +46,10 @@
                     android:gravity="center"
                     android:textAlignment="center"
                     android:textSize="25sp"
+                    android:layout_margin="10dp"
                     android:fontFamily="sans-serif-black"
                     android:textColor="@color/white"
-                    android:background="@color/rosso_bordeaux"
+                    android:background="@color/verde_opaco"
                     android:visibility="visible"/>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -56,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_gravity="center"
                     android:visibility="visible"
+                    android:layout_margin="10dp"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
@@ -80,13 +82,15 @@
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="25sp"
+                android:layout_margin="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:background="@color/rosso_bordeaux"
+                android:background="@color/hunyadi_yellow"
                 android:visibility="visible"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lista2anno"
+                android:layout_margin="10dp"
                 android:visibility="visible"
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
@@ -113,9 +117,10 @@
                 android:gravity="center"
                 android:textAlignment="center"
                 android:textSize="25sp"
+                android:layout_margin="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:background="@color/rosso_bordeaux"
+                android:background="@color/blu_moonstone"
                 android:visibility="visible"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -123,6 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_gravity="center"
                 android:visibility="visible"
+                android:layout_margin="10dp"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 

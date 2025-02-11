@@ -55,7 +55,7 @@
         android:textSize="25sp"
         android:fontFamily="sans-serif-black"
         android:textColor="@color/white"
-        android:background="@color/rosso_bordeaux"
+        android:background="@color/orange_wheel"
         android:visibility="gone"/>
 
     <View

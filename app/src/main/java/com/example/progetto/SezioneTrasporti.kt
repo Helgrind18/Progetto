@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.progetto.Esami.CalendarioEsami
 import com.example.progetto.dataBase.DBViewModel
 import kotlinx.coroutines.launch
 import java.util.Calendar

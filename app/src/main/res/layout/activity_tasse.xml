@@ -35,7 +35,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="4dp"
         android:background="@android:color/black" />
 
 
@@ -49,8 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible"
-            android:layout_marginTop="10dp">
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/primarataTV"
@@ -70,7 +68,7 @@
             android:layout_height="80dp"
             android:text="Paga"
             android:visibility="gone"
-            android:backgroundTint="@color/verde_opaco"
+            android:backgroundTint="@color/hunyadi_yellow"
             android:layout_gravity="center"
             app:cornerRadius="8dp" android:textColor="@color/white"/>
 
@@ -107,7 +105,7 @@
                 android:layout_height="80dp"
                 android:text="Paga"
                 android:visibility="gone"
-                android:backgroundTint="@color/verde_opaco"
+                android:backgroundTint="@color/orange_wheel"
                 android:layout_gravity="center"
                 app:cornerRadius="8dp"
                 android:textColor="@color/white"/>
@@ -143,7 +141,7 @@
                 android:layout_height="80dp"
                 android:text="Paga"
                 android:visibility="gone"
-                android:backgroundTint="@color/verde_opaco"
+                android:backgroundTint="@color/blu_moonstone"
                 android:layout_gravity="center"
                 app:cornerRadius="8dp"
                 android:textColor="@color/white"/>
