@@ -79,13 +79,13 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        // Gestione dei bottoni: non appena si preme un bottone si apre una nuova activity, bisogna anche estrarre il nome dell'utente da intent
         orarioLezioni.setOnClickListener {
             val intent = Intent(this, OrarioLezioni::class.java).apply {
                 putExtra("username", username)
             }
             startActivity(intent)
         }
+        // Gestione dei bottoni: non appena si preme un bottone si apre una nuova activity, bisogna anche estrarre il nome dell'utente da intent
         calendarioEsami.setOnClickListener {
             val intent = Intent(this, AppelliDisponibili::class.java).apply {
                 putExtra("username", username)

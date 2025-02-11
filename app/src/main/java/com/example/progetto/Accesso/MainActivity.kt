@@ -259,7 +259,7 @@ class MainActivity : AppCompatActivity() {
                 id = 15,
                 nome = "Progettazione Software",
                 CFU = 9,
-                semestre = 2,
+                semestre = 1,
                 anno = 3,
                 descrizione = "Metodologie e strumenti per la progettazione di sistemi software complessi."
             ),
@@ -345,7 +345,6 @@ class MainActivity : AppCompatActivity() {
 
                 Log.d("DEBUG", "Inserimento completato, aspetto la conferma del DB...")
 
-                // ⚠️ ASPETTA che Room completi gli inserimenti con una piccola pausa ⚠️
                 delay(500) // (facoltativo, aiuta Room a scrivere le modifiche)
 
                 // Recupera le relazioni solo dopo il completamento degli inserimenti
@@ -355,7 +354,7 @@ class MainActivity : AppCompatActivity() {
                 }*/
 
                 // Recupera le lezioni
-                val lez = dbViewModel.getLezioni(Calendar.MONDAY, 15, 2, 1)
+                val lez = dbViewModel.getLezioni(Calendar.DAY_OF_WEEK, 15, 1, 1)
                 Log.d("MainActivityDEBUGLez", "Lezioni trovate: $lez")
 
             } catch (e: Exception) {

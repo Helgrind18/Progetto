@@ -19,7 +19,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Calendar
-
 class OrarioLezioni : AppCompatActivity() {
 
     private lateinit var dbViewModel: DBViewModel
@@ -39,29 +38,44 @@ class OrarioLezioni : AppCompatActivity() {
         val username = intent.getIntExtra("username", 1)
 
         val calendar: Calendar = Calendar.getInstance()
-        val giorno= calendar.get(Calendar.DAY_OF_WEEK)-1
-        var studente: Studente = Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
-
-
-        lifecycleScope.launch {
-            Log.d("TasseDEBUG", "Inizio query per studente")
-            try {
-                studente = withContext(Dispatchers.IO) {
-                    dbViewModel.studenteByMatricola(username)!!
-                }
-                Log.d("TasseDEBUG", "Risultato studente: $studente")
-            } catch (e: Exception) {
-                Log.e("TasseDEBUG", "Errore nel recupero lezioni", e)
-            }
-        }
-
+        val giorno = calendar.get(Calendar.DAY_OF_WEEK)
+        Log.d("OrarioLezioniDEBUG", "Giorno della settimana: $giorno")
+        // ✅ Inizializza l'adapter PRIMA della coroutine
         val recyclerView = findViewById<RecyclerView>(R.id.listaLezioni)
         lezioneAdapter = LezioneAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = lezioneAdapter
-        dbViewModel.getLezioni(giorno, username,2,1)?.observe(this, Observer{ lezioni -> lezioneAdapter.submitList(lezioni) })
-        val size= lezioneAdapter.currentList.size
-        Log.d("ListaDEBUG", "$size")
+
+        lifecycleScope.launch {
+            Log.d("TasseDEBUG", "Inizio query per studente")
+            try {
+                val studenteRecuperato = withContext(Dispatchers.IO) {
+                    dbViewModel.studenteByMatricola(username)
+                }
+                if (studenteRecuperato != null) {
+                    Log.d("TasseDEBUG", "Risultato studente: $studenteRecuperato")
+
+                    // ✅ Assicurati di osservare LiveData nel thread principale
+                    withContext(Dispatchers.Main) {
+                        val anno:Int = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
+                        Log.d("OrarioLezioniDEBUG", "Anno corso : $anno")
+                        var semestre: Int = 1
+                        if(calendar.get(Calendar.MONTH) >= 3) {
+                            semestre = 2
+                        }
+                        dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)
+                            ?.observe(this@OrarioLezioni, Observer { lezioni ->
+                                Log.d("ListaDEBUG", "Numero lezioni ricevute: ${lezioni.size}")
+                                lezioneAdapter.submitList(lezioni)
+                            })
+                    }
+                } else {
+                    Log.e("TasseDEBUG", "Studente non trovato")
+                }
+            } catch (e: Exception) {
+                Log.e("TasseDEBUG", "Errore nel recupero studente", e)
+            }
+        }
     }
 
     fun giornoToString(giorno: Int): String {
@@ -76,5 +90,4 @@ class OrarioLezioni : AppCompatActivity() {
             else -> "Sconosciuto"
         }
     }
-
 }
