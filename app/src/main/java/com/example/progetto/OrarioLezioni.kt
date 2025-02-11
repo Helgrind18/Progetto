@@ -39,11 +39,11 @@ class OrarioLezioni : AppCompatActivity() {
         val username = intent.getIntExtra("username", 1)
 
         val calendar: Calendar = Calendar.getInstance()
-        val giorno= calendar.get(Calendar.DAY_OF_WEEK)
-        var studente: Studente =
-            Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
+        val giorno= calendar.get(Calendar.DAY_OF_WEEK)-1
+        var studente: Studente = Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
 
-      /*  lifecycleScope.launch {
+
+        lifecycleScope.launch {
             Log.d("TasseDEBUG", "Inizio query per studente")
             try {
                 studente = withContext(Dispatchers.IO) {
@@ -51,26 +51,19 @@ class OrarioLezioni : AppCompatActivity() {
                 }
                 Log.d("TasseDEBUG", "Risultato studente: $studente")
             } catch (e: Exception) {
-                Log.e("TasseDEBUG", "Errore nel recupero studente", e)
-            }
-            try {
-                val recyclerView = findViewById<RecyclerView>(R.id.listaLezioni)
-                lezioneAdapter = LezioneAdapter()
-                recyclerView.layoutManager = LinearLayoutManager(this as Context?)
-                recyclerView.adapter = lezioneAdapter
-                dbViewModel.getLezioni(giorno, studente.matricola,3,2)?.observe(
-                    this as LifecycleOwner,
-                    Observer{ lezioni -> lezioneAdapter.submitList(lezioni)
-                    })
-                Log.d("ORARIOBUG", "Risultato ${lezioneAdapter.currentList}")
-            }catch (e: Exception) {
                 Log.e("TasseDEBUG", "Errore nel recupero lezioni", e)
             }
+        }
 
-        }*/
-
-
+        val recyclerView = findViewById<RecyclerView>(R.id.listaLezioni)
+        lezioneAdapter = LezioneAdapter()
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = lezioneAdapter
+        dbViewModel.getLezioni(giorno, username,2,1)?.observe(this, Observer{ lezioni -> lezioneAdapter.submitList(lezioni) })
+        val size= lezioneAdapter.currentList.size
+        Log.d("ListaDEBUG", "$size")
     }
+
     fun giornoToString(giorno: Int): String {
         return when (giorno) {
             Calendar.SUNDAY -> "Domenica"

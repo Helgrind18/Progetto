@@ -218,7 +218,7 @@ interface RelazioneStudenteCorsoDao {
             "AND c.anno = :anno " +
             "AND c.semestre = :semestre "
         )
-        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): List<RelazioneStudenteCorso>?
+        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): LiveData<List<RelazioneStudenteCorso>>?
 
 }
 

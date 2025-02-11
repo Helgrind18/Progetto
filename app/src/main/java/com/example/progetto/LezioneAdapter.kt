@@ -18,12 +18,12 @@ class LezioneAdapter() : ListAdapter<RelazioneStudenteCorso, LezioneAdapter.Lezi
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): LezioneAdapter.LezionwViewHolder {
+    ): LezionwViewHolder {
         val itemView= LayoutInflater.from(parent.context).inflate(R.layout.item_lezione,parent,false)
         return LezionwViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: LezioneAdapter.LezionwViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LezionwViewHolder, position: Int) {
         val lezione=getItem(position)
         holder.bind(lezione)
 
@@ -40,12 +40,12 @@ class LezioneAdapter() : ListAdapter<RelazioneStudenteCorso, LezioneAdapter.Lezi
     class LezionwViewHolder(itemView: View) : ViewHolder(itemView) {
         private val titleTextView: TextView = itemView.findViewById(R.id.TestoNomeLezione)
         private val aula: TextView = itemView.findViewById(R.id.TestoAulaLezione)
-        private val semestre: TextView = itemView.findViewById(R.id.TestoInizioLezione)
+        private val ora: TextView = itemView.findViewById(R.id.TestoInizioLezione)
 
         fun bind(lezione: RelazioneStudenteCorso) {
             titleTextView.text=lezione.nomeCorso
             aula.text=lezione.aula
-            semestre.text=lezione.ora
+            ora.text=lezione.ora
         }
 
     }

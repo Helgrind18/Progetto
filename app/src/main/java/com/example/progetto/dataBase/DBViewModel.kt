@@ -284,7 +284,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int):List<RelazioneStudenteCorso>? {
+        fun getLezioni(giorno: Int, matricola: Int, anno: Int, semestre: Int): LiveData<List<RelazioneStudenteCorso>>? {
             return try {
                 relazioneStudenteCorsoDAO.getLezioni(giorno, matricola, anno, semestre)
             } catch (e: Exception) {

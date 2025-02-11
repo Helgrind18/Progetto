@@ -59,23 +59,6 @@ class RegistrazioneActivity : AppCompatActivity() {
 
         // Inizializza il ViewModel
         dbViewModel = DBViewModel(application)
-        val sceltaCDL: TextView = findViewById(R.id.scegliCDL)
-        val lista: RecyclerView = findViewById(R.id.listaCDL)
-       /* cdladapter = CDLAdapter()
-        lista.layoutManager = LinearLayoutManager(this as Context?)
-        lista.adapter = cdladapter
-        dbViewModel= ViewModelProvider(this as ViewModelStoreOwner).get(DBViewModel::class.java)
-        dbViewModel.getAllCDL()?.observe(this as LifecycleOwner, Observer { corsi ->
-            cdladapter.submitList(corsi)
-        })
-        Log.d("RegBug", "Lista corsi caricata ${cdladapter.itemCount}")
-        sceltaCDL.setOnClickListener {
-            if (lista.visibility == View.GONE) {
-                lista.visibility = View.VISIBLE
-            } else {
-                lista.visibility = View.GONE
-            }
-        }*/
 
         bottoneInvia.setOnClickListener {
             if (campiVuoti(
