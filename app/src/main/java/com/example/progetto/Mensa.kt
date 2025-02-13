@@ -140,11 +140,11 @@ class Mensa : AppCompatActivity() {
 
     private fun mostraMenu(primo: Piatto, secondo: Piatto, contorno: Piatto): String{
         var ris: StringBuilder= StringBuilder()
-        ris.append("Primo: ${primo.nome}")
+        ris.append("PRIMO PIATTO: ${primo.nome}")
         ris.append("\n")
-        ris.append("Secondo: ${secondo.nome}")
+        ris.append("SECONDO PIATTO: ${secondo.nome}")
         ris.append("\n")
-        ris.append("Contorno: ${contorno.nome}")
+        ris.append("CONTORNO: ${contorno.nome}")
         ris.append("\n")
         return ris.toString()
     }

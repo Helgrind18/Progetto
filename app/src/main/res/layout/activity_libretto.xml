@@ -48,7 +48,7 @@
     <TextView
         android:id="@+id/intEsami"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="50dp"
         android:text="Lista Esami"
         android:gravity="center"
         android:textAlignment="center"

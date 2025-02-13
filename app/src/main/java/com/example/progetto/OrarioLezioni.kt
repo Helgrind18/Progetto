@@ -58,223 +58,61 @@ class OrarioLezioni : AppCompatActivity() {
             }
         }
 
-
         val lunedi = findViewById<TextView>(R.id.clickLunedi)
         lunedi.setOnClickListener{
             giorno=Calendar.MONDAY
-            lifecycleScope.launch {
-                Log.d("TasseDEBUG", "Inizio query per studente")
-                try {
-                    val studenteRecuperato = withContext(Dispatchers.IO) {
-                        dbViewModel.studenteByMatricola(username)
-                    }
-                    if (studenteRecuperato != null) {
-                        Log.d("TasseDEBUG", "Risultato studente: $studenteRecuperato")
-
-                        // ✅ Assicurati di osservare LiveData nel thread principale
-                        withContext(Dispatchers.Main) {
-                            val anno:Int = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
-                            Log.d("OrarioLezioniDEBUG", "Anno corso : $anno")
-                            var semestre: Int = 1
-                            if(calendar.get(Calendar.MONTH) >= 3) {
-                                semestre = 2
-                            }
-                            dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)
-                                ?.observe(this@OrarioLezioni, Observer { lezioni ->
-                                    Log.d("ListaDEBUG", "Numero lezioni ricevute: ${lezioni.size}")
-                                    lezioneAdapter.submitList(lezioni)
-                                })
-                        }
-                    } else {
-                        Log.e("TasseDEBUG", "Studente non trovato")
-                    }
-                } catch (e: Exception) {
-                    Log.e("TasseDEBUG", "Errore nel recupero studente", e)
-                }
-            }
+            aggiornaListaLezioni(username,giorno)
         }
+
         val martedi = findViewById<TextView>(R.id.clickMartedi)
-        martedi.setOnClickListener{
-            giorno=Calendar.TUESDAY
-            lifecycleScope.launch {
-                Log.d("TasseDEBUG", "Inizio query per studente")
-                try {
-                    val studenteRecuperato = withContext(Dispatchers.IO) {
-                        dbViewModel.studenteByMatricola(username)
-                    }
-                    if (studenteRecuperato != null) {
-                        Log.d("TasseDEBUG", "Risultato studente: $studenteRecuperato")
-
-                        // ✅ Assicurati di osservare LiveData nel thread principale
-                        withContext(Dispatchers.Main) {
-                            val anno:Int = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
-                            Log.d("OrarioLezioniDEBUG", "Anno corso : $anno")
-                            var semestre: Int = 1
-                            if(calendar.get(Calendar.MONTH) >= 3) {
-                                semestre = 2
-                            }
-                            dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)
-                                ?.observe(this@OrarioLezioni, Observer { lezioni ->
-                                    Log.d("ListaDEBUG", "Numero lezioni ricevute: ${lezioni.size}")
-                                    lezioneAdapter.submitList(lezioni)
-                                })
-                        }
-                    } else {
-                        Log.e("TasseDEBUG", "Studente non trovato")
-                    }
-                } catch (e: Exception) {
-                    Log.e("TasseDEBUG", "Errore nel recupero studente", e)
-                }
-            }
+        martedi.setOnClickListener {
+            giorno = Calendar.TUESDAY
+            aggiornaListaLezioni(username, giorno)
         }
+
         val mercoledi = findViewById<TextView>(R.id.clickMercoledi)
         mercoledi.setOnClickListener{
             giorno=Calendar.WEDNESDAY
-            lifecycleScope.launch {
-                Log.d("TasseDEBUG", "Inizio query per studente")
-                try {
-                    val studenteRecuperato = withContext(Dispatchers.IO) {
-                        dbViewModel.studenteByMatricola(username)
-                    }
-                    if (studenteRecuperato != null) {
-                        Log.d("TasseDEBUG", "Risultato studente: $studenteRecuperato")
-
-                        // ✅ Assicurati di osservare LiveData nel thread principale
-                        withContext(Dispatchers.Main) {
-                            val anno:Int = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
-                            Log.d("OrarioLezioniDEBUG", "Anno corso : $anno")
-                            var semestre: Int = 1
-                            if(calendar.get(Calendar.MONTH) >= 3) {
-                                semestre = 2
-                            }
-                            dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)
-                                ?.observe(this@OrarioLezioni, Observer { lezioni ->
-                                    Log.d("ListaDEBUG", "Numero lezioni ricevute: ${lezioni.size}")
-                                    lezioneAdapter.submitList(lezioni)
-                                })
-                        }
-                    } else {
-                        Log.e("TasseDEBUG", "Studente non trovato")
-                    }
-                } catch (e: Exception) {
-                    Log.e("TasseDEBUG", "Errore nel recupero studente", e)
-                }
-            }
+            aggiornaListaLezioni(username,giorno)
         }
+
         val giovedi = findViewById<TextView>(R.id.clickGiovedì)
         giovedi.setOnClickListener{
             giorno=Calendar.THURSDAY
-            lifecycleScope.launch {
-                Log.d("TasseDEBUG", "Inizio query per studente")
-                try {
-                    val studenteRecuperato = withContext(Dispatchers.IO) {
-                        dbViewModel.studenteByMatricola(username)
-                    }
-                    if (studenteRecuperato != null) {
-                        Log.d("TasseDEBUG", "Risultato studente: $studenteRecuperato")
-
-                        // ✅ Assicurati di osservare LiveData nel thread principale
-                        withContext(Dispatchers.Main) {
-                            val anno:Int = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
-                            Log.d("OrarioLezioniDEBUG", "Anno corso : $anno")
-                            var semestre: Int = 1
-                            if(calendar.get(Calendar.MONTH) >= 3) {
-                                semestre = 2
-                            }
-                            dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)
-                                ?.observe(this@OrarioLezioni, Observer { lezioni ->
-                                    Log.d("ListaDEBUG", "Numero lezioni ricevute: ${lezioni.size}")
-                                    lezioneAdapter.submitList(lezioni)
-                                })
-                        }
-                    } else {
-                        Log.e("TasseDEBUG", "Studente non trovato")
-                    }
-                } catch (e: Exception) {
-                    Log.e("TasseDEBUG", "Errore nel recupero studente", e)
-                }
-            }
+            aggiornaListaLezioni(username,giorno)
         }
+
         val venerdi = findViewById<TextView>(R.id.clickVenerdi)
         venerdi.setOnClickListener{
             giorno=Calendar.FRIDAY
-            lifecycleScope.launch {
-                Log.d("TasseDEBUG", "Inizio query per studente")
-                try {
-                    val studenteRecuperato = withContext(Dispatchers.IO) {
-                        dbViewModel.studenteByMatricola(username)
-                    }
-                    if (studenteRecuperato != null) {
-                        Log.d("TasseDEBUG", "Risultato studente: $studenteRecuperato")
-
-                        // ✅ Assicurati di osservare LiveData nel thread principale
-                        withContext(Dispatchers.Main) {
-                            val anno:Int = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
-                            Log.d("OrarioLezioniDEBUG", "Anno corso : $anno")
-                            var semestre: Int = 1
-                            if(calendar.get(Calendar.MONTH) >= 3) {
-                                semestre = 2
-                            }
-                            dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)
-                                ?.observe(this@OrarioLezioni, Observer { lezioni ->
-                                    Log.d("ListaDEBUG", "Numero lezioni ricevute: ${lezioni.size}")
-                                    lezioneAdapter.submitList(lezioni)
-                                })
-                        }
-                    } else {
-                        Log.e("TasseDEBUG", "Studente non trovato")
-                    }
-                } catch (e: Exception) {
-                    Log.e("TasseDEBUG", "Errore nel recupero studente", e)
-                }
-            }
+            aggiornaListaLezioni(username,giorno)
         }
 
+        aggiornaListaLezioni(username,giorno)
+    }
 
-
-
+    private fun aggiornaListaLezioni(username: Int, giorno: Int) {
         lifecycleScope.launch {
-            Log.d("TasseDEBUG", "Inizio query per studente")
             try {
                 val studenteRecuperato = withContext(Dispatchers.IO) {
                     dbViewModel.studenteByMatricola(username)
                 }
                 if (studenteRecuperato != null) {
-                    Log.d("TasseDEBUG", "Risultato studente: $studenteRecuperato")
-
-                    // ✅ Assicurati di osservare LiveData nel thread principale
                     withContext(Dispatchers.Main) {
-                        val anno:Int = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
-                        Log.d("OrarioLezioniDEBUG", "Anno corso : $anno")
-                        var semestre: Int = 1
-                        if(calendar.get(Calendar.MONTH) >= 3) {
-                            semestre = 2
-                        }
-                        dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)
-                            ?.observe(this@OrarioLezioni, Observer { lezioni ->
-                                Log.d("ListaDEBUG", "Numero lezioni ricevute: ${lezioni.size}")
-                                lezioneAdapter.submitList(lezioni)
-                            })
+                        val calendar = Calendar.getInstance()
+                        val anno = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
+                        val semestre = if (calendar.get(Calendar.MONTH) >= 3) 2 else 1
+
+                        dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)?.observe(this@OrarioLezioni, Observer { lezioni -> lezioneAdapter.submitList(lezioni) })
                     }
                 } else {
-                    Log.e("TasseDEBUG", "Studente non trovato")
+                    Log.e("OrarioLezioni", "Studente non trovato")
                 }
             } catch (e: Exception) {
-                Log.e("TasseDEBUG", "Errore nel recupero studente", e)
+                Log.e("OrarioLezioni", "Errore nel recupero studente", e)
             }
         }
     }
 
-    fun giornoToString(giorno: Int): String {
-        return when (giorno) {
-            Calendar.SUNDAY -> "Domenica"
-            Calendar.MONDAY -> "Lunedì"
-            Calendar.TUESDAY -> "Martedì"
-            Calendar.WEDNESDAY -> "Mercoledì"
-            Calendar.THURSDAY -> "Giovedì"
-            Calendar.FRIDAY -> "Venerdì"
-            Calendar.SATURDAY -> "Sabato"
-            else -> "Sconosciuto"
-        }
-    }
+
 }

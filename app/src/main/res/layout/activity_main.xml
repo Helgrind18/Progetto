@@ -29,17 +29,26 @@
         android:layout_margin="10dp"
         android:textColor="@color/white"
         android:backgroundTint="@color/rosso_bordeaux"/>
+
     <Button
         android:id="@+id/bottoneReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrati"
         android:layout_margin="10dp"
-
         android:textColor="@color/white"
         android:backgroundTint="@color/rosso_bordeaux"/>
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Sviluppata da Bruni Christian e Fiore Pasquale"
+        android:textColor="@color/gunmetal"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:gravity="bottom"
+        android:fontFamily="sans-serif-condensed"/>
 
 
 </LinearLayout>

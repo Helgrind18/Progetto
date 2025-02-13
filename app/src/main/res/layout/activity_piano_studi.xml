@@ -85,7 +85,7 @@
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:background="@color/hunyadi_yellow"
+                android:background="@color/orange_wheel"
                 android:visibility="visible"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -120,7 +120,7 @@
                 android:layout_margin="10dp"
                 android:fontFamily="sans-serif-black"
                 android:textColor="@color/white"
-                android:background="@color/blu_moonstone"
+                android:background="@color/gunmetal"
                 android:visibility="visible"/>
 
             <androidx.recyclerview.widget.RecyclerView

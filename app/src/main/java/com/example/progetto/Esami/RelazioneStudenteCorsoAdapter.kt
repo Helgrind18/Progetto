@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.R
+import java.util.Calendar
 
 
 class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, RelazioneStudenteCorsoAdapter.EsamiViewHolder>(DIFF_CALLBACK) {
@@ -43,10 +44,18 @@ class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, Rela
         private val barra: View = itemView.findViewById(R.id.barra)
 
         fun bind(esame: RelazioneStudenteCorso) {
+            val calendar = Calendar.getInstance()
+            val anno= calendar.get(Calendar.YEAR)
+            val mese= calendar.get(Calendar.MONTH)+1
+
             titleTextView.text = buildString {
                 append(esame.nomeCorso)
                 append("\nGiorno: ")
                 append(esame.giorno)
+                append("/")
+                append(mese)
+                append("/")
+                append(anno)
                 append("\nOra: ")
                 append(esame.ora)
                 append("\nAula: ")
