@@ -55,11 +55,11 @@ class Tasse : AppCompatActivity() {
             info.text = testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
 
             // Configura i bottoni di pagamento
-            setupPaymentButtons(studente, tassa, tassaConMora, mese)
+            configurazioneBottoni(studente, tassa, tassaConMora, mese)
         }
     }
 
-    private fun setupPaymentButtons(studente: Studente, tassa: Double, tassaConMora: Double, mese: Int) {
+    private fun configurazioneBottoni(studente: Studente, tassa: Double, tassaConMora: Double, mese: Int) {
         val bottonePagamento1 = findViewById<Button>(R.id.bottonePagamento1)
         val bottonePagamento2 = findViewById<Button>(R.id.bottonePagamento2)
         val bottonePagamento3 = findViewById<Button>(R.id.bottonePagamento3)
@@ -77,7 +77,7 @@ class Tasse : AppCompatActivity() {
                 sep1.visibility = View.VISIBLE
                 bottonePagamento1.visibility = Button.VISIBLE
                 bottonePagamento1.setOnClickListener {
-                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv, sep1)
+                    gestionePagamenti(studente, "tassa1", tassa, bottonePagamento1, primaRataTv, sep1)
                 }
             }
         }else if (mese== Calendar.OCTOBER){
@@ -91,7 +91,7 @@ class Tasse : AppCompatActivity() {
                 sep1.visibility = View.VISIBLE
                 bottonePagamento1.visibility = Button.VISIBLE
                 bottonePagamento1.setOnClickListener {
-                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv,sep1)
+                    gestionePagamenti(studente, "tassa1", tassa, bottonePagamento1, primaRataTv,sep1)
                 }
             }
             if (studente.tassa2) {
@@ -104,7 +104,7 @@ class Tasse : AppCompatActivity() {
                 sep2.visibility = View.VISIBLE
                 bottonePagamento2.visibility = Button.VISIBLE
                 bottonePagamento2.setOnClickListener {
-                    handlePayment(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
+                    gestionePagamenti(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
                 }
             }
         }else if (mese== Calendar.FEBRUARY){
@@ -118,7 +118,7 @@ class Tasse : AppCompatActivity() {
                 sep1.visibility = View.VISIBLE
                 bottonePagamento1.visibility = Button.VISIBLE
                 bottonePagamento1.setOnClickListener {
-                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv,sep1)
+                    gestionePagamenti(studente, "tassa1", tassa, bottonePagamento1, primaRataTv,sep1)
                 }
             }
             if (studente.tassa2) {
@@ -131,7 +131,7 @@ class Tasse : AppCompatActivity() {
                 sep2.visibility = View.VISIBLE
                 bottonePagamento2.visibility = Button.VISIBLE
                 bottonePagamento2.setOnClickListener {
-                    handlePayment(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
+                    gestionePagamenti(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
                 }
             }
             if (studente.tassa3) {
@@ -144,7 +144,7 @@ class Tasse : AppCompatActivity() {
                 sep3.visibility = View.VISIBLE
                 bottonePagamento3.visibility = Button.VISIBLE
                 bottonePagamento3.setOnClickListener {
-                    handlePayment(studente, "tassa3", tassa, bottonePagamento3, terzaRataTv,sep3)
+                    gestionePagamenti(studente, "tassa3", tassa, bottonePagamento3, terzaRataTv,sep3)
                 }
             }
         }else if (mese== Calendar.MAY) {
@@ -158,7 +158,7 @@ class Tasse : AppCompatActivity() {
                 sep1.visibility = View.VISIBLE
                 bottonePagamento1.visibility = Button.VISIBLE
                 bottonePagamento1.setOnClickListener {
-                    handlePayment(studente, "tassa1", tassa, bottonePagamento1, primaRataTv, sep1)
+                    gestionePagamenti(studente, "tassa1", tassa, bottonePagamento1, primaRataTv, sep1)
                 }
             }
             if (studente.tassa2) {
@@ -171,7 +171,7 @@ class Tasse : AppCompatActivity() {
                 sep2.visibility = View.VISIBLE
                 bottonePagamento2.visibility = Button.VISIBLE
                 bottonePagamento2.setOnClickListener {
-                    handlePayment(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
+                    gestionePagamenti(studente, "tassa2", tassa, bottonePagamento2, secondaRataTv, sep2)
                 }
             }
             if (studente.tassa3) {
@@ -184,7 +184,7 @@ class Tasse : AppCompatActivity() {
                 val sep3: View= findViewById(R.id.sep3)
                 sep3.visibility = View.VISIBLE
                 bottonePagamento3.setOnClickListener {
-                    handlePayment(studente, "tassa3", tassa, bottonePagamento3, terzaRataTv,sep3)
+                    gestionePagamenti(studente, "tassa3", tassa, bottonePagamento3, terzaRataTv,sep3)
                 }
             }
             if (studente.tassa4) {
@@ -197,13 +197,13 @@ class Tasse : AppCompatActivity() {
                 sep3.visibility = View.VISIBLE
                 bottonePagamento4.visibility = Button.VISIBLE
                 bottonePagamento4.setOnClickListener {
-                    handlePayment(studente, "tassa4", tassa, bottonePagamento4, quartarataTv,sep3)
+                    gestionePagamenti(studente, "tassa4", tassa, bottonePagamento4, quartarataTv,sep3)
                 }
             }
         }
     }
 
-    private fun handlePayment(studente: Studente, tassaName: String, tassaAmount: Double, bottone: Button, textView: TextView, view: View) {
+    private fun gestionePagamenti(studente: Studente, tassaName: String, tassaAmount: Double, bottone: Button, textView: TextView, view: View) {
         // Imposta la tassa come pagata nel modello Studente
         when (tassaName) {
             "tassa1" -> studente.tassa1 = true

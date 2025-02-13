@@ -78,7 +78,6 @@ class LoginActivity : AppCompatActivity() {
                         withContext(Dispatchers.Main) {
                             if (studente != null) {
                                 if (studente.pswd == pwd) {
-                                    Toast.makeText(this@LoginActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this@LoginActivity, HomeActivity::class.java).apply {
                                         putExtra("username", matricola)
                                     }

@@ -3,6 +3,7 @@ package com.example.progetto.AreeBiblioteca
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -62,8 +63,9 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                      withContext(Dispatchers.IO) {
                          try {
                              libro.matricolaStudente=matricola
-                             Log.d("BiblioDebu", "Libro: $libro")
                              dbViewModel.aggiungiLibro(libro)
+                             Toast.makeText(this@Libro_Riutilizzabile, "Prestito preso in carico", Toast.LENGTH_LONG).show()
+                             finish()
                          }catch (e: Exception){
                              e.printStackTrace()
                          }

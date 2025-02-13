@@ -87,7 +87,7 @@ class Libretto : AppCompatActivity() {
                     }
                     Log.d("TasseDEBUG", "Risultato media ponderata: $mediaPonderata")
                     val info: TextView = findViewById(R.id.infoLibretto)
-                    info.text = testoInfo(username, media, mediaPonderata, lista)
+                    info.text = testoInfo(media, mediaPonderata, lista)
                 } catch (e: Exception) {
                     Log.e("TasseDEBUG", "Errore nel recupero media ponderata", e)
                 }
@@ -114,7 +114,6 @@ class Libretto : AppCompatActivity() {
     }
 
     private fun testoInfo(
-        username: Int,
         media: Double,
         mediaPonderata: Double,
         lista: List<RelazioneStudenteCorso>
@@ -126,7 +125,7 @@ class Libretto : AppCompatActivity() {
         ris.append("\n")
         ris.append("Media ponderata: ${mediaPonderata}/30.0")
         ris.append("\n")
-        Log.d("TasseDEBUG", "Testo info: ${ris.toString()}")
+        Log.d("TasseDEBUG", "Testo info: $ris")
         return ris.toString()
     }
 

@@ -34,6 +34,7 @@
         android:textColor="@color/gunmetal"/>
 
     <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
@@ -68,6 +69,7 @@
     </RadioGroup>
 
     <EditText
+        android:id="@+id/feedback"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="100dp"
@@ -78,7 +80,7 @@
         android:textColor="@color/black"/>
 
     <Button
-        android:id="@+id/bottonePrestiti"
+        android:id="@+id/invioFeedback"
         android:layout_marginTop="20dp"
         android:layout_width="120dp"
         android:layout_height="70dp"

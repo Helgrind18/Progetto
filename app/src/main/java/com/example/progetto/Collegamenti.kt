@@ -23,16 +23,15 @@ class Collegamenti : AppCompatActivity() {
         }
 
         // Associazione dei click ai link
-        intentImplicitoBrowser(R.id.sitoUnical, R.id.bottoneSito, "https://www.unical.it")
-        intentImplicitoBrowser(R.id.Soscr,R.id.bottonesoscr, "https://soscr.unical.it")
-        intentImplicitoBrowser(R.id.insta, R.id.bottoneinsta,"https://www.instagram.com/unical_official/")
-        intentImplicitoBrowser(R.id.twitter, R.id.bottoneTwitter,"https://x.com/UniCalPortale/status/1640303607147905026")
+        intentImplicitoBrowser(R.id.bottoneSito, "https://www.unical.it")
+        intentImplicitoBrowser(R.id.bottonesoscr, "https://soscr.unical.it")
+        intentImplicitoBrowser(R.id.bottoneinsta,"https://www.instagram.com/unical_official/")
+        intentImplicitoBrowser(R.id.bottoneTwitter,"https://x.com/UniCalPortale/status/1640303607147905026")
     }
 
     // Funzione per impostare il click listener su un TextView
-    private fun intentImplicitoBrowser(textViewId: Int, bottone: Int, url: String) {
+    private fun intentImplicitoBrowser(bottone: Int, url: String) {
         //Questa funzione prende l'ID del TextView e l'URL da aprire.
-        val textView = findViewById<TextView>(textViewId)
         val bottone = findViewById<Button>(bottone)
         bottone.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))

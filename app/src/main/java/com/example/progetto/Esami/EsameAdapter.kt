@@ -37,12 +37,8 @@ class EsameAdapter(): ListAdapter<RelazioneStudenteCorso, EsameAdapter.EsamiView
         private val titleTextView: TextView = itemView.findViewById(R.id.nome)
         private val voto: TextView= itemView.findViewById(R.id.voto)
         private val passato: View= itemView.findViewById(R.id.passato)
-        private val sep: View= itemView.findViewById(R.id.sepEL)
-
         fun bind(esame: RelazioneStudenteCorso) {
             titleTextView.text = esame.nomeCorso.toString()
-
-
             if (esame.voto!=-1){
                 voto.text=esame.voto.toString()
                 passato.background=itemView.context.getDrawable(R.color.verde_opaco)

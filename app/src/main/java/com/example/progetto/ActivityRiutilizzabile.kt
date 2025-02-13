@@ -54,14 +54,4 @@ class ActivityRiutilizzabile : AppCompatActivity() {
 
     }
 
-    private fun descrizioneCorso(corso: Corso): String {
-        var ris: StringBuilder = StringBuilder()
-        ris.append("CFU: ${corso.CFU}")
-        ris.append("\n")
-        ris.append("CFU: ${corso.id}")
-        ris.append("\n")
-        ris.append("Descrizione: ${corso.descrizione}")
-        ris.append("\n")
-        return ris.toString()
-    }
 }

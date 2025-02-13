@@ -40,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         //Saluto dell'utente
         val username = intent.getIntExtra("username",1)
         Toast.makeText(this, "Benvenuto $username", Toast.LENGTH_SHORT).show()

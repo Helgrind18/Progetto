@@ -21,8 +21,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import com.example.progetto.Entity.Schemi.Studente
 import com.example.progetto.R
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 
 class MainActivity : AppCompatActivity() {
@@ -72,7 +70,7 @@ class MainActivity : AppCompatActivity() {
             36
         )
 
-// Creazione della lista dei libri
+        // Creazione della lista dei libri
         val libri = listOf(
             Libro(
                 name = "Introduzione alla Psicologia",
