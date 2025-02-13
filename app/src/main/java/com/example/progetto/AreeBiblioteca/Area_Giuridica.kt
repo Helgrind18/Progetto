@@ -29,6 +29,7 @@ class Area_Giuridica : AppCompatActivity() {
         }
         val matricola = intent.getIntExtra("username", 0)
         Log.d("BiblioDebu","matricola $matricola")
+        //Step necessari per la corretta visualizzazione della RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
         libroListAdapter = LibroAdapter(this,matricola)
         recyclerView.layoutManager = LinearLayoutManager(this)

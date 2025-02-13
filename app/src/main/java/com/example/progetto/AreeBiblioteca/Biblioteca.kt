@@ -32,6 +32,8 @@ class Biblioteca : AppCompatActivity() {
             insets
         }
 
+        // creazione dei bottoni per le diverse aree
+
         val matricola = intent.getIntExtra("username", 0)
         Log.d("BiblioDebu", "Recupero della matricola: $matricola")
         val bottoneLinguistica: Button = findViewById(R.id.linguistica)
@@ -50,6 +52,8 @@ class Biblioteca : AppCompatActivity() {
         inserisciLibri()
 
         val linguistica: String= "linguistica"
+
+        //Gestione degli OnClickListener dei vari bottoni
 
         bottoneLinguistica.setOnClickListener {
             val intent = Intent(this, Area_Linguistica::class.java).apply {
@@ -132,6 +136,8 @@ class Biblioteca : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    // Inserimento statico di un insieme di libri
 
     private fun inserisciLibri() {
 
