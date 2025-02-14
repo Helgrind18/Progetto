@@ -13,12 +13,18 @@
     tools:context=".AreeBiblioteca.Biblioteca">
 
     <!-- Banda rossa in alto -->
-    <View
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/rosso_bordeaux"
         android:layout_rowSpan="1"
-        android:layout_columnSpan="3"/>
+        android:layout_columnSpan="3"
+        android:text="BIBLIOTECA"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-black"
+        android:textColor="@color/white"/>
 
     <!-- Bottone per l'area linguistica -->
     <Button

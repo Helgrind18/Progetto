@@ -1,11 +1,13 @@
 package com.example.progetto
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
@@ -22,6 +24,7 @@ class OrarioLezioni : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel
     private lateinit var lezioneAdapter: LezioneAdapter
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -45,6 +48,14 @@ class OrarioLezioni : AppCompatActivity() {
         recyclerView.adapter = lezioneAdapter
 
         val sceltaGiorno = findViewById<TextView>(R.id.sceltaGiorno)
+        var lunedi = findViewById<TextView>(R.id.clickLunedi)
+        val martedi = findViewById<TextView>(R.id.clickMartedi)
+        val mercoledi = findViewById<TextView>(R.id.clickMercoledi)
+        val giovedi = findViewById<TextView>(R.id.clickGiovedì)
+        val venerdi = findViewById<TextView>(R.id.clickVenerdi)
+
+        val giorniTextViews = listOf(lunedi, martedi, mercoledi, giovedi, venerdi) // List of TextViews
+
         sceltaGiorno.setOnClickListener{
             val lista: LinearLayout = findViewById(R.id.listaGiorni)
             if(lista.visibility == LinearLayout.VISIBLE){
@@ -54,37 +65,55 @@ class OrarioLezioni : AppCompatActivity() {
             }
         }
 
-        val lunedi = findViewById<TextView>(R.id.clickLunedi)
         lunedi.setOnClickListener{
+            ricoloraTextView(giorniTextViews,lunedi)
             giorno=Calendar.MONDAY
             aggiornaListaLezioni(username,giorno)
         }
 
-        val martedi = findViewById<TextView>(R.id.clickMartedi)
+
         martedi.setOnClickListener {
+            ricoloraTextView(giorniTextViews,martedi)
             giorno = Calendar.TUESDAY
             aggiornaListaLezioni(username, giorno)
         }
 
-        val mercoledi = findViewById<TextView>(R.id.clickMercoledi)
+
         mercoledi.setOnClickListener{
+            ricoloraTextView(giorniTextViews,mercoledi)
             giorno=Calendar.WEDNESDAY
             aggiornaListaLezioni(username,giorno)
         }
 
-        val giovedi = findViewById<TextView>(R.id.clickGiovedì)
         giovedi.setOnClickListener{
+            ricoloraTextView(giorniTextViews,giovedi)
             giorno=Calendar.THURSDAY
             aggiornaListaLezioni(username,giorno)
         }
 
-        val venerdi = findViewById<TextView>(R.id.clickVenerdi)
         venerdi.setOnClickListener{
+            ricoloraTextView(giorniTextViews,venerdi)
             giorno=Calendar.FRIDAY
             aggiornaListaLezioni(username,giorno)
         }
 
         aggiornaListaLezioni(username,giorno)
+    }
+
+    private fun ricoloraTextView(giorniTextViews: List<TextView>, giorno: TextView) {
+        for (textView in giorniTextViews) {
+            if (textView != giorno) {
+                textView.setBackgroundColor(
+                    ContextCompat.getColor(
+                        this,
+                        R.color.white
+                    )
+                ) // Or use a default background
+                textView.setTextColor(ContextCompat.getColor(this, R.color.black)) // Original color
+            }
+        }
+        giorno.setBackgroundColor(ContextCompat.getColor(this, R.color.verde_opaco))
+        giorno.setTextColor(ContextCompat.getColor(this, R.color.white))
     }
 
     private fun aggiornaListaLezioni(username: Int, giorno: Int) {

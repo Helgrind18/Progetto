@@ -1,7 +1,11 @@
 package com.example.progetto.AreeBiblioteca
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -57,19 +61,46 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                 e.printStackTrace()
             }
 
-            val bottoneRichiesta: TextView= findViewById(R.id.bottoneRichiesta)
-            bottoneRichiesta.setOnClickListener {
-                lifecycleScope.launch {
-                     withContext(Dispatchers.IO) {
-                         try {
-                             libro.matricolaStudente=matricola
-                             dbViewModel.aggiungiLibro(libro)
-                             Toast.makeText(this@Libro_Riutilizzabile, "Prestito preso in carico", Toast.LENGTH_LONG).show()
-                             finish()
-                         }catch (e: Exception){
-                             e.printStackTrace()
-                         }
+            val bottoneRichiesta: TextView = findViewById(R.id.bottoneRichiesta)
+            val progressBar: ProgressBar = findViewById(R.id.progressBar)
 
+            if (libro.matricolaStudente!=null) {
+                bottoneRichiesta.visibility= Button.GONE
+            }
+
+            bottoneRichiesta.setOnClickListener {
+                progressBar.visibility = ProgressBar.VISIBLE // Show progress bar
+                progressBar.progress = 0 // Reset progress
+                lifecycleScope.launch {
+                    try {
+                        val success = withContext(Dispatchers.IO) {
+                            libro.matricolaStudente = matricola
+                            dbViewModel.aggiungiLibro(libro)
+                            true // Return true if the operation is successful
+                        }
+
+                        if (success) { // Check the result of the database operation
+                            withContext(Dispatchers.Main) { // Show Toast on the main thread
+                                Toast.makeText(this@Libro_Riutilizzabile, "Prestito preso in carico", Toast.LENGTH_LONG).show()
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    progressBar.visibility = ProgressBar.GONE
+                                    finish()
+                                }, 2000)
+                            }
+                        } else {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(this@Libro_Riutilizzabile, "Errore durante la richiesta", Toast.LENGTH_LONG).show()
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    progressBar.visibility = ProgressBar.GONE
+                                    finish()
+                                }, 2000)
+                            }
+                        }
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        withContext(Dispatchers.Main) {
+                            Toast.makeText(this@Libro_Riutilizzabile, "Errore durante la richiesta", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             }
