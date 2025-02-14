@@ -21,8 +21,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var editor: SharedPreferences.Editor
     private lateinit var dbViewModel: DBViewModel
 
     @SuppressLint("SuspiciousIndentation")
@@ -31,13 +29,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
-
-        // Inizializza SharedPreferences
-        sharedPreferences = getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
-        editor = sharedPreferences.edit()
-
         dbViewModel = DBViewModel(application)
-
         // Trova le view
         val textMatricola: EditText = findViewById(R.id.textUsername)
         val textPassword: EditText = findViewById(R.id.textPassword)
@@ -54,18 +46,6 @@ class LoginActivity : AppCompatActivity() {
                 lifecycleScope.launch(Dispatchers.IO) {
                     try {
                         val studente = dbViewModel.studenteByMatricola(matricola)
-                        /*val relazioni = dbViewModel.getRelazioniByMatricola(matricola)
-                        relazioni.forEach { relazione ->
-                            Log.d("LoginActivityDEBUG", "Relazione trovata: $relazione")
-                        }*/
-                      /*  delay(500)
-                        lifecycleScope.launch(Dispatchers.IO) {
-                            val allRelazioni = dbViewModel.getAllRelazioniStudenteCorso()
-                            allRelazioni.forEach { relazione ->
-                                Log.d("LoginActivityDEBUG", "Relazione trovata: $relazione")
-                            }
-                        }*/
-
                         withContext(Dispatchers.IO){
                             val relazioni = dbViewModel.getAllRelazioniStudenteCorsoList()
                             relazioni.forEach { relazione ->
@@ -95,22 +75,9 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
 
-                // Gestione salvataggio credenziali
-            if (ricordami.isChecked) {
-                salvaUtente(matricola, pwd)
-                Toast.makeText(this, "Salvato", Toast.LENGTH_SHORT).show()
-            } else {
-                editor.clear()
-                editor.apply()
-            }
+
         }
     }
     }
 
-    private fun salvaUtente(usr: Int, pwd: String) {
-        editor.putInt("username", usr) // metto la chiave e il valore
-        editor.putString("password", pwd) // metto la chiave e il valore
-        editor.putBoolean("ricordami", true)
-        editor.apply()  // salvo le modifiche
-    }
 }

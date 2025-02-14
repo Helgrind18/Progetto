@@ -24,7 +24,7 @@ data class RelazioneStudenteCorso(
     @ColumnInfo(name = "giorno") val giorno: Int,
     @ColumnInfo(name = "ora") val ora: String,
     @ColumnInfo(name = "aula") val aula: String,
-    @ColumnInfo(name = "voto") val voto: Int,
+    @ColumnInfo(name = "voto") var voto: Int,
     @ColumnInfo(name = "prenotazione") var prenotazione: Int,
     @ColumnInfo(name = "nomeCorso") val nomeCorso: String  // Solo per riferimento, NON FK
 )

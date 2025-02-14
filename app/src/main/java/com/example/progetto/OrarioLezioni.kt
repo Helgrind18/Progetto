@@ -96,7 +96,11 @@ class OrarioLezioni : AppCompatActivity() {
                 if (studenteRecuperato != null) {
                     withContext(Dispatchers.Main) {
                         val calendar = Calendar.getInstance()
-                        val anno = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
+                        var anno = calendar.get(Calendar.YEAR) - studenteRecuperato.annoImmatricolazione
+                        //Gestione per un piccolo errore, se lo studente si immatricola nel 2025 allora risulta con anno = 0
+                        if(anno == 0){
+                            anno = 1
+                        }
                         val semestre = if (calendar.get(Calendar.MONTH) >= 3) 2 else 1
 
                         dbViewModel.getLezioni(giorno, studenteRecuperato.matricola, anno, semestre)?.observe(this@OrarioLezioni, Observer { lezioni -> lezioneAdapter.submitList(lezioni) })
