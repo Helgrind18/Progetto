@@ -16,6 +16,8 @@ import kotlinx.coroutines.withContext
 
 class ActivityRiutilizzabile : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel
+
+    /* Acitvity usata per mostare le informazioni dei singoli cors */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

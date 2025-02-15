@@ -69,21 +69,22 @@ class Libro_Riutilizzabile : AppCompatActivity() {
             }
 
             bottoneRichiesta.setOnClickListener {
-                progressBar.visibility = ProgressBar.VISIBLE // Show progress bar
-                progressBar.progress = 0 // Reset progress
+                progressBar.visibility = ProgressBar.VISIBLE
+                progressBar.progress = 0
                 lifecycleScope.launch {
                     try {
                         val success = withContext(Dispatchers.IO) {
                             libro.matricolaStudente = matricola
                             dbViewModel.aggiungiLibro(libro)
-                            true // Return true if the operation is successful
+                            true
                         }
 
-                        if (success) { // Check the result of the database operation
-                            withContext(Dispatchers.Main) { // Show Toast on the main thread
+                        if (success) {
+                            withContext(Dispatchers.Main) {
                                 Toast.makeText(this@Libro_Riutilizzabile, "Prestito preso in carico", Toast.LENGTH_LONG).show()
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     progressBar.visibility = ProgressBar.GONE
+                                    Toast.makeText(this@Libro_Riutilizzabile, "Libro preso in prestito!", Toast.LENGTH_LONG).show()
                                     finish()
                                 }, 2000)
                             }

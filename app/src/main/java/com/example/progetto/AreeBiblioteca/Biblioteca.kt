@@ -401,7 +401,6 @@ class Biblioteca : AppCompatActivity() {
               }
             }
             withContext(Dispatchers.Main) {
-                // Mostra un messaggio di conferma
                 Toast.makeText(this@Biblioteca, "Benvenuto nell'Area Biblioteca", Toast.LENGTH_SHORT).show()
             }
         }

@@ -23,7 +23,7 @@ import java.util.Calendar
 import kotlin.random.Random
 
 class Mensa : AppCompatActivity() {
-    //TODO: implementazione scan qr e stampa menù giornaliero, mostrare anche, per l'utente, quanti pasti ha fatto
+
     private lateinit var dbViewModel: DBViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

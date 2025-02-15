@@ -41,7 +41,6 @@ class OrarioLezioni : AppCompatActivity() {
         val calendar: Calendar = Calendar.getInstance()
         var giorno = calendar.get(Calendar.DAY_OF_WEEK)
         Log.d("OrarioLezioniDEBUG", "Giorno della settimana: $giorno")
-        // ✅ Inizializza l'adapter PRIMA della coroutine
         val recyclerView = findViewById<RecyclerView>(R.id.listaLezioni)
         lezioneAdapter = LezioneAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -54,7 +53,7 @@ class OrarioLezioni : AppCompatActivity() {
         val giovedi = findViewById<TextView>(R.id.clickGiovedì)
         val venerdi = findViewById<TextView>(R.id.clickVenerdi)
 
-        val giorniTextViews = listOf(lunedi, martedi, mercoledi, giovedi, venerdi) // List of TextViews
+        val giorniTextViews = listOf(lunedi, martedi, mercoledi, giovedi, venerdi)
 
         sceltaGiorno.setOnClickListener{
             val lista: LinearLayout = findViewById(R.id.listaGiorni)
@@ -108,8 +107,8 @@ class OrarioLezioni : AppCompatActivity() {
                         this,
                         R.color.white
                     )
-                ) // Or use a default background
-                textView.setTextColor(ContextCompat.getColor(this, R.color.black)) // Original color
+                )
+                textView.setTextColor(ContextCompat.getColor(this, R.color.black))
             }
         }
         giorno.setBackgroundColor(ContextCompat.getColor(this, R.color.verde_opaco))
