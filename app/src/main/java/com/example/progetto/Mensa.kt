@@ -55,7 +55,7 @@ class Mensa : AppCompatActivity() {
 
         lifecycleScope.launch {
             Log.d("TasseDEBUG", "Inizio query per studente")
-            // Esegui la query di database su un thread di I/O
+            // Eseguo la query di database su un thread di I/O
             studente = withContext(Dispatchers.IO) {
                 dbViewModel.studenteByMatricola(username)!!  // Query al database
             }

@@ -14,6 +14,7 @@ import com.example.progetto.Entity.Schemi.Studente
 
 // Questa classe definisce il database e le entità associate.
 // Funziona come punto di accesso principale dell'app ai dati persistenti
+//Vengono definite tutte le entity con cui il db dovrà interfacciarsi e i vari DAO per ogni entity
 @Database(
     entities = [
         Studente::class,

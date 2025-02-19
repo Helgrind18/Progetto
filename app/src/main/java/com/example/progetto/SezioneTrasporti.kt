@@ -36,6 +36,7 @@ class SezioneTrasporti : AppCompatActivity() {
         val ora: Int= data.get(Calendar.HOUR_OF_DAY)
         Log.d("PullDebug", "ora: $ora")
         val minuto: Int= data.get(Calendar.MINUTE)
+        //La data utile è stata formattata in questo modo per via della struttura della tabella pullman
         val dataUtile= ora*100+minuto
         Log.d("PullDebug", "dataUtile: $dataUtile")
 

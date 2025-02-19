@@ -30,10 +30,9 @@ class LoginActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_login)
         dbViewModel = DBViewModel(application)
-        // Trova le view
+        // Trovo le view
         val textMatricola: EditText = findViewById(R.id.textUsername)
         val textPassword: EditText = findViewById(R.id.textPassword)
-        val ricordami: CheckBox = findViewById(R.id.Ricordami)
         val invia: Button = findViewById(R.id.bottoneInvia)
         // Listener del bottone invia
         invia.setOnClickListener {
@@ -45,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
             val pwd = textPassword.text.toString().trim()
                 lifecycleScope.launch(Dispatchers.IO) {
                     try {
+                        //Recupero lo studente dal db, deve essere effettuato in un thread separato per non bloccare l'interfaccia utente
                         val studente = dbViewModel.studenteByMatricola(matricola)
                         withContext(Dispatchers.IO){
                             val relazioni = dbViewModel.getAllRelazioniStudenteCorsoList()
@@ -52,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
                                 delay(10)
                                 relazione.matricola = matricola
                                 dbViewModel.inserisciRelazioneStudenteCorso(relazione)
+                                //Inserisco le relazioni, serviranno per activity successive
                             }
                         }
 
@@ -62,6 +63,7 @@ class LoginActivity : AppCompatActivity() {
                                         putExtra("username", matricola)
                                     }
                                     startActivity(intent)
+                                    //Effettivamente l'utente esiste, passo al menu principale
                                 } else {
                                     Toast.makeText(this@LoginActivity, "Password errata", Toast.LENGTH_SHORT).show()
                                 }

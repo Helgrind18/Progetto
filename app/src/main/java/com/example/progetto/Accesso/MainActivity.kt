@@ -310,10 +310,10 @@ class MainActivity : AppCompatActivity() {
         //Inserimento delle relazioni
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                // Inserisci i corsi
+                // Inserisco i corsi
                 corso.forEach { dbViewModel.inserisciCorso(it) }
 
-                // Inserisci tutte le relazioni una per una, aspettando il completamento
+                // Inserisco tutte le relazioni una per una, aspettando il completamento, al fine di evitare evenutali errori di confliitto col db
                 relazioni.forEach { relazione ->
                     delay(10)
                     dbViewModel.inserisciRelazioneStudenteCorso(relazione) }
@@ -322,7 +322,6 @@ class MainActivity : AppCompatActivity() {
 
                 delay(500) // (facoltativo, aiuta Room a scrivere le modifiche)
 
-                // Recupera le lezioni
                 val lez = dbViewModel.getLezioni(Calendar.DAY_OF_WEEK, 15, 1, 1)
                 Log.d("MainActivityDEBUGLez", "Lezioni trovate: $lez")
 

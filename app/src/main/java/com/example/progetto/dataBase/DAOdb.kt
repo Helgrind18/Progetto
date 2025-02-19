@@ -15,7 +15,8 @@ import com.example.progetto.Entity.Schemi.Pullman
 import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 import com.example.progetto.Entity.Schemi.Studente
 
-
+//Qui dentro sono presenti tutte le interfacce per gestire le query
+//Abbiamo deciso di gestire interfacce singole per ogni Entity per semplicità e per facilitare la lettura del codice
 @Dao
 interface LibroDao {
 

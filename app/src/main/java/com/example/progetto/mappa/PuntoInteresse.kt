@@ -12,4 +12,5 @@ data class PuntoInteresse (
 /*
 * nome: Il nome del punto di interesse
 * latitudine e longitudine: Le coordinate del punto di interesse
-* raggio: Il raggio entro il quale si vuole essere notificati*/
+* raggio: Il raggio entro il quale si vuole essere notificati
+* */

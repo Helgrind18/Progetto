@@ -65,12 +65,12 @@ class HomeActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
 
             Log.d("HomeActivityDEBUG", "Inizio query per studente")
-            // Esegui la query di database su un thread di I/O
+            // Eseguo la query di database su un thread di I/O
             val studente = dbViewModel.studenteByMatricola(username)  // Query al database
             Log.d("HomeActivityDEBUG", "Risultato query: $studente")
 
 
-            // Una volta che la query è completata, torna al main thread per aggiornare la UI
+            // Una volta che la query è completata, si torna al main thread per aggiornare la UI
             withContext(Dispatchers.Main) {
                 if (studente != null) {
                     Toast.makeText(this@HomeActivity, "Benvenuto ${studente.nome}", Toast.LENGTH_SHORT).show()
@@ -78,7 +78,7 @@ class HomeActivity : AppCompatActivity() {
                     Toast.makeText(this@HomeActivity, "Studente non trovato", Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+        }//Non è necessario un try catch perchè lo studente è già presente se siamo qua
 
         orarioLezioni.setOnClickListener {
             val intent = Intent(this, OrarioLezioni::class.java).apply {

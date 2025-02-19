@@ -93,54 +93,37 @@ class Mappa : AppCompatActivity(), LocationListener {
         }
 
         //Implementazione di OSMDroid per poter usare OperStreetMap
-        Configuration.getInstance().userAgentValue = "Mappa/1.0" //statico
+        Configuration.getInstance().userAgentValue = "Mappa/1.0"
 
         // Inizializzazione della mappa
         mapView = findViewById(R.id.map)
         mapView.setMultiTouchControls(true)
 
+        //Registro un Manager al fine di avere aggiornamenti in tempo reale
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                locationPermissionCode
-            )
+        //Essendo la localizzazione una dangerous permission, controllo che l'utente effettivamente abbia autorizzato l'accesso alla posizione
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),locationPermissionCode)
         } else {
             startLocationUpdates()
             }
-    }
+        }
 
     private fun puntoDiInteresse(mapView: MapView, currentLocation: GeoPoint) {
         // Se l'utente si trova vicino a un punto di interesse, viene notificato.
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             var distanza: FloatArray = floatArrayOf(0f, 0f, 0f)
             for (punto in puntiInteresse) {
-                Location.distanceBetween(
-                    //calcolo la distanza in linea d'aria
-                    currentLocation.latitude,
-                    currentLocation.longitude,
-                    punto.latitudine,
-                    punto.longitudine,
-                    distanza
-                )
-
+                //calcolo la distanza in linea d'aria
+                Location.distanceBetween(currentLocation.latitude,currentLocation.longitude,punto.latitudine,punto.longitudine,distanza)
                 if (distanza[0] <= 100) { // Soglia di prossimità
-                    // Aggiungi il marker sulla mappa
+                    // Aggiungo il marker sulla mappa
                     val possibileMarker = Marker(mapView)
                     possibileMarker.position = GeoPoint(punto.latitudine, punto.longitudine)
                     possibileMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                     possibileMarker.title = punto.nome
                     mapView.overlays.add(possibileMarker)
-                    //Segnalo all'utente che si trovi in prossimità di un punto di interesse
+                    //Segnalo all'utente che si trova in prossimità di un punto di interesse
                     Toast.makeText(this, "Sei vicino a ${punto.nome}", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -148,51 +131,35 @@ class Mappa : AppCompatActivity(), LocationListener {
     }
 
     private fun startLocationUpdates() {
-        if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // Ottenere ultima posizione nota
-            val lastKnownLocation =
-                locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            val lastKnownLocation =locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
             val currentLocation = if (lastKnownLocation != null) {
                 GeoPoint(lastKnownLocation.latitude, lastKnownLocation.longitude)
             } else {
                 GeoPoint(39.3641, 16.2259) // UniCal
             }
-
             markerUtente(currentLocation)
-
             puntoDiInteresse(mapView, currentLocation)
-
             // Richiedere aggiornamenti di posizione
-            locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                5000,
-                20f,
-                this
-            )
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,20f,this)
         } else {
-            Toast.makeText(
-                this, "Location permission not granted. Unable to update location.",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(this, "Permessi negati, non è possibile aggiornare la mappa",Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun markerUtente(currentLocation: GeoPoint) {
-        // Centrare la mappa
+        // Centrovati sulla posizione corrente della mappa
         mapView.controller.setCenter(currentLocation)
         mapView.controller.setZoom(18.0)
 
-        // Aggiungere un marker
+        // Aggiungo un marker
         val defaultMarker = Marker(mapView)
         defaultMarker.position = currentLocation
         defaultMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
         defaultMarker.title = "Posizione Corrente"
         mapView.overlays.add(defaultMarker)
-        //Il marker lo coloro in modo differente, per far capire all'utente dove si trovi
+        //Il marker lo coloro in modo differente, per far capire all'utente dove si trova
         addCustomMarker(currentLocation)
     }
 
@@ -220,7 +187,6 @@ class Mappa : AppCompatActivity(), LocationListener {
 
     override fun onLocationChanged(location: Location) {
         val geoPoint = GeoPoint(location.latitude, location.longitude)
-
         //Pulisco tutti i marker
         mapView.overlays.clear()
         //Così ho aggiornamenti in tempo reale

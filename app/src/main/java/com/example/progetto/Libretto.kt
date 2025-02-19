@@ -43,9 +43,7 @@ class Libretto : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
         var lista: List<RelazioneStudenteCorso> = emptyList()
         val username = intent.getIntExtra("username", 1)
-        var studente: Studente =
-            Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
-
+        var studente: Studente =Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
         esameListAdapter = EsameAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)

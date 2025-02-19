@@ -37,7 +37,7 @@ class AreaPersonale : AppCompatActivity() {
         val username = intent.getIntExtra("username",1)
         lifecycleScope.launch {
             Log.d("AreaPersonaleDEBUG", "Inizio query per studente")
-            // Esegui la query di database su un thread di I/O
+            // Eseguo la query di database su un thread di I/O
             val studente = withContext(Dispatchers.IO) {
                 dbViewModel.studenteByMatricola(username) // Query al database
             }

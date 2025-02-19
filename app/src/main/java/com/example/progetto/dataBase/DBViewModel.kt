@@ -21,11 +21,12 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     private val libroDAO = DataBaseApp.getDatabase(application).getLibroDao()
     private val aulaDAO = DataBaseApp.getDatabase(application).getAulaDao()
     private val corsoDAO = DataBaseApp.getDatabase(application).getCorsoDao()
-    private val relazioneStudenteCorsoDAO =
-        DataBaseApp.getDatabase(application).getRelazioneStudenteCorsoDao()
+    private val relazioneStudenteCorsoDAO =DataBaseApp.getDatabase(application).getRelazioneStudenteCorsoDao()
     private val piattoDAO = DataBaseApp.getDatabase(application).getPiattoDao()
     private val pullmanDAO = DataBaseApp.getDatabase(application).getPullmanDao()
-    //STUDENTE
+
+
+    /////////////// STUDENTE //////////////////////////
 
     //Funzione per restituire tutti gli studenti
     fun getAllStudenti(): LiveData<List<Studente>> {
@@ -110,7 +111,6 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /////////////// CORSO //////////////////////////
-    // CORSO
 
     fun getAllCorsi(): LiveData<List<Corso>> = corsoDAO.getAllCorsi()
 
@@ -140,7 +140,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // AULA
+    /////////////// AULA //////////////////////////
     fun inserisciAula(aula: Aula) {
         viewModelScope.launch(Dispatchers.IO) {
             aulaDAO.inserisciAula(aula)
@@ -153,7 +153,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    // RELAZIONE STUDENTE-CORSO
+    /////////////// RELAZIONE STUDENTE - CORSO //////////////////////////
 
     fun getAllRelazioniStudenteCorso(): LiveData<List<RelazioneStudenteCorso>> {
         return relazioneStudenteCorsoDAO.getAllRelazioniStudenteCorso()
@@ -294,7 +294,7 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
         }
 
 
-//// PIATTO
+        /////////////// PIATTO  //////////////////////////
 
         fun inserisciPiatto(piatto: Piatto) {
             viewModelScope.launch(Dispatchers.IO) {
@@ -338,7 +338,9 @@ class DBViewModel(application: Application) : AndroidViewModel(application) {
                 null
             }
         }
-    //Pullman
+
+    /////////////// PULLMAN  //////////////////////////
+
     fun inserisciPullman(pullman: Pullman) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
