@@ -38,14 +38,18 @@ class OrarioLezioni : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
         val username = intent.getIntExtra("username", 1)
 
+        // Tramite Calendar potrò stabilire il giorno della settimana corretto
         val calendar: Calendar = Calendar.getInstance()
         var giorno = calendar.get(Calendar.DAY_OF_WEEK)
         Log.d("OrarioLezioniDEBUG", "Giorno della settimana: $giorno")
+        // Creo la RecyclerView e le assegno l'adapter corretto
         val recyclerView = findViewById<RecyclerView>(R.id.listaLezioni)
         lezioneAdapter = LezioneAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = lezioneAdapter
 
+
+        // Creo una lista di TextView
         val sceltaGiorno = findViewById<TextView>(R.id.sceltaGiorno)
         var lunedi = findViewById<TextView>(R.id.clickLunedi)
         val martedi = findViewById<TextView>(R.id.clickMartedi)
@@ -55,6 +59,7 @@ class OrarioLezioni : AppCompatActivity() {
 
         val giorniTextViews = listOf(lunedi, martedi, mercoledi, giovedi, venerdi)
 
+        // Se clicco sull'elemento di Layout corrispondente, sarà mostrata a schermo la lista dei giorni (creata tramite vari LinearLayout innestati)
         sceltaGiorno.setOnClickListener{
             val lista: LinearLayout = findViewById(R.id.listaGiorni)
             if(lista.visibility == LinearLayout.VISIBLE){
@@ -63,6 +68,8 @@ class OrarioLezioni : AppCompatActivity() {
                 lista.visibility = LinearLayout.VISIBLE
             }
         }
+
+        // A seconda del giorno cliccato, mostrerò a schermo solo lezioni di quel giorno e andrò ad evidenziare il giorno scelto
 
         lunedi.setOnClickListener{
             ricoloraTextView(giorniTextViews,lunedi)
@@ -99,6 +106,7 @@ class OrarioLezioni : AppCompatActivity() {
         aggiornaListaLezioni(username,giorno)
     }
 
+    // Funzione che ricolora in verde il giorno selezionato, per evidenziarlo all'utente
     private fun ricoloraTextView(giorniTextViews: List<TextView>, giorno: TextView) {
         for (textView in giorniTextViews) {
             if (textView != giorno) {
@@ -115,6 +123,7 @@ class OrarioLezioni : AppCompatActivity() {
         giorno.setTextColor(ContextCompat.getColor(this, R.color.white))
     }
 
+    // Funzione che recupera lo studente, ottiene la lista delle lezioni con il giorno corretto e la mostra a schermo
     private fun aggiornaListaLezioni(username: Int, giorno: Int) {
         lifecycleScope.launch {
             try {

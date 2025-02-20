@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
@@ -70,12 +71,14 @@ class RelazioneStudenteCorsoAdapter() : ListAdapter<RelazioneStudenteCorso, Rela
 
 
 private fun gestisciClickPrenotazioni(tview: TextView, button: Button, barra: View, esame: RelazioneStudenteCorso) {
+    // aggiorno il valore del campo prenotazione e, dopo aver atteso 1,5 secondi, rendo invisibile l'elemento e con un Toast segnalo il successo
     esame.prenotazione=1
     Handler(Looper.getMainLooper()).postDelayed({
         tview.visibility = TextView.GONE
         button.visibility = Button.GONE
         barra.visibility = View.GONE
-    }, 200)
+        Toast.makeText(tview.context, "Esame prenotato con successo", Toast.LENGTH_SHORT).show()
+    }, 1500)
 
 }
 

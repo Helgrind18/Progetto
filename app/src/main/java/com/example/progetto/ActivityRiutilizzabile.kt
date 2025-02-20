@@ -17,7 +17,7 @@ import kotlinx.coroutines.withContext
 class ActivityRiutilizzabile : AppCompatActivity() {
     private lateinit var dbViewModel: DBViewModel
 
-    /* Acitvity usata per mostare le informazioni dei singoli cors */
+    // Acitvity usata per mostare le informazioni dei singoli corsi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,6 +27,8 @@ class ActivityRiutilizzabile : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //per prendere le informazioni dal db, creo un corso "dummy", che aggiornerò tramite il viewmodel
 
         dbViewModel = DBViewModel(application)
         val nomeCorso: TextView = findViewById(R.id.nomeCorso)
@@ -39,6 +41,7 @@ class ActivityRiutilizzabile : AppCompatActivity() {
                 corso = withContext(Dispatchers.IO) {
                     dbViewModel.getCorsoById(id)!!
                 }
+                // dopo aver preso le informazioni dal db, le mostro nella activity
                 val semestre: TextView = findViewById(R.id.TestoSemestre)
                 semestre.text = corso.semestre.toString()
                 val anno: TextView = findViewById(R.id.TestoAnno)

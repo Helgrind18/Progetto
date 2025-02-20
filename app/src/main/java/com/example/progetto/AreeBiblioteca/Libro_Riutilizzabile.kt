@@ -34,12 +34,19 @@ class Libro_Riutilizzabile : AppCompatActivity() {
             insets
         }
 
+        //recupero dei dati passati passati tramite Intent
+
         val nome= intent.getStringExtra("nome")
         val autore= intent.getStringExtra("autore")
         val matricola= intent.getIntExtra("username",0)
         Log.d("BiblioDebu", "Recupero della matricola: $matricola")
+
+        // aggiorno l'intestazione della pagina con il nome del libro
         val nomeLibro: TextView = findViewById(R.id.nomeLibro)
         nomeLibro.text = nome
+
+
+        // Aggiorno il resto degli elementi di layout con le informazioni del libro
 
         dbViewModel = DBViewModel(application)
         val testoNome: TextView = findViewById(R.id.TestoNome)
@@ -52,6 +59,7 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                 libro = withContext(Dispatchers.IO) {
                     dbViewModel.getLibroByNomeAutore(nome.toString(), autore.toString())!!
                 }
+                // aggiorno gli elementi di layout con le informazioni del libro prese dal database
                 Log.d("BiblioDebu", "Recupero del libro ${libro.name}")
                 val settoreTv: TextView= findViewById(R.id.TestoSettore)
                 settoreTv.text=libro.settore
@@ -61,14 +69,18 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                 e.printStackTrace()
             }
 
+            //gestione del pulsante di richiesta
+
             val bottoneRichiesta: TextView = findViewById(R.id.bottoneRichiesta)
             val progressBar: ProgressBar = findViewById(R.id.progressBar)
 
+            // se il libro è stato prenotato da qualcuno, il pulsante diventa invisibile
             if (libro.matricolaStudente!=null) {
                 bottoneRichiesta.visibility= Button.GONE
             }
 
             bottoneRichiesta.setOnClickListener {
+                // gestione della progress bar che servirà per mostrare un'animazione a schermo
                 progressBar.visibility = ProgressBar.VISIBLE
                 progressBar.progress = 0
                 lifecycleScope.launch {
@@ -78,10 +90,12 @@ class Libro_Riutilizzabile : AppCompatActivity() {
                             dbViewModel.aggiungiLibro(libro)
                             true
                         }
+                        // con la variabile success posso capire se la richiesta è andata a buon fine o meno, se è andata a buon fine, avrò aggionrato anche il campo matricola nellìistanza di database del libro
 
                         if (success) {
                             withContext(Dispatchers.Main) {
                                 Toast.makeText(this@Libro_Riutilizzabile, "Prestito preso in carico", Toast.LENGTH_LONG).show()
+                                // tramite una gestione intelligente degli Handler, è possibile simulare un'animazione della progress bar, in questo caso, l'animazione è di 2 secondi
                                 Handler(Looper.getMainLooper()).postDelayed({
                                     progressBar.visibility = ProgressBar.GONE
                                     Toast.makeText(this@Libro_Riutilizzabile, "Libro preso in prestito!", Toast.LENGTH_LONG).show()

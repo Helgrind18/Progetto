@@ -33,6 +33,8 @@ class Tasse : AppCompatActivity() {
             insets
         }
 
+
+        // tramite Calendar prendo il mese corrente, servirà per capire quante tasse devono essere pagate
         var studente: Studente = Studente(1, "", "", "", "", 0, "", 0,false, false, false, false,0)
         dbViewModel = DBViewModel(application)
         val username = intent.getIntExtra("username", 1)
@@ -48,6 +50,7 @@ class Tasse : AppCompatActivity() {
             }
             Log.d("TasseDEBUG", "Risultato query: $studente")
 
+            // ottenfo i valori necessari per il calcolo della tassa, e li mostro a schermo
             val iseeStudente = studente.isee
             val tassa: Double = calcoloTassa(iseeStudente)
             val tassaConMora: Double = tassa * 1.05
@@ -59,6 +62,9 @@ class Tasse : AppCompatActivity() {
         }
     }
 
+    // A seconda del mese corrente e delle tasse già pagate/non pagate,
+    // configuro i bottoni di pagamento, se uno studente ha saltato la finestra di pagamento precedente, dovrà pagare con mora
+    // gestiamo le possibili configurazioni di eventuali pagamenti mancati
     private fun configurazioneBottoni(studente: Studente, tassa: Double, tassaConMora: Double, mese: Int) {
         val bottonePagamento1 = findViewById<Button>(R.id.bottonePagamento1)
         val bottonePagamento2 = findViewById<Button>(R.id.bottonePagamento2)
@@ -203,6 +209,8 @@ class Tasse : AppCompatActivity() {
         }
     }
 
+    // Funzione per la gestioned dei, che aggiorna il valore della tassa nel database, inoltre mostrerà un'animazione
+    // che simula una finta transazione
     private fun gestionePagamenti(studente: Studente, tassaName: String, tassaAmount: Double, bottone: Button, textView: TextView, view: View) {
         // Imposta la tassa come pagata nel modello Studente
         when (tassaName) {
@@ -237,6 +245,7 @@ class Tasse : AppCompatActivity() {
 
     }
 
+    // Aggiorna l'informazione relativa alle tasse
     private fun updateInfo(studente: Studente) {
         val info: TextView = findViewById(R.id.infor)
         info.text = testoInfo(studente.tassa1, studente.tassa2, studente.tassa3, studente.tassa4)
@@ -272,6 +281,7 @@ class Tasse : AppCompatActivity() {
     }
 
 
+    // Calcolo della tassa in base all'isee, come letto dal sito d'ateneo
     private fun calcoloTassa(iseeStudente: Long?): Double {
         if (iseeStudente != null) {
             if (iseeStudente <= 27726.79) {

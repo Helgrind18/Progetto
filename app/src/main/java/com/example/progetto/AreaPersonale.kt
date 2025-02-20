@@ -53,6 +53,7 @@ class AreaPersonale : AppCompatActivity() {
                 separatore.text="PRESTITI PERSONALI"
                 val bottone:Button=findViewById(R.id.bottonePrestiti)
                 bottone.visibility=View.VISIBLE
+                // se l'utente clicca sul bottone, verrà portato alla pagina dei libri presi in prestito
                 bottone.setOnClickListener{
                     val intent = Intent(this@AreaPersonale, Prestiti_Personali::class.java)
                     intent.putExtra("username",username)

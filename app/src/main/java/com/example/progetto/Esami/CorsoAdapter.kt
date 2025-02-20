@@ -47,6 +47,7 @@ class CorsoAdapter(var context: Context): ListAdapter<Corso, CorsoAdapter.CorsoV
                 append(", CFU: ")
                 append(corso.CFU)
             }
+            // tramite l'OnClickListener posso portare l'utente su una nuova pagina con le informazioni del corso
             titleTextView.setOnClickListener {
                 val intent = Intent(context, ActivityRiutilizzabile::class.java).apply {
                     putExtra("id", corso.id)

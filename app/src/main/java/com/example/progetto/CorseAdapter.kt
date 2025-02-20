@@ -45,7 +45,7 @@ class CorseAdapter(): ListAdapter<Pullman, CorseAdapter.CorseViewHolder>(DIFF_CA
             destinazione.text = corsa.destinazione
 
             val orarioPartenza = corsa.orarioPartenza.toString().padStart(4, '0') // Garantisce almeno 4 cifre
-
+            //effetuiamo il parsing della stringa per separare ore e minuti
             if (orarioPartenza.length >= 4) {
                 val ore = orarioPartenza.substring(0, 2)
                 val minuti = orarioPartenza.substring(2, 4)

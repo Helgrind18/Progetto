@@ -31,6 +31,8 @@ class PianoStudi : AppCompatActivity() {
             insets
         }
 
+        // Tramite 3 RecyclerView ed altrettante TextView che saranno d'intestazione, creo le liste degli esami da svolgere
+        // divise per anno accademico, cliccando sull'intestazione è possibile mostrare/rendere invisibile la lista corrispettiva
 
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
         val matricola= intent.getIntExtra("username",1)

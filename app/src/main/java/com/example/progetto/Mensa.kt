@@ -36,18 +36,28 @@ class Mensa : AppCompatActivity() {
             insets
         }
 
+        // Usiamo uno studente "dummy" per recuperare successivamente le informazioni dello studente tramite la sua matricola
         var studente: Studente = Studente(1, "", "", "", "", 0, "", 0,false, false, false, false,0)
         val username = intent.getIntExtra("username", 1)
         dbViewModel = DBViewModel(application)
+        // valore da usare per richiedere l'intent alla fotocamerna, come letto sulla documentazione
         val REQUEST_IMAGE_CAPTURE = 1
+
+        // Creazione di un oggetto Calendar per ottenere la data corrente, serviranno per la generazione del seed
         val calendar= Calendar.getInstance()
         val mese= calendar.get(Calendar.MONTH)
         val giorno= calendar.get(Calendar.DAY_OF_MONTH)
         val anno= calendar.get(Calendar.YEAR)
+        // Generazione del seed per il random, in questo modo, mi assicuròc he ogni giorno avrò una combinazione diversa di piatti
+        // Con questo stratagemma, ogni volta che apro l'Activity nella stessa giornata, avrò sempre lo steso menù
         val seed = mese+giorno+anno
         val random: Random= Random(seed)
+        // impongo seed come parametro della funzione random per imporre un upper bound e un lower bound (implicito) pari a 0, come descritto nella documentazione
         val ris= random.nextInt(seed)
         Log.d("TasseDEBUG", "Risultato random: $ris")
+
+
+        // genero liste vuote per i piatti
 
         var listaPrimi: List<Piatto> = emptyList()
         var listaSecondi: List<Piatto> = emptyList()
@@ -62,10 +72,14 @@ class Mensa : AppCompatActivity() {
             Log.d("TasseDEBUG", "Risultato query: $studente")
 
             val iseeStudente = studente.isee
+            //Calcolo quanto deve pagare lo studente per mangiare a mensa, secondo i valori di Isee come mostrato nel sito dell'Università
             val costo: Double = calcolaCostoMensa(iseeStudente)
             val info: TextView = findViewById(R.id.infoUtente)
             info.text = testoInfo(studente, costo)
 
+
+
+            // Aggiorno le liste vuote create in precedenza, ognuna con il sio ripettivo tipo di piatto
 
             listaPrimi= withContext(Dispatchers.IO) {
                 dbViewModel.getPiattiByTipo(1)!!
@@ -82,6 +96,7 @@ class Mensa : AppCompatActivity() {
 
 
 
+            // Prendo il piatto "del giorno" effettuando la divisione intera tra il valore ottenuto con Random e la lunghezza della lista, così da non sforare mai la dimensione
             val primo= listaPrimi[ris%listaPrimi.size]
             Log.d("TasseDEBUG", "Primo: $primo")
             val secondo= listaSecondi[ris%listaSecondi.size]
@@ -90,10 +105,11 @@ class Mensa : AppCompatActivity() {
             Log.d("TasseDEBUG", "Contorno: $contorno")
 
 
-            // Configura i bottoni di pagamento
+            // Aggiorno le informazioni dei Layout
             val menu: TextView= findViewById(R.id.menu)
             menu.text=mostraMenu(primo, secondo, contorno)
             val bottonePagamento1: Button= findViewById(R.id.bottone)
+            // Configura i bottoni di pagamento
             bottonePagamento1.setOnClickListener {
                 dispatchTakePictureIntent(REQUEST_IMAGE_CAPTURE)
                 studente.pastiEffettuati++
@@ -107,7 +123,7 @@ class Mensa : AppCompatActivity() {
     }
 
 
-
+    // Funzione per la corretta creazione del testo da mostrare a schermo
     private fun testoInfo(studente: Studente, costo: Double): String{
         var ris: StringBuilder= StringBuilder()
         ris.append("Matricola: ${studente.matricola}")
@@ -119,6 +135,7 @@ class Mensa : AppCompatActivity() {
         return ris.toString()
     }
 
+    // Funzione per il calcolo del costo del ticket mensa
     private fun calcolaCostoMensa(iseeStudente: Long): Double {
         return if (iseeStudente>=0 && iseeStudente<=6000) {
             1.70
@@ -132,6 +149,8 @@ class Mensa : AppCompatActivity() {
             4.40
     }
 
+
+    // Funzione per invocare l'intent alla fotocamera, come mostrato sulla documentazione
     private fun dispatchTakePictureIntent(request: Int) {
         val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         try {
@@ -140,6 +159,7 @@ class Mensa : AppCompatActivity() {
         }
     }
 
+    // Funzione per la corretta creazione del testo dei piatti del giorno da mostrare a schermo
     private fun mostraMenu(primo: Piatto, secondo: Piatto, contorno: Piatto): String{
         var ris: StringBuilder= StringBuilder()
         ris.append("PRIMO PIATTO: ${primo.nome}")

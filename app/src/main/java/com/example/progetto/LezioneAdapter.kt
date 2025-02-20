@@ -9,17 +9,17 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.progetto.Entity.Relazioni.RelazioneStudenteCorso
 
-class LezioneAdapter() : ListAdapter<RelazioneStudenteCorso, LezioneAdapter.LezionwViewHolder>(DIFF_CALLBACK) {
+class LezioneAdapter() : ListAdapter<RelazioneStudenteCorso, LezioneAdapter.LezioneViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
-    ): LezionwViewHolder {
+    ): LezioneViewHolder {
         val itemView= LayoutInflater.from(parent.context).inflate(R.layout.item_lezione,parent,false)
-        return LezionwViewHolder(itemView)
+        return LezioneViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: LezionwViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: LezioneViewHolder, position: Int) {
         val lezione=getItem(position)
         holder.bind(lezione)
 
@@ -33,7 +33,7 @@ class LezioneAdapter() : ListAdapter<RelazioneStudenteCorso, LezioneAdapter.Lezi
 
     }
 
-    class LezionwViewHolder(itemView: View) : ViewHolder(itemView) {
+    class LezioneViewHolder(itemView: View) : ViewHolder(itemView) {
         private val titleTextView: TextView = itemView.findViewById(R.id.TestoNomeLezione)
         private val aula: TextView = itemView.findViewById(R.id.TestoAulaLezione)
         private val ora: TextView = itemView.findViewById(R.id.TestoInizioLezione)

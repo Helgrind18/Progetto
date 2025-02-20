@@ -32,14 +32,19 @@ class AppelliDisponibili : AppCompatActivity() {
         val anno: Int= Calendar.getInstance().get(Calendar.YEAR)
         Log.d("AppelliDisponibiliDEBUG", "Anno corrente: $anno")
 
+        // inizializzazione della RecyclerView e dell'adapter
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
         esamiAdapter = RelazioneStudenteCorsoAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = esamiAdapter
         dbViewModel= ViewModelProvider(this).get(DBViewModel::class.java)
+
+
         //Recupero la matricola
         val username = intent.getIntExtra("username",1)
         Log.d("AppelliDisponibiliDEBUG", "Username ricevuto: $username")
+
+        // recupero gli esami e tramite la RecyclerView li mostro all'utente
         dbViewModel.getEsamiPrenotabili(username, anno)?.observe(this, Observer { esami ->
             Log.d("AppelliDisponibiliDEBUG", "Esami ricevuti: ${esami.size}")
             esami.forEach { Log.d("AppelliDisponibiliDEBUG", "Esame: $it") }

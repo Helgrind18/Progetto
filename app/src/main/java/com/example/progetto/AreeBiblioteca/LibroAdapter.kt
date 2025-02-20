@@ -13,6 +13,7 @@ import com.example.progetto.Entity.Schemi.Libro
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
+// classe adapter da usare quando devono essere visualizzate liste di libri
 class LibroAdapter(var context: Context, var matricola: Int) : ListAdapter<Libro, LibroAdapter.LibroViewHolder>(
     DIFF_CALLBACK
 ) {
@@ -52,6 +53,8 @@ class LibroAdapter(var context: Context, var matricola: Int) : ListAdapter<Libro
                 append(", ")
                 append(libro.autore)
             }
+
+            // tramite l'OnClickListener posso portare l'utente su una nuova pagina con le informazioni del libro
 
             titleTextView.setOnClickListener{
                 val intent = Intent(context, Libro_Riutilizzabile::class.java).apply {

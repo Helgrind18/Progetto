@@ -20,6 +20,8 @@ class Questionari : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // Activity che mostra un'ipotetica implementazione per dei questionari sui corsi seguiti,
+        // per semplicità, all'utente sarà chiesto di valutare solo l'app e lasciare un feedback
 
         val invioFeedbackButton = findViewById<Button>(R.id.invioFeedback)
         val feedbackEditText: EditText = findViewById(R.id.feedback)

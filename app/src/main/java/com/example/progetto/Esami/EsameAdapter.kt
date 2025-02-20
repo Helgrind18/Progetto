@@ -39,12 +39,13 @@ class EsameAdapter(): ListAdapter<RelazioneStudenteCorso, EsameAdapter.EsamiView
         private val passato: View= itemView.findViewById(R.id.passato)
         fun bind(esame: RelazioneStudenteCorso) {
             titleTextView.text = esame.nomeCorso.toString()
+            // se l'esame è stato superato, colorerò il verde un elemento di layout per segnalarlo, altrmenti sarà di colore rosso
             if (esame.voto!=-1){
                 voto.text=esame.voto.toString()
-                passato.background=itemView.context.getDrawable(R.color.verde_opaco)
+                passato.background=itemView.context.getDrawable(R.color.verde_chiaro)
             }else{
                 voto.text="N/D"
-                passato.background=itemView.context.getDrawable(R.color.rosso_bordeaux)
+                passato.background=itemView.context.getDrawable(R.color.rosso)
             }
 
         }

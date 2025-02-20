@@ -43,11 +43,14 @@ class Libretto : AppCompatActivity() {
         dbViewModel = DBViewModel(application)
         var lista: List<RelazioneStudenteCorso> = emptyList()
         val username = intent.getIntExtra("username", 1)
+        // Utlizzando uno studente "dummy", reuperreò in seguito le informazioni dello studente
         var studente: Studente =Studente(1, "", "", "", "", 0, "", 0, false, false, false, false, 0)
+        // Associazione della RecyclerView e dell'adapter
         val recyclerView = findViewById<RecyclerView>(R.id.lista)
         esameListAdapter = EsameAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = esameListAdapter
+        // Recupero l'intera lista degli esami dello studente tramite la sua matricola
         dbViewModel.getEsamiDiStudenteLD(username)?.observe(
             this,
             Observer{ esami -> esameListAdapter.submitList(esami)
@@ -55,50 +58,55 @@ class Libretto : AppCompatActivity() {
 
 
         lifecycleScope.launch {
-            Log.d("TasseDEBUG", "Inizio query per studente")
+            Log.d("LibDEBUG", "Inizio query per studente")
+            // Recupero l'intero studente
             try {
                 studente = withContext(Dispatchers.IO) {
                     dbViewModel.studenteByMatricola(username)!!
                 }
-                Log.d("TasseDEBUG", "Risultato studente: $studente")
+                Log.d("LibDEBUG", "Risultato studente: $studente")
             } catch (e: Exception) {
-                Log.e("TasseDEBUG", "Errore nel recupero studente", e)
+                Log.e("LibDEBUG", "Errore nel recupero studente", e)
             }
 
+            // Questa lista di esami servirà per mostrare il numero di esami superati
             try {
                 lista = withContext(Dispatchers.IO) {
                     dbViewModel.getEsamiDiStudente(username)!!
                 }
-                Log.d("TasseDEBUG", "Risultato esami: $lista")
+                Log.d("LibDEBUG", "Risultato esami: $lista")
             } catch (e: Exception) {
-                Log.e("TasseDEBUG", "Errore nel recupero esami", e)
+                Log.e("LibDEBUG", "Errore nel recupero esami", e)
             }
 
+            // Calcolo della media tramite la coroutine e l'update della UI
             try {
                 val media = withContext(Dispatchers.IO) {
                     dbViewModel.getMedia(studente.matricola) ?: 0.0
                 }
-                Log.d("TasseDEBUG", "Risultato media: $media")
+                Log.d("LibDEBUG", "Risultato media: $media")
                 try {
                     val mediaPonderata = withContext(Dispatchers.IO) {
                         dbViewModel.getMediaPonderata(studente.matricola) ?: 0.0
                     }
-                    Log.d("TasseDEBUG", "Risultato media ponderata: $mediaPonderata")
+                    Log.d("LibDEBUG", "Risultato media ponderata: $mediaPonderata")
                     val info: TextView = findViewById(R.id.infoLibretto)
                     info.text = testoInfo(media, mediaPonderata, lista)
                 } catch (e: Exception) {
-                    Log.e("TasseDEBUG", "Errore nel recupero media ponderata", e)
+                    Log.e("LibDEBUG", "Errore nel recupero media ponderata", e)
                 }
 
             } catch (e: Exception) {
-                Log.e("TasseDEBUG", "Errore nel recupero media", e)
+                Log.e("LibDEBUG", "Errore nel recupero media", e)
             }
 
+            // Gestione del bottone che al click mostrerà la lista degli esami
             val listaBottone: Button = findViewById(R.id.bottoneLista)
             listaBottone.setOnClickListener {
                 val listaEs: TextView= findViewById(R.id.intEsami)
                 val progressBar: ProgressBar = findViewById(R.id.progressBar)
                 progressBar.visibility = ProgressBar.VISIBLE
+                // Anche qui abbiamo scelto di aggiungere un'animazione di caricamento
                 Handler(Looper.getMainLooper()).postDelayed({
                     listaBottone.visibility= Button.GONE
                     progressBar.visibility = View.GONE
@@ -111,6 +119,7 @@ class Libretto : AppCompatActivity() {
 
     }
 
+    // Funzione per il corretto aggiornamento del testo dei Layout
     private fun testoInfo(
         media: Double,
         mediaPonderata: Double,
