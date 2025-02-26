@@ -43,7 +43,6 @@ class HomeActivity : AppCompatActivity() {
 
         //Saluto dell'utente
         val username = intent.getIntExtra("username",1)
-        Toast.makeText(this, "Benvenuto $username", Toast.LENGTH_SHORT).show()
 
         val orarioLezioni: Button = findViewById(R.id.orarioLezioni)
         val calendarioEsami: Button = findViewById(R.id.calendarioEsami)

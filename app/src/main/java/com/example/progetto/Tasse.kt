@@ -209,7 +209,7 @@ class Tasse : AppCompatActivity() {
         }
     }
 
-    // Funzione per la gestioned dei, che aggiorna il valore della tassa nel database, inoltre mostrerà un'animazione
+    // Funzione per la gestione dei pagamenti, che aggiorna il valore della tassa nel database, inoltre mostrerà un'animazione
     // che simula una finta transazione
     private fun gestionePagamenti(studente: Studente, tassaName: String, tassaAmount: Double, bottone: Button, textView: TextView, view: View) {
         // Imposta la tassa come pagata nel modello Studente

@@ -48,7 +48,7 @@ class Mensa : AppCompatActivity() {
         val mese= calendar.get(Calendar.MONTH)
         val giorno= calendar.get(Calendar.DAY_OF_MONTH)
         val anno= calendar.get(Calendar.YEAR)
-        // Generazione del seed per il random, in questo modo, mi assicuròc he ogni giorno avrò una combinazione diversa di piatti
+        // Generazione del seed per il random, in questo modo, mi assicurò che ogni giorno avrò una combinazione diversa di piatti
         // Con questo stratagemma, ogni volta che apro l'Activity nella stessa giornata, avrò sempre lo steso menù
         val seed = mese+giorno+anno
         val random: Random= Random(seed)
