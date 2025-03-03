@@ -52,13 +52,6 @@
 
         android:backgroundTint="@color/rosso_bordeaux"/>
 
-    <!--Aggiunta di una Checkbox per permettere all'app di registrare un nuovo utente-->
-    <CheckBox
-        android:id="@+id/Ricordami"
-        android:text="Ricordami!"
-        android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+
 
 </LinearLayout>
